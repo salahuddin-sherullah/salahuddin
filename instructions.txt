@@ -1,0 +1,10 @@
+Change directory:
+cd /C/Users/Salahuddin/Downloads/Personal Site
+
+Add/Update files:
+git add .
+
+Commit and Push Changes:
+git commit -m "some message"
+
+git push origin master
