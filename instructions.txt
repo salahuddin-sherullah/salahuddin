@@ -1,8 +1,10 @@
 Change directory:
-cd /C/Users/Salahuddin/Downloads/Personal Site
+cd /C/Users/Salahuddin/Downloads/
+cd "Personal Site"
 
 Add/Update files:
 git add .
+git status
 
 Commit and Push Changes:
 git commit -m "some message"
