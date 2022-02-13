@@ -17,7 +17,7 @@
 	body, input, select, textarea {
 		color: #555f66;
 		font-family: "Roboto", Helvetica, sans-serif;
-		font-size: 14pt;
+		font-size: 16pt;
 		font-weight: 300;
 		line-height: 1.75em;
 	}
@@ -1114,3 +1114,15 @@
 .share-btn.hackernews  { background: #ff6600; }
 .share-btn.linkedin    { background: #4875B4; }
 .share-btn.email       { background: #444444; }
+
+.div-1 {
+        background-color: #EBEBEB;
+    }
+    
+    .div-2 {
+    	background-color: #ABBAEA;
+    }
+    
+    .div-3 {
+    	background-color: #FBD603;
+    }
