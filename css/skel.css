@@ -14,15 +14,7 @@
 
 	body {
 		/* min-width: (containers) */
-		min-width: 1200px;
-	}
-
-	.container {
-		margin-left: auto;
-		margin-right: auto;
-		
-		/* width: (containers) */
-		width: 1200px;
+		width: 100px;
 	}
 
 	/* Modifiers */
@@ -44,9 +36,6 @@
 
 /* Grid */
 
-	.\31 2u { width: 100% }
-	.\31 1u { width: 91.6666666667% }
-	.\31 0u { width: 83.3333333333% }
 	.\39 u { width: 75% }
 	.\38 u { width: 66.6666666667% }
 	.\37 u { width: 58.3333333333% }

@@ -1126,4 +1126,12 @@
     .div-3 {
     	background-color: #FBD603;
     }
+
 img {max-width:100%}
+
+div.main_body {
+  width: 620px;
+  margin: auto;
+}
+
+/* perell.com*/
