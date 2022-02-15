@@ -1130,8 +1130,9 @@
 img {max-width:100%}
 
 div.main_body {
-  width: 620px;
+	width: 460pt;
   margin: auto;
+	max-width:80%;
 }
 
 /* perell.com*/
