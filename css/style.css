@@ -548,9 +548,9 @@ strong, b {
 				}
 
 		ul.actions {
-			cursor: default;
-			list-style: none;
-			padding-left: 0;
+    cursor: default;
+    list-style: none;
+    padding-left: 0;
 		}
 
 			ul.actions li {
@@ -984,11 +984,11 @@ strong, b {
 /* Banner */
 
 	#banner {
-		background-color: black;
+		background-image: url("../images/banner_custom.png");
 		background-size: cover;
 		background-position: center center;
 		background-repeat: no-repeat;
-		color: #d8d8d8;
+		color: white;
 		padding: 10em 0;
 		text-align: center;
 		position: relative;
@@ -1001,7 +1001,7 @@ strong, b {
 			top: 0;
 			width: 100%;
 			height: 100%;
-			background: rgba(64, 72, 80, 0.25);
+			background: none;
 		}
 
 		#banner .inner {
@@ -1010,7 +1010,7 @@ strong, b {
 		}
 
 			#banner .inner :last-child {
-				margin-bottom: 0;
+
 			}
 
 		#banner h2, #banner h3, #banner h4, #banner h5, #banner h6 {
