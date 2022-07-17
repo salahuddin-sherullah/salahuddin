@@ -871,7 +871,7 @@ strong, b {
 /* Wrapper */
 
 	.wrapper {
-		padding: 4em 0em 2em 0;
+		padding: 4em 0 2em 0;
 	}
 
 		.wrapper.style1 {
