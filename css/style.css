@@ -1,6 +1,7 @@
 @charset "UTF-8";
 @import url(font-awesome.min.css);
-@import url("http://fonts.googleapis.com/css?family=Roboto:500,300");
+@import url("http://fonts.googleapis.com/css?family=DM Sans");
+@import url('http://fonts.cdnfonts.com/css/clash-display');
 
 /* Basic */
 
@@ -10,9 +11,8 @@
 
 	body, input, select, textarea {
 		color: #555f66;
-		font-family: "Roboto", Helvetica, sans-serif;
-		font-size: 16pt;
-		font-weight: 300;
+		font-family: "DM Sans", sans-serif;
+		font-size: 18pt;
 		line-height: 1.75em;
 	}
 
@@ -20,14 +20,14 @@
 		text-decoration: none;
 	}
 
-/* Hyperlink */
+/* Hyperlink Light*/
 
-	a:hover {
-			color: #0074D9;
+a:hover {
+	color: #0074D9;
 		}
 
 .bottom-border:hover{
-	border-bottom: 1px solid #0074D9;
+	border-bottom: 1px solid black;
 }
 
 .underline{
@@ -37,11 +37,11 @@
 .underline::before{
   content: '';
   position: absolute;
-  bottom: 0;
+  bottom: -3px;
   right: 0;
   width: 0;
   height: 2px;
-  background-color: #0074D9;
+  background-color: black;
   transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
@@ -53,8 +53,74 @@
   }
 }
 
+/* Hyperlink Dark*/
+
+.adark:hover {
+	color: powderblue;
+		}
+
+.bottom-border:hover{
+	border-bottom: 1px solid #FFFFFF;
+}
+
+.underlinedark{
+  position: relative;
+}
+
+.underlinedark::before{
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  right: 0;
+  width: 0;
+  height: 2px;
+  background-color: #FFFFFF;
+  transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .underlinedark:hover::before{
+    left: 0;
+    right: auto;
+    width: 100%;
+  }
+}
+
+/* Hyperlink Header*/
+
+.aheader:hover {
+	color: blue;
+		}
+
+.bottom-border:hover{
+	border-bottom: 1px solid #FFFFFF;
+}
+
+.underlineheader{
+  position: relative;
+}
+
+.underlineheader::before{
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  right: 0;
+  width: 0;
+  height: 2px;
+  background-color: #FFFFFF;
+  transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .underlineheader:hover::before{
+    left: 0;
+    right: auto;
+    width: 100%;
+  }
+}
+
+
 strong, b {
-		color: #666f77;
 		font-weight: 500;
 	}
 
@@ -64,9 +130,12 @@ strong, b {
 
 	p {
 		margin: 0 0 2em 0;
+		font-size: 12.5pt;
+		color: black;
 	}
 
 	h1, h2, h3, h4, h5, h6 {
+		font-family: "Clash Display", sans-serif;
 		color: white;
 		font-weight: 300;
 		line-height: 1em;
@@ -80,11 +149,13 @@ strong, b {
 		}
 
 	h2 {
+		font-family: "Clash Display", sans-serif;
 		font-size: 1.5em;
 		line-height: 1.5em;
 	}
 
 	h3 {
+		font-family: "Clash Display", sans-serif;
 		font-size: 1.25em;
 		line-height: 1.5em;
 	}
@@ -836,7 +907,7 @@ strong, b {
 		input[type="reset"].special,
 		input[type="button"].special,
 		.button.special {
-			background-color: #629DD1;
+			background-color: #2E3639;
 			color: #ffffff !important;
 		}
 
@@ -844,7 +915,7 @@ strong, b {
 			input[type="reset"].special:hover,
 			input[type="button"].special:hover,
 			.button.special:hover {
-				background-color: #76a9d7;
+				background-color: #424c52;
 			}
 
 			input[type="submit"].special:active,
@@ -1012,7 +1083,7 @@ strong, b {
 /* Banner */
 
 	#banner {
-		background-image: url("../images/banner_custom.png");
+		background-image: url("../images/banner_darkblue_waves.png");
 		background-size: cover;
 		background-position: center center;
 		background-repeat: no-repeat;
@@ -1171,4 +1242,10 @@ p.imgspace a>img
 {
 	margin-left: 20px;
 	margin-right: 20px;
+}
+
+.textbox {
+	background-color: #f8494a; 
+	padding: 4px; 
+	border-radius: 2px;
 }
