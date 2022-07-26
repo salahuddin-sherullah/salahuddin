@@ -24,7 +24,7 @@
 /* Hyperlink Light*/
 
 a:hover {
-	color: #0074D9;
+	color: #28b578;
 		}
 
 .bottom-border:hover{
@@ -57,7 +57,7 @@ a:hover {
 /* Hyperlink Dark*/
 
 .adark:hover {
-	color: powderblue;
+	color: #28b578;
 		}
 
 .bottom-border:hover{
@@ -90,7 +90,7 @@ a:hover {
 /* Hyperlink Header*/
 
 .aheader:hover {
-	color: blue;
+	color: #28b578;
 		}
 
 .bottom-border:hover{
@@ -921,7 +921,7 @@ strong, b {
 			input[type="reset"].special:hover,
 			input[type="button"].special:hover,
 			.button.special:hover {
-				background-color: #424c52;
+				background-color: #28b578;
 			}
 
 			input[type="submit"].special:active,
@@ -1057,7 +1057,7 @@ strong, b {
 					}
 
 						#header nav > ul > li a:hover {
-							color: #629DD1;
+							color: mediumaquamarine;
 						}
 
 					#header nav > ul > li:first-child {
@@ -1251,7 +1251,7 @@ p.imgspace a>img
 }
 
 .textbox {
-	background-color: #f8494a; 
+	background-color: #e3120b; 
 	padding: 4px; 
 	border-radius: 2px;
 }
