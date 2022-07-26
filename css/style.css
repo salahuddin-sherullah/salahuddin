@@ -24,7 +24,7 @@
 /* Hyperlink Light*/
 
 a:hover {
-	color: #28b578;
+	color: #FF2E63;
 		}
 
 .bottom-border:hover{
@@ -57,7 +57,7 @@ a:hover {
 /* Hyperlink Dark*/
 
 .adark:hover {
-	color: #28b578;
+	color: #FF2E63;
 		}
 
 .bottom-border:hover{
@@ -90,7 +90,7 @@ a:hover {
 /* Hyperlink Header*/
 
 .aheader:hover {
-	color: #28b578;
+	color: #FF2E63;
 		}
 
 .bottom-border:hover{
@@ -921,14 +921,14 @@ strong, b {
 			input[type="reset"].special:hover,
 			input[type="button"].special:hover,
 			.button.special:hover {
-				background-color: #28b578;
+				background-color: #FF2E63;
 			}
 
 			input[type="submit"].special:active,
 			input[type="reset"].special:active,
 			input[type="button"].special:active,
 			.button.special:active {
-				background-color: #4e91cb;
+				background-color: #FF2E63;
 			}
 
 		input[type="submit"].disabled, input[type="submit"]:disabled,
@@ -1057,7 +1057,7 @@ strong, b {
 					}
 
 						#header nav > ul > li a:hover {
-							color: mediumaquamarine;
+							color: #FF2E63;
 						}
 
 					#header nav > ul > li:first-child {
@@ -1255,3 +1255,14 @@ p.imgspace a>img
 	padding: 4px; 
 	border-radius: 2px;
 }
+
+
+/* Magic sauce */
+#rcorners1:hover .hidden {
+    display: inline-block;
+	transform: rotate(-90deg);
+	color: #FF2E63;
+}
+
+/* Utilities */
+.hidden     { display: none; }
