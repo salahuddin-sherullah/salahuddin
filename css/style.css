@@ -135,6 +135,11 @@ strong, b {
 		color: black;
 	}
 
+@font-face {
+  font-family: "Clash Display";
+  src: url("../fonts/ClashDisplay-Regular.ttf") format("truetype");
+}
+
 	h1, h2, h3, h4, h5, h6 {
 		font-family: "Clash Display", sans-serif;
 		color: white;
