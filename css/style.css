@@ -1051,7 +1051,7 @@ strong, b {
 						-o-transition: color 0.2s ease-in-out;
 						-ms-transition: color 0.2s ease-in-out;
 						transition: color 0.2s ease-in-out;
-						color: #555f66;
+						color: lightgray;
 						display: inline-block;
 						text-decoration: none;
 					}
