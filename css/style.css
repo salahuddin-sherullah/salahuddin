@@ -1263,6 +1263,3 @@ p.imgspace a>img
 	transform: rotate(-90deg);
 	color: #E3120B;
 }
-
-/* Utilities */
-.hidden     { display: none; }
