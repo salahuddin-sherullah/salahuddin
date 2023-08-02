@@ -138,12 +138,22 @@ i {
     font-style: italic;
 }
 
+@font-face {
+    font-family: "FrankRuhlLibre-Regular";
+    src: url("../fonts/Frank_Ruhl_Libre/static/FrankRuhlLibre-Regular.ttf") format("truetype");
+}
+
 p {
     font-family: "Karbon-Regular";
     margin: 0 0 1em 0;
-    font-size: 13.5pt;
+    font-size: 14pt;
     color: black;
     line-height: 1.5;
+}
+
+.font_libre {
+    font-family: "FrankRuhlLibre-Regular";
+    font-size: 13pt;
 }
 
 @font-face {
@@ -188,7 +198,7 @@ h3 {
 }
 
 h4 {
-    font-size: 1em;
+    font-size: 1.2em;
     line-height: 1.5em;
 }
 
