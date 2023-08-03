@@ -1152,6 +1152,17 @@ input[type="button"]:disabled,
     position: relative;
 }
 
+#banner-article {
+    background-image: url("../images/banner_darkblue.png");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    color: white;
+    padding: 5em 0;
+    text-align: center;
+    position: relative;
+}
+
 #banner:before {
     content: '';
     position: absolute;
@@ -1353,10 +1364,10 @@ p.imgspace a>img {
 }
 
 .header-bar-blog {
-    width: 6.5%;
+    width: 7%;
     height: 11px;
     /* Adjust the height as needed */
     background-color: #3498db;
     /* Set the desired background color */
-    margin-bottom: 6px;
+    margin-bottom: 8px;
 }
