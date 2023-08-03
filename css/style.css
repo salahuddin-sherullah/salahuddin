@@ -1343,11 +1343,11 @@ p.imgspace a>img {
     box-shadow: #2E3639;
 }
 
-
-/* Magic sauce */
-
-#rcorners1:hover .hidden {
-    display: inline-block;
-    transform: rotate(-90deg);
-    color: #E3120B;
+.header-bar {
+    width: 12%;
+    height: 7px;
+    /* Adjust the height as needed */
+    background-color: #3498db;
+    /* Set the desired background color */
+    margin-bottom: 6px;
 }
