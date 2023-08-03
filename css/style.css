@@ -1351,3 +1351,12 @@ p.imgspace a>img {
     /* Set the desired background color */
     margin-bottom: 6px;
 }
+
+.header-bar-blog {
+    width: 6.5%;
+    height: 11px;
+    /* Adjust the height as needed */
+    background-color: #3498db;
+    /* Set the desired background color */
+    margin-bottom: 6px;
+}
