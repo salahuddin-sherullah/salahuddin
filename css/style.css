@@ -1358,9 +1358,10 @@ p.imgspace a>img {
 /* Block quote */
 
 blockquote {
+    font-family: "FrankRuhlLibre-Regular";
     font-weight: 100;
-    font-size: 1.2rem;
-    max-width: 600px;
+    font-size: 1.1rem;
+    max-width: auto;
     line-height: 1.4;
     position: relative;
     margin: 0;
@@ -1389,6 +1390,7 @@ blockquote:after {
 }
 
 cite {
+    font-family: "FrankRuhlLibre-Regular";
     line-height: 3;
     text-align: left;
 }
