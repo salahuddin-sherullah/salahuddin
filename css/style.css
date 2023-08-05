@@ -240,13 +240,6 @@ hr.minor {
     margin: 1em 0;
 }
 
-blockquote {
-    border-left: solid 4px rgba(144, 144, 144, 0.25);
-    font-style: italic;
-    margin: 0 0 2em 0;
-    padding: 0.5em 0 0.5em 2em;
-}
-
 code {
     background: rgba(144, 144, 144, 0.075);
     border-radius: 6px;
@@ -1152,17 +1145,6 @@ input[type="button"]:disabled,
     position: relative;
 }
 
-#banner-article {
-    background-image: url("../images/banner_darkblue.png");
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    color: white;
-    padding: 5em 0;
-    text-align: center;
-    position: relative;
-}
-
 #banner:before {
     content: '';
     position: absolute;
@@ -1349,7 +1331,7 @@ p.imgspace a>img {
 
 .textbox_lightred {
     background-color: #f8514b;
-    padding: 8px;
+    padding: 6px;
     border-radius: 0px;
     box-shadow: #2E3639;
 }
@@ -1370,4 +1352,43 @@ p.imgspace a>img {
     background-color: #3498db;
     /* Set the desired background color */
     margin-bottom: 8px;
+}
+
+
+/* Block quote */
+
+blockquote {
+    font-weight: 100;
+    font-size: 1.2rem;
+    max-width: 600px;
+    line-height: 1.4;
+    position: relative;
+    margin: 0;
+    padding: .5rem;
+}
+
+blockquote:before,
+blockquote:after {
+    position: absolute;
+    color: #e3e0d2;
+    font-size: 8rem;
+    width: 4rem;
+    height: 4rem;
+}
+
+blockquote:before {
+    content: '“';
+    left: -3rem;
+    top: -2rem;
+}
+
+blockquote:after {
+    content: '”';
+    right: -4rem;
+    bottom: -1rem;
+}
+
+cite {
+    line-height: 3;
+    text-align: left;
 }
