@@ -10,3 +10,14 @@ Commit and Push Changes:
 git commit -m "some message"
 
 git push origin master
+
+
+colors:
+dark:
+1FFFF4
+00F5E9
+00CCC2
+00B8AE
+
+light:
+#0074c7

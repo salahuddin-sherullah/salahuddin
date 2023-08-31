@@ -23,7 +23,7 @@
 
     <!-- Header -->
     <header id="header" class="skel-layers-fixed" style="background-color:#192024">
-        <h1 style="color:white; font-size:16pt"><a href="index.html">SALAHUDDIN</a></h1>
+        <h1 class="nav-title"><a href="index.html">SALAHUDDIN</a></h1>
 
         <!-- Navigation -->
         <nav id="nav">
@@ -37,24 +37,30 @@
         </nav>
     </header>
 
-    <!-- Main -->
-
-    <div class="wrapper container 8u">
-        <h3 class="font_libre" style="color:#E3120B; letter-spacing: -0.5px; font-size: 35px;">essays, opinions, and more</h3>
-        <h3 class="font_libre" style="color:#192024; letter-spacing: -0.8px; font-size: 35px;">My writings are an attempt to comtemplate on and understand the world a little better<span style="color: #ff0000; font-size: 30px"> ■</span></h3>
-        <a href="rumbles.html" class="arrow-button">Short posts</a>
+    <div class="blog-image">
+        <div class="blog-image-content">
+            <h2 class="text-gradient-white" style="font-size: 30px; margin-bottom: 0px;">the thinker</h2>
+            <h2 class="text-gradient-white" style="font-size: 54px; letter-spacing: 6px;">essays, opinions, and more<span style="color: #00A39B;"> ■</span></h2>
+            <h3 class="font_libre_light" style="color:#ffffff; letter-spacing: 0px; font-size: 25px;">My writings are an attempt to comtemplate on and understand the world a little better.</h3>
+            <a href="rumbles.html" class="arrow-button">Short posts</a>
+        </div>
     </div>
-    <hr class="major">
+
+    <!-- Main -->
+    <!-- <div class="container">
+        <br><br><br><br>
+        <h3 class="font_libre text-gradient-white" style="color:#00A39B; letter-spacing: -0.5px; font-size: 35px;">essays, opinions, and more<span style="color: #00A39B; font-size: 30px"> ■</span></h3>
+        <h3 class="font_libre_light" style="color:#192024; letter-spacing: -0.8px; font-size: 35px;">My writings are an attempt to comtemplate on and understand the world a little better.</h3>
+        <a href="rumbles.html" class="arrow-button">Short posts</a>
+    </div> -->
 
     <section id="main" class="wrapper style1">
         <div class="container">
-            <div class="8u">
-                <h2><strong style="color:#E3120B">Long reads</strong></h2>
-            </div>
-            <div class="row">
+            <!-- <hr class="minor"> -->
+            <div class="row reveal">
                 <div class="8u">
                     <section>
-                        <h3><strong style="color:#E3120B">Latest Article</strong></h3>
+                        <h3 style="color:#00A39B">Latest Article</h3>
                         <h2 style="color:black"><a class="underline" href="data-for-social-good.html">DATA FOR SOCIAL GOOD</a></h2>
                         <img src="images/data_for_good.jpg" alt="" />
                         <p>When it comes to harnessing the power of data, the social sector has notably lagged behind. The sector has not fully embraced the potential that data holds for driving positive societal change.</p>
@@ -62,31 +68,22 @@
                 </div>
                 <div class="4u">
                     <section>
-                        <h3><strong style="color:black">Books I'm Reading</strong></h3>
-                        <ul class="alt">
-                            <li><a href="https://www.goodreads.com/book/show/45897523-blowout#">Blowout: Corrupted Democracy, Rogue State Russia, and the Richest, Most Destructive Industry on Earth<br>
-							      <strong> - Rachel Maddow</strong></a></li>
-                            <li><a href="https://www.goodreads.com/book/show/56988244-the-future-of-money">The Future of Money: How the Digital Revolution Is Transforming Currencies and Finance<br>
-							      <strong>-&nbsp;Eswar S. Prasad</strong></a></li>
-                        </ul>
-                        <hr class="minor" />
-                    </section>
-                    <section>
-                        <h3><b style="color:black">Reading Resources</b></h3>
+                        <h3><b style="color:#0074c7">Reading Resources</b></h3>
                         <ul class="alt">
                             <li><a href="https://www.economist.com/">The Economist</a></li>
                             <li><a href="https://www.ft.com/">Financial Times</a></li>
                             <li><a href="https://www.aldaily.com/">Arts and Letters Daily</a></li>
                             <li><a href="https://daily.jstor.org/">JSTOR Daily</a></li>
+                            <li><a href="https://www.the-syllabus.com/">The Syllabus</a></li>
                         </ul>
                     </section>
                 </div>
             </div>
             <hr class="minor">
-            <h2><strong style="color:#E3120B">More Readings</strong></h2>
+            <h3 class="reveal" style="color:#00A39B">More Readings</h3>
 
             <!-- List of readings -->
-            <div class="row">
+            <div class="row reveal">
                 <div class="3u">
                     <section class="special">
                         <img src="images/open_banking.jpg" alt="" />
@@ -117,7 +114,7 @@
 
             <hr>
 
-            <div class="row">
+            <div class="row reveal">
                 <div class="3u">
                     <section class="special"> <img src="images/environment.jpeg" alt="" />
                         <h3 style="color:black; text-align:left"><a class="underline" href="conversation-around-environment-needs-to-change.html">THE CONVERSATION AROUND THE ENVIRONMENT NEEDS TO CHANGE</a></h3>
@@ -147,7 +144,7 @@
 
             <hr>
 
-            <div class="row">
+            <div class="row reveal">
                 <div class="3u">
                     <section class="special"> <img src="images/protectionism.jpg" />
                         <h3 style="color:black; text-align:left"><a class="underline" href="role-of-protectionism-in-china.html">ROLE OF PROTECTIONISM IN CHINA’S ECONOMY</a></h3>
@@ -159,6 +156,11 @@
         </div>
     </section>
 
+    <!-- empty space -->
+    <div>
+        <br>
+    </div>
+
     <!-- Footer -->
     <footer id="footer">
         <div class="container">
@@ -167,7 +169,8 @@
                     <div class="row collapse-at-2">
                         <div class="6u">
                             <a href="index.html">
-                                <img src="images/salah_bottom_small.png" />
+                                <h2 style="letter-spacing: 10px; font-size: 27px;">SALAH<span style="color: #00F5E9;">UDDIN
+                                </span></h2>
                             </a>
                             <ul class="icons"><br>
                                 <li><a href="https://twitter.com/" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
@@ -189,6 +192,28 @@
             </ul>
         </div>
     </footer>
+
+    <script type="text/javascript">
+        window.addEventListener('scroll', reveal);
+
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+
+            for (var i = 0; i < reveals.length; i++) {
+
+                var windowheight = window.innerHeight;
+                var revealtop = reveals[i].getBoundingClientRect().top;
+                var revealpoint = 150;
+
+                if (revealtop < windowheight - revealpoint) {
+                    reveals[i].classList.add('active');
+                } else {
+                    reveals[i].classList.remove('active');
+                }
+            }
+        }
+    </script>
+
 </body>
 
 </html>

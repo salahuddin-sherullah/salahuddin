@@ -26,11 +26,29 @@ a {
     text-decoration: none;
 }
 
+.text-gradient {
+    /* Set the background color */
+    background: linear-gradient(to right, #00fef2 30%, #a47afe 70%);
+    /* Mask the color to the text, and remove the rest  */
+    -webkit-background-clip: text;
+    /* Make the text fill color value transparent so the masked background color comes through */
+    -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-white {
+    /* Set the background color */
+    background: linear-gradient(to right, #00B8AE 30%, #a47afe 70%);
+    /* Mask the color to the text, and remove the rest  */
+    -webkit-background-clip: text;
+    /* Make the text fill color value transparent so the masked background color comes through */
+    -webkit-text-fill-color: transparent;
+}
+
 
 /* Hyperlink Light*/
 
 a:hover {
-    color: #E3120B;
+    color: #00B8AE;
 }
 
 .bottom-border:hover {
@@ -64,7 +82,7 @@ a:hover {
 /* Hyperlink Dark*/
 
 .adark:hover {
-    color: #E3120B;
+    color: #5ac2bd;
 }
 
 .bottom-border:hover {
@@ -98,7 +116,7 @@ a:hover {
 /* Hyperlink Header*/
 
 .aheader:hover {
-    color: #E3120B;
+    color: #00fef2;
 }
 
 .bottom-border:hover {
@@ -143,6 +161,11 @@ i {
     src: url("../fonts/Frank_Ruhl_Libre/static/FrankRuhlLibre-Regular.ttf") format("truetype");
 }
 
+@font-face {
+    font-family: "FrankRuhlLibre-Light";
+    src: url("../fonts/Frank_Ruhl_Libre/static/FrankRuhlLibre-Light.ttf") format("truetype");
+}
+
 p {
     font-family: "Karbon-Regular";
     margin: 0 0 1em 0;
@@ -156,9 +179,20 @@ p {
     font-size: 13.8pt;
 }
 
+.font_libre_light {
+    font-family: "FrankRuhlLibre-Light";
+    font-size: 13.8pt;
+    line-height: 1.2;
+}
+
 @font-face {
     font-family: "Karbon-Semibold";
     src: url("../fonts/Karbon/Karbon-Semibold.otf") format("truetype");
+}
+
+@font-face {
+    font-family: "Karbon-Light";
+    src: url("../fonts/Karbon/Karbon-Light.otf") format("truetype");
 }
 
 h1,
@@ -195,13 +229,14 @@ h3 {
     font-family: "Karbon-Regular";
     font-size: 1.5em;
     line-height: 1em;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
 }
 
 h4 {
+    font-family: "Karbon-Light";
     font-size: 1.2em;
     line-height: 1.5em;
-    letter-spacing: 0px;
+    letter-spacing: 1px;
 }
 
 h5 {
@@ -280,6 +315,20 @@ pre code {
 
 
 /* Section/Article */
+
+section h3 {
+    color: #00B8AE;
+}
+
+section p {
+    font-family: "FrankRuhlLibre-Regular";
+    font-size: 13.8pt;
+}
+
+.date {
+    color: #8a8a8a;
+    font-size: 12pt;
+}
 
 section.special,
 article.special {
@@ -689,14 +738,14 @@ input[type="submit"].special:hover,
 input[type="reset"].special:hover,
 input[type="button"].special:hover,
 .button.special:hover {
-    background-color: #E3120B;
+    background-color: #5ac2bd;
 }
 
 input[type="submit"].special:active,
 input[type="reset"].special:active,
 input[type="button"].special:active,
 .button.special:active {
-    background-color: #E3120B;
+    background-color: #00fef2;
 }
 
 input[type="submit"].disabled,
@@ -719,9 +768,9 @@ input[type="button"]:disabled,
 
 .arrow-button {
     /* border-radius: 4px; */
-    background-color: #E3120B;
+    background-color: #00fef2;
     border: none;
-    color: #fff;
+    color: #000000;
     text-align: center;
     font-size: 18px;
     padding: 8px;
@@ -750,9 +799,9 @@ input[type="button"]:disabled,
 }
 
 .arrow-button:hover {
-    padding-right: 24px;
+    padding-right: 27px;
     padding-left: 8px;
-    color: #fff;
+    color: #000000;
 }
 
 .arrow-button:hover:after {
@@ -874,6 +923,12 @@ input[type="button"]:disabled,
     vertical-align: middle;
 }
 
+#header h1 {
+    color: #ffffff;
+    letter-spacing: 8px;
+    font-size: 18px;
+}
+
 #header nav>ul {
     list-style: none;
     margin: 0;
@@ -899,7 +954,7 @@ input[type="button"]:disabled,
 }
 
 #header nav>ul>li a:hover {
-    color: #E3120B;
+    color: #00fef2;
 }
 
 #header nav>ul>li:first-child {
@@ -957,8 +1012,6 @@ input[type="button"]:disabled,
     z-index: 1;
 }
 
-#banner .inner :last-child {}
-
 #banner h2,
 #banner h3,
 #banner h4,
@@ -1005,14 +1058,69 @@ input[type="button"]:disabled,
     text-decoration: none;
 }
 
-#banner_profile {
-    background-image: url("../images/banner_profile_blurred.png");
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    color: white;
-    padding: 23em 0;
+.banner-profile {
+    width: 100%;
+    height: 100vh;
     position: relative;
+    background-image: url("../images/banner_profile_blurred.jpg");
+    background-size: cover;
+    z-index: 1;
+}
+
+.banner-profile-content {
+    width: 450px;
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    z-index: 2;
+}
+
+
+/* blog image */
+
+.blog-image {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    background-image: url("../images/blog-banner.jpg");
+    background-size: cover;
+    z-index: 1;
+}
+
+.blog-image-content {
+    width: 500px;
+    margin: 0 auto;
+    position: absolute;
+    top: 170px;
+    left: 10%;
+    z-index: 2;
+}
+
+
+/* video */
+
+.home {
+    height: 100vh;
+    position: relative;
+}
+
+video {
+    object-fit: cover;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+}
+
+.home-content {
+    width: 600px;
+    margin: 0 auto;
+    position: absolute;
+    top: 200px;
+    left: 10%;
+    z-index: 2;
 }
 
 
@@ -1140,9 +1248,10 @@ p.imgspace a>img {
 }
 
 .textbox {
-    background-color: #e3120b;
-    padding: 4px;
-    border-radius: 2px;
+    background-color: #00B8AE;
+    padding: 5px;
+    /* border-radius: 2px; */
+    color: #ffffff;
 }
 
 .textbox_lightred {
