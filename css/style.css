@@ -1113,6 +1113,14 @@ input[type="button"]:disabled,
     z-index: 1;
 }
 
+@media (max-width: 768px) {
+    /* Apply these styles when screen width is 768px or less */
+    .blog-image {
+        background-position: 30% center;
+        /* Center the background image */
+    }
+}
+
 .blog-image-content {
     max-width: 500px;
     width: 100%;
