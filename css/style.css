@@ -1068,6 +1068,14 @@ input[type="button"]:disabled,
     z-index: 1;
 }
 
+@media (max-width: 768px) {
+    /* Apply these styles when screen width is 768px or less */
+    .banner-profile {
+        background-position: 65% center;
+        /* Center the background image */
+    }
+}
+
 .banner-profile-content {
     width: 450px;
     margin: 0 auto;
@@ -1082,9 +1090,9 @@ input[type="button"]:disabled,
     .banner-profile-content {
         position: relative;
         /* Change to relative positioning */
-        top: 300px;
+        top: 450px;
         left: 0%;
-        width: 90%;
+        width: 95%;
         /* Take full width on smaller screens */
         max-width: none;
         /* Remove the max-width constraint */
