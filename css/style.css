@@ -1064,6 +1064,7 @@ input[type="button"]:disabled,
     position: relative;
     background-image: url("../images/banner_profile_blurred.jpg");
     background-size: cover;
+    overflow: hidden;
     z-index: 1;
 }
 
@@ -1076,6 +1077,20 @@ input[type="button"]:disabled,
     z-index: 2;
 }
 
+@media (max-width: 768px) {
+    /* Apply these styles when screen width is 768px or less */
+    .banner-profile-content {
+        position: relative;
+        /* Change to relative positioning */
+        top: 300px;
+        left: 0%;
+        width: 90%;
+        /* Take full width on smaller screens */
+        max-width: none;
+        /* Remove the max-width constraint */
+    }
+}
+
 
 /* blog image */
 
@@ -1085,16 +1100,33 @@ input[type="button"]:disabled,
     position: relative;
     background-image: url("../images/blog-banner.jpg");
     background-size: cover;
+    overflow: hidden;
+    /* Hide any overflow */
     z-index: 1;
 }
 
 .blog-image-content {
-    width: 500px;
+    max-width: 500px;
+    width: 100%;
     margin: 0 auto;
     position: absolute;
     top: 170px;
     left: 10%;
     z-index: 2;
+}
+
+@media (max-width: 768px) {
+    /* Apply these styles when screen width is 768px or less */
+    .blog-image-content {
+        position: relative;
+        /* Change to relative positioning */
+        top: 150px;
+        left: 0%;
+        width: 90%;
+        /* Take full width on smaller screens */
+        max-width: none;
+        /* Remove the max-width constraint */
+    }
 }
 
 
@@ -1111,16 +1143,32 @@ video {
     width: 100%;
     height: 100%;
     position: absolute;
+    overflow: hidden;
     z-index: 1;
 }
 
 .home-content {
-    width: 600px;
+    max-width: 500px;
+    width: 100%;
     margin: 0 auto;
     position: absolute;
     top: 200px;
     left: 10%;
     z-index: 2;
+}
+
+@media (max-width: 768px) {
+    /* Apply these styles when screen width is 768px or less */
+    .home-content {
+        position: relative;
+        /* Change to relative positioning */
+        top: 150px;
+        left: 0%;
+        width: 90%;
+        /* Take full width on smaller screens */
+        max-width: none;
+        /* Remove the max-width constraint */
+    }
 }
 
 
