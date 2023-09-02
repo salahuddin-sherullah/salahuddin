@@ -239,14 +239,18 @@ h4 {
     letter-spacing: 1px;
 }
 
+/*article heading*/
 h5 {
-    font-size: 0.9em;
-    line-height: 1.5em;
+    font-family: "Karbon-Regular";
+    font-size: 2.8em;
+    line-height: 1em;
 }
 
 h6 {
-    font-size: 0.7em;
+    font-family: "Karbon-Semibold";
+    font-size: 1.2em;
     line-height: 1.5em;
+    letter-spacing: 1px;
 }
 
 sub {
@@ -327,7 +331,7 @@ section p {
 
 .date {
     color: #8a8a8a;
-    font-size: 12pt;
+    font-size: 13pt;
 }
 
 section.special,
