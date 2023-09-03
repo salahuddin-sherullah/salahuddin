@@ -1322,10 +1322,9 @@ p.imgspace a>img {
     color: #ffffff;
 }
 
-.textbox_lightred {
-    background-color: #f8514b;
-    padding: 6px;
-    border-radius: 0px;
+.number-box {
+    background-color: #00B8AE;
+    padding: 5px;
     box-shadow: #2E3639;
 }
 
