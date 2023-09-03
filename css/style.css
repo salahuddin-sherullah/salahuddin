@@ -483,7 +483,6 @@ header.major h2+p {
     width: 100%;
 }
 
-
 /* List */
 
 ol {
@@ -1111,6 +1110,7 @@ input[type="button"]:disabled,
     height: 100vh;
     position: relative;
     background-image: url("../images/blog-banner.jpg");
+	background-attachment: fixed;
     background-size: cover;
     overflow: hidden;
     /* Hide any overflow */
