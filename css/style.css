@@ -1093,7 +1093,7 @@ input[type="button"]:disabled,
     .banner-profile-content {
         position: relative;
         /* Change to relative positioning */
-        top: 350px;
+        top: 400px;
         left: 0%;
         width: 95%;
         /* Take full width on smaller screens */
