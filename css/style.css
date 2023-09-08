@@ -990,7 +990,7 @@ input[type="button"]:disabled,
 /* Banner */
 
 #banner {
-    background-image: url("../images/banner_darkblue_waves.png");
+    background-image: url("../images/teal-background.jpg");
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -1102,6 +1102,51 @@ input[type="button"]:disabled,
     }
 }
 
+/* home image */
+
+.home-image {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    background-image: url("../images/home-background.jpg");
+	background-attachment: fixed;
+    background-size: cover;
+    overflow: hidden;
+    /* Hide any overflow */
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    /* Apply these styles when screen width is 768px or less */
+    .home-image {
+        background-position: 30% center;
+        /* Center the background image */
+    }
+}
+
+.home-image-content {
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+    position: absolute;
+    top: 300px;
+    left: 10%;
+    z-index: 2;
+}
+
+@media (max-width: 768px) {
+    /* Apply these styles when screen width is 768px or less */
+    .home-image-content {
+        position: relative;
+        /* Change to relative positioning */
+        top: 200px;
+        left: 0%;
+        width: 90%;
+        /* Take full width on smaller screens */
+        max-width: none;
+        /* Remove the max-width constraint */
+    }
+}
 
 /* blog image */
 
@@ -1198,6 +1243,11 @@ video {
     position: absolute;
     bottom: 100px;
     left: 30px;
+}
+
+.date-type {
+	color:#00A39B;
+	text-align:left;
 }
 
 
