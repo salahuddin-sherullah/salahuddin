@@ -793,7 +793,7 @@ input[type="button"]:disabled,
 }
 
 .arrow-button:after {
-    content: '>>';
+    content: '>';
     position: absolute;
     opacity: 0;
     top: 8px;
