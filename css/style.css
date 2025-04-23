@@ -1,6 +1,5 @@
 @charset "UTF-8";
 @import url(font-awesome.min.css);
-@import url("clash-display.css");
 @import url("karbon.css");
 @import url("http://fonts.googleapis.com/css?family=DM Sans");
 @import url('http://fonts.cdnfonts.com/css/clash-display');
@@ -232,8 +231,9 @@ h6 a {
 
 h2 {
     font-family: "Karbon-Semibold";
-    font-size: 2em;
+    font-size: 1.6em;
     line-height: 1em;
+    letter-spacing: 1px;
 }
 
 h3 {
@@ -1474,3 +1474,36 @@ cite {
     transform: translateY(0px);
     opacity: 1;
 }
+
+.arrow-right {
+    border: solid blue;
+    border-width: 0 3.3px 3.3px 0;
+    display: inline-block;
+    width: 11px;
+    height: 11px;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    vertical-align: middle;
+  }
+
+
+.arrow-left {
+    position: relative;
+    display: inline-block;
+    width: 20px;  /* Length of the line */
+    height: 2px;  /* Thickness of the line */
+    background-color: blue; /* Line color */
+    vertical-align: middle;
+  }
+  
+.arrow-left::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%) rotate(135deg);
+    width: 10px;
+    height: 10px;
+    border: solid blue;
+    border-width: 0 2px 2px 0;
+  }
