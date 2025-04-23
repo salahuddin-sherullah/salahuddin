@@ -166,6 +166,11 @@ i {
     src: url("../fonts/Frank_Ruhl_Libre/static/FrankRuhlLibre-Light.ttf") format("truetype");
 }
 
+@font-face {
+    font-family: "FrankRuhlLibre-ExtraBold";
+    src: url("../fonts/Frank_Ruhl_Libre/static/FrankRuhlLibre-ExtraBold.ttf") format("truetype");
+}
+
 p {
     font-family: "Karbon-Regular";
     margin: 0 0 1em 0;
@@ -181,6 +186,12 @@ p {
 
 .font_libre_light {
     font-family: "FrankRuhlLibre-Light";
+    font-size: 13.8pt;
+    line-height: 1.2;
+}
+
+.font_libre_bold {
+    font-family: "FrankRuhlLibre-ExtraBold";
     font-size: 13.8pt;
     line-height: 1.2;
 }
@@ -1442,9 +1453,9 @@ cite {
 
 .reveal {
     position: relative;
-    transform: translateY(150px);
+    transform: translateY(60px);
     opacity: 0;
-    transition: all 1.2s ease;
+    transition: all 1.1s ease;
 }
 
 .reveal.active {
@@ -1456,7 +1467,7 @@ cite {
     position: relative;
     transform: translateY(60px);
     opacity: 0;
-    transition: all 1.2s ease;
+    transition: all 1.1s ease;
 }
 
 .revealheading.active {
