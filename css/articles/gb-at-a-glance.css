@@ -1,0 +1,263 @@
+/* ============================================================
+   Gilgit-Baltistan at a Glance — article-specific styles
+   ============================================================ */
+
+/* ── Stat Cards ── */
+.stat-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2em;
+    margin: 2em 0 2.5em;
+}
+@media (max-width: 900px) {
+    .stat-cards { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+    .stat-cards { grid-template-columns: 1fr; }
+}
+.stat-card {
+    background: #fff;
+    border: 1px solid #e4e9eb;
+    border-left: 4px solid coral;
+    border-radius: 4px;
+    padding: 1.2em 1.4em 1.1em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4em;
+}
+.stat-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.55em;
+    margin-bottom: 0.2em;
+}
+.stat-card-header svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: #8a9aa3;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+}
+.stat-card-label {
+    font-size: 0.72em;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: #8a9aa3;
+    margin: 0;
+}
+.stat-card-value {
+    font-size: 2em;
+    font-weight: 700;
+    color: #192024;
+    line-height: 1.1;
+    margin: 0;
+    letter-spacing: 0.02em;
+}
+.stat-card-sub {
+    font-size: 0.78em;
+    color: #8a9aa3;
+    margin: 0;
+}
+.stat-card-sub span.positive {
+    color: #2aaa6e;
+    font-weight: 600;
+}
+
+/* ── District Breakdown Table (static) ── */
+.data-section {
+    margin: 2.5em 0 1em;
+}
+.gb-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82em;
+    color: #555f66;
+}
+.gb-table th {
+    text-align: left;
+    font-size: 0.72em;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: #8a9aa3;
+    border-bottom: 2px solid #e4e9eb;
+    padding: 0.5em 0.7em 0.5em 0;
+}
+.gb-table td {
+    padding: 0.55em 0.7em 0.55em 0;
+    border-bottom: 1px solid #f0f3f5;
+    vertical-align: middle;
+}
+.gb-table tr:last-child td {
+    border-bottom: none;
+    font-weight: 700;
+    color: #192024;
+    border-top: 2px solid #e4e9eb;
+}
+.gb-table td:first-child {
+    font-weight: 600;
+    color: #192024;
+}
+.gb-table tr:last-child td:first-child {
+    color: coral;
+}
+.density-bar {
+    display: inline-block;
+    height: 6px;
+    background: coral;
+    border-radius: 3px;
+    opacity: 0.65;
+    vertical-align: middle;
+    margin-right: 0.4em;
+}
+
+/* ── District Explorer (interactive bar chart) ── */
+.explorer-section {
+    margin: 2.5em 0;
+}
+.explorer-wrap {
+    background: #ffffff;
+    border: 1px solid #e4e9eb;
+    border-radius: 4px;
+    padding: 1.4em 1.6em 1.6em;
+    overflow-x: auto;
+}
+.metric-switcher {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+.metric-btn {
+    padding: 6px 14px;
+    border: 1px solid #e4e9eb;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 11px;
+    background: #fff;
+    color: #555f66;
+    transition: all 0.15s;
+    letter-spacing: 0.04em;
+}
+.metric-btn:hover  { border-color: coral; color: coral; }
+.metric-btn.active { background: coral; border-color: coral; color: #fff; }
+.bar-tooltip {
+    position: fixed;
+    background: #192024;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 12px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.1s;
+    z-index: 999;
+}
+.bar-tooltip .tt-district { color: coral; font-weight: 600; margin-bottom: 3px; }
+.bar-tooltip .tt-value    { color: #fff; }
+
+/* ── Population Change Table (D3-rendered) ── */
+.pop-table-section {
+    margin: 2.5em 0;
+}
+.table-wrap {
+    background: #ffffff;
+    border: 1px solid #e4e9eb;
+    border-radius: 4px;
+    padding: 1.4em 1.6em 1.6em;
+    overflow-x: auto;
+    color: #192024;
+}
+.census-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+.census-table th {
+    padding: 8px 12px;
+    text-align: right;
+    color: #8a9aa3;
+    font-size: 10px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    border-bottom: 2px solid #e4e9eb;
+}
+.census-table th.left { text-align: left; }
+.census-table td {
+    padding: 9px 12px;
+    text-align: right;
+    border-bottom: 1px solid #f0f3f5;
+    color: #555f66;
+    transition: background 0.1s;
+}
+.census-table td.left  { text-align: left; color: #192024; font-weight: 600; }
+.census-table tr:last-child td { border-bottom: none; }
+.census-table tr:hover td { background: #fafbfc; cursor: default; }
+.ct-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+    flex-shrink: 0;
+}
+.district-cell  { display: flex; align-items: center; }
+.growth-badge   { padding: 2px 8px; border-radius: 3px; font-size: 11px; }
+.growth-high    { background: rgba(255,100,50,0.12); color: coral; font-weight: 600; }
+.growth-normal  { color: #555f66; }
+.share-bar-wrap { display: flex; align-items: center; justify-content: flex-end; gap: 8px; }
+.share-bar-bg   { width: 60px; height: 5px; background: #eef0f2; border-radius: 3px; overflow: hidden; }
+.share-bar-fill { height: 100%; border-radius: 3px; }
+.share-label    { color: #555f66; font-size: 11px; min-width: 36px; text-align: right; }
+
+/* ── Dumbbell Chart ── */
+.dumbbell-section {
+    margin: 2.5em 0;
+}
+.dumbbell-wrap {
+    background: #ffffff;
+    border: 1px solid #e4e9eb;
+    border-radius: 4px;
+    padding: 1.4em 1.6em 1.6em;
+    overflow-x: auto;
+}
+.dumbbell-wrap .domain { stroke: #e4e9eb; }
+.dumbbell-wrap .tick text { fill: #8a9aa3; font-size: 11px; }
+.dumbbell-wrap .grid line { stroke: #e4e9eb; shape-rendering: crispEdges; }
+.dumbbell-wrap .grid .domain { stroke: none; }
+.db-legend {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 16px;
+    font-size: 12px;
+    color: #8a9aa3;
+    align-items: center;
+}
+.db-legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 6px;
+    vertical-align: middle;
+}
+.db-tooltip {
+    position: fixed;
+    background: #192024;
+    border-radius: 4px;
+    padding: 10px 14px;
+    font-size: 12px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.1s;
+    z-index: 999;
+    min-width: 160px;
+}
+.db-tooltip .tt-title  { color: coral; font-weight: 600; margin-bottom: 6px; }
+.db-tooltip .tt-row    { display: flex; justify-content: space-between; gap: 16px; color: #fff; margin-top: 2px; }
+.db-tooltip .tt-muted  { color: #8a9aa3; }
+.db-tooltip .tt-change { color: #2aaa6e; font-weight: 600; margin-top: 6px; }

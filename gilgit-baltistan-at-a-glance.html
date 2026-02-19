@@ -1,0 +1,358 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Salahuddin - Blog</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/skel.min.js"></script>
+    <script src="js/skel-layers.min.js"></script>
+    <script src="js/init.js"></script>
+    <noscript>
+			<link rel="stylesheet" href="css/skel.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/style-xlarge.css" />
+		</noscript>
+    <link rel="stylesheet" href="css/articles/gb-at-a-glance.css" />
+    <!-- D3 v7 -->
+    <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+</head>
+
+<body id="top">
+
+    <!-- Header -->    <header id="header" class="skel-layers-fixed">
+        <h1 class="nav-title"><a href="index.html">SALAHUDDIN</a></h1>
+        <nav id="nav">
+            <ul>
+                <li><a href="index.html" class="underlineheader aheader">Home</a></li>
+                <li><a href="blog.html" class="underlineheader aheader">Blog</a></li>
+                                <li><a href="profile.html" class="underlineheader aheader">Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!--Heading-->
+    <div class="container">
+        <br><br><br>
+                    <h3>Blog Post</h3>
+                    <hr>
+                    <h6><strong class="textbox">Data Visual</strong></h6>
+                    <h1 style="color:black; letter-spacing: 0.1em">GILGIT-BALTISTAN AT A GLANCE</h1>
+        <div class="row">
+            <div class="8u" style="margin-top: 1em;">
+                <section>
+                    <p>A data-driven overview of Gilgit-Baltistan — Pakistan's northernmost territory — spanning population, geography, and household demographics across its ten districts.</p>
+                    <h6>SALAHUDDIN | Feb 2025</h6>
+                    <br>
+                    <img src="images/gb.jpg" />
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <hr>
+    </div>
+
+    <!--Article section-->
+    <div class="container">
+        <div class="row">
+            <div class="8u skel-cell-important">
+                <section>
+
+                    <p class="font_libre">Gilgit-Baltistan (GB) is Pakistan's largest administrative territory by area, bordering China, Afghanistan, and the Indian-administered Kashmir. Often called the "roof of the world," it is home to some of the highest mountain peaks on the planet, including K2. Despite its vast and dramatic landscape, GB remains one of the least densely populated regions in South Asia. The data below draws on the 2017 and 2023 censuses to present a snapshot of the territory's population geography.</p>
+
+                    <!-- ── Six Stat Cards ── -->
+                    <div class="stat-cards">
+
+                        <!-- Total Population -->
+                        <div class="stat-card">
+                            <div class="stat-card-header">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                </svg>
+                                <p class="stat-card-label">Total Population</p>
+                            </div>
+                            <p class="stat-card-value">1.71M</p>
+                            <p class="stat-card-sub">Census 2023</p>
+                        </div>
+
+                        <!-- Population Growth -->
+                        <div class="stat-card">
+                            <div class="stat-card-header">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                                    <polyline points="17 6 23 6 23 12"/>
+                                </svg>
+                                <p class="stat-card-label">Population Growth</p>
+                            </div>
+                            <p class="stat-card-value">+14.5%</p>
+                            <p class="stat-card-sub"><span class="positive">↑ 216,364</span> since census 2017</p>
+                        </div>
+
+                        <!-- Total Area -->
+                        <div class="stat-card">
+                            <div class="stat-card-header">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M3 3h7v7H3z"/>
+                                    <path d="M14 3h7v7h-7z"/>
+                                    <path d="M14 14h7v7h-7z"/>
+                                    <path d="M3 14h7v7H3z"/>
+                                </svg>
+                                <p class="stat-card-label">Total Area</p>
+                            </div>
+                            <p class="stat-card-value">72,496</p>
+                            <p class="stat-card-sub">km² across 10 districts</p>
+                        </div>
+
+                        <!-- Population Density -->
+                        <div class="stat-card">
+                            <div class="stat-card-header">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="12" r="3"/>
+                                    <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+                                </svg>
+                                <p class="stat-card-label">Avg. Density</p>
+                            </div>
+                            <p class="stat-card-value">24/km²</p>
+                            <p class="stat-card-sub">Population per sq. kilometre</p>
+                        </div>
+
+                        <!-- Avg Household Size -->
+                        <div class="stat-card">
+                            <div class="stat-card-header">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                                    <polyline points="9 22 9 12 15 12 15 22"/>
+                                </svg>
+                                <p class="stat-card-label">Avg. Household Size</p>
+                            </div>
+                            <p class="stat-card-value">7.33</p>
+                            <p class="stat-card-sub">Persons per household</p>
+                        </div>
+
+                        <!-- Sex Ratio -->
+                        <div class="stat-card">
+                            <div class="stat-card-header">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="8" r="4"/>
+                                    <path d="M6 20v-2a6 6 0 0 1 12 0v2"/>
+                                </svg>
+                                <p class="stat-card-label">Sex Ratio</p>
+                            </div>
+                            <p class="stat-card-value">109</p>
+                            <p class="stat-card-sub">Males per 100 females</p>
+                        </div>
+
+                    </div>
+                    <!-- ── End Stat Cards ── -->
+
+                    <!-- ── District Data Table ── -->
+                    <div class="data-section">
+                        <h2 style="font-size: 13pt"><strong style="color:#00B8AE">District Breakdown</strong></h2>
+                        <p class="font_libre" style="margin-bottom: 1em;">The table below presents key demographic and geographic indicators for each of the ten districts of Gilgit-Baltistan, based on the 2023 census. Gilgit district is the most densely populated at 77 persons per km², while Hunza — despite its fame — remains the least populous in absolute terms.</p>
+                        <div style="overflow-x:auto;">
+                            <table class="gb-table">
+                                <thead>
+                                    <tr>
+                                        <th>District</th>
+                                        <th>Area (km²)</th>
+                                        <th>Pop. 2023</th>
+                                        <th>HH Size</th>
+                                        <th>Density</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Astore</td>
+                                        <td>5,411</td>
+                                        <td>111,573</td>
+                                        <td>8.14</td>
+                                        <td><span class="density-bar" style="width:27px"></span>21</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Diamer</td>
+                                        <td>7,234</td>
+                                        <td>337,329</td>
+                                        <td>8.12</td>
+                                        <td><span class="density-bar" style="width:61px"></span>47</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ghanche</td>
+                                        <td>8,531</td>
+                                        <td>157,822</td>
+                                        <td>7.45</td>
+                                        <td><span class="density-bar" style="width:23px"></span>18</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ghizer</td>
+                                        <td>12,381</td>
+                                        <td>200,069</td>
+                                        <td>7.18</td>
+                                        <td><span class="density-bar" style="width:20px"></span>16</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gilgit</td>
+                                        <td>4,208</td>
+                                        <td>324,552</td>
+                                        <td>6.83</td>
+                                        <td><span class="density-bar" style="width:100px"></span>77</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hunza</td>
+                                        <td>10,109</td>
+                                        <td>65,497</td>
+                                        <td>5.86</td>
+                                        <td><span class="density-bar" style="width:8px"></span>6</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Kharmang</td>
+                                        <td>6,144</td>
+                                        <td>61,304</td>
+                                        <td>6.95</td>
+                                        <td><span class="density-bar" style="width:13px"></span>10</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nagar</td>
+                                        <td>4,137</td>
+                                        <td>87,410</td>
+                                        <td>6.64</td>
+                                        <td><span class="density-bar" style="width:27px"></span>21</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Shigar</td>
+                                        <td>4,173</td>
+                                        <td>84,608</td>
+                                        <td>8.16</td>
+                                        <td><span class="density-bar" style="width:26px"></span>20</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Skardu</td>
+                                        <td>10,168</td>
+                                        <td>278,885</td>
+                                        <td>7.40</td>
+                                        <td><span class="density-bar" style="width:35px"></span>27</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total / Avg.</td>
+                                        <td>72,496</td>
+                                        <td>1,709,049</td>
+                                        <td>7.33</td>
+                                        <td><span class="density-bar" style="width:31px"></span>24</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- ── End District Table ── -->
+
+                    <!-- ── District Explorer Chart ── -->
+                    <div class="explorer-section">
+                        <h2 style="font-size: 13pt"><strong style="color:coral">District Explorer</strong></h2>
+                        <p class="font_libre" style="margin-bottom: 1em;">Select a metric below to compare districts visually. Bars are sorted from highest to lowest.</p>
+                        <div id="district-explorer"></div>
+                    </div>
+                    <!-- ── End District Explorer ── -->
+
+                    <!-- ── Population Table ── -->
+                    <div class="pop-table-section">
+                        <h2 style="font-size: 13pt"><strong style="color:coral">Population Change by District</strong></h2>
+                        <p class="font_libre" style="margin-bottom: 1em;">A district-by-district comparison of population figures from the 2017 and 2023 censuses, showing absolute change, growth rate, and each district's share of GB's total population.</p>
+                        <div id="population-table"></div>
+                    </div>
+                    <!-- ── End Population Table ── -->
+
+                    <!-- ── Dumbbell Chart ── -->
+                    <div class="dumbbell-section">
+                        <h2 style="font-size: 13pt"><strong style="color:coral">Population Growth 2017–2023</strong></h2>
+                        <p class="font_libre" style="margin-bottom: 1em;">Each row shows a district's population in 2017 (hollow dot) and 2023 (filled dot), sorted by growth rate. The connecting line spans the change between the two censuses.</p>
+                        <div id="dumbbell-chart"></div>
+                    </div>
+                    <!-- ── End Dumbbell Chart ── -->
+
+                    <p class="font_libre" style="margin-top:2em;">The data reveals a territory of stark contrasts: Gilgit city and Diamer host the largest concentrations of people, while Hunza and Kharmang remain sparsely settled despite their geographic scale. The high average household size of 7.33 persons reflects the predominantly rural character of most districts. The sex ratio of 109 — slightly above the national average — is consistent with patterns seen in other mountainous and conservative regions of Pakistan. As GB continues to develop — aided by CPEC infrastructure and growing tourism — understanding these demographic baselines will be critical for equitable planning and resource allocation.</p>
+
+                    <p class="font_libre"><em>Data source: Pakistan Bureau of Statistics — District Census Results 2023, Gilgit-Baltistan.</em></p>
+
+                    <a style="font-size: 18px; color: #192024;" class="underline" href="blog.html">
+                        <i class="arrow-left"></i> Back to Blog
+                    </a>
+                    <p><br><br></p>
+                </section>
+
+                <!--Share Article-->
+
+            </div>
+            <div class="4u">
+                <section>
+                    <h3><strong style="color:coral">Share the Article</strong></h3>
+                    <div class="share-links">
+                        <a href="https://twitter.com/intent/tweet?url=https://salahuddin.github.io/gilgit-baltistan-at-a-glance.html&text=Gilgit-Baltistan%20at%20a%20Glance" class="share-link" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                            Share on X
+                        </a>
+                        <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://salahuddin.github.io/gilgit-baltistan-at-a-glance.html&title=Gilgit-Baltistan%20at%20a%20Glance" class="share-link" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                            Share on LinkedIn
+                        </a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https://salahuddin.github.io/gilgit-baltistan-at-a-glance.html" class="share-link" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                            Share on Facebook
+                        </a>
+                    </div>
+                </section>
+                <hr />
+                <section class="special">
+                    <h3 style="text-align:left"><strong style="color:coral">Read Next</strong></h3>
+                    <h3 style="color:black; text-align:left"><a href="opportunities-for-improving-the-wellbeing.html">OPPORTUNITIES FOR IMPROVING THE WELL-BEING OF THE RURAL POPULATIONS</a></h3>
+                    <p style="color:black; text-align:left">Improving the well-being of rural communities is one of the most important challenges faced by the developing world today.</p>
+                </section>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <hr>
+        <div class="container">
+            <div class="row double">
+                <div class="6u">
+                    <div class="row collapse-at-2">
+                        <div class="6u">
+                            <a href="index.html">
+                                <h2 style="letter-spacing: 10px; font-size: 27px;">SALAH<span
+                                        style="color: coral;">UDDIN
+                                    </span></h2>
+                            </a>
+                            <hr class="white">
+                            <h4>CONTACT</h4>
+                            <h4>salahuddin.iba@gmail.com</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="6u">
+                    <h3 style="font-size:15pt">"The highest activity a human being can attain is learning for
+                        understanding, because to understand is to be free."</h3>
+                    <p>― Baruch Spinoza</p>
+                </div>
+            </div>
+            <ul class="copyright">
+                <hr class="major">
+                <p>&copy; Salahuddin. Hosted by Github.</p>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="js/articles/gb-at-a-glance.js"></script>
+
+</body>
+
+</html>

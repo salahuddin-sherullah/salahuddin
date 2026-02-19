@@ -514,15 +514,15 @@ cite{ line-height:3; text-align:left; }
 .revealheading.active{ transform:translateY(0px); opacity:1; }
 
 .arrow-right{
-  border:solid blue; border-width:0 3.3px 3.3px 0; display:inline-block;
+  border:solid coral; border-width:0 3.3px 3.3px 0; display:inline-block;
   width:11px; height:11px; transform:rotate(-45deg); -webkit-transform:rotate(-45deg); vertical-align:middle;
 }
 .arrow-left{
-  position:relative; display:inline-block; width:20px; height:2px; background-color:blue; vertical-align:middle;
+  position:relative; display:inline-block; width:20px; height:2px; background-color:coral; vertical-align:middle;
 }
 .arrow-left::before{
   content:''; position:absolute; left:0; top:50%; transform:translateY(-50%) rotate(135deg);
-  width:10px; height:10px; border:solid blue; border-width:0 2px 2px 0;
+  width:10px; height:10px; border:solid coral; border-width:0 2px 2px 0;
 }
 
 /* Base box style */
