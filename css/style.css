@@ -397,7 +397,7 @@ dl{ margin:0 0 2em 0; }
 /* home image */
 .home-image{
   width:100%; height:100vh; position:relative;
-  background-image:url("../images/orange_blue.jpeg");
+  background-image:url("../images/matterhorn.jpeg");
   background-attachment: fixed;
   background-size:cover; overflow:hidden; z-index:1;
 }
@@ -465,22 +465,22 @@ video{
 #footer .copyright li:first-child{ border-left:0; margin-left:0; padding-left:0; }
 #footer .icons a{ color:floralwhite; }
 
-/* Social Media Buttons */
-.share-btn{
-  display:inline-block; color:#ffffff; border:none; padding:.1em .6em;
-  outline:none; text-align:center; font-size:.9em; margin:0 .2em;
+/* Social Media Share Links - Minimalist */
+.share-links{
+  display:flex; flex-direction:column; gap:.6em; margin:.5em 0;
 }
-.share-btn:focus, .share-btn.twitter:hover{ opacity:.8; background-color:#E1E8ED; }
-.share-btn.facebook:hover{ opacity:.8; background-color:#E1E8ED; }
-.share-btn.linkedin:hover{ opacity:.8; background-color:#E1E8ED; }
-.share-btn.twitter{ background:#55acee; }
-.share-btn.google-plus{ background:#dd4b39; }
-.share-btn.facebook{ background:#3B5998; }
-.share-btn.stumbleupon{ background:#EB4823; }
-.share-btn.reddit{ background:#ff5700; }
-.share-btn.hackernews{ background:#ff6600; }
-.share-btn.linkedin{ background:#4875B4; }
-.share-btn.email{ background:#444444; }
+.share-link{
+  display:inline-flex; align-items:center; gap:.5em;
+  color:#555f66; text-decoration:none; font-size:.9em; font-weight:500;
+  letter-spacing:.02em; transition:color .2s ease;
+  border:none; background:none; padding:0;
+}
+.share-link svg{
+  width:16px; height:16px; flex-shrink:0;
+  fill:currentColor; transition:fill .2s ease;
+}
+.share-link:hover{ color:#192024; }
+.share-link:hover svg{ fill:#192024; }
 
 img{ max-width:100%; }
 
