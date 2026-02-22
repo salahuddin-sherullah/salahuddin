@@ -1,9 +1,26 @@
-/* ============================================================
-   Gilgit-Baltistan at a Glance — interactive visualisations
-   Depends on: D3 v7
-   ============================================================ */
+/**
+ * gb-at-a-glance.js
+ * Interactive D3 visualisations for gilgit-baltistan-at-a-glance.html.
+ * Requires D3 v7 (loaded via CDN in the page <head>).
+ *
+ * Sections:
+ *   1. Shared data & palette  — GB_DATA array, GB_PALETTE, districtColor map
+ *   2. buildExplorer()        — interactive bar chart with metric switcher
+ *   3. buildPopTable()        — census comparison table (2017 vs 2023)
+ *   4. buildDumbbellChart()   — lollipop chart sorted by growth rate
+ *
+ * To update data: edit the GB_DATA array below.
+ * To change colours: edit GB_PALETTE (10 values, index 0 = largest district).
+ */
 
-/* ── Shared data & palette ── */
+
+/* =============================================================================
+   1. SHARED DATA & PALETTE
+   GB_DATA is the single source of truth used by all three visualisations.
+   districtColor assigns a palette colour to each district by population rank
+   (largest district → index 0 = darkest colour). This mapping is computed
+   once and reused so bar colours stay consistent when metrics are switched.
+   ============================================================================= */
 
 const GB_PALETTE = [
     "#03071e","#370617","#6a040f","#9d0108","#d00100",

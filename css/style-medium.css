@@ -1,9 +1,29 @@
 @charset "UTF-8";
 
-/*
-	Ion by TEMPLATED
-	templated.co @templatedco
-	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+/* =============================================================================
+   style-medium.css
+   Activates at ≤980px (skel "medium" breakpoint and below).
+
+   Responsibilities:
+     - Hides the desktop #header (it uses position:fixed at full width)
+     - Shows the mobile top bar (#navButton) — a fixed 56px strip with
+       a hamburger icon and the site name
+     - Shows the slide-in nav panel (#navPanel) with header, links, and
+       social footer
+     - Offsets page content below the fixed top bar (padding-top: 56px)
+
+   Sections:
+     1. Base            — body font size, wrapper padding
+     2. Desktop header  — hides #header at this breakpoint
+     3. Mobile top bar  — #navButton fixed strip + .toggle + .nav-site-name
+     4. Nav panel       — #navPanel slide-in sidebar, header, close button, links
+     5. Social footer   — .nav-panel-footer links (LinkedIn / GitHub / X)
+     6. Banner          — padding adjustment for hero sections
+   =============================================================================
+
+   Ion by TEMPLATED
+   templated.co @templatedco
+   Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 */
 
 /* Basic */

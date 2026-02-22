@@ -1,8 +1,22 @@
-/* ============================================================
-   Gilgit-Baltistan at a Glance — article-specific styles
-   ============================================================ */
+/* =============================================================================
+   gb-at-a-glance.css
+   Styles specific to gilgit-baltistan-at-a-glance.html.
+   Loaded only on that page — does not affect any other pages.
 
-/* ── Stat Cards ── */
+   Sections:
+     1. Stat Cards        — 6-card summary grid at the top of the article
+     2. District Table    — static HTML table with density bar visualisation
+     3. District Explorer — interactive D3 bar chart (metric switcher)
+     4. Population Table  — D3-rendered census comparison table
+     5. Dumbbell Chart    — D3 2017 vs 2023 population lollipop chart
+   =============================================================================*/
+
+
+/* =============================================================================
+   1. STAT CARDS
+   Six summary metrics in a responsive 3-column grid.
+   On tablet (≤900px) collapses to 2 columns; on mobile (≤560px) to 1 column.
+   ============================================================================= */
 .stat-cards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -67,7 +81,11 @@
     font-weight: 600;
 }
 
-/* ── District Breakdown Table (static) ── */
+/* =============================================================================
+   2. DISTRICT BREAKDOWN TABLE
+   Static HTML table with inline density bars (coral <span> elements).
+   The last row (Total/Avg.) gets a bold top border and coral district label.
+   ============================================================================= */
 .data-section {
     margin: 2.5em 0 1em;
 }
@@ -115,7 +133,13 @@
     margin-right: 0.4em;
 }
 
-/* ── District Explorer (interactive bar chart) ── */
+/* =============================================================================
+   3. DISTRICT EXPLORER — INTERACTIVE BAR CHART
+   D3-rendered bar chart with metric toggle buttons.
+   Colour per district is stable across metric switches (set once by population
+   rank in gb-at-a-glance.js → districtColor).
+   The tooltip uses position:fixed so it tracks the cursor across the SVG.
+   ============================================================================= */
 .explorer-section {
     margin: 2.5em 0;
 }
@@ -159,7 +183,12 @@
 .bar-tooltip .tt-district { color: coral; font-weight: 600; margin-bottom: 3px; }
 .bar-tooltip .tt-value    { color: #fff; }
 
-/* ── Population Change Table (D3-rendered) ── */
+/* =============================================================================
+   4. POPULATION CHANGE TABLE
+   D3-rendered table comparing 2017 and 2023 census data per district.
+   Each row includes a colour dot, absolute change, growth badge, and a
+   proportional share-of-GB mini bar chart in the last column.
+   ============================================================================= */
 .pop-table-section {
     margin: 2.5em 0;
 }
@@ -214,7 +243,12 @@
 .share-bar-fill { height: 100%; border-radius: 3px; }
 .share-label    { color: #555f66; font-size: 11px; min-width: 36px; text-align: right; }
 
-/* ── Dumbbell Chart ── */
+/* =============================================================================
+   5. DUMBBELL CHART
+   D3 lollipop/dumbbell chart comparing 2017 (hollow dot) vs 2023 (filled dot)
+   population per district, sorted by growth rate descending.
+   A connecting line spans the change between the two census years.
+   ============================================================================= */
 .dumbbell-section {
     margin: 2.5em 0;
 }
