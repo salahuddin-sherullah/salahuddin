@@ -6,9 +6,9 @@
    Sections:
      1. Stat Cards        — 6-card summary grid at the top of the article
      2. District Table    — static HTML table with density bar visualisation
-     3. District Explorer — interactive D3 bar chart (metric switcher)
-     4. Population Table  — D3-rendered census comparison table
-     5. Dumbbell Chart    — D3 2017 vs 2023 population lollipop chart
+     3. District Explorer — interactive D3 bar chart (metric dropdown, 9 metrics)
+     4. Dumbbell Chart    — D3 2017 vs 2023 population lollipop chart
+     5. Tourism Chart     — D3 stacked bar of tourist arrivals 2010–2024 (Economy section)
    =============================================================================*/
 
 
@@ -135,9 +135,10 @@
 
 /* =============================================================================
    3. DISTRICT EXPLORER — INTERACTIVE BAR CHART
-   D3-rendered bar chart with metric toggle buttons.
+   D3-rendered bar chart with a metric dropdown (9 metrics).
    Colour per district is stable across metric switches (set once by population
    rank in gb-at-a-glance.js → districtColor).
+   Districts with no data for the selected metric are omitted from the chart.
    The tooltip uses position:fixed so it tracks the cursor across the SVG.
    ============================================================================= */
 .explorer-section {
@@ -150,25 +151,40 @@
     padding: 1.4em 1.6em 1.6em;
     overflow-x: auto;
 }
-.metric-switcher {
+.metric-select-wrap {
     display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
+    align-items: center;
+    gap: 12px;
     margin-bottom: 20px;
 }
-.metric-btn {
-    padding: 6px 14px;
+.metric-select-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #8a9aa3;
+    white-space: nowrap;
+}
+.metric-select {
+    appearance: none;
+    -webkit-appearance: none;
+    padding: 7px 36px 7px 14px;
     border: 1px solid #e4e9eb;
     border-radius: 4px;
+    background-color: #fff;
+    /* Chevron arrow via inline SVG */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='none' stroke='%238a9aa3' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' d='M2 4l4 4 4-4'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    font-size: 13px;
+    color: #192024;
     cursor: pointer;
-    font-size: 11px;
-    background: #fff;
-    color: #555f66;
-    transition: all 0.15s;
-    letter-spacing: 0.04em;
+    outline: none;
+    transition: border-color 0.15s;
+    min-width: 200px;
 }
-.metric-btn:hover  { border-color: coral; color: coral; }
-.metric-btn.active { background: coral; border-color: coral; color: #fff; }
+.metric-select:hover,
+.metric-select:focus { border-color: coral; }
 .bar-tooltip {
     position: fixed;
     background: #192024;
@@ -184,70 +200,9 @@
 .bar-tooltip .tt-value    { color: #fff; }
 
 /* =============================================================================
-   4. POPULATION CHANGE TABLE
-   D3-rendered table comparing 2017 and 2023 census data per district.
-   Each row includes a colour dot, absolute change, growth badge, and a
-   proportional share-of-GB mini bar chart in the last column.
-   ============================================================================= */
-.pop-table-section {
-    margin: 2.5em 0;
-}
-.table-wrap {
-    background: #ffffff;
-    border: 1px solid #e4e9eb;
-    border-radius: 4px;
-    padding: 1.4em 1.6em 1.6em;
-    overflow-x: auto;
-    color: #192024;
-}
-.census-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 13px;
-}
-.census-table th {
-    padding: 8px 12px;
-    text-align: right;
-    color: #8a9aa3;
-    font-size: 10px;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-    font-weight: 600;
-    border-bottom: 2px solid #e4e9eb;
-}
-.census-table th.left { text-align: left; }
-.census-table td {
-    padding: 9px 12px;
-    text-align: right;
-    border-bottom: 1px solid #f0f3f5;
-    color: #555f66;
-    transition: background 0.1s;
-}
-.census-table td.left  { text-align: left; color: #192024; font-weight: 600; }
-.census-table tr:last-child td { border-bottom: none; }
-.census-table tr:hover td { background: #fafbfc; cursor: default; }
-.ct-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    display: inline-block;
-    margin-right: 8px;
-    flex-shrink: 0;
-}
-.district-cell  { display: flex; align-items: center; }
-.growth-badge   { padding: 2px 8px; border-radius: 3px; font-size: 11px; }
-.growth-high    { background: rgba(255,100,50,0.12); color: coral; font-weight: 600; }
-.growth-normal  { color: #555f66; }
-.share-bar-wrap { display: flex; align-items: center; justify-content: flex-end; gap: 8px; }
-.share-bar-bg   { width: 60px; height: 5px; background: #eef0f2; border-radius: 3px; overflow: hidden; }
-.share-bar-fill { height: 100%; border-radius: 3px; }
-.share-label    { color: #555f66; font-size: 11px; min-width: 36px; text-align: right; }
-
-/* =============================================================================
-   5. DUMBBELL CHART
+   4. DUMBBELL CHART
    D3 lollipop/dumbbell chart comparing 2017 (hollow dot) vs 2023 (filled dot)
    population per district, sorted by growth rate descending.
-   A connecting line spans the change between the two census years.
    ============================================================================= */
 .dumbbell-section {
     margin: 2.5em 0;
@@ -295,3 +250,59 @@
 .db-tooltip .tt-row    { display: flex; justify-content: space-between; gap: 16px; color: #fff; margin-top: 2px; }
 .db-tooltip .tt-muted  { color: #8a9aa3; }
 .db-tooltip .tt-change { color: #2aaa6e; font-weight: 600; margin-top: 6px; }
+
+/* =============================================================================
+   5. ECONOMY SECTION — TOURISM CHARTS
+   Two D3 charts inside the Economy section:
+     a) Stacked bar  — domestic vs foreign arrivals 2010–2024 (#tourism-chart)
+     b) Dual-axis    — spending (bars, left axis) + % of GDP (line, right axis)
+                       (#spending-chart)
+   Both charts reuse .tourism-chart-wrap, .tourism-legend, .bar-tooltip, and
+   .tourism-tooltip / .tt-multi-row classes defined below.
+   ============================================================================= */
+.economy-section {
+    margin: 2.5em 0;
+}
+.economy-section h3 {
+    color: #192024;
+    margin-bottom: 0.5em;
+}
+.tourism-chart-wrap {
+    background: #ffffff;
+    border: 1px solid #e4e9eb;
+    border-radius: 4px;
+    padding: 1.4em 1.6em 1.6em;
+    overflow-x: auto;
+    margin-top: 1.25em;
+}
+.tourism-legend {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 16px;
+    font-size: 12px;
+    color: #192024;
+    align-items: center;
+}
+.tourism-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+.tourism-legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    display: inline-block;
+    flex-shrink: 0;
+}
+/* Multi-row tooltip rows used by the tourism chart */
+.tourism-tooltip { min-width: 170px; padding: 10px 14px; }
+.tourism-tooltip .tt-district { margin-bottom: 6px; }
+.tt-multi-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 3px;
+}
+.tt-multi-label { color: #8a9aa3; }
+.tt-multi-val   { color: #fff; }
