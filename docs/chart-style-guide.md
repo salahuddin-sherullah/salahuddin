@@ -6,12 +6,18 @@
 
 ## 1. Colour Palette
 
-### Brand colours
+### Site-wide accent colour
+`coral` (`#FF7F50`) is the single accent colour used across all articles for
+inline heading highlights (e.g. `<strong style="color:coral">`), stat card
+left borders, and any other brand-coloured UI elements.
+**`#00B8AE` (teal) has been fully retired** — do not use it in new files.
+
+### Chart brand colours
 | Token | Hex | Usage |
 |---|---|---|
 | Dark text | `#192024` | x-axis labels, chart border, axis line |
 | Muted label | `#8a9aa3` | y-axis ticks, data labels, grid, COVID annotation |
-| Grid line | `#e4e9eb` | Horizontal grid lines |
+| Grid line | `#e4e9eb` | Horizontal grid lines, card top/bottom border |
 | Footer text | `#b0bec5` | Source attribution text |
 | Accent red | `#d00100` | Primary series (bars, 2023 dot, spending) |
 | Accent orange | `#f48c06` | Secondary series (foreign arrivals, GDP % line) |
@@ -176,11 +182,14 @@ CSS for the card:
 background:    #ffffff
 border-top:    1px solid #e4e9eb   /* open-frame style — top & bottom only */
 border-bottom: 1px solid #e4e9eb
-padding:       1.4em 1.6em 1.6em
+padding:       1.4em 1.6em 1.6em 0  /* zero left padding — flush with border */
 overflow-x:    auto
 ```
-No `border-left`, `border-right`, or `border-radius` — the open frame keeps the
-chart visually connected to the surrounding article text.
+**No left padding** — this keeps the chart title, subtitle, source text, and logo
+flush with the left end of the top/bottom borders. The SVG's internal `margin.left`
+still provides space for y-axis labels; the card itself has no additional indent.
+
+No `border-left`, `border-right`, or `border-radius`.
 
 ---
 
