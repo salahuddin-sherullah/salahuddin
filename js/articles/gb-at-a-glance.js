@@ -85,19 +85,17 @@ function abbr(d) {
  * Requires margin.bottom ≥ 120 on the calling chart.
  */
 function addChartFooter(svg, totalH, source) {
-    // Source line ~15% lower than before (was totalH-56)
     svg.append("text")
         .attr("x", 0)
         .attr("y", totalH - 48)
         .attr("font-size", 14)
-        .attr("fill", "#b0bec5")
+        .attr("fill", "#999999")
         .text("Source: " + source);
 
-    // Logo ~15% lower than before (was totalH-40); bottom lands at totalH-1
     svg.append("image")
         .attr("href", "images/dark_matter_dark_logo.png")
         .attr("x", 0)
-        .attr("y", totalH - 34)
+        .attr("y", totalH - 30)
         .attr("height", 35);
 }
 
@@ -207,7 +205,7 @@ function addChartFooter(svg, totalH, source) {
             .call(d3.axisBottom(xScale).ticks(5).tickFormat(activeMetric.shortFmt).tickSize(0))
             .call(ax => ax.select(".domain")
                 .style("stroke", "#192024")
-                .style("stroke-width", "1.5px"))
+                .style("stroke-width", "1px"))
             .selectAll("text")
                 .attr("dy", "1.2em")
                 .style("fill", "#8a9aa3")
@@ -223,12 +221,12 @@ function addChartFooter(svg, totalH, source) {
                 .attr("dx", "-6px");
 
         // Horizontal grid lines at each district row
-        gridG.transition().duration(400)
-            .call(d3.axisLeft(yScale).tickSize(-width).tickFormat(""))
-            .call(gg => gg.select(".domain").remove())
-            .call(gg => gg.selectAll(".tick line")
-                .style("stroke", "#e4e9eb")
-                .style("stroke-dasharray", "none"));
+        // gridG.transition().duration(400)
+        //     .call(d3.axisLeft(yScale).tickSize(-width).tickFormat(""))
+        //     .call(gg => gg.select(".domain").remove())
+        //     .call(gg => gg.selectAll(".tick line")
+        //         .style("stroke", "#e4e9eb")
+        //         .style("stroke-dasharray", "none"));
 
         // Horizontal bars
         barsG.selectAll("rect")
@@ -363,7 +361,7 @@ function addChartFooter(svg, totalH, source) {
         .call(d3.axisBottom(xScale).ticks(5).tickFormat(abbr))
         .call(ax => ax.select(".domain")
             .style("stroke", "#192024")
-            .style("stroke-width", "1.5px"))
+            .style("stroke-width", "1px"))
         .call(ax => ax.selectAll(".tick text")
             .style("fill", "#8a9aa3")
             .style("font-size", "16px"));
@@ -508,7 +506,7 @@ function addChartFooter(svg, totalH, source) {
             .tickValues(altYears)
             .tickFormat(d3.format("d")))
         .call(ax => ax.select(".domain")
-            .style("stroke", "#192024").style("stroke-width", "1.5px"))
+            .style("stroke", "#192024").style("stroke-width", "1px"))
         .call(ax => ax.selectAll(".tick text")
             .style("fill", "#192024")
             .style("font-size", "16px")
@@ -666,7 +664,7 @@ function addChartFooter(svg, totalH, source) {
             .tickValues(altYears)
             .tickFormat(d3.format("d")))
         .call(ax => ax.select(".domain")
-            .style("stroke", "#192024").style("stroke-width", "1.5px"))
+            .style("stroke", "#192024").style("stroke-width", "1px"))
         .call(ax => ax.selectAll(".tick text")
             .style("fill", "#192024").style("font-size", "16px").attr("dy", "1.4em"));
 
@@ -723,7 +721,7 @@ function addChartFooter(svg, totalH, source) {
         .attr("width",       xScale.bandwidth())
         .attr("height",      d => height - yLeft(d.spending))
         .attr("fill",        "#d00100")
-        .attr("fill-opacity", 0.85)
+        // .attr("fill-opacity", 0.85)
         .attr("rx", 2)
         .style("cursor", "pointer")
         .on("mousemove", showTip)
@@ -752,7 +750,7 @@ function addChartFooter(svg, totalH, source) {
         .datum(data)
         .attr("fill", "none")
         .attr("stroke", "#f48c06")
-        .attr("stroke-width", 2.5)
+        .attr("stroke-width", 3)
         .attr("d", lineGen);
 
     // Dots on GDP line
