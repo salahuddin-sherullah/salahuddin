@@ -867,9 +867,9 @@ function addChartFooter(svg, totalH, source) {
         .append("div").attr("class", "budget-wrap");
 
     wrap.append("div").attr("class", "chart-title")
-        .text("GB Budget 2024–25 — Source Breakdown");
+        .text("Inflows by Source — GB Budget 2024–25");
     wrap.append("div").attr("class", "chart-subtitle")
-        .text("Width ∝ share of total budget · Height ∝ share within category · Hover for details");
+        .text("Over 70% of the GB's annual budget is funded by the federal government in Islamabad");
 
     const svg = wrap.append("svg")
         .attr("width",  totalW)
@@ -1047,9 +1047,9 @@ function addChartFooter(svg, totalH, source) {
         .append("div").attr("class", "budget-donut-wrap");
 
     wrap.append("div").attr("class", "chart-title")
-        .text("Non-Development Expenditure — Object Classification");
+        .text("Non-Development Expenditure");
     wrap.append("div").attr("class", "chart-subtitle")
-        .text("PKR 86.6 Billion total · Hover slices for detail");
+        .text("Over half of GB's non-development budget goes to paying off government employees");
 
     const svg = wrap.append("svg")
         .attr("width", W).attr("height", H)
@@ -1166,7 +1166,7 @@ function addChartFooter(svg, totalH, source) {
             .attr("x", textX).attr("y", baseY + nameH + VALUE_GAP)
             .attr("text-anchor", anchor)
             .attr("font-size", 14).attr("font-weight", "600").attr("fill", "coral")
-            .text(d.data.value.toFixed(2) + "B · " + (d.data.value / TOTAL * 100).toFixed(1) + "%");
+            .text(d.data.value.toFixed(1) + "B | " + (d.data.value / TOTAL * 100).toFixed(1) + "%");
     });
 
     addChartFooter(svg, H, "GB Finance Department, Budget 2024–25");
