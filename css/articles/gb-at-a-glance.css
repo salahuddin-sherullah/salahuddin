@@ -326,3 +326,32 @@
 }
 .tt-multi-label { color: #8a9aa3; }
 .tt-multi-val   { color: #fff; }
+
+/* =============================================================================
+   7. BUDGET MARIMEKKO CHART
+   Proportional Marimekko: column width = share of total budget,
+   segment height = share within category. No legend — hover for details.
+   ============================================================================= */
+.budget-section {
+    margin: 2.5em 0;
+}
+.budget-wrap {
+    background: #ffffff;
+    border-top: 1px solid #e4e9eb;
+    border-bottom: 1px solid #e4e9eb;
+    padding: 1.4em 1.6em 1.6em 0;
+    overflow-x: auto;
+    margin-top: 1.25em;
+}
+.budget-tooltip {
+    min-width: 200px;
+    padding: 10px 14px;
+}
+.budget-donut-wrap {
+    background: #ffffff;
+    border-top: 1px solid #e4e9eb;
+    border-bottom: 1px solid #e4e9eb;
+    padding: 1.4em 1.6em 1.6em 0;
+    overflow-x: auto;
+    margin-top: 1.25em;
+}

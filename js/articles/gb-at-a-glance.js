@@ -12,13 +12,13 @@
  *   6. buildSpendingChart()   — dual-axis: spending (bars) + GDP % (line)
  *
  * Design tokens applied consistently across all charts:
- *   - Axis tick labels : 16px, #8a9aa3 (value axes) / #192024 (category axes)
+ *   - Axis tick labels : 15px, #8a9aa3 (value axes) / #192024 (category axes)
  *   - Grid lines       : horizontal only, solid #e4e9eb
  *   - x-axis line      : stroke #192024, stroke-width 1.5px
  *   - Data labels      : 15px abbreviated (e.g. "175k", "1.4M")
  *   - Chart title      : 21px bold #192024 (CSS)
  *   - Chart subtitle   : 17px #8a9aa3 (CSS)
- *   - Footer           : source 14px + Dark Matter logo 35px tall, bottom-left
+ *   - Footer           : source 15px + Dark Matter logo 35px tall, bottom-left
  *
  * To update data: edit the GB_DATA array below.
  * To change colours: edit GB_PALETTE (10 values, index 0 = largest district).
@@ -80,7 +80,7 @@ function abbr(d) {
 
 /**
  * addChartFooter(svg, totalH, source)
- * Source text (14px) + Dark Matter logo (35px tall) at bottom-left of SVG,
+ * Source text (15px) + Dark Matter logo (35px tall) at bottom-left of SVG,
  * left-aligned with the chart-title HTML element (SVG x = 0).
  * Requires margin.bottom ≥ 120 on the calling chart.
  */
@@ -200,7 +200,7 @@ function addChartFooter(svg, totalH, source) {
         xScale.domain([0, d3.max(sorted, d => d[activeMetric.key])]).nice();
         yScale.domain(sorted.map(d => d.District));
 
-        // x axis (bottom) — value ticks, 16px
+        // x axis (bottom) — value ticks, 15px
         xAxisG.transition().duration(400)
             .call(d3.axisBottom(xScale).ticks(5).tickFormat(activeMetric.shortFmt).tickSize(0))
             .call(ax => ax.select(".domain")
@@ -208,16 +208,16 @@ function addChartFooter(svg, totalH, source) {
                 .style("stroke-width", "1px"))
             .selectAll("text")
                 .attr("dy", "1.2em")
-                .style("fill", "#8a9aa3")
-                .style("font-size", "16px");
+                .style("fill", "#505050")
+                .style("font-size", "15px");
 
-        // y axis (left) — district names, 16px
+        // y axis (left) — district names, 15px
         yAxisG.transition().duration(400)
             .call(d3.axisLeft(yScale).tickSize(0))
             .call(ay => ay.select(".domain").remove())
             .selectAll("text")
                 .style("fill", "#192024")
-                .style("font-size", "16px")
+                .style("font-size", "15px")
                 .attr("dx", "-6px");
 
         // Horizontal grid lines at each district row
@@ -267,8 +267,8 @@ function addChartFooter(svg, totalH, source) {
                     .attr("y",   d => yScale(d.District) + yScale.bandwidth() / 2)
                     .attr("dy",  "0.35em")
                     .attr("x",   0)
-                    .attr("font-size", 15)
-                    .attr("fill", "#8a9aa3")
+                    .attr("font-size", 14)
+                    .attr("fill", "#505050")
                     .attr("pointer-events", "none")
                     .attr("opacity", 0)
                     .text(d => activeMetric.shortFmt(d[activeMetric.key]))
@@ -346,16 +346,16 @@ function addChartFooter(svg, totalH, source) {
             .style("stroke", "#e4e9eb")
             .style("stroke-dasharray", "none"));
 
-    // y axis — district names, 16px
+    // y axis — district names, 15px
     g.append("g")
         .call(d3.axisLeft(yScale).tickSize(0))
         .call(ax => ax.select(".domain").remove())
         .call(ax => ax.selectAll(".tick text")
             .style("fill", "#192024")
-            .style("font-size", "16px")
+            .style("font-size", "15px")
             .attr("dx", "-8px"));
 
-    // x axis — bold line, abbreviated ticks, 16px
+    // x axis — bold line, abbreviated ticks, 15px
     g.append("g")
         .attr("transform", `translate(0,${height})`)
         .call(d3.axisBottom(xScale).ticks(5).tickFormat(abbr))
@@ -363,13 +363,13 @@ function addChartFooter(svg, totalH, source) {
             .style("stroke", "#192024")
             .style("stroke-width", "1px"))
         .call(ax => ax.selectAll(".tick text")
-            .style("fill", "#8a9aa3")
-            .style("font-size", "16px"));
+            .style("fill", "#505050")
+            .style("font-size", "15px"));
 
     g.append("text")
         .attr("x", width / 2).attr("y", height + 42)
         .attr("text-anchor", "middle")
-        .attr("font-size", 16).attr("fill", "#8a9aa3")
+        .attr("font-size", 15).attr("fill", "#8a9aa3")
         .text("Population");
 
     const tooltip = wrap.append("div").attr("class", "db-tooltip");
@@ -498,7 +498,7 @@ function addChartFooter(svg, totalH, source) {
         .call(gg => gg.selectAll(".tick line")
             .style("stroke", "#e4e9eb").style("stroke-dasharray", "none"));
 
-    // x axis — alternate year labels only, 16px
+    // x axis — alternate year labels only, 15px
     g.append("g")
         .attr("transform", `translate(0,${height})`)
         .call(d3.axisBottom(xScale)
@@ -509,15 +509,15 @@ function addChartFooter(svg, totalH, source) {
             .style("stroke", "#192024").style("stroke-width", "1px"))
         .call(ax => ax.selectAll(".tick text")
             .style("fill", "#192024")
-            .style("font-size", "16px")
+            .style("font-size", "15px")
             .attr("dy", "1.4em"));
 
-    // y axis — abbreviated ticks, 16px
+    // y axis — abbreviated ticks, 15px
     g.append("g")
         .call(d3.axisLeft(yScale).ticks(5).tickFormat(abbr).tickSize(0))
         .call(ay => ay.select(".domain").remove())
         .call(ay => ay.selectAll(".tick text")
-            .style("fill", "#8a9aa3").style("font-size", "16px"));
+            .style("fill", "#8a9aa3").style("font-size", "15px"));
 
     const tooltip = wrap.append("div").attr("class", "bar-tooltip tourism-tooltip");
 
@@ -551,7 +551,7 @@ function addChartFooter(svg, totalH, source) {
             .on("mouseleave", () => tooltip.style("opacity", 0));
     });
 
-    // Abbreviated total labels on top of bars, 14px
+    // Abbreviated total labels on top of bars, 15px
     g.selectAll(".total-label")
         .data(tourismData)
         .join("text")
@@ -560,7 +560,7 @@ function addChartFooter(svg, totalH, source) {
         .attr("y", d => yScale(d.domestic + d.foreign) - 5)
         .attr("text-anchor", "middle")
         .attr("font-size", 14)
-        .attr("fill", "#8a9aa3")
+        .attr("fill", "#505050")
         .attr("pointer-events", "none")
         .text(d => abbr(d.domestic + d.foreign));
 
@@ -569,11 +569,11 @@ function addChartFooter(svg, totalH, source) {
     g.append("line")
         .attr("x1", covidX).attr("x2", covidX)
         .attr("y1", 0).attr("y2", height)
-        .attr("stroke", "#c0c8cc").attr("stroke-width", 1)
+        .attr("stroke", "#beb4b4").attr("stroke-width", 1)
         .attr("stroke-dasharray", "4,3");
     g.append("text")
         .attr("x", covidX + 4).attr("y", 16)
-        .attr("font-size", 14).attr("fill", "#8a9aa3")
+        .attr("font-size", 14).attr("fill", "#505050")
         .text("COVID-19");
 
     addChartFooter(svg, totalH,
@@ -616,7 +616,7 @@ function addChartFooter(svg, totalH, source) {
     wrap.append("div").attr("class", "chart-title")
         .text("Tourist Spending in Gilgit-Baltistan (2010–2024)");
     wrap.append("div").attr("class", "chart-subtitle")
-        .text("Total spending in Billion PKR (bars, left axis) vs. share of GB GDP % (line, right axis)");
+        .text("Total annual tourist spending has increased significantly since 2015");
 
     const legendDiv = wrap.append("div").attr("class", "tourism-legend");
 
@@ -656,7 +656,7 @@ function addChartFooter(svg, totalH, source) {
         .call(gg => gg.selectAll(".tick line")
             .style("stroke", "#e4e9eb").style("stroke-dasharray", "none"));
 
-    // x axis — bold line, alternate year labels only, 16px
+    // x axis — bold line, alternate year labels only, 15px
     g.append("g")
         .attr("transform", `translate(0,${height})`)
         .call(d3.axisBottom(xScale)
@@ -666,35 +666,35 @@ function addChartFooter(svg, totalH, source) {
         .call(ax => ax.select(".domain")
             .style("stroke", "#192024").style("stroke-width", "1px"))
         .call(ax => ax.selectAll(".tick text")
-            .style("fill", "#192024").style("font-size", "16px").attr("dy", "1.4em"));
+            .style("fill", "#192024").style("font-size", "15px").attr("dy", "1.4em"));
 
-    // Left y axis — spending, 16px, gray
+    // Left y axis — spending, 15px, gray
     g.append("g")
         .call(d3.axisLeft(yLeft).ticks(5).tickFormat(d => Math.round(d) + "B").tickSize(0))
         .call(ay => ay.select(".domain").remove())
         .call(ay => ay.selectAll(".tick text")
-            .style("fill", "#8a9aa3").style("font-size", "16px"));
+            .style("fill", "#8a9aa3").style("font-size", "15px"));
 
     g.append("text")
         .attr("transform", "rotate(-90)")
         .attr("x", -height / 2).attr("y", -68)
         .attr("text-anchor", "middle")
-        .attr("font-size", 16).attr("fill", "#8a9aa3")
+        .attr("font-size", 15).attr("fill", "#505050")
         .text("Total Spending (Billion PKR)");
 
-    // Right y axis — GDP %, 16px, gray
+    // Right y axis — GDP %, 15px, gray
     g.append("g")
         .attr("transform", `translate(${width}, 0)`)
         .call(d3.axisRight(yRight).ticks(5).tickFormat(d => Math.round(d * 100) + "%").tickSize(0))
         .call(ay => ay.select(".domain").remove())
         .call(ay => ay.selectAll(".tick text")
-            .style("fill", "#8a9aa3").style("font-size", "16px").attr("dx", "8px"));
+            .style("fill", "#8a9aa3").style("font-size", "15px").attr("dx", "8px"));
 
     g.append("text")
         .attr("transform", "rotate(-90)")
         .attr("x", -height / 2).attr("y", width + 74)
         .attr("text-anchor", "middle")
-        .attr("font-size", 16).attr("fill", "#8a9aa3")
+        .attr("font-size", 15).attr("fill", "#505050")
         .text("Tourist Spending % of GDP");
 
     const tooltip = wrap.append("div").attr("class", "bar-tooltip tourism-tooltip");
@@ -735,8 +735,8 @@ function addChartFooter(svg, totalH, source) {
         .attr("x", d => xScale(d.year) + xScale.bandwidth() / 2)
         .attr("y", d => yLeft(d.spending) - 5)
         .attr("text-anchor", "middle")
-        .attr("font-size", 12)
-        .attr("fill", "#8a9aa3")
+        .attr("font-size", 14)
+        .attr("fill", "#505050")
         .attr("pointer-events", "none")
         .text(d => d.spending >= 10 ? Math.round(d.spending) : d.spending.toFixed(1));
 
@@ -768,6 +768,18 @@ function addChartFooter(svg, totalH, source) {
         .on("mousemove", showTip)
         .on("mouseleave", hideTip);
 
+    // CPEC announced annotation (2015)
+    const cpecX = xScale(2015) + xScale.bandwidth() / 2;
+    g.append("line")
+        .attr("x1", cpecX).attr("x2", cpecX)
+        .attr("y1", 0).attr("y2", height)
+        .attr("stroke", "#c0c8cc").attr("stroke-width", 1)
+        .attr("stroke-dasharray", "4,3");
+    g.append("text")
+        .attr("x", cpecX + 4).attr("y", 14)
+        .attr("font-size", 14).attr("fill", "#505050")
+        .text("CPEC announced");
+
     // COVID-19 annotation
     const covidX = xScale(2020) + xScale.bandwidth() / 2;
     g.append("line")
@@ -776,10 +788,386 @@ function addChartFooter(svg, totalH, source) {
         .attr("stroke", "#c0c8cc").attr("stroke-width", 1)
         .attr("stroke-dasharray", "4,3");
     g.append("text")
-        .attr("x", covidX + 4).attr("y", 16)
-        .attr("font-size", 14).attr("fill", "#8a9aa3")
+        .attr("x", covidX + 4).attr("y", 14)
+        .attr("font-size", 14).attr("fill", "#505050")
         .text("COVID-19");
 
     addChartFooter(svg, totalH,
         "GB Tourism Department; Pakistan Bureau of Statistics, 2024");
+})();
+
+
+/* =============================================================================
+   7. BUDGET MARIMEKKO CHART — GB budget 2024–25 source breakdown
+   ============================================================================= */
+
+(function buildBudgetChart() {
+    const DATA = {
+        label: "Total Budget",
+        value: 140.172,
+        children: [
+            {
+                label: "Non-Development", value: 86.6,
+                children: [
+                    { label: "Federal Grant-in-Aid",       value: 68.000 },
+                    { label: "Local Revenues",             value: 5.019  },
+                    { label: "Budget Deficit",             value: 10.625 },
+                    { label: "Recovery Electricity Bills", value: 1.400  },
+                    { label: "GB Revenue Authority",       value: 1.303  },
+                    { label: "Savings / Surrenders",       value: 0.253  },
+                ]
+            },
+            {
+                label: "Development", value: 34.5,
+                children: [
+                    { label: "ADP Allocation",             value: 20.000 },
+                    { label: "ETI (FEC Component)",        value: 1.000  },
+                    { label: "Federal PSDP",               value: 9.500  },
+                    { label: "PSDP (PM Initiatives)",      value: 4.000  },
+                ]
+            },
+            {
+                label: "Wheat Subsidy", value: 19.072,
+                children: [
+                    { label: "Federal Subsidy (Wheat)",    value: 15.872 },
+                    { label: "Sale Proceeds of Wheat",     value: 3.200  },
+                ]
+            },
+        ]
+    };
+
+    const PALETTES = {
+        "Non-Development": ["#d00100","#e85d05","#f48c06","#faa307","#ffba08","#ffd60a"],
+        "Development":     ["#1b4332","#2d6a4f","#52b788","#95d5b2"],
+        "Wheat Subsidy":   ["#023e8a","#0077b6"],
+    };
+
+    // Format a PKR billion value: strip trailing decimal zeros (68.000 → "68B", 9.5 → "9.5B")
+    const fmtB = v => parseFloat(v.toFixed(3)) + "B";
+
+    const TOTAL      = DATA.value;
+    const margin     = { top: 20, right: 170, bottom: 130, left: 40 };
+    const totalW     = 750;
+    const totalH     = 450;
+    const INNER_W    = totalW - margin.left - margin.right;  // 510
+    const INNER_H    = totalH - margin.top - margin.bottom;  // 310
+    const GAP        = 6;
+    const categories = DATA.children;
+
+    // Compute column x positions and widths (proportional to budget share)
+    let xCursor = 0;
+    const catLayout = categories.map(cat => {
+        const colW = (cat.value / TOTAL) * (INNER_W - GAP * (categories.length - 1));
+        const x = xCursor;
+        xCursor += colW + GAP;
+        return { ...cat, x, colW };
+    });
+
+    const wrap = d3.select("#budget-chart")
+        .append("div").attr("class", "budget-wrap");
+
+    wrap.append("div").attr("class", "chart-title")
+        .text("GB Budget 2024–25 — Source Breakdown");
+    wrap.append("div").attr("class", "chart-subtitle")
+        .text("Width ∝ share of total budget · Height ∝ share within category · Hover for details");
+
+    const svg = wrap.append("svg")
+        .attr("width",  totalW)
+        .attr("height", totalH)
+        .style("display", "block")
+        .style("overflow", "visible");  // allow footer logo to render below SVG bounds
+
+    const g = svg.append("g")
+        .attr("transform", `translate(${margin.left},${margin.top})`);
+
+    // Horizontal grid lines at 0 / 25 / 50 / 75 / 100%
+    [0, 25, 50, 75, 100].forEach(t => {
+        g.append("line")
+            .attr("x1", 0).attr("x2", INNER_W)
+            .attr("y1", INNER_H * (1 - t / 100))
+            .attr("y2", INNER_H * (1 - t / 100))
+            .attr("stroke", "#e4e9eb").attr("stroke-width", 1);
+        g.append("text")
+            .attr("x", -6).attr("y", INNER_H * (1 - t / 100) + 4)
+            .attr("text-anchor", "end")
+            .attr("font-size", 14).attr("fill", "#8a9aa3")
+            .text(t + "%");
+    });
+
+    // Tooltip
+    const tooltip = wrap.append("div")
+        .attr("class", "bar-tooltip budget-tooltip");
+
+    // Draw segments
+    catLayout.forEach(cat => {
+        const pal      = PALETTES[cat.label];
+        const catTotal = cat.children.reduce((s, c) => s + c.value, 0);
+        let yCursor    = 0;
+
+        cat.children.forEach((sub, i) => {
+            const segH  = (sub.value / catTotal) * INNER_H;
+            const segY  = yCursor;
+            const color = pal[i % pal.length];
+
+            g.append("rect")
+                .attr("x", cat.x).attr("y", segY)
+                .attr("width", cat.colW).attr("height", segH)
+                .attr("fill", color)
+                .attr("stroke", "#fff").attr("stroke-width", 0.5)
+                .style("cursor", "pointer")
+                .on("mouseenter", function(event) {
+                    d3.select(this).attr("fill-opacity", 0.8);
+                    tooltip.style("opacity", 1)
+                        .html(`
+                            <div class="tt-district">${cat.label}</div>
+                            <div style="color:#fff;margin-bottom:6px">${sub.label}</div>
+                            <div class="tt-multi-row"><span class="tt-multi-label">Value</span><span class="tt-multi-val">${fmtB(sub.value)} PKR</span></div>
+                            <div class="tt-multi-row"><span class="tt-multi-label">% of category</span><span class="tt-multi-val">${(sub.value / catTotal * 100).toFixed(1)}%</span></div>
+                            <div class="tt-multi-row"><span class="tt-multi-label">% of total</span><span class="tt-multi-val">${(sub.value / TOTAL * 100).toFixed(1)}%</span></div>
+                        `)
+                        .style("left", (event.clientX + 16) + "px")
+                        .style("top",  (event.clientY - 60) + "px");
+                })
+                .on("mousemove", function(event) {
+                    tooltip
+                        .style("left", (event.clientX + 16) + "px")
+                        .style("top",  (event.clientY - 60) + "px");
+                })
+                .on("mouseleave", function() {
+                    d3.select(this).attr("fill-opacity", 1);
+                    tooltip.style("opacity", 0);
+                });
+
+            // Inline labels — only when segment is large enough to fit text
+            if (segH >= 22 && cat.colW >= 60) {
+                const cy = segY + segH / 2;
+                if (cat.colW > 90 && segH > 34) {
+                    const maxChars = Math.floor((cat.colW - 12) / 6.2);
+                    const shortName = sub.label.length > maxChars
+                        ? sub.label.slice(0, maxChars - 1) + "…"
+                        : sub.label;
+                    g.append("text")
+                        .attr("x", cat.x + 7).attr("y", cy - 6)
+                        .attr("font-size", 14).attr("font-weight", "500")
+                        .attr("fill", "rgba(255,255,255,0.9)")
+                        .attr("dominant-baseline", "middle")
+                        .attr("pointer-events", "none")
+                        .text(shortName);
+                    g.append("text")
+                        .attr("x", cat.x + 7).attr("y", cy + 8)
+                        .attr("font-size", 13).attr("fill", "rgba(255,255,255,0.65)")
+                        .attr("dominant-baseline", "middle")
+                        .attr("pointer-events", "none")
+                        .text(fmtB(sub.value));
+                } else {
+                    g.append("text")
+                        .attr("x", cat.x + cat.colW / 2).attr("y", cy)
+                        .attr("text-anchor", "middle").attr("font-size", 13)
+                        .attr("fill", "rgba(255,255,255,0.7)")
+                        .attr("dominant-baseline", "middle")
+                        .attr("pointer-events", "none")
+                        .text(fmtB(sub.value));
+                }
+            }
+
+            yCursor += segH;
+        });
+
+        // X-axis labels below each column
+        const xMid = cat.x + cat.colW / 2;
+        g.append("text")
+            .attr("x", xMid).attr("y", INNER_H + 22)
+            .attr("text-anchor", "middle").attr("font-size", 12)
+            .attr("fill", "#353535").attr("letter-spacing", "0.04em")
+            .text(cat.label.toUpperCase());
+        g.append("text")
+            .attr("x", xMid).attr("y", INNER_H + 40)
+            .attr("text-anchor", "middle").attr("font-size", 13)
+            .attr("fill", "coral").attr("font-weight", "600")
+            .text(fmtB(cat.value) + " PKR");
+        g.append("text")
+            .attr("x", xMid).attr("y", INNER_H + 57)
+            .attr("text-anchor", "middle").attr("font-size", 12)
+            .attr("fill", "#353535")
+            .text("(" + (cat.value / TOTAL * 100).toFixed(0) + "% of total)");
+    });
+
+    // Total budget label — centred in right margin, 10% of SVG width (66px) further right
+    // Wheat Subsidy right edge ≈ INNER_W (510); label centre at INNER_W + 121 = 631 group (671 SVG)
+    const totalX = INNER_W + 100;
+    g.append("text")
+        .attr("x", totalX).attr("y", INNER_H + 22)
+        .attr("text-anchor", "middle")
+        .attr("font-size", 14).attr("font-weight", "700").attr("fill", "#d00100")
+        .attr("letter-spacing", "0.06em")
+        .text("TOTAL");
+    g.append("text")
+        .attr("x", totalX).attr("y", INNER_H + 40)
+        .attr("text-anchor", "middle")
+        .attr("font-size", 14).attr("font-weight", "700").attr("fill", "#d00100")
+        .text("140.17B" + " PKR");
+
+    // Footer — source & logo positioned 15% lower than addChartFooter default
+    // Default offsets from bottom: source −48, logo −30. At 85% → source −41, logo −26.
+    svg.append("text")
+        .attr("x", 0).attr("y", totalH - 41)
+        .attr("font-size", 14).attr("fill", "#999999")
+        .text("Source: GB Finance Department, Budget 2024–25");
+    svg.append("image")
+        .attr("href", "images/dark_matter_dark_logo.png")
+        .attr("x", 0).attr("y", totalH - 26)
+        .attr("height", 35);
+})();
+
+
+/* =============================================================================
+   8. NON-DEVELOPMENT DONUT CHART — expenditure by major object classification
+   ============================================================================= */
+
+(function buildBudgetDonutChart() {
+    const DATA = [
+        { label: "Employees Related Expenses",               value: 47.00 },
+        { label: "Grants, Subsidies, Writeoffs, Loans etc.", value: 28.32 },
+        { label: "Operating Expenses",                       value: 7.76  },
+        { label: "Capital & Other Operational Expenditures", value: 3.06  },
+        { label: "Employees Retirement Benefits",            value: 0.45  },
+    ];
+
+    const TOTAL   = 86.60;
+    const PALETTE = ["#d00100","#f48c06","#faa307","#ffba08","#ffd60a"];
+    const W       = 620;
+    const H       = 580;
+    const CX      = W / 2;
+    const CY      = H / 2 - 40;  // shifted up to reduce gap between subtitle and donut ring
+    const R_OUTER = 155;
+    const R_INNER = 110;
+    const PAD     = 0.018;
+
+    const wrap = d3.select("#budget-donut-chart")
+        .append("div").attr("class", "budget-donut-wrap");
+
+    wrap.append("div").attr("class", "chart-title")
+        .text("Non-Development Expenditure — Object Classification");
+    wrap.append("div").attr("class", "chart-subtitle")
+        .text("PKR 86.6 Billion total · Hover slices for detail");
+
+    const svg = wrap.append("svg")
+        .attr("width", W).attr("height", H)
+        .style("display", "block")
+        .style("overflow", "visible");
+
+    const color = d3.scaleOrdinal().domain(DATA.map(d => d.label)).range(PALETTE);
+    const pie   = d3.pie().value(d => d.value).sort(null).padAngle(PAD);
+    const arc      = d3.arc().innerRadius(R_INNER).outerRadius(R_OUTER);
+    const arcHover = d3.arc().innerRadius(R_INNER).outerRadius(R_OUTER + 10);
+    const arcs = pie(DATA);
+
+    // Tooltip — reuses project bar-tooltip classes
+    const tooltip = wrap.append("div")
+        .attr("class", "bar-tooltip budget-tooltip");
+
+    const g = svg.append("g").attr("transform", `translate(${CX},${CY})`);
+
+    // Centre labels — update on hover, reset on leave
+    const centreVal = g.append("text")
+        .attr("text-anchor", "middle").attr("y", -10)
+        .attr("font-size", 28).attr("font-weight", "700").attr("fill", "#d00100")
+        .text("86.6B");
+    const centreLabel = g.append("text")
+        .attr("text-anchor", "middle").attr("y", 14)
+        .attr("font-size", 14).attr("fill", "#4c4c4c").attr("letter-spacing", "0.05em")
+        .text("PKR TOTAL");
+    const centreSub = g.append("text")
+        .attr("text-anchor", "middle").attr("y", 30)
+        .attr("font-size", 14).attr("fill", "#000000").attr("font-weight", "600")
+        .text("NON-DEVELOPMENT");
+
+    // Slices
+    g.selectAll("path.slice")
+        .data(arcs)
+        .join("path")
+        .attr("class", "slice")
+        .attr("d", arc)
+        .attr("fill", d => color(d.data.label))
+        .attr("stroke", "none")
+        .style("cursor", "pointer")
+        .style("transition", "d 0.18s ease")
+        .on("mouseenter", function(event, d) {
+            d3.select(this).attr("d", arcHover);
+            const pct = (d.data.value / TOTAL * 100).toFixed(1);
+            centreVal.text(d.data.value.toFixed(2) + "B");
+            centreLabel.text(pct + "% of total");
+            centreSub.text(d.data.label.length > 20 ? d.data.label.slice(0, 19) + "…" : d.data.label);
+            tooltip.style("opacity", 1)
+                .html(`
+                    <div class="tt-district">Non-Development</div>
+                    <div style="color:#fff;margin-bottom:6px">${d.data.label}</div>
+                    <div class="tt-multi-row"><span class="tt-multi-label">Value</span><span class="tt-multi-val">${d.data.value.toFixed(2)}B PKR</span></div>
+                    <div class="tt-multi-row"><span class="tt-multi-label">Share</span><span class="tt-multi-val">${pct}%</span></div>
+                `)
+                .style("left", (event.clientX + 16) + "px")
+                .style("top",  (event.clientY - 50) + "px");
+        })
+        .on("mousemove", function(event) {
+            tooltip
+                .style("left", (event.clientX + 16) + "px")
+                .style("top",  (event.clientY - 50) + "px");
+        })
+        .on("mouseleave", function() {
+            d3.select(this).attr("d", arc);
+            centreVal.text("86.6B");
+            centreLabel.text("PKR TOTAL");
+            centreSub.text("NON-DEVELOPMENT");
+            tooltip.style("opacity", 0);
+        });
+
+    // Outside labels — placed directly beside each slice, no connector lines
+    // Small slices (Capital, Retirement Benefits) are skipped; all visible on hover/tooltip
+    const LABEL_RADIUS = R_OUTER + 18;  // just outside the slice edge
+
+    arcs.forEach(d => {
+        if (d.data.label === "Employees Retirement Benefits") return;
+        if (d.data.label === "Capital & Other Operational Expenditures") return;
+
+        const midAngle = (d.startAngle + d.endAngle) / 2;
+        const onRight  = Math.sin(midAngle) >= 0;
+        const anchor   = onRight ? "start" : "end";
+        const sign     = onRight ? 1 : -1;
+
+        // Label anchor point at LABEL_RADIUS from donut centre
+        const lx    = Math.sin(midAngle) * LABEL_RADIUS;
+        const ly    = -Math.cos(midAngle) * LABEL_RADIUS;
+        const textX = lx + sign * 6;
+
+        // Word-wrap name into lines of max 18 chars
+        const words = d.data.label.split(" ");
+        let line = "", lines = [];
+        words.forEach(w => {
+            const test = line ? line + " " + w : w;
+            if (test.length > 18 && line) { lines.push(line); line = w; }
+            else line = test;
+        });
+        if (line) lines.push(line);
+
+        const LINE_H    = 17;  // px between name lines (matches 15px font with breathing room)
+        const VALUE_GAP = 10;  // extra gap between the name block and the value line
+        const nameH     = lines.length * LINE_H;
+        const baseY     = ly - nameH / 2;  // vertically centre name block around midpoint
+
+        lines.forEach((l, i) => {
+            g.append("text")
+                .attr("x", textX).attr("y", baseY + i * LINE_H)
+                .attr("text-anchor", anchor)
+                .attr("font-size", 14).attr("fill", "#505050")
+                .text(l);
+        });
+
+        g.append("text")
+            .attr("x", textX).attr("y", baseY + nameH + VALUE_GAP)
+            .attr("text-anchor", anchor)
+            .attr("font-size", 14).attr("font-weight", "600").attr("fill", "coral")
+            .text(d.data.value.toFixed(2) + "B · " + (d.data.value / TOTAL * 100).toFixed(1) + "%");
+    });
+
+    addChartFooter(svg, H, "GB Finance Department, Budget 2024–25");
 })();
