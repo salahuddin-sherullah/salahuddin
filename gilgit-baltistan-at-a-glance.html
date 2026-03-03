@@ -64,8 +64,10 @@
             <div class="8u skel-cell-important">
                 <section>
 
-                    <p class="font_libre">Gilgit-Baltistan (GB) is Pakistan's largest administrative territory by area, bordering China, Afghanistan, and the Indian-administered Kashmir. Often called the "roof of the world," it is home to some of the highest mountain peaks on the planet, including K2. Despite its vast and dramatic landscape, GB remains one of the least densely populated regions in South Asia. The data below draws on the 2017 and 2023 censuses to present a snapshot of the territory's population geography.</p>
-
+                    <p class="font_libre">Gilgit-Baltistan (GB) is widely known for its beautiful landscape. However, not many people know about the region's economy. The data on this region is scarce. And the few sources that there are out there are inaccessible to the public.</p>
+                    <p class="font-libre">While collecting data for this article, I really had to dig deep. Even finding a basic number as the annual GDP was not as easy. I had to dig through World Bank reports and research articles to get a sense of data availability. Navigating the government websites was a nightmare. The data was non-existent in most cases, but even in cases where the data was available, it was only available in scanned PDFs.</p>
+                    <p class="font-libre">I had to use a bunch of different tools to extract this data and then visualize it. Use of AI tools like Claude Code was crucial to making this project happen. The intention is to create a repository of data related to GB which can be used for research purposes. I hope to contiue this project and update as new data becomes available. I also intend to add new sections in the future including one for Climate.</p>
+                    <p class="font-libre">Let's start with a quick snapshot of the region,</p>
                     <!-- ── Six Stat Cards ── -->
                     <div class="stat-cards">
 
@@ -84,17 +86,17 @@
                             <p class="stat-card-sub">Census 2023</p>
                         </div>
 
-                        <!-- Population Growth -->
+                        <!-- GDP -->
                         <div class="stat-card">
                             <div class="stat-card-header">
                                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
                                     <polyline points="17 6 23 6 23 12"/>
                                 </svg>
-                                <p class="stat-card-label">Population Growth</p>
+                                <p class="stat-card-label">GDP</p>
                             </div>
-                            <p class="stat-card-value">+14.5%</p>
-                            <p class="stat-card-sub"><span class="positive">↑ 216,364</span> since census 2017</p>
+                            <p class="stat-card-value">~$2.3 billion</p>
+                            <p class="stat-card-sub">Estimated based on 2021 level</p>
                         </div>
 
                         <!-- Total Area -->
@@ -163,18 +165,26 @@
                         </figure>
                     </div> -->
 
+                    <!-- ── GB History Timeline ── -->
+                    <div class="history-section">
+                        <h2 style="font-size: 13pt; margin-top: 2em;"><strong style="color:coral">History</strong></h2>
+                        <p class="font_libre">From the 1947 Gilgit Rebellion to the CPEC corridor and recent climate disasters, the region's story spans decades of political transformation, infrastructure development, and natural upheaval.</p>
+                        <div id="gb-timeline"></div>
+                    </div>
+                    <!-- ── End GB History Timeline ── -->
+
                     <!-- ── District Explorer Chart ── -->
                     <div class="explorer-section">
                         <h2 style="font-size: 13pt"><strong style="color:coral">District Explorer</strong></h2>
-                        <p class="font_libre" style="margin-bottom: 1em;">Select a metric below to compare districts visually. Bars are sorted from highest to lowest.</p>
+                        <p class="font_libre" style="margin-bottom: 1em;">GB has 10 districts. Each district is unique as the data explorer will show below. For many people, these statistics might come as a surprise because GB is often represented as a single entity. Yet, it is more diverse than is typically perceived.</p>
                         <div id="district-explorer"></div>
                     </div>
                     <!-- ── End District Explorer ── -->
 
                     <!-- ── Dumbbell Chart ── -->
                     <div class="dumbbell-section">
-                        <h2 style="font-size: 13pt"><strong style="color:coral">Population Growth 2017–2023</strong></h2>
-                        <p class="font_libre" style="margin-bottom: 1em;">Each row shows a district's population in 2017 (hollow dot) and 2023 (filled dot), sorted by growth rate. The connecting line spans the change between the two censuses.</p>
+                        <h2 style="font-size: 13pt"><strong style="color:coral">Population Growth</strong></h2>
+                        <p class="font_libre" style="margin-bottom: 1em;">The region has grown significantly over the last couple of decades. This is largely due to its improved connectivity to the rest of the country. With an estimated population of 1.7 million, it constitutes less than 1% of Pakistan's total population of 240 million. For context, Islamabad, which has an area of just 1.25% of GB, has a population of over 2 million.</p>
                         <div id="dumbbell-chart"></div>
                     </div>
                     <!-- ── End Dumbbell Chart ── -->
@@ -214,6 +224,16 @@
                         <p class="font_libre">Non-development spending of PKR 86.6 billion is dominated by employee-related expenses at PKR 47 billion — 54% of the non-development budget — reflecting GB's large public sector workforce. Grants, subsidies, and write-offs account for a further PKR 28.3 billion, primarily driven by federal transfers and deficit financing.</p>
                         <div id="budget-donut-chart"></div>
                         <!-- ── End Non-Development Sub-Section ── -->
+
+                        <!-- ── Development Expenditure Sub-Section ── -->
+                        <h3 style="font-size: 11pt; margin-top: 1.5em;"><strong>Development Expenditure</strong></h3>
+                        <p class="font_libre">The Annual Development Programme (ADP) allocates PKR 34.5 billion across GB's ten districts for capital projects, infrastructure, and public services. Gilgit and Diamer receive the largest absolute allocations, reflecting their population size and administrative significance. On a per-capita basis, however, smaller districts such as Hunza and Astore fare comparatively better — pointing to geographic and equity considerations in budget distribution.</p>
+                        <div id="budget-donut2-chart"></div>
+
+                        <h3 style="font-size: 11pt; margin-top: 1.5em;"><strong>ADP Allocation by District</strong></h3>
+                        <p class="font_libre">The Annual Development Programme (ADP) allocates PKR 34.5 billion across GB's ten districts for capital projects, infrastructure, and public services. Gilgit and Diamer receive the largest absolute allocations, reflecting their population size and administrative significance. On a per-capita basis, however, smaller districts such as Hunza and Astore fare comparatively better — pointing to geographic and equity considerations in budget distribution.</p>
+                        <div id="budget-bubble-chart"></div>
+                        <!-- ── End Development Expenditure Sub-Section ── -->
                     </div>
                     <!-- ── End GB Budget Section ── -->
 

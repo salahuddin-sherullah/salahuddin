@@ -101,7 +101,124 @@ function addChartFooter(svg, totalH, source) {
 
 
 /* =============================================================================
-   3. DISTRICT EXPLORER — horizontal bar chart, districts on y-axis
+   3. GB HISTORY TIMELINE
+   Vertical spine with dot-per-event, year labels left, title + desc right.
+   Hover on dot expands it and shows full description in tooltip.
+   ============================================================================= */
+(function buildTimeline() {
+    const mount = document.getElementById("gb-timeline");
+    if (!mount) return;
+
+    const EVENTS = [
+        { year: 1947, label: "Gilgit Rebellion",        desc: "The Gilgit Scouts mutinied against the Dogra Maharaja of Kashmir, overthrowing his governor. On November 1 — now celebrated as GB's Independence Day — the region declared independence and opted to join Pakistan. This was the founding political act of modern GB." },
+        { year: 1949, label: "Karachi Agreement",        desc: "Administrative control of Gilgit & Baltistan transferred to the Pakistani government." },
+        { year: 1963, label: "Sino-Pakistan Agreement",  desc: "Pakistan ceded approximately 5,180 sq km of GB territory (Shaksgam Valley) to China as part of a bilateral boundary agreement, a decision still disputed by India. This redrew the region's geopolitical boundaries." },
+        { year: 1972, label: "Northern Areas Created",   desc: "GB was formally constituted as the Federally Administered Northern Areas, a distinct unit separate from Azad Kashmir, with no constitutional rights or parliamentary representation for its residents." },
+        { year: 1978, label: "KKH Inaugurated",          desc: "Karakoram Highway formally opened, linking Pakistan to China through the Khunjerab Pass. The 1,300 KM long highway opened GB to trade, migration, tourism, and outside cultural influences." },
+        { year: 1988, label: "Sectarian Violence",       desc: "One of the worst sectarian events in GB's history: thousands of armed Sunni tribesmen from southern Pakistan attacked Shia communities in Gilgit following inflamed rumors. Nearly 400 Shias were killed and dozens of villages were burned. This event marked a permanent rupture in inter-communal relations." },
+        { year: 2009, label: "GB Empowerment Order",     desc: "A landmark administrative reform renamed the region 'Gilgit-Baltistan' and established a Chief Minister, Governor, and elected Legislative Assembly. It was the first meaningful grant of self-governance, though real power remained with Islamabad." },
+        { year: 2010, label: "Attabad Lake Disaster",    desc: "Massive landslide in Hunza blocks the Hunza River, creating Attabad Lake and displacing thousands." },
+        { year: 2015, label: "CPEC Corridor",            desc: "China–Pakistan Economic Corridor officially launched; GB becomes a central transit zone for the megaproject." },
+        { year: 2018, label: "GB Order 2018",            desc: "New governance order expands the legislative assembly and introduces additional administrative reforms." },
+        { year: 2022, label: "Climate Flooding",         desc: "The Pakistan floods of 2022 devastated GB severely. The Shishper Glacier outburst destroyed sections of the KKH. The floods were widely attributed to accelerated glacial melt driven by climate change and were part of Pakistan's broader 2022 flood disaster that inundated one-third of the country." },
+    ];
+
+    const W       = 820;
+    const ROW_H   = 110;
+    const AXIS_X  = 130;
+    const DOT_R   = 7;
+    const TOP_PAD = 0;
+    const BOT_PAD = 100;   // extra room for addChartFooter
+    const H       = TOP_PAD + EVENTS.length * ROW_H + BOT_PAD;
+    const ACCENT  = "#d00100";
+    const GOLD    = "#faa307";
+    const DARK    = "#03071e";
+    const MID     = "#505050";
+
+    const wrap = d3.select(mount);
+    const card = wrap.append("div").attr("class", "timeline-wrap");
+    card.append("div").attr("class", "chart-title").text("Gilgit-Baltistan: Key Historical Events");
+    card.append("div").attr("class", "chart-subtitle").text("Most significant events in Gilgit-Baltistan since the 1940s, spanning political, social, economic, and climate/environmental dimensions");
+
+    const svg = card.append("svg")
+        .attr("width", W)
+        .attr("height", H)
+        .style("display", "block")
+        .style("overflow", "visible");
+
+    // Vertical spine — starts and ends exactly at first/last dot
+    const firstDotY = TOP_PAD + ROW_H / 2;
+    const lastDotY  = TOP_PAD + (EVENTS.length - 1) * ROW_H + ROW_H / 2;
+    svg.append("line")
+        .attr("x1", AXIS_X).attr("y1", firstDotY)
+        .attr("x2", AXIS_X).attr("y2", lastDotY)
+        .attr("stroke", "#dde3e6")
+        .attr("stroke-width", 2);
+
+    // Tooltip
+    const tooltip = wrap.append("div")
+        .attr("class", "bar-tooltip budget-tooltip");
+
+    EVENTS.forEach((ev, i) => {
+        const cy = TOP_PAD + i * ROW_H + ROW_H / 2;
+        const dotColor = i % 3 === 0 ? ACCENT : i % 3 === 1 ? GOLD : DARK;
+
+        // Horizontal tick from spine to dot area
+        svg.append("line")
+            .attr("x1", AXIS_X).attr("y1", cy)
+            .attr("x2", AXIS_X + 24).attr("y2", cy)
+            .attr("stroke", ACCENT)
+            .attr("stroke-width", 1.5)
+            .attr("opacity", 0.7);
+
+        // Dot
+        const dot = svg.append("circle")
+            .attr("cx", AXIS_X).attr("cy", cy)
+            .attr("r", DOT_R)
+            .attr("fill", dotColor)
+            .attr("stroke", "#000000")
+            .attr("stroke-width", 1.5)
+            .style("cursor", "pointer");
+
+        // Year label (left of spine)
+        svg.append("text")
+            .attr("x", AXIS_X - 14).attr("y", cy + 4)
+            .attr("text-anchor", "end")
+            .attr("font-size", 15).attr("font-weight", "700")
+            .attr("fill", DARK)
+            .text(ev.year);
+
+        // Event label (right of spine)
+        svg.append("text")
+            .attr("x", AXIS_X + 32).attr("y", cy - 6)
+            .attr("font-size", 15).attr("font-weight", "700")
+            .attr("fill", DARK)
+            .text(ev.label);
+
+        // Description — wrap at 80 chars per line
+        const words = ev.desc.split(" ");
+        let line = "", lines = [];
+        words.forEach(w => {
+            const test = line ? line + " " + w : w;
+            if (test.length > 80 && line) { lines.push(line); line = w; }
+            else line = test;
+        });
+        if (line) lines.push(line);
+
+        lines.forEach((l, li) => {
+            svg.append("text")
+                .attr("x", AXIS_X + 32).attr("y", cy + 13 + li * 14)
+                .attr("font-size", 15).attr("fill", MID)
+                .text(l);
+        });
+    });
+
+    addChartFooter(svg, H, "Various historical records");
+})();
+
+
+/* =============================================================================
+   4. DISTRICT EXPLORER — horizontal bar chart, districts on y-axis
    ============================================================================= */
 
 (function buildExplorer() {
@@ -1047,7 +1164,7 @@ function addChartFooter(svg, totalH, source) {
         .append("div").attr("class", "budget-donut-wrap");
 
     wrap.append("div").attr("class", "chart-title")
-        .text("Non-Development Expenditure");
+        .text("Outflows — Non-Development Expenditure");
     wrap.append("div").attr("class", "chart-subtitle")
         .text("Over half of GB's non-development budget goes to paying off government employees");
 
@@ -1170,4 +1287,350 @@ function addChartFooter(svg, totalH, source) {
     });
 
     addChartFooter(svg, H, "GB Finance Department, Budget 2024–25");
+})();
+
+/* =============================================================================
+   9b. DEVELOPMENT EXPENDITURE DONUT — by Sector
+   Style mirrors the Non-Development donut: no polylines, labels placed directly
+   beside each slice at LABEL_RADIUS. Only slices > 5% are labelled.
+   ============================================================================= */
+(function buildBudgetDonut2Chart() {
+    const mount = document.getElementById("budget-donut2-chart");
+    if (!mount) return;
+
+    const DATA = [
+        { label: "Infrastructure, Transport & Urban Development", value: 7.97 },
+        { label: "Energy & Power",                               value: 3.31 },
+        { label: "Education",                                    value: 2.11 },
+        { label: "Health",                                       value: 1.74 },
+        { label: "Economic Development Sectors",                 value: 1.08 },
+        { label: "Governance, Law & Administration",             value: 0.84 },
+        { label: "Planning, Technology & Coordination",          value: 0.83 },
+        { label: "Social Protection & Welfare",                  value: 0.29 },
+        { label: "Water & Irrigation",                           value: 0.19 },
+        { label: "Miscellaneous",                                value: 0.20 },
+    ];
+    const TOTAL   = 18.56;
+    const PALETTE = ["#03071e","#6a040f","#9d0208","#d00100","#db2f01","#e85d05","#f48c06","#faa307","#ffba08","#ffd60a"];
+
+    const W       = 680;
+    const H       = 580;
+    const CX      = W / 2;
+    const CY      = H / 2 - 40;
+    const R_OUTER = 155;
+    const R_INNER = 110;
+    const PAD     = 0.018;
+
+    const wrap = d3.select(mount);
+    const card = wrap.append("div").attr("class", "budget-donut2-wrap");
+    card.append("div").attr("class", "chart-title").text("Outflows — Development Expenditure");
+    card.append("div").attr("class", "chart-subtitle")
+        .text("Infrastructure & transport account for 43% of GB's total development spending");
+
+    const svg = card.append("svg")
+        .attr("width", W).attr("height", H)
+        .style("display", "block")
+        .style("overflow", "visible");
+
+    const color = d3.scaleOrdinal().domain(DATA.map(d => d.label)).range(PALETTE);
+    const pie   = d3.pie().value(d => d.value).sort(null).padAngle(PAD);
+    const arc      = d3.arc().innerRadius(R_INNER).outerRadius(R_OUTER);
+    const arcHover = d3.arc().innerRadius(R_INNER).outerRadius(R_OUTER + 10);
+    const arcs = pie(DATA);
+
+    // Tooltip — same classes as non-development donut
+    const tooltip = wrap.append("div")
+        .attr("class", "bar-tooltip budget-tooltip");
+
+    const g = svg.append("g").attr("transform", `translate(${CX},${CY})`);
+
+    // Centre labels — update on hover, reset on leave
+    const centreVal = g.append("text")
+        .attr("text-anchor", "middle").attr("y", -10)
+        .attr("font-size", 28).attr("font-weight", "700").attr("fill", "#d00100")
+        .text("18.56B");
+    const centreLabel = g.append("text")
+        .attr("text-anchor", "middle").attr("y", 14)
+        .attr("font-size", 14).attr("fill", "#4c4c4c").attr("letter-spacing", "0.05em")
+        .text("PKR TOTAL");
+    const centreSub = g.append("text")
+        .attr("text-anchor", "middle").attr("y", 30)
+        .attr("font-size", 14).attr("fill", "#000000").attr("font-weight", "600")
+        .text("DEVELOPMENT");
+
+    // Slices
+    g.selectAll("path.slice")
+        .data(arcs)
+        .join("path")
+        .attr("class", "slice")
+        .attr("d", arc)
+        .attr("fill", d => color(d.data.label))
+        .attr("stroke", "none")
+        .style("cursor", "pointer")
+        .style("transition", "d 0.18s ease")
+        .on("mouseenter", function(event, d) {
+            d3.select(this).attr("d", arcHover);
+            const pct = (d.data.value / TOTAL * 100).toFixed(1);
+            centreVal.text(d.data.value.toFixed(2) + "B");
+            centreLabel.text(pct + "% of total");
+            centreSub.text(d.data.label.length > 20 ? d.data.label.slice(0, 19) + "…" : d.data.label);
+            tooltip.style("opacity", 1)
+                .html(`
+                    <div class="tt-district">Development</div>
+                    <div style="color:#fff;margin-bottom:6px">${d.data.label}</div>
+                    <div class="tt-multi-row"><span class="tt-multi-label">Value</span><span class="tt-multi-val">${d.data.value.toFixed(2)}B PKR</span></div>
+                    <div class="tt-multi-row"><span class="tt-multi-label">Share</span><span class="tt-multi-val">${pct}%</span></div>
+                `)
+                .style("left", (event.clientX + 16) + "px")
+                .style("top",  (event.clientY - 50) + "px");
+        })
+        .on("mousemove", function(event) {
+            tooltip
+                .style("left", (event.clientX + 16) + "px")
+                .style("top",  (event.clientY - 50) + "px");
+        })
+        .on("mouseleave", function() {
+            d3.select(this).attr("d", arc);
+            centreVal.text("18.56B");
+            centreLabel.text("PKR TOTAL");
+            centreSub.text("DEVELOPMENT");
+            tooltip.style("opacity", 0);
+        });
+
+    // Outside labels — no connector lines, placed directly beside slice
+    // Only render slices with > 5% share (value > 0.928B)
+    const LABEL_RADIUS = R_OUTER + 18;
+
+    arcs.forEach(d => {
+        if (d.data.value / TOTAL < 0.05) return;  // skip slices ≤ 5%
+
+        const midAngle = (d.startAngle + d.endAngle) / 2;
+        const onRight  = Math.sin(midAngle) >= 0;
+        const anchor   = onRight ? "start" : "end";
+        const sign     = onRight ? 1 : -1;
+
+        const lx    = Math.sin(midAngle) * LABEL_RADIUS;
+        const ly    = -Math.cos(midAngle) * LABEL_RADIUS;
+        const textX = lx + sign * 6;
+
+        // Word-wrap name into lines of max 18 chars
+        const words = d.data.label.split(" ");
+        let line = "", lines = [];
+        words.forEach(w => {
+            const test = line ? line + " " + w : w;
+            if (test.length > 18 && line) { lines.push(line); line = w; }
+            else line = test;
+        });
+        if (line) lines.push(line);
+
+        const LINE_H    = 17;
+        const VALUE_GAP = 10;
+        const nameH     = lines.length * LINE_H;
+        const baseY     = ly - nameH / 2;
+
+        lines.forEach((l, i) => {
+            g.append("text")
+                .attr("x", textX).attr("y", baseY + i * LINE_H)
+                .attr("text-anchor", anchor)
+                .attr("font-size", 14).attr("fill", "#505050")
+                .text(l);
+        });
+
+        g.append("text")
+            .attr("x", textX).attr("y", baseY + nameH + VALUE_GAP)
+            .attr("text-anchor", anchor)
+            .attr("font-size", 14).attr("font-weight", "600").attr("fill", "coral")
+            .text(d.data.value.toFixed(1) + "B | " + (d.data.value / TOTAL * 100).toFixed(1) + "%");
+    });
+
+    addChartFooter(svg, H, "GB Finance Department, Budget 2024–25");
+})();
+
+/* =============================================================================
+   9. BUDGET BUBBLE CHART — District Budget vs Per Capita Budget
+   Scatter/bubble chart: x = total budget (M PKR), y = per capita budget,
+   fixed-radius circles coloured by population (YlOrRd gradient).
+   Colour legend top-right. Source/logo via addChartFooter.
+   ============================================================================= */
+(function buildBudgetBubbleChart() {
+    const mount = document.getElementById("budget-bubble-chart");
+    if (!mount) return;
+
+    const data = [
+        { district: "Gilgit",   budget: 2182.71, population: 324552, perCapita: 0.006725289 },
+        { district: "Diamer",   budget: 1987.79, population: 337329, perCapita: 0.005892743 },
+        { district: "Skardu",   budget: 1924.37, population: 278885, perCapita: 0.006900224 },
+        { district: "Ghizer",   budget: 1780.51, population: 200069, perCapita: 0.008899460 },
+        { district: "Ghanche",  budget: 1314.88, population: 157822, perCapita: 0.008331430 },
+        { district: "Astore",   budget: 1055.00, population: 111573, perCapita: 0.009455693 },
+        { district: "Nagar",    budget:  768.82, population:  87410, perCapita: 0.008795561 },
+        { district: "Hunza",    budget:  717.77, population:  65497, perCapita: 0.010958838 },
+        { district: "Shiger",   budget:  637.33, population:  84608, perCapita: 0.007532763 },
+        { district: "Kharmang", budget:  624.96, population:  61304, perCapita: 0.010194359 },
+    ];
+
+    const FIXED_R = 12;
+    const margin  = { top: 75, right: 40, bottom: 143, left: 70 };
+    const totalW  = 660;
+    const totalH  = 538;
+    const W       = totalW - margin.left - margin.right;
+    const H       = totalH - margin.top  - margin.bottom;
+
+    // Chart wrapper card (title + subtitle go INSIDE so border-top sits above them)
+    const wrap = d3.select(mount);
+    const card = wrap.append("div").attr("class", "budget-bubble-wrap");
+    card.append("div").attr("class", "chart-title").text("Annual Development Programme Allocation by District");
+    card.append("div").attr("class", "chart-subtitle")
+        .text("Per capita development budget under the ADP varies significantly across districts, reflecting the geographic challenges");
+
+    const svg = card.append("svg")
+        .attr("width",  totalW)
+        .attr("height", totalH)
+        .style("overflow", "visible");
+
+    const g = svg.append("g")
+        .attr("transform", `translate(${margin.left},${margin.top})`);
+
+    // Scales
+    const xScale = d3.scaleLinear()
+        .domain([500, d3.max(data, d => d.budget) * 1.08])
+        .nice()
+        .range([0, W]);
+
+    const yScale = d3.scaleLinear()
+        .domain([0.005, 0.012])   // cap at 12k PKR per capita
+        .range([H, 0]);
+
+    const popMin = d3.min(data, d => d.population);
+    const popMax = d3.max(data, d => d.population);
+    const colorScale = d3.scaleSequential()
+        .domain([popMin, popMax])
+        .interpolator(d3.interpolateYlOrRd);
+
+    // Horizontal grid lines only
+    g.append("g")
+        .call(d3.axisLeft(yScale).ticks(6).tickSize(-W).tickFormat(""))
+        .call(gg => gg.select(".domain").remove())
+        .call(gg => gg.selectAll(".tick line").attr("stroke", "#e4e9eb"));
+
+    // X axis
+    g.append("g")
+        .attr("transform", `translate(0,${H})`)
+        .call(d3.axisBottom(xScale).ticks(6).tickFormat(d => d + "M").tickSize(0))
+        .call(ax => ax.select(".domain").attr("stroke", "#192024").attr("stroke-width", "1"))
+        .call(ax => ax.selectAll(".tick text").attr("fill", "#192024").attr("font-size", 14).attr("dy", "1.4em"));
+
+    // Y axis
+    g.append("g")
+        .call(d3.axisLeft(yScale).ticks(6).tickFormat(d => (d * 1000).toFixed(1) + "k").tickSize(0))
+        .call(ay => ay.select(".domain").remove())
+        .call(ay => ay.selectAll(".tick text").attr("fill", "#8a9aa3").attr("font-size", 14));
+
+    // Axis labels
+    g.append("text")
+        .attr("x", W / 2).attr("y", H + 46)
+        .attr("text-anchor", "middle")
+        .attr("font-size", 14).attr("fill", "#505050")
+        .text("Total ADP Allocation (Million PKR)");
+
+    g.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("x", -H / 2).attr("y", -58)
+        .attr("text-anchor", "middle")
+        .attr("font-size", 14).attr("fill", "#505050")
+        .text("Per Capita Allocation (Thousand PKR)");
+
+    // Tooltip
+    const tooltip = d3.select(mount).append("div")
+        .attr("class", "db-tooltip")
+        .style("position", "fixed")
+        .style("pointer-events", "none")
+        .style("opacity", 0);
+
+    // Bubble groups
+    const bubbleG = g.selectAll(".bubble")
+        .data(data)
+        .join("g")
+        .attr("class", "bubble")
+        .attr("transform", d => `translate(${xScale(d.budget)},${yScale(d.perCapita)})`);
+
+    bubbleG.append("circle")
+        .attr("r",            FIXED_R)
+        .attr("fill",         d => colorScale(d.population))
+        .attr("fill-opacity", 0.9)
+        .attr("stroke",       "#8a9aa3")
+        .attr("stroke-width", 1)
+        .style("cursor", "default")
+        .on("mouseenter", function(event, d) {
+            d3.select(this).attr("fill-opacity", 1).attr("stroke-width", 2);
+            tooltip.style("opacity", 1)
+                .style("left", (event.clientX + 14) + "px")
+                .style("top",  (event.clientY - 50) + "px")
+                .html(`<div class="tt-title">${d.district}</div>
+                       <div class="tt-row"><span class="tt-muted">Budget</span><span>${d.budget.toFixed(1)}M PKR</span></div>
+                       <div class="tt-row"><span class="tt-muted">Per Capita</span><span>${(d.perCapita * 1000).toFixed(1)}k PKR</span></div>
+                       <div class="tt-row"><span class="tt-muted">Population</span><span>${d3.format(",")(d.population)}</span></div>`);
+        })
+        .on("mousemove", function(event) {
+            tooltip.style("left", (event.clientX + 14) + "px")
+                   .style("top",  (event.clientY - 50) + "px");
+        })
+        .on("mouseleave", function() {
+            d3.select(this).attr("fill-opacity", 0.9).attr("stroke-width", 1.5);
+            tooltip.style("opacity", 0);
+        });
+
+    // District labels — left for Skardu (large x), right for all others
+    const labelX      = d => d.district === "Skardu" ? -(FIXED_R + 6) : (FIXED_R + 6);
+    const labelAnchor = d => d.district === "Skardu" ? "end" : "start";
+
+    // District name (top line)
+    bubbleG.append("text")
+        .attr("text-anchor", labelAnchor)
+        .attr("x", labelX)
+        .attr("y", "-0.4em")
+        .attr("font-size", 14)
+        .attr("fill", "#03071e")
+        .attr("pointer-events", "none")
+        .text(d => d.district);
+
+    // Per capita value (bottom line, slightly bold)
+    bubbleG.append("text")
+        .attr("text-anchor", labelAnchor)
+        .attr("x", labelX)
+        .attr("y", "0.85em")
+        .attr("font-size", 14)
+        .attr("font-weight", "650")
+        .attr("fill", "#505050")
+        .attr("pointer-events", "none")
+        .text(d => (d.perCapita * 1000).toFixed(1) + "k");
+
+    // Colour gradient legend (top-right)
+    const legendW = 140, legendH = 10;
+    const defs = svg.append("defs");
+    const lgId = "bub-pop-gradient";
+    const lg   = defs.append("linearGradient").attr("id", lgId).attr("x1", "0%").attr("x2", "100%");
+    d3.range(0, 1.01, 0.1).forEach(t => {
+        lg.append("stop")
+            .attr("offset", (t * 100) + "%")
+            .attr("stop-color", colorScale(popMin + t * (popMax - popMin)));
+    });
+
+    // Legend anchored to SVG (not g) so increasing margin.top only moves the plot, not the legend
+    const legG = svg.append("g").attr("transform", "translate(0,10)");
+    legG.append("text")
+        .attr("font-size", 13).attr("fill", "#666").attr("y", -8)
+        .text("Population");
+    legG.append("rect")
+        .attr("width", legendW).attr("height", legendH)
+        .attr("rx", 3).attr("fill", `url(#${lgId})`);
+    legG.append("text")
+        .attr("font-size", 13).attr("fill", "#666").attr("y", legendH + 16)
+        .text("60k");
+    legG.append("text")
+        .attr("font-size", 13).attr("fill", "#666").attr("y", legendH + 16)
+        .attr("x", legendW).attr("text-anchor", "end")
+        .text("350k");
+
+    addChartFooter(svg, totalH, "GB Finance Department, Budget 2024–25");
 })();

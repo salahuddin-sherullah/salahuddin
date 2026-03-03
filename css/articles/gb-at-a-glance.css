@@ -328,6 +328,21 @@
 .tt-multi-val   { color: #fff; }
 
 /* =============================================================================
+   6b. GB HISTORY TIMELINE
+   ============================================================================= */
+.history-section {
+    margin: 2.5em 0;
+}
+.timeline-wrap {
+    background: #ffffff;
+    border-top: 1px solid #e4e9eb;
+    border-bottom: 1px solid #e4e9eb;
+    padding: 1.4em 1.6em 1.6em 0;
+    overflow: visible;
+    margin-top: 1.25em;
+}
+
+/* =============================================================================
    7. BUDGET MARIMEKKO CHART
    Proportional Marimekko: column width = share of total budget,
    segment height = share within category. No legend — hover for details.
@@ -347,7 +362,16 @@
     min-width: 200px;
     padding: 10px 14px;
 }
-.budget-donut-wrap {
+.budget-donut-wrap,
+.budget-donut2-wrap {
+    background: #ffffff;
+    border-top: 1px solid #e4e9eb;
+    border-bottom: 1px solid #e4e9eb;
+    padding: 1.4em 1.6em 1.6em 0;
+    overflow-x: auto;
+    margin-top: 1.25em;
+}
+.budget-bubble-wrap {
     background: #ffffff;
     border-top: 1px solid #e4e9eb;
     border-bottom: 1px solid #e4e9eb;
