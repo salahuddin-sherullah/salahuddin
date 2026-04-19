@@ -26,6 +26,41 @@
 
 
 /* =============================================================================
+   0. SCROLL SCENE — stat reveals on scroll
+   ============================================================================= */
+(function initScrollStats() {
+    const scene  = document.querySelector('.scroll-scene');
+    const items  = document.querySelectorAll('.stat-reveal-item');
+    const photo2 = document.querySelector('.scene-img-2');
+    if (!scene || !items.length) return;
+
+    function reveal() {
+        const scrolled   = -scene.getBoundingClientRect().top;
+        const scrollable = scene.offsetHeight - window.innerHeight;
+        const progress   = Math.max(0, Math.min(1, scrolled / scrollable));
+
+        var activeIndex = -1;
+        items.forEach(function(item, i) {
+            if (progress >= (i + 1) / (items.length + 1)) {
+                activeIndex = i;
+            }
+        });
+
+        items.forEach(function(item, i) {
+            item.classList.toggle('visible', i === activeIndex);
+        });
+
+        if (photo2) {
+            photo2.classList.toggle('active', activeIndex >= 3);
+        }
+    }
+
+    window.addEventListener('scroll', reveal, { passive: true });
+    reveal();
+})();
+
+
+/* =============================================================================
    1. SHARED DATA & PALETTE
    ============================================================================= */
 
@@ -101,11 +136,9 @@ function addChartFooter(svg, totalH, source) {
 
 
 /* =============================================================================
-   3. GB HISTORY TIMELINE
-   Vertical spine with dot-per-event, year labels left, title + desc right.
-   Hover on dot expands it and shows full description in tooltip.
+   3. GB HISTORY TIMELINE — removed, replaced by full-width photo break
    ============================================================================= */
-(function buildTimeline() {
+/* (function buildTimeline() {
     const mount = document.getElementById("gb-timeline");
     if (!mount) return;
 
@@ -214,7 +247,7 @@ function addChartFooter(svg, totalH, source) {
     });
 
     addChartFooter(svg, H, "Various historical records");
-})();
+})()); */
 
 
 /* =============================================================================

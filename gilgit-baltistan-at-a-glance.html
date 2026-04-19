@@ -67,94 +67,7 @@
                     <p class="font_libre">Gilgit-Baltistan (GB) is widely known for its beautiful landscape. However, not many people know about the region's economy. The data on this region is scarce. And the few sources that there are out there are inaccessible to the public.</p>
                     <p class="font-libre">While collecting data for this article, I really had to dig deep. Even finding a basic number as the annual GDP was not as easy. I had to dig through World Bank reports and research articles to get a sense of data availability. Navigating the government websites was a nightmare. The data was non-existent in most cases, but even in cases where the data was available, it was only available in scanned PDFs.</p>
                     <p class="font-libre">I had to use a bunch of different tools to extract this data and then visualize it. Use of AI tools like Claude Code was crucial to making this project happen. The intention is to create a repository of data related to GB which can be used for research purposes. I hope to contiue this project and update as new data becomes available. I also intend to add new sections in the future including one for Climate.</p>
-                    <p class="font-libre">Let's start with a quick snapshot of the region,</p>
-                    <!-- ── Six Stat Cards ── -->
-                    <div class="stat-cards">
-
-                        <!-- Total Population -->
-                        <div class="stat-card">
-                            <div class="stat-card-header">
-                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                                    <circle cx="9" cy="7" r="4"/>
-                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                                </svg>
-                                <p class="stat-card-label">Total Population</p>
-                            </div>
-                            <p class="stat-card-value">1.71M</p>
-                            <p class="stat-card-sub">Census 2023</p>
-                        </div>
-
-                        <!-- GDP -->
-                        <div class="stat-card">
-                            <div class="stat-card-header">
-                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
-                                    <polyline points="17 6 23 6 23 12"/>
-                                </svg>
-                                <p class="stat-card-label">GDP</p>
-                            </div>
-                            <p class="stat-card-value">~$2.3 billion</p>
-                            <p class="stat-card-sub">Estimated based on 2021 level</p>
-                        </div>
-
-                        <!-- Total Area -->
-                        <div class="stat-card">
-                            <div class="stat-card-header">
-                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M3 3h7v7H3z"/>
-                                    <path d="M14 3h7v7h-7z"/>
-                                    <path d="M14 14h7v7h-7z"/>
-                                    <path d="M3 14h7v7H3z"/>
-                                </svg>
-                                <p class="stat-card-label">Total Area</p>
-                            </div>
-                            <p class="stat-card-value">72,496</p>
-                            <p class="stat-card-sub">km² across 10 districts</p>
-                        </div>
-
-                        <!-- Population Density -->
-                        <div class="stat-card">
-                            <div class="stat-card-header">
-                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="12" cy="12" r="3"/>
-                                    <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
-                                </svg>
-                                <p class="stat-card-label">Avg. Density</p>
-                            </div>
-                            <p class="stat-card-value">24/km²</p>
-                            <p class="stat-card-sub">Population per sq. kilometre</p>
-                        </div>
-
-                        <!-- Avg Household Size -->
-                        <div class="stat-card">
-                            <div class="stat-card-header">
-                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                                    <polyline points="9 22 9 12 15 12 15 22"/>
-                                </svg>
-                                <p class="stat-card-label">Avg. Household Size</p>
-                            </div>
-                            <p class="stat-card-value">7.33</p>
-                            <p class="stat-card-sub">Persons per household</p>
-                        </div>
-
-                        <!-- Sex Ratio -->
-                        <div class="stat-card">
-                            <div class="stat-card-header">
-                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="12" cy="8" r="4"/>
-                                    <path d="M6 20v-2a6 6 0 0 1 12 0v2"/>
-                                </svg>
-                                <p class="stat-card-label">Sex Ratio</p>
-                            </div>
-                            <p class="stat-card-value">109</p>
-                            <p class="stat-card-sub">Males per 100 females</p>
-                        </div>
-
-                    </div>
-                    <!-- ── End Stat Cards ── -->
+                    <p class="font-libre">Scroll down for a quick snapshot of the region.</p>
 
                     <!-- ── District Breakdown ── -->
                     <!-- <div class="data-section">
@@ -165,13 +78,64 @@
                         </figure>
                     </div> -->
 
-                    <!-- ── GB History Timeline ── -->
-                    <div class="history-section">
-                        <h2 style="font-size: 13pt; margin-top: 2em;"><strong style="color:coral">History</strong></h2>
-                        <p class="font_libre">From the 1947 Gilgit Rebellion to the CPEC corridor and recent climate disasters, the region's story spans decades of political transformation, infrastructure development, and natural upheaval.</p>
-                        <div id="gb-timeline"></div>
-                    </div>
-                    <!-- ── End GB History Timeline ── -->
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Scroll Scene: Sticky Photo + Stat Reveals ── -->
+    <div class="scroll-scene">
+        <div class="scene-sticky">
+            <img class="scene-img scene-img-1"
+                src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80&fit=crop"
+                alt="Mountain landscape of Gilgit-Baltistan"
+            />
+            <img class="scene-img scene-img-2"
+                src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1600&q=80&fit=crop"
+                alt="Snow-capped peaks, Gilgit-Baltistan"
+            />
+            <div class="scene-gradient"></div>
+            <div class="stats-reveal">
+                <div class="stat-reveal-item">
+                    <p class="sr-value">1.71M</p>
+                    <p class="sr-label">Total Population</p>
+                    <p class="sr-sub">Census 2023</p>
+                </div>
+                <div class="stat-reveal-item">
+                    <p class="sr-value">~$2.3B</p>
+                    <p class="sr-label">GDP</p>
+                    <p class="sr-sub">Estimated based on 2021 level</p>
+                </div>
+                <div class="stat-reveal-item">
+                    <p class="sr-value">72,496 km²</p>
+                    <p class="sr-label">Total Area</p>
+                    <p class="sr-sub">Across 10 districts</p>
+                </div>
+                <div class="stat-reveal-item">
+                    <p class="sr-value">24/km²</p>
+                    <p class="sr-label">Population Density</p>
+                    <p class="sr-sub">Residents per square kilometre</p>
+                </div>
+                <div class="stat-reveal-item">
+                    <p class="sr-value">7.33</p>
+                    <p class="sr-label">Avg. Household Size</p>
+                    <p class="sr-sub">Persons per household</p>
+                </div>
+                <div class="stat-reveal-item">
+                    <p class="sr-value">109</p>
+                    <p class="sr-label">Sex Ratio</p>
+                    <p class="sr-sub">Males per 100 females</p>
+                </div>
+            </div>
+            <p class="photo-credit photo-credit--scene">Photo by <a href="https://unsplash.com/@samferrara" target="_blank" rel="noopener">Samuel Ferrara</a> on Unsplash</p>
+        </div>
+    </div>
+    <!-- ── End Scroll Scene ── -->
+
+    <div class="container">
+        <div class="row">
+            <div class="8u skel-cell-important">
+                <section>
 
                     <!-- ── District Explorer Chart ── -->
                     <div class="explorer-section">
@@ -196,6 +160,27 @@
                         <h2 style="font-size: 13pt; margin-top: 2em;"><strong style="color:coral">Economy</strong></h2>
                         <p class="font_libre">Gilgit-Baltistan's economy is characterised by low industrialisation, subsistence agriculture, and an expanding services sector driven largely by tourism. The territory is heavily reliant on federal transfers, though its economic base is gradually diversifying as connectivity and infrastructure improve.</p>
 
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Full-Width Photo Break 2 ── -->
+    <div class="photo-break">
+        <img
+            src="https://images.unsplash.com/photo-1589308078059-be1415eab4c3?w=1600&q=80&fit=crop"
+            alt="Hunza Valley, Gilgit-Baltistan"
+        />
+        <p class="photo-credit">Photo by <a href="https://unsplash.com/@nomanashraf974" target="_blank" rel="noopener">Noman Ashraf</a> on Unsplash</p>
+    </div>
+    <!-- ── End Full-Width Photo Break 2 ── -->
+
+    <div class="container">
+        <div class="row">
+            <div class="8u skel-cell-important">
+                <section>
+                    <div class="economy-section">
                         <h3 style="font-size: 11pt; margin-top: 1.5em;"><strong>Tourism</strong></h3>
                         <p class="font_libre">Tourism is the fastest-growing sector in GB's economy. Arrivals climbed from around 53,000 in 2010 to over 1.4 million in 2018, driven by social media exposure, improved road connectivity, and CPEC-linked infrastructure. The COVID-19 pandemic caused a sharp contraction in 2020, reducing foreign arrivals to just over 1,000. Recovery was swift — by 2024, total arrivals approached 1.01 million, with foreign visitors reaching a record 20,490. Hunza, with 175,205 tourists in 2023, is the most-visited district, reflecting its accessibility, scenery, and relatively developed hospitality infrastructure.</p>
                         <!-- Tourist arrivals 2010–2024 -->
