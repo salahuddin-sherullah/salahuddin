@@ -381,7 +381,7 @@
     transform: translateY(0);
 }
 .sr-value {
-    font-size: 6.6em;
+    font-size: 4.4em;
     font-weight: 700;
     color: #ffffff;
     margin: 0;
@@ -389,14 +389,14 @@
     letter-spacing: -0.01em;
 }
 .sr-label {
-    font-size: 2.46em;
+    font-size: 1.64em;
     color: rgba(255,255,255,0.8);
     margin: 0.2em 0 0;
     text-transform: uppercase;
     letter-spacing: 0.08em;
 }
 .sr-sub {
-    font-size: 2.16em;
+    font-size: 1.44em;
     color: rgba(255,255,255,0.5);
     margin: 0.1em 0 0;
 }
