@@ -67,6 +67,17 @@
 		padding: 4em 0 0 0;
 	}
 
+/* More readings carousel */
+
+	.readings-header {
+		align-items: flex-start;
+	}
+
+	.readings-track {
+		grid-template-columns: 1fr;
+		gap: 1.25em;
+	}
+
 /* Footer */
 
 	#footer {

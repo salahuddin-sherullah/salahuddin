@@ -251,3 +251,10 @@
 		#banner .button {
 			min-width: 0;
 		}
+
+/* More readings carousel */
+
+	.readings-track {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 2.5em;
+	}

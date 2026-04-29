@@ -333,6 +333,51 @@ pre code { display: block; line-height: 1.75em; padding: 1em 1.5em; }
   .blog-image-content { position: relative; top: 150px; left: 0%; width: 90%; max-width: none; }
 }
 
+/* Music page — image-led hero matching the main page structure */
+.music-image {
+  width: 100%; height: 100vh; position: relative;
+  background-image: url("../images/edm_2.jpg");
+  background-attachment: fixed;
+  background-position: center center;
+  background-size: cover; overflow: hidden; z-index: 1;
+}
+.music-image::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: rgba(4,25,41,0.55);
+  z-index: 1;
+}
+.music-image-content {
+  max-width: 560px; width: 100%; margin: 0 auto;
+  position: absolute; top: 180px; left: 10%; z-index: 2;
+}
+.music-mark {
+  width: 82px;
+  margin: 0 0 1.5em 0;
+  filter: invert(1);
+}
+.music-image-content h1 {
+  color: #ffffff;
+  font-size: 4rem;
+  letter-spacing: .12em;
+  margin-bottom: .25em;
+}
+.music-image-content p {
+  color: #ffffff;
+  font-size: 1.25em;
+  letter-spacing: 0;
+}
+@media (max-width: 768px) {
+  .music-image { background-position: 45% center; }
+  .music-image-content {
+    position: relative; top: 150px; left: 0; width: 90%; max-width: none;
+  }
+  .music-image-content h1 {
+    font-size: 3rem;
+    letter-spacing: .08em;
+  }
+}
+
 
 /* =============================================================================
    FOOTER
@@ -552,6 +597,116 @@ cite { line-height: 3; text-align: left; }
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
+}
+
+/* More readings carousel */
+.readings-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5em;
+  margin: 0 0 1.5em 0;
+}
+
+.readings-header h3 { margin: 0; }
+
+.readings-controls {
+  display: inline-flex;
+  gap: .6em;
+  flex-shrink: 0;
+}
+
+.readings-nav {
+  width: 44px;
+  height: 44px;
+  border: solid 1px rgba(255,255,255,0.35);
+  background: transparent;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 22px;
+  line-height: 1;
+  padding: 0;
+  transition: background-color .2s ease, border-color .2s ease, color .2s ease, opacity .2s ease;
+}
+
+.readings-nav:hover,
+.readings-nav:focus-visible {
+  background-color: coral;
+  border-color: coral;
+  color: #000000;
+  outline: none;
+}
+
+.readings-nav:disabled {
+  cursor: default;
+  opacity: .35;
+}
+
+.readings-nav:disabled:hover {
+  background: transparent;
+  border-color: rgba(255,255,255,0.35);
+  color: #ffffff;
+}
+
+.readings-track {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 4em;
+}
+
+.reading-card {
+  display: flex;
+  min-width: 0;
+}
+
+.reading-card[hidden] {
+  display: none !important;
+}
+
+.reading-card .box-link {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* Music track grid */
+.music-track-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 4em;
+  margin-top: 1.5em;
+}
+
+.music-track-card {
+  min-width: 0;
+}
+
+.music-track-card img {
+  aspect-ratio: 1;
+  object-fit: cover;
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+.music-track-card h3 {
+  font-size: 1.1em;
+  letter-spacing: .04em;
+  margin-bottom: 0;
+}
+
+@media (max-width: 980px) {
+  .music-track-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2.5em;
+  }
+}
+
+@media (max-width: 736px) {
+  .music-track-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25em;
+  }
 }
 
 /* Blog post card: lifts on hover */
