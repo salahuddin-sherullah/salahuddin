@@ -12,11 +12,11 @@
  *   6. buildSpendingChart()   — dual-axis: spending (bars) + GDP % (line)
  *
  * Design tokens applied consistently across all charts:
- *   - Axis tick labels : 15px, #8a9aa3 (value axes) / #192024 (category axes)
+ *   - Axis tick labels : 15px, #8a9aa3 (value axes) / #111111 (category axes)
  *   - Grid lines       : horizontal only, solid #e4e9eb
- *   - x-axis line      : stroke #192024, stroke-width 1.5px
+ *   - x-axis line      : stroke #111111, stroke-width 1.5px
  *   - Data labels      : 15px abbreviated (e.g. "175k", "1.4M")
- *   - Chart title      : 21px bold #192024 (CSS)
+ *   - Chart title      : 21px bold #111111 (CSS)
  *   - Chart subtitle   : 17px #8a9aa3 (CSS)
  *   - Footer           : source 15px + Dark Matter logo 35px tall, bottom-left
  *
@@ -354,7 +354,7 @@ function addChartFooter(svg, totalH, source) {
         xAxisG.transition().duration(400)
             .call(d3.axisBottom(xScale).ticks(5).tickFormat(activeMetric.shortFmt).tickSize(0))
             .call(ax => ax.select(".domain")
-                .style("stroke", "#192024")
+                .style("stroke", "#111111")
                 .style("stroke-width", "1px"))
             .selectAll("text")
                 .attr("dy", "1.2em")
@@ -366,7 +366,7 @@ function addChartFooter(svg, totalH, source) {
             .call(d3.axisLeft(yScale).tickSize(0))
             .call(ay => ay.select(".domain").remove())
             .selectAll("text")
-                .style("fill", "#192024")
+                .style("fill", "#111111")
                 .style("font-size", "15px")
                 .attr("dx", "-6px");
 
@@ -501,7 +501,7 @@ function addChartFooter(svg, totalH, source) {
         .call(d3.axisLeft(yScale).tickSize(0))
         .call(ax => ax.select(".domain").remove())
         .call(ax => ax.selectAll(".tick text")
-            .style("fill", "#192024")
+            .style("fill", "#111111")
             .style("font-size", "15px")
             .attr("dx", "-8px"));
 
@@ -510,7 +510,7 @@ function addChartFooter(svg, totalH, source) {
         .attr("transform", `translate(0,${height})`)
         .call(d3.axisBottom(xScale).ticks(5).tickFormat(abbr))
         .call(ax => ax.select(".domain")
-            .style("stroke", "#192024")
+            .style("stroke", "#111111")
             .style("stroke-width", "1px"))
         .call(ax => ax.selectAll(".tick text")
             .style("fill", "#505050")
@@ -656,9 +656,9 @@ function addChartFooter(svg, totalH, source) {
             .tickValues(altYears)
             .tickFormat(d3.format("d")))
         .call(ax => ax.select(".domain")
-            .style("stroke", "#192024").style("stroke-width", "1px"))
+            .style("stroke", "#111111").style("stroke-width", "1px"))
         .call(ax => ax.selectAll(".tick text")
-            .style("fill", "#192024")
+            .style("fill", "#111111")
             .style("font-size", "15px")
             .attr("dy", "1.4em"));
 
@@ -814,9 +814,9 @@ function addChartFooter(svg, totalH, source) {
             .tickValues(altYears)
             .tickFormat(d3.format("d")))
         .call(ax => ax.select(".domain")
-            .style("stroke", "#192024").style("stroke-width", "1px"))
+            .style("stroke", "#111111").style("stroke-width", "1px"))
         .call(ax => ax.selectAll(".tick text")
-            .style("fill", "#192024").style("font-size", "15px").attr("dy", "1.4em"));
+            .style("fill", "#111111").style("font-size", "15px").attr("dy", "1.4em"));
 
     // Left y axis — spending, 15px, gray
     g.append("g")
@@ -1133,7 +1133,7 @@ function addChartFooter(svg, totalH, source) {
         g.append("text")
             .attr("x", xMid).attr("y", INNER_H + 40)
             .attr("text-anchor", "middle").attr("font-size", 13)
-            .attr("fill", "coral").attr("font-weight", "600")
+            .attr("fill", "#FF0000").attr("font-weight", "600")
             .text(fmtB(cat.value) + " PKR");
         g.append("text")
             .attr("x", xMid).attr("y", INNER_H + 57)
@@ -1315,7 +1315,7 @@ function addChartFooter(svg, totalH, source) {
         g.append("text")
             .attr("x", textX).attr("y", baseY + nameH + VALUE_GAP)
             .attr("text-anchor", anchor)
-            .attr("font-size", 14).attr("font-weight", "600").attr("fill", "coral")
+            .attr("font-size", 14).attr("font-weight", "600").attr("fill", "#FF0000")
             .text(d.data.value.toFixed(1) + "B | " + (d.data.value / TOTAL * 100).toFixed(1) + "%");
     });
 
@@ -1472,7 +1472,7 @@ function addChartFooter(svg, totalH, source) {
         g.append("text")
             .attr("x", textX).attr("y", baseY + nameH + VALUE_GAP)
             .attr("text-anchor", anchor)
-            .attr("font-size", 14).attr("font-weight", "600").attr("fill", "coral")
+            .attr("font-size", 14).attr("font-weight", "600").attr("fill", "#FF0000")
             .text(d.data.value.toFixed(1) + "B | " + (d.data.value / TOTAL * 100).toFixed(1) + "%");
     });
 
@@ -1550,8 +1550,8 @@ function addChartFooter(svg, totalH, source) {
     g.append("g")
         .attr("transform", `translate(0,${H})`)
         .call(d3.axisBottom(xScale).ticks(6).tickFormat(d => d + "M").tickSize(0))
-        .call(ax => ax.select(".domain").attr("stroke", "#192024").attr("stroke-width", "1"))
-        .call(ax => ax.selectAll(".tick text").attr("fill", "#192024").attr("font-size", 14).attr("dy", "1.4em"));
+        .call(ax => ax.select(".domain").attr("stroke", "#111111").attr("stroke-width", "1"))
+        .call(ax => ax.selectAll(".tick text").attr("fill", "#111111").attr("font-size", 14).attr("dy", "1.4em"));
 
     // Y axis
     g.append("g")

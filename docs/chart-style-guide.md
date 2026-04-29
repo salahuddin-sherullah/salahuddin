@@ -7,15 +7,15 @@
 ## 1. Colour Palette
 
 ### Site-wide accent colour
-`coral` (`#FF7F50`) is the single accent colour used across all articles for
-inline heading highlights (e.g. `<strong style="color:coral">`), stat card
+`#FF0000` (`#FF7F50`) is the single accent colour used across all articles for
+inline heading highlights (e.g. `<strong style="color:#FF0000">`), stat card
 left borders, and any other brand-coloured UI elements.
 **`#00B8AE` (teal) has been fully retired** — do not use it in new files.
 
 ### Chart brand colours
 | Token | Hex | Usage |
 |---|---|---|
-| Dark text | `#192024` | x-axis labels, chart border, axis line |
+| Dark text | `#111111` | x-axis labels, chart border, axis line |
 | Muted label | `#8a9aa3` | y-axis ticks, data labels, grid, COVID annotation |
 | Grid line | `#e4e9eb` | Horizontal grid lines, card top/bottom border |
 | Footer text | `#b0bec5` | Source attribution text |
@@ -45,16 +45,16 @@ Quantize scale (8 stops, low → high value maps light orange → near-black):
 ### HTML elements (rendered as divs above the SVG)
 | Element | CSS class | Size | Weight | Colour |
 |---|---|---|---|---|
-| Chart title | `.chart-title` | 21px | 700 | `#192024` |
+| Chart title | `.chart-title` | 21px | 700 | `#111111` |
 | Chart subtitle | `.chart-subtitle` | 17px | 400 | `#8a9aa3` |
-| Legend text | `.db-legend` / `.tourism-legend` | 14px | 400 | `#8a9aa3` / `#192024` |
+| Legend text | `.db-legend` / `.tourism-legend` | 14px | 400 | `#8a9aa3` / `#111111` |
 
 ### SVG text elements (set via D3 `.style("font-size", ...)`)
 | Element | Size | Colour |
 |---|---|---|
-| x-axis category labels (districts, years) | 16px | `#192024` |
+| x-axis category labels (districts, years) | 16px | `#111111` |
 | y-axis value tick labels | 16px | `#8a9aa3` |
-| District name labels (y-axis, dumbbell) | 16px | `#192024` |
+| District name labels (y-axis, dumbbell) | 16px | `#111111` |
 | Rotated axis titles (spending chart) | 16px | `#8a9aa3` |
 | Data / bar value labels | 15px | `#8a9aa3` |
 | Growth-rate labels (dumbbell) | 16px | district colour |
@@ -63,7 +63,7 @@ Quantize scale (8 stops, low → high value maps light orange → near-black):
 | Annotation text (COVID-19) | 14px | `#8a9aa3` |
 | Source attribution (footer) | 14px | `#b0bec5` |
 
-**Font family:** inherited from the article page (Libre Baskerville / system stack).
+**Font family:** inherited from the article page (`Playfair Display` for headings and `Inter` for surrounding page text).
 Do not set `font-family` on SVG elements; let it inherit.
 
 ---
@@ -100,11 +100,11 @@ space is not a constraint there.
 
 ### x-axis (value or year axis at chart bottom)
 ```
-stroke:       #192024
+stroke:       #111111
 stroke-width: 1.5px
 tick size:    0 (no tick marks, labels only)
 label dy:     1.2em (category) or 1.4em (year)
-label color:  #192024
+label color:  #111111
 label size:   16px
 ```
 
@@ -112,7 +112,7 @@ label size:   16px
 ```
 domain line:  removed (.domain.remove())
 tick size:    0
-label color:  #8a9aa3 (values) or #192024 (district names)
+label color:  #8a9aa3 (values) or #111111 (district names)
 label size:   16px
 ```
 

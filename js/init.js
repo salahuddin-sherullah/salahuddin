@@ -125,7 +125,7 @@
                 navButton: {
                     breakpoints: 'medium',
                     height: '56px',
-                    html: '<a class="toggle" data-action="toggleLayer" data-args="navPanel" aria-label="Open menu"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="5" width="24" height="2.5" rx="1.25" fill="#192024"/><rect x="1" y="12" width="24" height="2.5" rx="1.25" fill="#192024"/><rect x="1" y="19" width="24" height="2.5" rx="1.25" fill="#192024"/></svg><span class="nav-site-name">SALAHUDDIN</span></a>',
+                    html: '<a class="toggle" data-action="toggleLayer" data-args="navPanel" aria-label="Open menu"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="5" width="24" height="2.5" rx="1.25" fill="#111111"/><rect x="1" y="12" width="24" height="2.5" rx="1.25" fill="#111111"/><rect x="1" y="19" width="24" height="2.5" rx="1.25" fill="#111111"/></svg><span class="nav-site-name">SALAHUDDIN</span></a>',
                     position: 'top-left',
                     side: 'top',
                     width: '100%'  // must match here; skel sets this as an inline style
