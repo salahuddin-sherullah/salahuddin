@@ -37,26 +37,13 @@
     <main class="landing-page">
         <section class="landing-hero">
             <div class="container">
-                <div class="landing-hero-grid">
-                    <div class="landing-hero-copy revealheading">
-                        <p class="landing-kicker">Policy / data / development</p>
-                        <h1>What's your next thoughtful move?</h1>
-                        <p class="landing-deck">I use research, data, and storytelling to make complicated questions clearer, especially where development, public policy, and human outcomes meet.</p>
-                        <div class="landing-actions">
-                            <a href="blog.html" class="landing-primary-link">Explore writing <span class="ui-arrow" aria-hidden="true"></span></a>
-                            <a href="profile.html" class="landing-secondary-link">View profile</a>
-                        </div>
-                    </div>
-
-                    <div class="landing-editorial-grid reveal">
-                        <a href="gilgit-baltistan-at-a-glance.html" class="landing-story landing-story-large">
-                            <img src="images/sarfaranga.jpg" alt="Mountains and road in Gilgit-Baltistan">
-                            <div class="landing-story-body">
-                                <p>Data visual</p>
-                                <h2>Gilgit-Baltistan at a glance</h2>
-                                <span>Read the feature <span class="ui-arrow" aria-hidden="true"></span></span>
-                            </div>
-                        </a>
+                <div class="landing-hero-intro revealheading">
+                    <p class="landing-kicker">Policy / data / development</p>
+                    <h1>What's your next thoughtful move?</h1>
+                    <p class="landing-deck">I use research, data, and storytelling to make complicated questions clearer, especially where development, public policy, and human outcomes meet.</p>
+                    <div class="landing-actions">
+                        <a href="blog.html" class="landing-primary-link">Explore writing <span class="ui-arrow" aria-hidden="true"></span></a>
+                        <a href="profile.html" class="landing-secondary-link">View profile</a>
                     </div>
                 </div>
             </div>
@@ -198,64 +185,6 @@
             </div>
         </section>
 
-        <section class="landing-impact-band">
-            <div class="container">
-                <div class="landing-centered-head revealheading">
-                    <p class="landing-kicker">Selected ideas</p>
-                    <h2>Writing on systems, people, and development.</h2>
-                </div>
-
-                <div class="landing-impact-grid reveal">
-                    <a href="opportunities-for-improving-the-wellbeing.html" class="landing-impact-card">
-                        <img src="images/rural.jpg" alt="Rural landscape">
-                        <h3>Improving rural wellbeing <span class="ui-arrow" aria-hidden="true"></span></h3>
-                        <p>Opportunities for improving the wellbeing of rural populations.</p>
-                    </a>
-                    <a href="flaws_of_development_sector.html" class="landing-impact-card">
-                        <img src="images/development_flaws.jpg" alt="Development sector field scene">
-                        <h3>Flaws of the development sector <span class="ui-arrow" aria-hidden="true"></span></h3>
-                        <p>A reflection on incentives, practice, and the gap between ambition and impact.</p>
-                    </a>
-                    <a href="conversation-around-environment-needs-to-change.html" class="landing-impact-card">
-                        <img src="images/environment.jpeg" alt="Forest and water landscape">
-                        <h3>Changing the environment conversation <span class="ui-arrow" aria-hidden="true"></span></h3>
-                        <p>Why the way we talk about environmental problems shapes what we are willing to do.</p>
-                    </a>
-                </div>
-
-                <div class="landing-impact-mobile-carousel" data-mobile-idea-carousel>
-                    <div class="landing-impact-mobile-track" data-mobile-idea-track>
-                        <a href="opportunities-for-improving-the-wellbeing.html" class="landing-impact-mobile-card">
-                            <img src="images/rural.jpg" alt="Rural landscape">
-                            <div>
-                                <p>Rural wellbeing</p>
-                                <h3>Improving rural wellbeing <span class="ui-arrow" aria-hidden="true"></span></h3>
-                            </div>
-                        </a>
-                        <a href="flaws_of_development_sector.html" class="landing-impact-mobile-card">
-                            <img src="images/development_flaws.jpg" alt="Development sector field scene">
-                            <div>
-                                <p>Development sector</p>
-                                <h3>Flaws of the development sector <span class="ui-arrow" aria-hidden="true"></span></h3>
-                            </div>
-                        </a>
-                        <a href="conversation-around-environment-needs-to-change.html" class="landing-impact-mobile-card">
-                            <img src="images/environment.jpeg" alt="Forest and water landscape">
-                            <div>
-                                <p>Environment</p>
-                                <h3>Changing the environment conversation <span class="ui-arrow" aria-hidden="true"></span></h3>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="landing-impact-mobile-dots" aria-label="Selected ideas navigation">
-                        <button type="button" class="active" data-mobile-idea-dot aria-label="Show selected idea 1"></button>
-                        <button type="button" data-mobile-idea-dot aria-label="Show selected idea 2"></button>
-                        <button type="button" data-mobile-idea-dot aria-label="Show selected idea 3"></button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <section class="landing-closing-band">
             <div class="container">
                 <div class="landing-closing-copy reveal">
@@ -306,7 +235,6 @@
   window.addEventListener('load', reveal); // run on initial load too
   window.addEventListener('load', initLatestThinking);
   window.addEventListener('load', initMobileArticleCarousel);
-  window.addEventListener('load', initMobileIdeaCarousel);
 
   function reveal() {
     var elements = document.querySelectorAll('.reveal, .revealheading');
@@ -414,58 +342,6 @@
     setActiveDot(0);
   }
 
-  function initMobileIdeaCarousel() {
-    var carousel = document.querySelector('[data-mobile-idea-carousel]');
-    if (!carousel) {
-      return;
-    }
-
-    var track = carousel.querySelector('[data-mobile-idea-track]');
-    var cards = Array.prototype.slice.call(carousel.querySelectorAll('.landing-impact-mobile-card'));
-    var dots = Array.prototype.slice.call(carousel.querySelectorAll('[data-mobile-idea-dot]'));
-
-    if (!track || !cards.length || !dots.length) {
-      return;
-    }
-
-    function setActiveDot(index) {
-      cards.forEach(function(card, cardIndex) {
-        card.classList.toggle('active', cardIndex === index);
-      });
-
-      dots.forEach(function(dot, dotIndex) {
-        dot.classList.toggle('active', dotIndex === index);
-        dot.setAttribute('aria-current', dotIndex === index ? 'true' : 'false');
-      });
-    }
-
-    dots.forEach(function(dot, index) {
-      dot.addEventListener('click', function() {
-        track.scrollTo({
-          left: cards[index].offsetLeft - track.offsetLeft,
-          behavior: 'smooth'
-        });
-        setActiveDot(index);
-      });
-    });
-
-    track.addEventListener('scroll', function() {
-      var activeIndex = 0;
-      var closestDistance = Infinity;
-
-      cards.forEach(function(card, index) {
-        var distance = Math.abs(card.offsetLeft - track.offsetLeft - track.scrollLeft);
-        if (distance < closestDistance) {
-          closestDistance = distance;
-          activeIndex = index;
-        }
-      });
-
-      setActiveDot(activeIndex);
-    });
-
-    setActiveDot(0);
-  }
 </script>
 
 </body>
