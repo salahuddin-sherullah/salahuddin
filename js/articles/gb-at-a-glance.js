@@ -65,7 +65,7 @@
    ============================================================================= */
 
 const GB_PALETTE = [
-    "#03071e","#370617","#6a040f","#9d0108","#d00100",
+    "#360516","#370617","#6a040f","#9d0108","#d00100",
     "#db2f01","#e75d05","#f48c04","#faa308","#f9b507"
 ];
 
@@ -165,7 +165,7 @@ function addChartFooter(svg, totalH, source) {
     const H       = TOP_PAD + EVENTS.length * ROW_H + BOT_PAD;
     const ACCENT  = "#d00100";
     const GOLD    = "#faa307";
-    const DARK    = "#03071e";
+    const DARK    = "#360516";
     const MID     = "#505050";
 
     const wrap = d3.select(mount);
@@ -345,7 +345,7 @@ function addChartFooter(svg, totalH, source) {
         const colorScale = d3.scaleQuantize()
             .domain([d3.min(sorted, d => d[activeMetric.key]),
                      d3.max(sorted, d => d[activeMetric.key])])
-            .range(["#f48c06","#e85d05","#db2f01","#d00100","#9d0208","#6a040f","#370617","#03071e"]);
+            .range(["#f48c06","#e85d05","#db2f01","#d00100","#9d0208","#6a040f","#370617","#360516"]);
 
         xScale.domain([0, d3.max(sorted, d => d[activeMetric.key])]).nice();
         yScale.domain(sorted.map(d => d.District));
@@ -1344,7 +1344,7 @@ function addChartFooter(svg, totalH, source) {
         { label: "Miscellaneous",                                value: 0.20 },
     ];
     const TOTAL   = 18.56;
-    const PALETTE = ["#03071e","#6a040f","#9d0208","#d00100","#db2f01","#e85d05","#f48c06","#faa307","#ffba08","#ffd60a"];
+    const PALETTE = ["#360516","#6a040f","#9d0208","#d00100","#db2f01","#e85d05","#f48c06","#faa307","#ffba08","#ffd60a"];
 
     const W       = 680;
     const H       = 580;
@@ -1623,7 +1623,7 @@ function addChartFooter(svg, totalH, source) {
         .attr("x", labelX)
         .attr("y", "-0.4em")
         .attr("font-size", 14)
-        .attr("fill", "#03071e")
+        .attr("fill", "#360516")
         .attr("pointer-events", "none")
         .text(d => d.district);
 
