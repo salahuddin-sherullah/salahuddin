@@ -960,7 +960,7 @@ pre code { display: block; line-height: 1.75em; padding: 1em 1.5em; }
 }
 
 .landing-feature-band {
-  background: #360516;
+  background: linear-gradient(135deg, #360516 0%, #CF0000 100%);
 }
 
 .landing-section-head {
