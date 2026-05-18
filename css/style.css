@@ -2124,6 +2124,50 @@ pre code { display: block; line-height: 1.75em; padding: 1em 1.5em; }
 #footer strong { color: #ffffff; }
 #footer hr       { border-bottom-color: rgba(255,255,255,0.12); }
 #footer hr.white { border-bottom-color: rgba(255,255,255,0.20); }
+#footer .footer-social {
+  cursor: default;
+  display: flex;
+  gap: .75em;
+  list-style: none;
+  margin: 1em 0 0;
+  padding: 0;
+}
+#footer .footer-social li {
+  padding: 0;
+}
+#footer .footer-social a {
+  align-items: center;
+  background: rgba(255,255,255,0.08);
+  border-radius: 999px;
+  color: #ffffff !important;
+  display: inline-flex;
+  height: 44px;
+  justify-content: center;
+  transition: background-color .2s ease, transform .2s ease;
+  width: 44px;
+}
+#footer .footer-social a svg {
+  fill: currentColor;
+  height: 16px;
+  width: 16px;
+}
+#footer .footer-social .label {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+#footer .footer-social a:hover,
+#footer .footer-social a:focus-visible {
+  background: #FF0000;
+  color: #ffffff !important;
+  outline: none;
+  transform: translateY(-2px);
+}
 #footer .copyright {
   color: rgba(255,255,255,0.5); font-size: .9em; margin: 2em 0 0 0; padding: 0; text-align: center;
 }
