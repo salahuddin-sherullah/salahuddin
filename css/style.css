@@ -1030,7 +1030,8 @@ pre code { display: block; line-height: 1.75em; padding: 1em 1.5em; }
   color: #111111;
   display: grid;
   grid-template-columns: minmax(280px, .85fr) minmax(0, 1.15fr);
-  min-height: 410px;
+  height: 410px;
+  overflow: hidden;
 }
 
 .landing-spotlight:hover,
@@ -1047,19 +1048,27 @@ pre code { display: block; line-height: 1.75em; padding: 1em 1.5em; }
 
 .landing-spotlight-copy h3 {
   color: #111111;
+  display: -webkit-box;
   font-size: 2.35rem;
   line-height: 1.15;
   margin: 0 0 .65em;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 
 .landing-spotlight-copy .landing-spotlight-description {
   color: #444444;
+  display: -webkit-box;
   font-size: 1rem;
   font-weight: 400;
   letter-spacing: 0;
   line-height: 1.65;
   margin: 0 0 1.35em;
   text-transform: none;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
 }
 
 .landing-read-more {
@@ -1084,34 +1093,52 @@ pre code { display: block; line-height: 1.75em; padding: 1em 1.5em; }
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 2em;
+  align-items: stretch;
   margin-top: 2em;
 }
 
 .landing-link-strip button {
   appearance: none;
   background: transparent;
-  border-top: 4px solid rgba(17,17,17,.16);
-  border-right: 0;
-  border-bottom: 0;
-  border-left: 0;
+  border: 0;
   color: #111111 !important;
   cursor: pointer;
-  display: block;
+  display: flex;
   font-size: .95rem;
   font-weight: 700;
+  height: 100%;
   line-height: 1.45;
-  padding-top: 1em;
+  min-height: 5.85em;
+  padding-top: 1.15em;
+  position: relative;
   text-align: left;
-  transition: border-color .2s ease, color .2s ease;
+  transition: color .2s ease;
   width: 100%;
+}
+
+.landing-link-strip button::before {
+  background: rgba(17,17,17,.16);
+  border-radius: 999px;
+  content: '';
+  height: 6px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: background-color .2s ease;
 }
 
 .landing-link-strip button:hover,
 .landing-link-strip button:focus-visible,
 .landing-link-strip button.active {
-  border-color: #FF0000;
   color: #111111 !important;
   outline: none;
+}
+
+.landing-link-strip button:hover::before,
+.landing-link-strip button:focus-visible::before,
+.landing-link-strip button.active::before {
+  background: #FF0000;
 }
 
 .landing-mobile-carousel {
@@ -1168,6 +1195,11 @@ pre code { display: block; line-height: 1.75em; padding: 1em 1.5em; }
 }
 
 .landing-mobile-article-card div {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 8.5em;
   padding: 1.25em;
 }
 
