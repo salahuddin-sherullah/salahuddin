@@ -159,6 +159,11 @@
 			padding: 0;
 		}
 
+		#navPanel nav ul ul {
+			margin: 0 0 0.35em;
+			padding-left: 0.9em;
+		}
+
 			#navPanel nav ul li {
 				padding: 0;
 			}
@@ -183,6 +188,19 @@
 
 				#navPanel nav ul li a:not(.button):hover,
 				#navPanel nav ul li span:not(.button):hover {
+					color: #FF0000;
+				}
+
+				#navPanel nav ul ul li a:not(.button),
+				#navPanel nav ul ul li span:not(.button) {
+					border-top: 0;
+					color: rgba(255,255,255,0.82);
+					font-size: 14px;
+					padding: 0.55em 0 0.55em 0.9em;
+				}
+
+				#navPanel nav ul ul li a:not(.button):hover,
+				#navPanel nav ul ul li span:not(.button):hover {
 					color: #FF0000;
 				}
 
