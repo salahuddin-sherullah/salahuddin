@@ -2234,6 +2234,9 @@ pre code { display: block; line-height: 1.75em; padding: 1em 1.5em; }
   outline: none;
   transform: translateY(-2px);
 }
+#footer .copyright hr.major {
+  margin: 1em 0 1.35em 0;
+}
 #footer .copyright {
   color: rgba(255,255,255,0.5); font-size: .9em; margin: 2em 0 0 0; padding: 0; text-align: center;
 }
