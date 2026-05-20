@@ -286,11 +286,12 @@ function addChartFooter(svg, totalH, source) {
     ];
 
     // Horizontal bar chart — districts on y-axis, values on x-axis
-    const margin = { top: 20, right: 80, bottom: 120, left: 105 };
+    const margin = { top: 20, right: 80, bottom: 138, left: 105 };
     const totalW = 660;
-    const totalH = 505;
+    const rowH   = 48;
+    const height = GB_DATA.length * rowH;
+    const totalH = height + margin.top + margin.bottom;
     const width  = totalW - margin.left - margin.right;
-    const height = totalH - margin.top  - margin.bottom;
     let activeMetric = metrics[0];
 
     const wrap = d3.select("#district-explorer")
@@ -301,7 +302,7 @@ function addChartFooter(svg, totalH, source) {
         .text(metrics[0].subtitle);
 
     const selectWrap = wrap.append("div").attr("class", "metric-select-wrap");
-    selectWrap.append("label").attr("class", "metric-select-label").text("Metric");
+    selectWrap.append("label").attr("class", "metric-select-label").text("Choose Metric");
     const select = selectWrap.append("select").attr("class", "metric-select");
     metrics.forEach(m => select.append("option").attr("value", m.key).text(m.label));
     select.on("change", function () {
@@ -313,7 +314,8 @@ function addChartFooter(svg, totalH, source) {
     const svg = wrap.append("svg")
         .attr("width",  totalW)
         .attr("height", totalH)
-        .style("display", "block");
+        .style("display", "block")
+        .style("overflow", "visible");
 
     const g = svg.append("g")
         .attr("transform", `translate(${margin.left},${margin.top})`);
@@ -321,7 +323,7 @@ function addChartFooter(svg, totalH, source) {
     // xScale: values (linear) — horizontal
     // yScale: districts (band) — vertical
     const xScale = d3.scaleLinear().range([0, width]);
-    const yScale = d3.scaleBand().range([0, height]).padding(0.18);
+    const yScale = d3.scaleBand().range([0, height]).padding(0.22);
 
     const gridG   = g.append("g");
     const xAxisG  = g.append("g").attr("transform", `translate(0,${height})`);
@@ -341,12 +343,6 @@ function addChartFooter(svg, totalH, source) {
             .filter(d => d[activeMetric.key] != null)
             .sort((a, b) => b[activeMetric.key] - a[activeMetric.key]);
 
-        // High value = darkest colour
-        const colorScale = d3.scaleQuantize()
-            .domain([d3.min(sorted, d => d[activeMetric.key]),
-                     d3.max(sorted, d => d[activeMetric.key])])
-            .range(["#f48c06","#e85d05","#db2f01","#d00100","#9d0208","#6a040f","#370617","#360516"]);
-
         xScale.domain([0, d3.max(sorted, d => d[activeMetric.key])]).nice();
         yScale.domain(sorted.map(d => d.District));
 
@@ -358,7 +354,7 @@ function addChartFooter(svg, totalH, source) {
                 .style("stroke-width", "1px"))
             .selectAll("text")
                 .attr("dy", "1.2em")
-                .style("fill", "#505050")
+                .style("fill", "#111111")
                 .style("font-size", "15px");
 
         // y axis (left) — district names, 15px
@@ -370,13 +366,47 @@ function addChartFooter(svg, totalH, source) {
                 .style("font-size", "15px")
                 .attr("dx", "-6px");
 
-        // Horizontal grid lines at each district row
-        // gridG.transition().duration(400)
-        //     .call(d3.axisLeft(yScale).tickSize(-width).tickFormat(""))
-        //     .call(gg => gg.select(".domain").remove())
-        //     .call(gg => gg.selectAll(".tick line")
-        //         .style("stroke", "#e4e9eb")
-        //         .style("stroke-dasharray", "none"));
+        // Horizontal separator lines centered in the gap between bars
+        const separatorData = sorted.slice(0, -1);
+
+        gridG.selectAll("line")
+            .data(separatorData, d => d.District)
+            .join(
+                enter => enter.append("line")
+                    .attr("x1", 0)
+                    .attr("x2", width)
+                    .attr("y1", (d, i) => {
+                        const currentBottom = yScale(d.District) + yScale.bandwidth();
+                        const nextTop = yScale(sorted[i + 1].District);
+                        return (currentBottom + nextTop) / 2;
+                    })
+                    .attr("y2", (d, i) => {
+                        const currentBottom = yScale(d.District) + yScale.bandwidth();
+                        const nextTop = yScale(sorted[i + 1].District);
+                        return (currentBottom + nextTop) / 2;
+                    })
+                    .style("stroke", "#d7dde0")
+                    .style("stroke-width", "1px")
+                    .style("stroke-dasharray", "none")
+                    .style("opacity", 0)
+                    .call(e => e.transition().duration(400).style("opacity", 1)),
+                update => update
+                    .call(u => u.transition().duration(400)
+                        .attr("x2", width)
+                        .attr("y1", (d, i) => {
+                            const currentBottom = yScale(d.District) + yScale.bandwidth();
+                            const nextTop = yScale(sorted[i + 1].District);
+                            return (currentBottom + nextTop) / 2;
+                        })
+                        .attr("y2", (d, i) => {
+                            const currentBottom = yScale(d.District) + yScale.bandwidth();
+                            const nextTop = yScale(sorted[i + 1].District);
+                            return (currentBottom + nextTop) / 2;
+                        })
+                        .style("stroke", "#d7dde0")
+                        .style("opacity", 1)),
+                exit => exit.transition().duration(250).style("opacity", 0).remove()
+            );
 
         // Horizontal bars
         barsG.selectAll("rect")
@@ -385,18 +415,19 @@ function addChartFooter(svg, totalH, source) {
                 enter => enter.append("rect")
                     .attr("y",      d => yScale(d.District))
                     .attr("x",      0)
+                    .attr("rx",     0)
                     .attr("height", yScale.bandwidth())
                     .attr("width",  0)
-                    .attr("fill",   d => colorScale(d[activeMetric.key]))
-                    .attr("rx", 2)
+                    .attr("fill",   (d, i) => i === 0 ? "#360516" : "#FF0000")
                     .call(e => e.transition().duration(500)
                         .attr("width", d => xScale(d[activeMetric.key]))),
                 update => update
                     .call(u => u.transition().duration(400)
                         .attr("y",      d => yScale(d.District))
+                        .attr("rx",     0)
                         .attr("height", yScale.bandwidth())
                         .attr("width",  d => xScale(d[activeMetric.key]))
-                        .attr("fill",   d => colorScale(d[activeMetric.key]))),
+                        .attr("fill",   (d, i) => i === 0 ? "#360516" : "#FF0000")),
                 exit => exit.transition().duration(300)
                     .attr("width", 0).remove()
             )
@@ -441,6 +472,96 @@ function addChartFooter(svg, totalH, source) {
 
 
 /* =============================================================================
+   ARTICLE SECTION NAV — fixed left rail with expandable section list
+   ============================================================================= */
+
+(function initArticleSectionNav() {
+    const shell = document.querySelector(".gb-article-nav-shell");
+    const toggle = document.querySelector(".gb-article-nav-toggle");
+    const navItems = Array.prototype.slice.call(document.querySelectorAll("[data-gb-nav-target]"));
+    const triggerSection = document.getElementById("gb-district-explorer");
+
+    if (!shell || !toggle || !navItems.length || !triggerSection) return;
+
+    const targets = navItems
+        .map(item => ({
+            item,
+            id: item.getAttribute("data-gb-nav-target"),
+            section: document.getElementById(item.getAttribute("data-gb-nav-target"))
+        }))
+        .filter(entry => entry.section);
+
+    function setOpen(isOpen) {
+        document.body.classList.toggle("gb-article-nav-open", isOpen);
+        toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    }
+
+    function setVisible(isVisible) {
+        shell.classList.toggle("is-visible", isVisible);
+        if (!isVisible) {
+            setOpen(false);
+        }
+    }
+
+    function setActive(id) {
+        targets.forEach(({ item }) => {
+            const isActive = item.getAttribute("data-gb-nav-target") === id;
+            item.classList.toggle("active", isActive);
+            item.setAttribute("aria-current", isActive ? "true" : "false");
+        });
+    }
+
+    toggle.addEventListener("click", function() {
+        setOpen(!document.body.classList.contains("gb-article-nav-open"));
+    });
+
+    targets.forEach(({ item, section, id }) => {
+        item.addEventListener("click", function(event) {
+            event.preventDefault();
+            setActive(id);
+            setOpen(false);
+
+            const headerOffset = window.innerWidth <= 980 ? 84 : 68;
+            const top = section.getBoundingClientRect().top + window.scrollY - headerOffset;
+            window.scrollTo({ top, behavior: "smooth" });
+        });
+    });
+
+    document.addEventListener("click", function(event) {
+        if (!document.body.classList.contains("gb-article-nav-open")) return;
+        if (shell.contains(event.target)) return;
+        setOpen(false);
+    });
+
+    function updateVisibility() {
+        const triggerOffset = window.innerWidth <= 980 ? 120 : 96;
+        const triggerTop = triggerSection.getBoundingClientRect().top + window.scrollY - triggerOffset;
+        setVisible(window.scrollY >= triggerTop);
+    }
+
+    window.addEventListener("scroll", updateVisibility, { passive: true });
+    window.addEventListener("resize", updateVisibility);
+
+    const observer = new IntersectionObserver((entries) => {
+        const visible = entries
+            .filter(entry => entry.isIntersecting)
+            .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+        if (visible.length) {
+            setActive(visible[0].target.id);
+        }
+    }, {
+        rootMargin: "-18% 0px -55% 0px",
+        threshold: [0.2, 0.35, 0.55]
+    });
+
+    targets.forEach(({ section }) => observer.observe(section));
+    setActive(targets[0].id);
+    updateVisibility();
+})();
+
+
+/* =============================================================================
    4. DUMBBELL CHART — population growth 2017 vs 2023
    ============================================================================= */
 
@@ -456,7 +577,7 @@ function addChartFooter(svg, totalH, source) {
         }))
         .sort((a, b) => b.growth - a.growth);
 
-    const margin = { top: 16, right: 80, bottom: 125, left: 100 };
+    const margin = { top: 16, right: 80, bottom: 138, left: 100 };
     const totalW = 660;
     const rowH   = 44;
     const height = districts.length * rowH;
@@ -469,7 +590,7 @@ function addChartFooter(svg, totalH, source) {
     wrap.append("div").attr("class", "chart-title")
         .text("Population Growth by District (2017–2023)");
     wrap.append("div").attr("class", "chart-subtitle")
-        .text("Hollow dot = 2017 census  ·  Filled dot = 2023 census  ·  Sorted by growth rate");
+        .text("Hunza and Diamer recorded the fastest population growth between 2017 and 2023, while Ghanche changed the least.");
 
     const legend = wrap.append("div").attr("class", "db-legend");
     legend.append("div").html(`<span class="db-legend-dot" style="background:#e4e9eb; border: 2px solid #8a9aa3; box-sizing:border-box;"></span>2017`);
@@ -479,7 +600,8 @@ function addChartFooter(svg, totalH, source) {
     const svg = wrap.append("svg")
         .attr("width",  totalW)
         .attr("height", totalH)
-        .style("display", "block");
+        .style("display", "block")
+        .style("overflow", "visible");
 
     const g = svg.append("g")
         .attr("transform", `translate(${margin.left},${margin.top})`);
@@ -513,7 +635,7 @@ function addChartFooter(svg, totalH, source) {
             .style("stroke", "#111111")
             .style("stroke-width", "1px"))
         .call(ax => ax.selectAll(".tick text")
-            .style("fill", "#505050")
+            .style("fill", "#111111")
             .style("font-size", "15px"));
 
     g.append("text")
@@ -543,7 +665,7 @@ function addChartFooter(svg, totalH, source) {
 
     districts.forEach((d, i) => {
         const cy    = yScale(d.district) + yScale.bandwidth() / 2;
-        const color = GB_PALETTE[i];
+        const color = i === 0 ? "#360516" : "#FF0000";
 
         g.append("line")
             .attr("x1", xScale(d.pop2017)).attr("x2", xScale(d.pop2023))
@@ -595,18 +717,21 @@ function addChartFooter(svg, totalH, source) {
         { year: 2023, domestic: 882690,   foreign: 16130 },
         { year: 2024, domestic: 989793,   foreign: 20490 },
     ];
+    tourismData.forEach(d => {
+        d.total = d.domestic + d.foreign;
+    });
 
-    const keys   = ["domestic", "foreign"];
-    const colors = { domestic: "#d00100", foreign: "#f48c06" };
-    const labels = { domestic: "Domestic", foreign: "Foreign" };
-    const stacked = d3.stack().keys(keys)(tourismData);
+    const colors = { default: "#FF0000", peak: "#360516" };
+    const peakYear = tourismData.reduce((best, current) =>
+        current.total > best.total ? current : best
+    ).year;
 
     // Only label alternate years: 2010, 2012, 2014 … 2024
     const altYears = tourismData.map(d => d.year).filter((y, i) => i % 2 === 0);
 
-    const margin = { top: 16, right: 20, bottom: 120, left: 85 };
-    const totalW = 660;
-    const totalH = 405;
+    const margin = { top: 16, right: 20, bottom: 138, left: 85 };
+    const totalW = 720;
+    const totalH = 423;
     const width  = totalW - margin.left - margin.right;
     const height = totalH - margin.top  - margin.bottom;
 
@@ -616,29 +741,31 @@ function addChartFooter(svg, totalH, source) {
     wrap.append("div").attr("class", "chart-title")
         .text("Tourist Arrivals in Gilgit-Baltistan (2010–2024)");
     wrap.append("div").attr("class", "chart-subtitle")
-        .text("Domestic and foreign visitor counts by year");
+        .text("Tourism peaked in 2018, collapsed during COVID-19 in 2020, and recovered steadily through 2024.");
 
     const legendDiv = wrap.append("div").attr("class", "tourism-legend");
-    keys.forEach(k => {
-        const item = legendDiv.append("div").attr("class", "tourism-legend-item");
-        item.append("span").attr("class", "tourism-legend-dot").style("background", colors[k]);
-        item.append("span").text(labels[k]);
-    });
+    let item = legendDiv.append("div").attr("class", "tourism-legend-item");
+    item.append("span").attr("class", "tourism-legend-dot").style("background", colors.default);
+    item.append("span").text("All years");
+    item = legendDiv.append("div").attr("class", "tourism-legend-item");
+    item.append("span").attr("class", "tourism-legend-dot").style("background", colors.peak);
+    item.append("span").text("Peak year (2018)");
 
     const svg = wrap.append("svg")
         .attr("width",  totalW)
         .attr("height", totalH)
-        .style("display", "block");
+        .style("display", "block")
+        .style("overflow", "visible");
 
     const g = svg.append("g")
         .attr("transform", `translate(${margin.left},${margin.top})`);
 
     const xScale = d3.scaleBand()
         .domain(tourismData.map(d => d.year))
-        .range([0, width]).padding(0.25);
+        .range([0, width]).padding(0.2);
 
     const yScale = d3.scaleLinear()
-        .domain([0, d3.max(tourismData, d => d.domestic + d.foreign) * 1.08])
+        .domain([0, d3.max(tourismData, d => d.total) * 1.08])
         .nice().range([height, 0]);
 
     // Horizontal grid lines only
@@ -667,39 +794,31 @@ function addChartFooter(svg, totalH, source) {
         .call(d3.axisLeft(yScale).ticks(5).tickFormat(abbr).tickSize(0))
         .call(ay => ay.select(".domain").remove())
         .call(ay => ay.selectAll(".tick text")
-            .style("fill", "#8a9aa3").style("font-size", "15px"));
+            .style("fill", "#111111").style("font-size", "15px"));
 
     const tooltip = wrap.append("div").attr("class", "bar-tooltip tourism-tooltip");
 
-    // Stacked bar layers
-    stacked.forEach(layer => {
-        const key   = layer.key;
-        const isTop = key === "foreign";
-        g.selectAll(`.bar-${key}`)
-            .data(layer)
-            .join("rect")
-            .attr("class", `bar-${key}`)
-            .attr("x",      d => xScale(d.data.year))
-            .attr("y",      d => yScale(d[1]))
-            .attr("height", d => yScale(d[0]) - yScale(d[1]))
-            .attr("width",  xScale.bandwidth())
-            .attr("fill",   colors[key])
-            .attr("rx",     isTop ? 2 : 0)
-            .style("cursor", "pointer")
-            .on("mousemove", function (event, d) {
-                const total = d.data.domestic + d.data.foreign;
-                tooltip.style("opacity", 1)
-                    .style("left", (event.clientX + 16) + "px")
-                    .style("top",  (event.clientY - 80) + "px")
-                    .html(`
-                        <div class="tt-district">${d.data.year}</div>
-                        <div class="tt-multi-row"><span class="tt-multi-label">Total</span><span class="tt-multi-val">${d3.format(",")(total)}</span></div>
-                        <div class="tt-multi-row"><span style="color:#f08080">Domestic</span><span class="tt-multi-val">${d3.format(",")(d.data.domestic)}</span></div>
-                        <div class="tt-multi-row"><span style="color:#f48c06">Foreign</span><span class="tt-multi-val">${d3.format(",")(d.data.foreign)}</span></div>
-                    `);
-            })
-            .on("mouseleave", () => tooltip.style("opacity", 0));
-    });
+    g.selectAll(".tourism-total-bar")
+        .data(tourismData)
+        .join("rect")
+        .attr("class", "tourism-total-bar")
+        .attr("x", d => xScale(d.year))
+        .attr("rx", 0)
+        .attr("y", d => yScale(d.total))
+        .attr("height", d => height - yScale(d.total))
+        .attr("width", xScale.bandwidth())
+        .attr("fill", d => d.year === peakYear ? colors.peak : colors.default)
+        .style("cursor", "pointer")
+        .on("mousemove", function (event, d) {
+            tooltip.style("opacity", 1)
+                .style("left", (event.clientX + 16) + "px")
+                .style("top",  (event.clientY - 64) + "px")
+                .html(`
+                    <div class="tt-district">${d.year}</div>
+                    <div class="tt-multi-row"><span class="tt-multi-label">Total tourists</span><span class="tt-multi-val">${d3.format(",")(d.total)}</span></div>
+                `);
+        })
+        .on("mouseleave", () => tooltip.style("opacity", 0));
 
     // Abbreviated total labels on top of bars, 15px
     g.selectAll(".total-label")
@@ -707,12 +826,12 @@ function addChartFooter(svg, totalH, source) {
         .join("text")
         .attr("class", "total-label")
         .attr("x", d => xScale(d.year) + xScale.bandwidth() / 2)
-        .attr("y", d => yScale(d.domestic + d.foreign) - 5)
+        .attr("y", d => yScale(d.total) - 5)
         .attr("text-anchor", "middle")
         .attr("font-size", 14)
         .attr("fill", "#505050")
         .attr("pointer-events", "none")
-        .text(d => abbr(d.domestic + d.foreign));
+        .text(d => abbr(d.total));
 
     // COVID-19 annotation
     const covidX = xScale(2020) + xScale.bandwidth() / 2;
@@ -754,11 +873,21 @@ function addChartFooter(svg, totalH, source) {
         { year: 2024, spending: 75.77, gdpPct: 0.1457 },
     ];
 
-    const margin = { top: 16, right: 85, bottom: 120, left: 85 };
-    const totalW = 660;
-    const totalH = 405;
+    const colors = {
+        default: "#FF0000",
+        peak: "#360516",
+        line: "#69030E"
+    };
+    const peakYear = data.reduce((best, current) =>
+        current.spending > best.spending ? current : best
+    ).year;
+
+    const margin = { top: 28, right: 20, bottom: 138, left: 85 };
+    const totalW = 740;
+    const panelH = 146;
+    const panelGap = 72;
+    const totalH = margin.top + panelH + panelGap + panelH + margin.bottom;
     const width  = totalW - margin.left - margin.right;
-    const height = totalH - margin.top  - margin.bottom;
 
     const wrap = d3.select("#spending-chart")
         .append("div").attr("class", "tourism-chart-wrap");
@@ -766,28 +895,27 @@ function addChartFooter(svg, totalH, source) {
     wrap.append("div").attr("class", "chart-title")
         .text("Tourist Spending in Gilgit-Baltistan (2010–2024)");
     wrap.append("div").attr("class", "chart-subtitle")
-        .text("Total annual tourist spending has increased significantly since 2015");
+        .text("Tourist spending and its share of GDP both surged after 2015, peaked in 2018, fell sharply during COVID-19, and recovered steadily by 2024.");
 
     const legendDiv = wrap.append("div").attr("class", "tourism-legend");
 
     const barItem = legendDiv.append("div").attr("class", "tourism-legend-item");
-    barItem.append("span").attr("class", "tourism-legend-dot").style("background", "#d00100");
-    barItem.append("span").text("Total Spending (Billion PKR)");
+    barItem.append("span").attr("class", "tourism-legend-dot").style("background", colors.default);
+    barItem.append("span").text("All years");
+
+    const peakItem = legendDiv.append("div").attr("class", "tourism-legend-item");
+    peakItem.append("span").attr("class", "tourism-legend-dot").style("background", colors.peak);
+    peakItem.append("span").text("Peak year (2018)");
 
     const lineItem = legendDiv.append("div").attr("class", "tourism-legend-item");
-    const lineSvg  = lineItem.append("svg").attr("width", 24).attr("height", 12);
-    lineSvg.append("line")
-        .attr("x1", 0).attr("x2", 24).attr("y1", 6).attr("y2", 6)
-        .attr("stroke", "#f48c06").attr("stroke-width", 2.5);
-    lineSvg.append("circle")
-        .attr("cx", 12).attr("cy", 6).attr("r", 3.5)
-        .attr("fill", "#f48c06").attr("stroke", "#fff").attr("stroke-width", 1.5);
+    lineItem.append("span").attr("class", "tourism-legend-dot").style("background", colors.line);
     lineItem.append("span").text("Tourist Spending % of GDP");
 
     const svg = wrap.append("svg")
         .attr("width",  totalW)
         .attr("height", totalH)
-        .style("display", "block");
+        .style("display", "block")
+        .style("overflow", "visible");
 
     const g = svg.append("g")
         .attr("transform", `translate(${margin.left},${margin.top})`);
@@ -795,20 +923,54 @@ function addChartFooter(svg, totalH, source) {
     // Only label alternate years to avoid overlap
     const altYears = data.map(d => d.year).filter((y, i) => i % 2 === 0);
 
-    const xScale = d3.scaleBand().domain(data.map(d => d.year)).range([0, width]).padding(0.3);
-    const yLeft  = d3.scaleLinear().domain([0, d3.max(data, d => d.spending) * 1.1]).nice().range([height, 0]);
-    const yRight = d3.scaleLinear().domain([0, d3.max(data, d => d.gdpPct) * 1.1]).nice().range([height, 0]);
+    const xScale = d3.scaleBand().domain(data.map(d => d.year)).range([0, width]).padding(0.16);
+    const ySpend = d3.scaleLinear().domain([0, d3.max(data, d => d.spending) * 1.1]).nice().range([panelH, 0]);
+    const yGdp   = d3.scaleLinear().domain([0, d3.max(data, d => d.gdpPct) * 1.1]).nice().range([panelH, 0]);
+    const spendingG = g.append("g");
+    const gdpG = g.append("g").attr("transform", `translate(0,${panelH + panelGap})`);
 
-    // Horizontal grid lines only
-    g.append("g")
-        .call(d3.axisLeft(yLeft).ticks(5).tickSize(-width).tickFormat(""))
+    spendingG.append("g")
+        .call(d3.axisLeft(ySpend).ticks(5).tickSize(-width).tickFormat(""))
         .call(gg => gg.select(".domain").remove())
         .call(gg => gg.selectAll(".tick line")
             .style("stroke", "#e4e9eb").style("stroke-dasharray", "none"));
 
-    // x axis — bold line, alternate year labels only, 15px
-    g.append("g")
-        .attr("transform", `translate(0,${height})`)
+    spendingG.append("g")
+        .call(d3.axisLeft(ySpend).ticks(5).tickFormat(d => Math.round(d) + "B").tickSize(0))
+        .call(ay => ay.select(".domain").remove())
+        .call(ay => ay.selectAll(".tick text")
+            .style("fill", "#111111").style("font-size", "15px"));
+
+    spendingG.append("text")
+        .attr("x", -margin.left)
+        .attr("y", -20)
+        .attr("font-size", 14)
+        .attr("font-weight", "700")
+        .attr("fill", "#505050")
+        .text("Total Spending (Billion PKR)");
+
+    gdpG.append("g")
+        .call(d3.axisLeft(yGdp).ticks(5).tickSize(-width).tickFormat(""))
+        .call(gg => gg.select(".domain").remove())
+        .call(gg => gg.selectAll(".tick line")
+            .style("stroke", "#e4e9eb").style("stroke-dasharray", "none"));
+
+    gdpG.append("g")
+        .call(d3.axisLeft(yGdp).ticks(5).tickFormat(d => Math.round(d * 100) + "%").tickSize(0))
+        .call(ay => ay.select(".domain").remove())
+        .call(ay => ay.selectAll(".tick text")
+            .style("fill", "#111111").style("font-size", "15px"));
+
+    gdpG.append("text")
+        .attr("x", -margin.left)
+        .attr("y", -(panelGap / 2) + 6)
+        .attr("font-size", 14)
+        .attr("font-weight", "700")
+        .attr("fill", "#505050")
+        .text("Tourist Spending % of GDP");
+
+    gdpG.append("g")
+        .attr("transform", `translate(0,${panelH})`)
         .call(d3.axisBottom(xScale)
             .tickSize(0)
             .tickValues(altYears)
@@ -818,35 +980,6 @@ function addChartFooter(svg, totalH, source) {
         .call(ax => ax.selectAll(".tick text")
             .style("fill", "#111111").style("font-size", "15px").attr("dy", "1.4em"));
 
-    // Left y axis — spending, 15px, gray
-    g.append("g")
-        .call(d3.axisLeft(yLeft).ticks(5).tickFormat(d => Math.round(d) + "B").tickSize(0))
-        .call(ay => ay.select(".domain").remove())
-        .call(ay => ay.selectAll(".tick text")
-            .style("fill", "#8a9aa3").style("font-size", "15px"));
-
-    g.append("text")
-        .attr("transform", "rotate(-90)")
-        .attr("x", -height / 2).attr("y", -68)
-        .attr("text-anchor", "middle")
-        .attr("font-size", 15).attr("fill", "#505050")
-        .text("Total Spending (Billion PKR)");
-
-    // Right y axis — GDP %, 15px, gray
-    g.append("g")
-        .attr("transform", `translate(${width}, 0)`)
-        .call(d3.axisRight(yRight).ticks(5).tickFormat(d => Math.round(d * 100) + "%").tickSize(0))
-        .call(ay => ay.select(".domain").remove())
-        .call(ay => ay.selectAll(".tick text")
-            .style("fill", "#8a9aa3").style("font-size", "15px").attr("dx", "8px"));
-
-    g.append("text")
-        .attr("transform", "rotate(-90)")
-        .attr("x", -height / 2).attr("y", width + 74)
-        .attr("text-anchor", "middle")
-        .attr("font-size", 15).attr("fill", "#505050")
-        .text("Tourist Spending % of GDP");
-
     const tooltip = wrap.append("div").attr("class", "bar-tooltip tourism-tooltip");
 
     const showTip = (event, d) => {
@@ -855,90 +988,91 @@ function addChartFooter(svg, totalH, source) {
             .style("top",  (event.clientY - 80) + "px")
             .html(`
                 <div class="tt-district">${d.year}</div>
-                <div class="tt-multi-row"><span style="color:#f08080">Spending</span><span class="tt-multi-val">${d.spending.toFixed(2)}B PKR</span></div>
-                <div class="tt-multi-row"><span style="color:#f48c06">% of GDP</span><span class="tt-multi-val">${(d.gdpPct * 100).toFixed(3)}%</span></div>
+                <div class="tt-multi-row"><span class="tt-multi-label">Spending</span><span class="tt-multi-val">${d.spending.toFixed(2)}B PKR</span></div>
+                <div class="tt-multi-row"><span class="tt-multi-label">% of GDP</span><span class="tt-multi-val">${(d.gdpPct * 100).toFixed(3)}%</span></div>
             `);
     };
     const hideTip = () => tooltip.style("opacity", 0);
 
     // Bars
-    g.selectAll(".bar-spending")
+    spendingG.selectAll(".bar-spending")
         .data(data)
         .join("rect")
         .attr("class", "bar-spending")
         .attr("x",           d => xScale(d.year))
-        .attr("y",           d => yLeft(d.spending))
+        .attr("rx",          0)
+        .attr("y",           d => ySpend(d.spending))
         .attr("width",       xScale.bandwidth())
-        .attr("height",      d => height - yLeft(d.spending))
-        .attr("fill",        "#d00100")
+        .attr("height",      d => panelH - ySpend(d.spending))
+        .attr("fill",        d => d.year === peakYear ? colors.peak : colors.default)
         // .attr("fill-opacity", 0.85)
-        .attr("rx", 2)
         .style("cursor", "pointer")
         .on("mousemove", showTip)
         .on("mouseleave", hideTip);
 
-    // Bar labels — 12px, rounded
-    g.selectAll(".bar-label")
+    // Bar labels — 12px
+    spendingG.selectAll(".bar-label")
         .data(data)
         .join("text")
         .attr("class", "bar-label")
         .attr("x", d => xScale(d.year) + xScale.bandwidth() / 2)
-        .attr("y", d => yLeft(d.spending) - 5)
+        .attr("y", d => ySpend(d.spending) - 5)
         .attr("text-anchor", "middle")
         .attr("font-size", 14)
         .attr("fill", "#505050")
         .attr("pointer-events", "none")
         .text(d => d.spending >= 10 ? Math.round(d.spending) : d.spending.toFixed(1));
 
-    // Line — GDP %
-    const lineGen = d3.line()
-        .x(d => xScale(d.year) + xScale.bandwidth() / 2)
-        .y(d => yRight(d.gdpPct))
-        .curve(d3.curveMonotoneX);
-
-    g.append("path")
-        .datum(data)
-        .attr("fill", "none")
-        .attr("stroke", "#f48c06")
-        .attr("stroke-width", 3)
-        .attr("d", lineGen);
-
-    // Dots on GDP line
-    g.selectAll(".dot-gdp")
+    // Bars — GDP % of output
+    gdpG.selectAll(".bar-gdp")
         .data(data)
-        .join("circle")
-        .attr("class", "dot-gdp")
-        .attr("cx", d => xScale(d.year) + xScale.bandwidth() / 2)
-        .attr("cy", d => yRight(d.gdpPct))
-        .attr("r", 3.5)
-        .attr("fill", "#f48c06")
-        .attr("stroke", "#fff")
-        .attr("stroke-width", 1.5)
+        .join("rect")
+        .attr("class", "bar-gdp")
+        .attr("x", d => xScale(d.year))
+        .attr("rx", 0)
+        .attr("y", d => yGdp(d.gdpPct))
+        .attr("width", xScale.bandwidth())
+        .attr("height", d => panelH - yGdp(d.gdpPct))
+        .attr("fill", d => d.year === peakYear ? colors.peak : colors.line)
         .style("cursor", "pointer")
         .on("mousemove", showTip)
         .on("mouseleave", hideTip);
 
+    gdpG.selectAll(".gdp-label")
+        .data(data)
+        .join("text")
+        .attr("class", "gdp-label")
+        .attr("x", d => xScale(d.year) + xScale.bandwidth() / 2)
+        .attr("y", d => yGdp(d.gdpPct) - 5)
+        .attr("text-anchor", "middle")
+        .attr("font-size", 14)
+        .attr("fill", "#505050")
+        .attr("pointer-events", "none")
+        .text(d => Math.round(d.gdpPct * 100) + "%");
+
     // CPEC announced annotation (2015)
     const cpecX = xScale(2015) + xScale.bandwidth() / 2;
-    g.append("line")
+    spendingG.append("line")
         .attr("x1", cpecX).attr("x2", cpecX)
-        .attr("y1", 0).attr("y2", height)
+        .attr("y1", 18).attr("y2", panelH)
         .attr("stroke", "#c0c8cc").attr("stroke-width", 1)
         .attr("stroke-dasharray", "4,3");
-    g.append("text")
-        .attr("x", cpecX + 4).attr("y", 14)
+    spendingG.append("text")
+        .attr("x", cpecX).attr("y", 8)
+        .attr("text-anchor", "middle")
         .attr("font-size", 14).attr("fill", "#505050")
         .text("CPEC announced");
 
     // COVID-19 annotation
     const covidX = xScale(2020) + xScale.bandwidth() / 2;
-    g.append("line")
+    spendingG.append("line")
         .attr("x1", covidX).attr("x2", covidX)
-        .attr("y1", 0).attr("y2", height)
+        .attr("y1", 18).attr("y2", panelH)
         .attr("stroke", "#c0c8cc").attr("stroke-width", 1)
         .attr("stroke-dasharray", "4,3");
-    g.append("text")
-        .attr("x", covidX + 4).attr("y", 14)
+    spendingG.append("text")
+        .attr("x", covidX).attr("y", 8)
+        .attr("text-anchor", "middle")
         .attr("font-size", 14).attr("fill", "#505050")
         .text("COVID-19");
 
@@ -996,11 +1130,11 @@ function addChartFooter(svg, totalH, source) {
     const fmtB = v => parseFloat(v.toFixed(3)) + "B";
 
     const TOTAL      = DATA.value;
-    const margin     = { top: 20, right: 170, bottom: 130, left: 40 };
-    const totalW     = 750;
-    const totalH     = 450;
-    const INNER_W    = totalW - margin.left - margin.right;  // 510
-    const INNER_H    = totalH - margin.top - margin.bottom;  // 310
+    const margin     = { top: 20, right: 40, bottom: 138, left: 40 };
+    const totalW     = 740;
+    const totalH     = 472;
+    const INNER_W    = totalW - margin.left - margin.right;
+    const INNER_H    = totalH - margin.top - margin.bottom;
     const GAP        = 6;
     const categories = DATA.children;
 
@@ -1019,7 +1153,7 @@ function addChartFooter(svg, totalH, source) {
     wrap.append("div").attr("class", "chart-title")
         .text("Inflows by Source — GB Budget 2024–25");
     wrap.append("div").attr("class", "chart-subtitle")
-        .text("Over 70% of the GB's annual budget is funded by the federal government in Islamabad");
+        .text("Gilgit-Baltistan's PKR 140.17B budget is dominated by federal inflows, with more than 70% tied to Islamabad.");
 
     const svg = wrap.append("svg")
         .attr("width",  totalW)
@@ -1061,6 +1195,7 @@ function addChartFooter(svg, totalH, source) {
 
             g.append("rect")
                 .attr("x", cat.x).attr("y", segY)
+                .attr("rx", 0)
                 .attr("width", cat.colW).attr("height", segH)
                 .attr("fill", color)
                 .attr("stroke", "#fff").attr("stroke-width", 0.5)
@@ -1141,21 +1276,6 @@ function addChartFooter(svg, totalH, source) {
             .attr("fill", "#353535")
             .text("(" + (cat.value / TOTAL * 100).toFixed(0) + "% of total)");
     });
-
-    // Total budget label — centred in right margin, 10% of SVG width (66px) further right
-    // Wheat Subsidy right edge ≈ INNER_W (510); label centre at INNER_W + 121 = 631 group (671 SVG)
-    const totalX = INNER_W + 100;
-    g.append("text")
-        .attr("x", totalX).attr("y", INNER_H + 22)
-        .attr("text-anchor", "middle")
-        .attr("font-size", 14).attr("font-weight", "700").attr("fill", "#d00100")
-        .attr("letter-spacing", "0.06em")
-        .text("TOTAL");
-    g.append("text")
-        .attr("x", totalX).attr("y", INNER_H + 40)
-        .attr("text-anchor", "middle")
-        .attr("font-size", 14).attr("font-weight", "700").attr("fill", "#d00100")
-        .text("140.17B" + " PKR");
 
     // Footer — source & logo positioned 15% lower than addChartFooter default
     // Default offsets from bottom: source −48, logo −30. At 85% → source −41, logo −26.
@@ -1482,8 +1602,8 @@ function addChartFooter(svg, totalH, source) {
 /* =============================================================================
    9. BUDGET BUBBLE CHART — District Budget vs Per Capita Budget
    Scatter/bubble chart: x = total budget (M PKR), y = per capita budget,
-   fixed-radius circles coloured by population (YlOrRd gradient).
-   Colour legend top-right. Source/logo via addChartFooter.
+   with color showing whether districts sit above or below the average.
+   Source/logo via addChartFooter.
    ============================================================================= */
 (function buildBudgetBubbleChart() {
     const mount = document.getElementById("budget-bubble-chart");
@@ -1502,10 +1622,9 @@ function addChartFooter(svg, totalH, source) {
         { district: "Kharmang", budget:  624.96, population:  61304, perCapita: 0.010194359 },
     ];
 
-    const FIXED_R = 12;
-    const margin  = { top: 75, right: 40, bottom: 143, left: 70 };
+    const margin  = { top: 34, right: 40, bottom: 143, left: 70 };
     const totalW  = 660;
-    const totalH  = 538;
+    const totalH  = 590;
     const W       = totalW - margin.left - margin.right;
     const H       = totalH - margin.top  - margin.bottom;
 
@@ -1514,7 +1633,7 @@ function addChartFooter(svg, totalH, source) {
     const card = wrap.append("div").attr("class", "budget-bubble-wrap");
     card.append("div").attr("class", "chart-title").text("Annual Development Programme Allocation by District");
     card.append("div").attr("class", "chart-subtitle")
-        .text("Per capita development budget under the ADP varies significantly across districts, reflecting the geographic challenges");
+        .text("Hunza and Kharmang receive the highest per capita ADP allocations, both well above the GB average of 8.4k PKR, while Diamer sits at the low end.");
 
     const svg = card.append("svg")
         .attr("width",  totalW)
@@ -1531,14 +1650,11 @@ function addChartFooter(svg, totalH, source) {
         .range([0, W]);
 
     const yScale = d3.scaleLinear()
-        .domain([0.005, 0.012])   // cap at 12k PKR per capita
+        .domain([0.005, 0.011])   // cap at 11k PKR per capita
         .range([H, 0]);
 
-    const popMin = d3.min(data, d => d.population);
-    const popMax = d3.max(data, d => d.population);
-    const colorScale = d3.scaleSequential()
-        .domain([popMin, popMax])
-        .interpolator(d3.interpolateYlOrRd);
+    const avgPerCapita = d3.mean(data, d => d.perCapita);
+    const bubbleRadius = 12;
 
     // Horizontal grid lines only
     g.append("g")
@@ -1557,7 +1673,36 @@ function addChartFooter(svg, totalH, source) {
     g.append("g")
         .call(d3.axisLeft(yScale).ticks(6).tickFormat(d => (d * 1000).toFixed(1) + "k").tickSize(0))
         .call(ay => ay.select(".domain").remove())
-        .call(ay => ay.selectAll(".tick text").attr("fill", "#8a9aa3").attr("font-size", 14));
+        .call(ay => ay.selectAll(".tick text").attr("fill", "#111111").attr("font-size", 14));
+
+    const avgLineY = yScale(avgPerCapita);
+    g.append("line")
+        .attr("x1", 0)
+        .attr("x2", W)
+        .attr("y1", avgLineY)
+        .attr("y2", avgLineY)
+        .attr("stroke", "#9eabb2")
+        .attr("stroke-width", 1)
+        .attr("stroke-dasharray", "4,4");
+
+    const avgLabel = g.append("text")
+        .attr("x", W + 8)
+        .attr("y", avgLineY - 4)
+        .attr("text-anchor", "start")
+        .attr("font-size", 15)
+        .attr("font-weight", "400")
+        .attr("fill", "#505050");
+
+    avgLabel.append("tspan")
+        .attr("x", W + 8)
+        .text("Avg. per capita");
+
+    avgLabel.append("tspan")
+        .attr("x", W + 8)
+        .attr("dy", "1.2em")
+        .attr("font-size", 20)
+        .attr("font-weight", "700")
+        .text((avgPerCapita * 1000).toFixed(1) + "k PKR");
 
     // Axis labels
     g.append("text")
@@ -1588,33 +1733,31 @@ function addChartFooter(svg, totalH, source) {
         .attr("transform", d => `translate(${xScale(d.budget)},${yScale(d.perCapita)})`);
 
     bubbleG.append("circle")
-        .attr("r",            FIXED_R)
-        .attr("fill",         d => colorScale(d.population))
+        .attr("r",            bubbleRadius)
+        .attr("fill",         d => d.perCapita >= avgPerCapita ? "#360516" : "#FF0000")
         .attr("fill-opacity", 0.9)
-        .attr("stroke",       "#8a9aa3")
-        .attr("stroke-width", 1)
         .style("cursor", "default")
         .on("mouseenter", function(event, d) {
-            d3.select(this).attr("fill-opacity", 1).attr("stroke-width", 2);
+            d3.select(this).attr("fill-opacity", 1);
             tooltip.style("opacity", 1)
                 .style("left", (event.clientX + 14) + "px")
                 .style("top",  (event.clientY - 50) + "px")
                 .html(`<div class="tt-title">${d.district}</div>
                        <div class="tt-row"><span class="tt-muted">Budget</span><span>${d.budget.toFixed(1)}M PKR</span></div>
                        <div class="tt-row"><span class="tt-muted">Per Capita</span><span>${(d.perCapita * 1000).toFixed(1)}k PKR</span></div>
-                       <div class="tt-row"><span class="tt-muted">Population</span><span>${d3.format(",")(d.population)}</span></div>`);
+                       <div class="tt-row"><span class="tt-muted">Relative to avg.</span><span>${d.perCapita >= avgPerCapita ? "Above average" : "Below average"}</span></div>`);
         })
         .on("mousemove", function(event) {
             tooltip.style("left", (event.clientX + 14) + "px")
                    .style("top",  (event.clientY - 50) + "px");
         })
         .on("mouseleave", function() {
-            d3.select(this).attr("fill-opacity", 0.9).attr("stroke-width", 1.5);
+            d3.select(this).attr("fill-opacity", 0.9);
             tooltip.style("opacity", 0);
         });
 
     // District labels — left for Skardu (large x), right for all others
-    const labelX      = d => d.district === "Skardu" ? -(FIXED_R + 6) : (FIXED_R + 6);
+    const labelX      = d => d.district === "Skardu" ? -(bubbleRadius + 6) : (bubbleRadius + 6);
     const labelAnchor = d => d.district === "Skardu" ? "end" : "start";
 
     // District name (top line)
@@ -1637,33 +1780,6 @@ function addChartFooter(svg, totalH, source) {
         .attr("fill", "#505050")
         .attr("pointer-events", "none")
         .text(d => (d.perCapita * 1000).toFixed(1) + "k");
-
-    // Colour gradient legend (top-right)
-    const legendW = 140, legendH = 10;
-    const defs = svg.append("defs");
-    const lgId = "bub-pop-gradient";
-    const lg   = defs.append("linearGradient").attr("id", lgId).attr("x1", "0%").attr("x2", "100%");
-    d3.range(0, 1.01, 0.1).forEach(t => {
-        lg.append("stop")
-            .attr("offset", (t * 100) + "%")
-            .attr("stop-color", colorScale(popMin + t * (popMax - popMin)));
-    });
-
-    // Legend anchored to SVG (not g) so increasing margin.top only moves the plot, not the legend
-    const legG = svg.append("g").attr("transform", "translate(0,10)");
-    legG.append("text")
-        .attr("font-size", 13).attr("fill", "#666").attr("y", -8)
-        .text("Population");
-    legG.append("rect")
-        .attr("width", legendW).attr("height", legendH)
-        .attr("rx", 3).attr("fill", `url(#${lgId})`);
-    legG.append("text")
-        .attr("font-size", 13).attr("fill", "#666").attr("y", legendH + 16)
-        .text("60k");
-    legG.append("text")
-        .attr("font-size", 13).attr("fill", "#666").attr("y", legendH + 16)
-        .attr("x", legendW).attr("text-anchor", "end")
-        .text("350k");
 
     addChartFooter(svg, totalH, "GB Finance Department, Budget 2024–25");
 })();
