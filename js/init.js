@@ -136,7 +136,108 @@
     });
 
     $(function() {
-        // jQuery ready — add any DOM-ready logic here.
+        var body = document.body;
+        var articleStart = document.querySelector('[data-reading-start]');
+
+        if (!body.classList.contains('article-page') ||
+            body.getAttribute('data-reading-progress') === 'off' ||
+            !articleStart) {
+            return;
+        }
+
+        var progress = document.createElement('aside');
+        var progressContent = document.createElement('div');
+        var progressArticle = document.createElement('div');
+        var progressKicker = document.createElement('span');
+        var progressTitle = document.createElement('span');
+        var progressActions = document.createElement('div');
+        var progressFill = document.createElement('div');
+        var pageTitle = document.querySelector('h1:not(.nav-title)');
+        var articleKicker = document.querySelector('.textbox');
+        var footer = document.getElementById('footer');
+        var ticking = false;
+
+        progress.className = 'reading-progress';
+        progress.setAttribute('aria-label', 'Article reading tools');
+        progressContent.className = 'reading-progress__content';
+        progressArticle.className = 'reading-progress__article';
+        progressKicker.className = 'reading-progress__kicker';
+        progressKicker.textContent = articleKicker ? articleKicker.textContent.trim() : 'Article';
+        progressTitle.className = 'reading-progress__title';
+        progressTitle.textContent = pageTitle ? pageTitle.textContent.trim() : document.title;
+        progressActions.className = 'reading-progress__actions';
+        progressFill.className = 'reading-progress__fill';
+        progressArticle.appendChild(progressKicker);
+        progressArticle.appendChild(progressTitle);
+        progressContent.appendChild(progressArticle);
+        progressContent.appendChild(progressActions);
+        progress.appendChild(progressContent);
+        progress.appendChild(progressFill);
+        body.appendChild(progress);
+
+        function createAction(label, icon, handler) {
+            var action = document.createElement('button');
+            action.type = 'button';
+            action.className = 'reading-progress__action';
+            action.setAttribute('aria-label', label);
+            action.innerHTML = icon;
+            action.addEventListener('click', handler);
+            progressActions.appendChild(action);
+            return action;
+        }
+
+        var shareIcon = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"></path></svg>';
+        var printIcon = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><path d="M6 14h12v7H6z"></path></svg>';
+        var bookmarkIcon = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v20l-6-4-6 4z"></path></svg>';
+
+        createAction('Share this article', shareIcon, function() {
+            var shareData = { title: progressTitle.textContent, url: window.location.href };
+
+            if (navigator.share) {
+                navigator.share(shareData).catch(function() {});
+            } else if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(shareData.url).catch(function() {});
+            }
+        });
+        createAction('Print this article', printIcon, function() { window.print(); });
+        var bookmarkAction = createAction('Save this article', bookmarkIcon, function() {
+            bookmarkAction.classList.toggle('is-saved');
+            bookmarkAction.setAttribute('aria-label', bookmarkAction.classList.contains('is-saved') ? 'Remove saved article' : 'Save this article');
+        });
+
+        function fixedNavigationHeight() {
+            var mobileNavigation = document.getElementById('navButton');
+            var desktopNavigation = document.getElementById('header');
+            var navigation = mobileNavigation || desktopNavigation;
+
+            return navigation ? navigation.getBoundingClientRect().height : 0;
+        }
+
+        function updateReadingProgress() {
+            var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            var navigationHeight = fixedNavigationHeight();
+            var start = articleStart.getBoundingClientRect().top + scrollTop - navigationHeight;
+            var footerTop = footer ? footer.getBoundingClientRect().top + scrollTop : document.documentElement.scrollHeight;
+            var end = Math.max(start + 1, footerTop - window.innerHeight + navigationHeight);
+            var value = Math.max(0, Math.min(100, ((scrollTop - start) / (end - start)) * 100));
+            var isReading = scrollTop >= start && scrollTop < footerTop;
+
+            progressFill.style.width = value + '%';
+            progress.classList.toggle('is-visible', isReading);
+            ticking = false;
+        }
+
+        function requestUpdate() {
+            if (!ticking) {
+                window.requestAnimationFrame(updateReadingProgress);
+                ticking = true;
+            }
+        }
+
+        window.addEventListener('scroll', requestUpdate, { passive: true });
+        window.addEventListener('resize', requestUpdate);
+        window.addEventListener('load', requestUpdate);
+        requestUpdate();
     });
 
 })(jQuery);

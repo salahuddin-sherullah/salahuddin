@@ -48,6 +48,19 @@
 		display: none;
 	}
 
+	.reading-progress {
+		height: 60px;
+		top: 56px;
+		z-index: 10000;
+	}
+
+	.reading-progress__content { padding: 0 1rem; }
+	.reading-progress__article { gap: .75rem; }
+	.reading-progress__kicker { font-size: .72rem; }
+	.reading-progress__title { font-size: .88rem; }
+	.reading-progress__actions { margin-left: .5rem; }
+	.reading-progress__action { padding: 0 .5rem; width: 38px; }
+
 /* ── Mobile top bar (fixed strip) ── */
 
 	#navButton {
