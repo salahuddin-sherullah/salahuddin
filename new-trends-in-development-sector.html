@@ -16,6 +16,8 @@
 			<link rel="stylesheet" href="css/style.css" />
 			<link rel="stylesheet" href="css/style-xlarge.css" />
 		</noscript>
+    <link rel="stylesheet" href="css/articles/foundations-chart.css" />
+    <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
 </head>
 
 <body id="top" class="article-page">
@@ -115,9 +117,11 @@
                         work closely with philanthropists to identify opportunities for impact investing. Unlike national aid agencies, private donors treat their funding as investments and care about the most impact ‘per dollar’. I am a big proponent
                         of impact investing and believe that this model, if backed up by credible research and data, can produce desirable results and help design better pro-poor initiatives. I think effective and mutually beneficial public-private partnerships
                         can catalyze innovative solutions to social problems. However, impartiality is a prerequisite for these partnerships to be effective in the true sense. </p>
-                    <img src="images/foundations.png" />
+                    <figure class="foundations-chart-figure">
+                        <div id="foundations-chart" aria-live="polite"></div>
+                    </figure>
 
-                    <p> The graph above shows the the top 10 wealthiest charitable foundations in the world. Many of these foundations are leading research in health and education sectors.</p>
+                    <p>The graph above shows the top 10 wealthiest charitable foundations in the world. Many of these foundations are leading research in health and education sectors.</p>
                     <p>The proliferation of private funding has also led to another change; philanthropy is conducted like business. This new kind of philanthropy is termed philanthrocapitalism where private donors carefully assess the ‘return on their investment’.
                         They engage consultancy firms and experts to identify the social problems that are worth investing in and which have the potential to generate returns in the long term. They use ‘commercial viability’ as a criterion to decide which
                         social enterprises or initiatives to support. They also set the agenda on which social problems require the most attention. Furthermore, with so many technology companies looking to tackle social problems, venture capital money
@@ -215,6 +219,7 @@
         </div>
     </footer>
 
+    <script src="js/articles/foundations-chart.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,113 @@
+/* Navigation and reading layout for the MA policy paper. */
+.policy-article-nav-shell {
+    position: fixed;
+    left: 0;
+    /* Header (3rem) + reading-progress bar (62px) + a small visual gap. */
+    top: 7.5rem;
+    z-index: 9500;
+    display: flex;
+    align-items: flex-start;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateX(-18px);
+    transition: opacity .26s ease, transform .26s ease;
+    visibility: hidden;
+}
+.policy-article-nav-shell.is-visible { opacity: 1; transform: translateX(0); visibility: visible; }
+.policy-article-nav-toggle, .policy-article-nav-panel { pointer-events: auto; }
+.policy-article-nav-toggle {
+    appearance: none;
+    background: #ff0000;
+    border: 0;
+    color: #fff;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 70px;
+    width: 60px;
+    padding: 0;
+    box-shadow: 0 14px 30px rgba(2, 6, 29, .22);
+}
+.policy-article-nav-toggle:hover, .policy-article-nav-toggle:focus-visible { background: #cf0000; outline: none; }
+.policy-article-nav-toggle-open, .policy-article-nav-toggle-close { position: absolute; width: 18px; height: 18px; transition: opacity .18s ease, transform .18s ease; }
+.policy-article-nav-toggle-open::before, .policy-article-nav-toggle-close::before, .policy-article-nav-toggle-close::after { content: ""; position: absolute; background: currentColor; }
+.policy-article-nav-toggle-open::before { width: 18px; height: 2px; top: 3px; left: 0; box-shadow: 0 6px 0 0 currentColor, 0 12px 0 0 currentColor; }
+.policy-article-nav-toggle-close { opacity: 0; transform: scale(.8); }
+.policy-article-nav-toggle-close::before, .policy-article-nav-toggle-close::after { width: 22px; height: 2px; top: calc(50% - 1px); left: calc(50% - 11px); }
+.policy-article-nav-toggle-close::before { transform: rotate(45deg); }
+.policy-article-nav-toggle-close::after { transform: rotate(-45deg); }
+.policy-article-nav-panel { width: 0; overflow: hidden; transition: width .26s ease; }
+.policy-article-nav-item {
+    background: #fff;
+    border-top: 1px solid #e4e9eb;
+    box-shadow: 0 8px 18px rgba(2, 6, 29, .08);
+    color: #360516 !important;
+    display: flex;
+    align-items: center;
+    min-height: 76px;
+    padding: 1rem 1.25rem;
+    position: relative;
+    width: 100%;
+}
+.policy-article-nav-item::after { content: ""; position: absolute; top: 0; right: 0; bottom: 0; width: 10px; background: #69030e; transition: width .2s ease, background-color .2s ease; }
+.policy-article-nav-item.active { color: #ff0000 !important; font-weight: 700; }
+.policy-article-nav-item.active::after { width: 14px; background: #ff0000; }
+.policy-article-nav-item:hover, .policy-article-nav-item:focus-visible { background: #fff6f6; color: #cf0000 !important; outline: none; }
+.policy-article-nav-item:hover::after, .policy-article-nav-item:focus-visible::after { background: #cf0000; }
+.policy-article-nav-label { display: block; font-size: .94rem; line-height: 1.3; max-width: 19ch; }
+body.policy-article-nav-open .policy-article-nav-panel { width: 290px; }
+body.policy-article-nav-open .policy-article-nav-toggle-open { opacity: 0; transform: scale(.8); }
+body.policy-article-nav-open .policy-article-nav-toggle-close { opacity: 1; transform: scale(1); }
+body.policy-article-nav-open { overflow-x: hidden; }
+
+.policy-paper-hero img { display: block; width: 100%; margin-top: 1.5em; }
+.policy-paper-section { scroll-margin-top: 9rem; }
+.policy-paper-section + .policy-paper-section { margin-top: 3.5em; }
+.policy-paper-section h2 { color: #111; font-size: 1.55em; letter-spacing: -.02em; margin-bottom: .8em; }
+.policy-paper-section h3 { color: #ff0000; font-size: 1.1em; margin: 1.8em 0 .65em; }
+.policy-paper-section p { max-width: 46em; }
+.policy-paper-lede { font-size: 1.13em; line-height: 1.7; }
+.policy-paper-number { color: #ff0000; font-size: .78em; font-weight: 700; letter-spacing: .12em; margin: 0 0 .35em; }
+.policy-paper-heading {
+    margin: 0 0 1.1em;
+    position: relative;
+}
+.policy-paper-heading-number {
+    color: #ff0000;
+    font-size: 2.9rem;
+    font-weight: 700;
+    letter-spacing: -.07em;
+    line-height: .9;
+    position: absolute;
+    right: calc(100% + 1.15rem);
+    text-align: right;
+    top: .08em;
+    white-space: nowrap;
+}
+.policy-paper-heading h2,
+.policy-paper-heading h3 { margin: 0; }
+.policy-paper-heading--subsection {
+    margin: 1.8em 0 .75em;
+}
+.policy-paper-heading--subsection .policy-paper-heading-number {
+    color: #8a9aa3;
+    font-size: 1.35rem;
+    letter-spacing: -.03em;
+}
+
+@media (max-width: 980px) {
+    /* Mobile header (56px) + reading-progress bar (60px) + a small gap. */
+    .policy-article-nav-shell { top: 7.75rem; }
+    .policy-article-nav-toggle { height: 56px; width: 52px; }
+    body.policy-article-nav-open .policy-article-nav-panel { width: 250px; }
+    .policy-article-nav-item { min-height: 64px; padding: .8rem 1rem; }
+    .policy-article-nav-label { font-size: .85rem; }
+    .policy-paper-heading-number { font-size: 2.35rem; right: calc(100% + .7rem); }
+}
+
+@media (max-width: 600px) {
+    .policy-paper-heading { display: grid; gap: .65rem; grid-template-columns: 3.35rem minmax(0, 1fr); }
+    .policy-paper-heading-number { position: static; text-align: left; }
+}
+@media print { .policy-article-nav-shell { display: none; } }

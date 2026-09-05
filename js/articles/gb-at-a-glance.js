@@ -28,6 +28,34 @@
 /* =============================================================================
    0. SCROLL SCENE — stat reveals on scroll
    ============================================================================= */
+(function initCaptionActions() {
+    const printAction = document.getElementById("caption-print");
+    const shareAction = document.getElementById("caption-share");
+    const bookmarkAction = document.getElementById("caption-bookmark");
+
+    if (printAction) {
+        printAction.addEventListener("click", () => window.print());
+    }
+    if (shareAction) {
+        shareAction.addEventListener("click", () => {
+            const shareData = { title: document.title, url: window.location.href };
+            if (navigator.share) {
+                navigator.share(shareData).catch(() => {});
+            } else if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(shareData.url).catch(() => {});
+            }
+        });
+    }
+    if (bookmarkAction) {
+        bookmarkAction.addEventListener("click", () => {
+            const isSaved = bookmarkAction.classList.toggle("is-saved");
+            bookmarkAction.setAttribute("aria-pressed", String(isSaved));
+            bookmarkAction.setAttribute("aria-label", isSaved ? "Remove saved article" : "Save this article");
+            bookmarkAction.setAttribute("title", isSaved ? "Remove saved article" : "Save this article");
+        });
+    }
+})();
+
 (function initScrollStats() {
     const scene  = document.querySelector('.scroll-scene');
     const items  = document.querySelectorAll('.stat-reveal-item');
@@ -696,7 +724,163 @@ function addChartFooter(svg, totalH, source) {
 
 
 /* =============================================================================
-   5. TOURISM STACKED BAR — domestic vs foreign arrivals 2010–2024
+   5. SEASONAL ELECTRICITY SUPPLY — supply vs. demand in summer and winter
+   ============================================================================= */
+(function buildSeasonalEnergyChart() {
+    const mount = document.getElementById("seasonal-energy-chart");
+    if (!mount) return;
+
+    const data = [
+        { season: "Summer", installedCapacity: 150, generation: 120, peakMin: 250, peakMax: 285, shortfallMin: 130, shortfallMax: 165 },
+        { season: "Winter", installedCapacity: 150, generation: 90,  peakMin: 270, peakMax: 300, shortfallMin: 180, shortfallMax: 210 },
+        { season: "Installed capacity", installedCapacity: 150, generation: 150, peakMin: 150, peakMax: 150, isCapacity: true },
+    ];
+
+    const colors = { supply: "#FF0000", capacity: "#360516", gap: "#e4e9eb" };
+    const margin = { top: 12, right: 30, bottom: 208, left: 80 };
+    const totalW = 720;
+    const totalH = 470;
+    const width = totalW - margin.left - margin.right;
+    const height = totalH - margin.top - margin.bottom;
+    const labelSpace = 75;
+    const formatMW = value => d3.format(".0f")(value) + " MW";
+    const formatRangeMW = (min, max) => d3.format(".0f")(min) + "–" + d3.format(".0f")(max) + " MW";
+
+    const wrap = d3.select(mount).append("div").attr("class", "energy-chart-wrap");
+    wrap.append("div").attr("class", "chart-title")
+        .text("Electricity Supply and Shortfall by Season");
+    wrap.append("div").attr("class", "chart-subtitle")
+        .text("Seasonal bars extend to the upper end of estimated peak demand; red shows available generation and the light-gray remainder shows the indicative shortfall.");
+
+    const legend = wrap.append("div").attr("class", "energy-chart-legend");
+    [["supply", "Available generation"], ["capacity", "Installed capacity"], ["gap", "Indicative shortfall"]].forEach(([key, label]) => {
+        const item = legend.append("div").attr("class", "energy-chart-legend-item");
+        item.append("span").attr("class", "energy-chart-legend-swatch energy-chart-legend-swatch--" + key);
+        item.append("span").text(label);
+    });
+
+    const svg = wrap.append("svg")
+        .attr("width", totalW)
+        .attr("height", totalH)
+        .attr("role", "img")
+        .attr("aria-label", "Summer installed capacity is approximately 150 megawatts, available generation is approximately 120 megawatts, and peak demand is estimated at 250 to 285 megawatts. Winter installed capacity is approximately 150 megawatts, available generation is approximately 90 megawatts, and peak demand is estimated at 270 to 300 megawatts.")
+        .style("display", "block")
+        .style("overflow", "visible");
+    const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+
+    const x = d3.scaleLinear().domain([0, 320]).range([0, width - labelSpace]);
+    const y = d3.scaleBand().domain(data.map(d => d.season)).range([0, height]).padding(0.42);
+
+    g.append("g")
+        .attr("transform", `translate(0,${height})`)
+        .call(d3.axisBottom(x).tickValues([0, 50, 100, 150, 200, 250, 300]).tickSize(0).tickFormat(d => d + " MW"))
+        .call(axis => axis.select(".domain").remove())
+        .call(axis => axis.selectAll(".tick text").style("fill", "#111111").style("font-size", "15px").attr("dy", "1.4em"));
+
+    g.append("g")
+        .call(d3.axisLeft(y).tickSize(0))
+        .call(axis => axis.select(".domain").remove())
+        .call(axis => axis.selectAll(".tick text")
+            .style("fill", "#111111").style("font-size", "16px").style("font-weight", "700")
+            .each(function(d) {
+                if (d !== "Installed capacity") return;
+                const label = d3.select(this).text("");
+                label.append("tspan").attr("x", -9).attr("dy", "-0.45em").text("Installed");
+                label.append("tspan").attr("x", -9).attr("dy", "1.1em").text("capacity");
+            }));
+
+    const tooltip = wrap.append("div").attr("class", "bar-tooltip tourism-tooltip");
+    const rows = g.selectAll(".seasonal-energy-row").data(data).join("g")
+        .attr("class", "seasonal-energy-row")
+        .attr("transform", d => `translate(0,${y(d.season)})`)
+        .style("cursor", "pointer")
+        .on("mousemove", function(event, d) {
+            tooltip.style("opacity", 1)
+                .style("left", (event.clientX + 16) + "px")
+                .style("top", (event.clientY - 70) + "px")
+                .html(d.isCapacity ? `
+                    <div class="tt-district">Installed hydropower capacity</div>
+                    <div class="tt-multi-row"><span class="tt-multi-label">Operational capacity</span><span class="tt-multi-val">≈ ${formatMW(d.generation)}</span></div>
+                ` : `
+                    <div class="tt-district">${d.season}</div>
+                    <div class="tt-multi-row"><span class="tt-multi-label">Installed capacity</span><span class="tt-multi-val">≈ ${formatMW(d.installedCapacity)}</span></div>
+                    <div class="tt-multi-row"><span class="tt-multi-label">Available generation</span><span class="tt-multi-val">≈ ${formatMW(d.generation)}</span></div>
+                    <div class="tt-multi-row"><span class="tt-multi-label">Peak demand</span><span class="tt-multi-val">${formatRangeMW(d.peakMin, d.peakMax)}</span></div>
+                    <div class="tt-multi-row"><span class="tt-multi-label">Shortfall</span><span class="tt-multi-val">${formatRangeMW(d.shortfallMin, d.shortfallMax)}</span></div>
+                `);
+        })
+        .on("mouseleave", () => tooltip.style("opacity", 0));
+
+    rows.append("rect")
+        .attr("width", d => x(d.peakMax))
+        .attr("height", y.bandwidth())
+        .attr("fill", colors.gap);
+
+    rows.append("rect")
+        .attr("width", 0)
+        .attr("height", y.bandwidth())
+        .attr("fill", d => d.isCapacity ? colors.capacity : colors.supply)
+        .transition()
+        .duration(500)
+        .attr("width", d => x(d.generation));
+
+    rows.append("text")
+        .attr("x", d => x(d.generation) / 2)
+        .attr("y", y.bandwidth() / 2)
+        .attr("text-anchor", "middle")
+        .attr("dominant-baseline", "middle")
+        .attr("font-size", 15)
+        .attr("font-weight", 700)
+        .attr("fill", "#ffffff")
+        .attr("pointer-events", "none")
+        .text(d => "≈ " + formatMW(d.generation));
+
+    rows.append("text")
+        .attr("x", d => x(d.peakMax) + 10)
+        .attr("y", y.bandwidth() / 2 - 8)
+        .attr("font-size", 14)
+        .attr("fill", "#505050")
+        .attr("pointer-events", "none")
+        .text(d => d.isCapacity ? "" : "Peak: " + formatRangeMW(d.peakMin, d.peakMax));
+
+    rows.append("text")
+        .attr("x", d => x(d.peakMax) + 10)
+        .attr("y", y.bandwidth() / 2 + 12)
+        .attr("font-size", 14)
+        .attr("fill", "#8a9aa3")
+        .attr("pointer-events", "none")
+        .text(d => d.isCapacity ? "" : "Shortfall: " + formatRangeMW(d.shortfallMin, d.shortfallMax));
+
+    const note = svg.append("text")
+        .attr("x", 0)
+        .attr("y", totalH - 150)
+        .attr("font-size", 13)
+        .attr("fill", "#626262");
+    note.append("tspan")
+        .attr("x", 0)
+        .attr("font-weight", 700)
+        .text("Installed hydropower capacity in GB: ");
+    note.append("tspan")
+        .text("≈ 150 MW (operational).");
+    note.append("tspan")
+        .attr("x", 0)
+        .attr("dy", "1.35em")
+        .text("Available generation and peak demand vary seasonally; the shortfall figures shown are indicative ranges.");
+    note.append("tspan")
+        .attr("x", 0)
+        .attr("dy", "1.35em")
+        .text("Capacity and availability records differ by operational status, maintenance, and reporting method, so they are not reliable");
+    note.append("tspan")
+        .attr("x", 0)
+        .attr("dy", "1.35em")
+        .text("measures of dependable supply.");
+
+    addChartFooter(svg, totalH, "GBRSP, Environment");
+})();
+
+
+/* =============================================================================
+   6. TOURISM STACKED BAR — domestic vs foreign arrivals 2010–2024
    ============================================================================= */
 
 (function buildTourismChart() {

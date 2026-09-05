@@ -59,6 +59,9 @@
             <a href="#gb-economy" class="gb-article-nav-item" data-gb-nav-target="gb-economy">
                 <span class="gb-article-nav-label">Economy</span>
             </a>
+            <a href="#gb-climate" class="gb-article-nav-item" data-gb-nav-target="gb-climate">
+                <span class="gb-article-nav-label">Climate</span>
+            </a>
             <a href="#gb-budget" class="gb-article-nav-item" data-gb-nav-target="gb-budget">
                 <span class="gb-article-nav-label">Budget</span>
             </a>
@@ -80,6 +83,17 @@
                     <br>
                     <img src="images/k2-north-face.jpg" />
                     <figcaption style="font-size: 14px; color: #8a9aa3; margin-top: 1em;">Sarfaranga Desert, Skardu</figcaption>
+                    <div class="caption-actions" aria-label="Article actions">
+                        <button type="button" class="caption-action" id="caption-print" aria-label="Print this article" title="Print this article">
+                            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><path d="M6 14h12v7H6z"></path></svg>
+                        </button>
+                        <button type="button" class="caption-action" id="caption-share" aria-label="Share this article" title="Share this article">
+                            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"></path></svg>
+                        </button>
+                        <button type="button" class="caption-action" id="caption-bookmark" aria-label="Save this article" aria-pressed="false" title="Save this article">
+                            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v20l-6-4-6 4z"></path></svg>
+                        </button>
+                    </div>
                 </section>
             </div>
         </div>
@@ -95,9 +109,10 @@
             <div class="8u skel-cell-important">
                 <section>
 
-                    <p>Gilgit-Baltistan (GB) is widely known as Pakistan's premiere tourist destination. It has grown in popularity with improved accessibility. However, not many people know about how the region operates. The data on this region is scarce, and the little data that is available is neither the most reliable nor easily accessible to the public.</p>
-                    <p>While collecting data for this article, I really had to dig deep. Even finding a basic number as the annual GDP was not as easy. I had to dig through World Bank reports and research articles to get a sense of data availability. Navigating the government websites was a nightmare. The data was non-existent in most cases, but even in cases where the data was available, it was only available in scanned PDFs.</p>
-                    <p>I had to use a bunch of different tools to extract this data and then visualize it. Use of AI tools like Claude Code was crucial to making this project happen. The intention is to create a repository of data related to GB which can be used for research purposes. I hope to continue this project and update as new data becomes available. I also intend to add new sections in the future including one for Climate.</p>
+                    <p>Gilgit-Baltistan (GB) is widely known as Pakistan's premier tourist destination. But that's where its identity ends. Despite gaining immense popularity over the last decade, few people know much about how the region actually functions, especially once the tourist season fades and the region settles into its long winter. Data on GB is scarce, and what little exists is neither fully reliable nor easily accessible to the public.</p>
+                    <p>While researching for this article, I had to dig deep. Even a basic figure like the annual GDP proved difficult to track down. Part of the problem lies in GB's administrative status, which makes formal data collection nearly impossible. Pakistan's national statistics exclude GB altogether, so any "official" numbers that do surface should be treated with caution.</p>
+                    <p>I combed through World Bank reports and research papers just to get a sense of what data existed at all. Navigating government websites was its own ordeal. Most of the time the website was down or the data simply wasn't there, and when it was, it existed only as scanned PDFs. Anyone who works with data knows the particular pain of digging through page after page of scanned files.</p>
+                    <p>To make sense of it all, I relied on a range of tools to extract and visualize the data. AI tools like Claude Code were central to pulling this project together. My goal is to build a lasting repository of GB-related data that researchers can actually use. I plan to keep updating it as new information becomes available, and to expand it further down the line, starting with a dedicated section on climate.</p>
                     <p class="font-libre">Scroll down for a quick snapshot of the region.</p>
                 </section>
             </div>
@@ -161,7 +176,6 @@
                     <!-- ── District Explorer Chart ── -->
                     <div class="explorer-section" id="gb-district-explorer">
                         <h2 class="gb-section-heading"><strong style="color:#FF0000">District Explorer</strong></h2>
-                        <p style="margin-bottom: 1em;">GB has 10 districts. Each district is unique as the data explorer will show below. For many people, these statistics might come as a surprise because GB is often represented as a single entity. Yet, it is more diverse than is typically perceived.</p>
                         <div id="district-explorer"></div>
                     </div>
                     <!-- ── End District Explorer ── -->
@@ -169,19 +183,17 @@
                     <!-- ── Dumbbell Chart ── -->
                     <div class="dumbbell-section" id="gb-population-growth">
                         <h2 class="gb-section-heading"><strong style="color:#FF0000">Population Growth</strong></h2>
-                        <p style="margin-bottom: 1em;">There is a popular perception that everyone is a cousin in Gilgit. Or at least everyone knows everyone else. This used to be almost true for each district because the communities were too interconnected and interdependent. And the population was too small. Furthermore, the region had to be self-sustaining since it was mostly cut off from the rest of the world and the people hardly ever left their villages. People spent time together because the community was all that they had.</p> 
-                        <p>This is not true anymore. In fact, I no longer know most of the new generation in my own small village of Altit. And there are multiple reasons for it. The most important is that many people have left their villages and moved down South and abroad for education and income. There is a whole generation who grew up outside of GB. Secondly, the region's population has grown exponentially and it has become very difficult to keep up with this growth.</p>
-                        <p>The region has grown significantly over the last couple of decades. This is largely due to its improved connectivity to the rest of the country. With an estimated population of 1.7 million, it constitutes less than 1% of Pakistan's total population of 240 million. For context, Islamabad, which has an area of just 1.25% of GB, has a population of over 2 million.</p>
+                        <p style="margin-bottom: 1em;">There is a popular perception that everyone is a cousin in Gilgit, or at least that everyone knows everyone else. This used to be almost true for each district because the communities were so interconnected and interdependent, and because the population was too small. Furthermore, the region had to be self-sustaining since it was mostly cut off from the rest of the world, and people hardly ever left their villages. People spent time together because the community was all they had.</p>
+                        <p>This is not true anymore. In fact, I no longer know most of the new generation in my own small village of Altit, and there are multiple reasons for it. The most important is that many people have left their villages and moved down south or abroad for education and income. There is a whole generation that grew up outside of GB. Secondly, the region's population has grown exponentially, and it has become very difficult to keep up with this growth.</p>
                         <div id="dumbbell-chart"></div>
                     </div>
                     <!-- ── End Dumbbell Chart ── -->
 
-                    <p style="margin-top:2em;">The data reveals a territory of stark contrasts: Gilgit city and Diamer host the largest concentrations of people, while Hunza and Kharmang remain sparsely settled despite their geographic scale. The high average household size of 7.33 persons reflects the predominantly rural character of most districts. The sex ratio of 109 — slightly above the national average — is consistent with patterns seen in other mountainous and conservative regions of Pakistan.</p>
-
                     <!-- ── Economy Section ── -->
                     <div class="economy-section" id="gb-economy">
                         <h2 class="gb-section-heading" style="margin-top: 2em;"><strong style="color:#FF0000">Economy</strong></h2>
-                        <p>Gilgit-Baltistan's economy is characterised by low industrialisation, subsistence agriculture, and an expanding services sector driven largely by tourism. The territory is heavily reliant on federal transfers, though its economic base is gradually diversifying as connectivity and infrastructure improve.</p>
+                        <p>The region's economy, just like everything else in the region, has undergone significant transformation. It was not long ago that GB was largely an agricultural economy. And despite the region’s huge size, the arable land is actually quite small. Approximately 1% of the region’s area is cultivable due to rugged terrain and the limited availability of water channels. The landholding is also quite small with most households owning less than 1 acre of land. Compare this to the average farm size in Punjab which is 5-6 acres.</p>
+                        <p>For most of its history, agriculture sustained the region and also provided some monetary income to farmers. In Hunza, for example, potato planting was the biggest economic activity of the year. Today, subsistence farming is nearly non-existent in Hunza, and the little that remains is done for household consumption or for growing high value fruits such as cherries. There are districts, however, such as Skardu, where agriculture still remains a significant part of the economy.</p>
 
                     </div>
                 </section>
@@ -205,21 +217,59 @@
                 <section>
                     <div class="economy-section">
                         <h3 class="gb-subsection-heading" style="margin-top: 1.5em;"><strong>Tourism</strong></h3>
-                        <p>Tourism is the fastest-growing sector in GB's economy. Arrivals climbed from around 53,000 in 2010 to over 1.4 million in 2018, driven by social media exposure, improved road connectivity, and CPEC-linked infrastructure. The COVID-19 pandemic caused a sharp contraction in 2020, reducing foreign arrivals to just over 1,000. Recovery was swift — by 2024, total arrivals approached 1.01 million, with foreign visitors reaching a record 20,490. Hunza, with 175,205 tourists in 2023, is the most-visited district, reflecting its accessibility, scenery, and relatively developed hospitality infrastructure.</p>
+                        <p>Tourism is the fastest-growing sector in GB's economy. Tourist arrivals have climbed steadily, driven by social media exposure, improved road connectivity, and CPEC-linked infrastructure. However, the region's deep dependence on the tourism sector has made it highly vulnerable, as Covid-19 and other climate and geopolitical events have shown over the last decade. This boom has led to an unprecedented number of hotel constructions, often on previously agricultural land, and the resulting competition in the market has driven debt in the region to record levels. A bad season now threatens to bring financial ruin to many hotel owners.</p>
                         <!-- Tourist arrivals 2010–2024 -->
                         <div id="tourism-chart"></div>
 
+                        <p>Tourism has uplifted many communities economically, but there are serious questions about its effects on the region's growing income inequality, social fabric, and the environment. There is a clear divide between those who see tourism as a source of economic growth and those who see it as a source of destruction. In its current form, many critics point out that the tourism sector is unsustainable and a trap waiting to engulf the region in a deep crisis. This is because the region, once self-sustaining, is now highly dependent on outsiders and external forces beyond the region's control.</p>
+                        <p>Despite its many shortcomings, the tourism sector has catalyzed the local informal economy. Small businesses, particularly restaurants and general stores, depend heavily on the sector. Stories of women-led businesses in Hunza and other parts of GB are a testament to the sector's contribution. The cascading effects of the sector on the local economy are undeniable, and increased income has led to an increase in economic activity. People can now afford new electrical appliances, build new homes, and afford better health care and education. But one must be careful about attributing these gains to the tourism sector alone, as tourism defenders tend to do. It is a result of a mix of activities including remittances, agriculture, public sector employment, and the expansion of the construction sector.</p>
+
                         <!-- Tourist spending & GDP share 2010–2024 -->
-                        <p style="margin-top: 1.5em;">The economic footprint of tourism extends beyond headcounts. Tourist spending grew from PKR 3.3 billion in 2010 to a peak of PKR 94 billion in 2018, representing 0.34% of GB's GDP. The post-COVID recovery has been steady, reaching PKR 75.8 billion in 2024.</p>
                         <div id="spending-chart"></div>
 
                         <h3 class="gb-subsection-heading" style="margin-top: 1.5em;"><strong>Agriculture</strong></h3>
-                        <p>Agriculture remains the primary livelihood for most of GB's rural population. The territory's terraced valleys — especially in Hunza, Ghizer, and Skardu — produce apricots, cherries, walnuts, apples, and potatoes, much of it for domestic consumption. Only about 2–3% of the total land area is arable, constrained by extreme terrain and glacial cover. Irrigated farming using glacial melt channels is central to agricultural systems across the region.</p>
+                        <p>While agriculture's share in the local economy has decreased, it remains central to many districts. It is still the primary livelihood for much of GB's rural population. The territory's terraced valleys, especially in Hunza, Ghizer, and Skardu, produce apricots, cherries, walnuts, apples, and potatoes, much of it for domestic consumption. Patterns of cultivation have also changed, with many farmers now favoring cash crops. This shift has led to the disappearance of crops that once served as dietary staples or featured prominently in summer delicacies. Traditional crops such as buckwheat are increasingly at risk, and fruits like peaches face a similar decline in Hunza and other parts of the region.</p>
+                        <p>Only about 1-2% of the total land area is arable, constrained by extreme terrain and glacial cover. Even this limited share continues to shrink, as population growth drives the construction of new houses and other infrastructure. Irrigated farming using glacial melt channels is central to agricultural systems across the region. But this system is increasingly disrupted by glacial flooding, which damages key water channels and cuts off the water supply agriculture depends on.</p>
 
                         <h3 class="gb-subsection-heading" style="margin-top: 1.5em;"><strong>Energy</strong></h3>
-                        <p>GB holds an estimated 40,000 MW of exploitable hydropower potential — roughly 43% of Pakistan's total. Yet current installed capacity falls far short of demand. In 2023, total power generation across all ten districts stood at approximately 263 MW against a combined demand of 761 MW, a gap that drives chronic load-shedding and acts as a binding constraint on industrial and economic development. Gilgit district accounts for the largest share of both generation (92.7 MW) and demand (167 MW), reflecting its role as the administrative and commercial centre of the territory.</p>
+                        <p>GB holds an estimated 40,000 MW of exploitable hydropower potential, roughly 43% of Pakistan's total. Yet operational installed hydropower capacity is estimated at only around 150 MW, and available generation falls to roughly 120 MW in summer and 90 MW in winter. Peak demand is estimated at 250–285 MW in summer and 270–300 MW in winter, implying indicative shortfalls of 130–165 MW and 180–210 MW respectively. These figures should be treated with caution: reported capacity and availability vary by operational status, maintenance, and reporting method, so they are not reliable measures of dependable supply.</p>
+                        <p>Energy remains one of the most important constraints to the region's growth. For most of the year, the region remains plunged in darkness, forcing hotels and other businesses to rely on generators, while households turn to small battery systems and solar panels to meet their needs.</p>
+                        <p>The only real source of power is hydropower, which is prone to disruption from climate disasters and flooding. There are several small hydro projects scattered throughout the region, such as the community-owned and donor-sponsored project in Ahmadabad, Hunza. People have pretty much stopped relying on official sources of power generation. This kind of distributed power generation is now the norm across much of GB, but even so, energy generation has not kept pace with demand, and GB is now in a severe energy deficit.</p>
+                        <p>Solar power has given the region a new lifeline, as many businesses and households turn to solar panels for energy. Some places have installed large solar systems, such as the one in Duikar Valley, which supplies electricity to the nearby villages of Altit and Baltit. But the big limitation is that solar power is only available during the day, and even then, the system is not large enough to meet demand from both businesses and households. As a result, solar providers have started signing contracts with businesses, giving them preferential treatment since they require consistent energy and are able to pay for it, while households are often left in the dark.</p>
+                        <div id="seasonal-energy-chart"></div>
                     </div>
                     <!-- ── End Economy Section ── -->
+
+                </section>
+            </div>
+        </div>
+    </div>
+
+                    <!-- ── Climate Section ── -->
+    <section class="climate-section" id="gb-climate">
+        <div class="container">
+            <div class="row">
+                <div class="8u skel-cell-important">
+                    <div class="climate-section-content">
+                        <h2 class="gb-section-heading"><strong style="color:#FF0000">Climate</strong></h2>
+                        <p>The region's climate is perhaps what gets the most attention, and the reason is simple. GB has one of the highest concentrations of glaciers in the world, and one of the highest concentrations of mountains above 5,000 meters, which naturally makes the region highly vulnerable to climate change and rising temperatures. In recent years, changes in global temperatures have already had a very adverse impact on the region. It is now experiencing flooding at a higher intensity, which has resulted in significant damage downstream to infrastructure and residential communities, as global warming accelerates the melting of these glaciers. Another key factor that receives far less attention is the increasing construction of infrastructure within floodplains. Historically, people would not build in flood-prone areas, and that is what protected them from weather related damages. But with population growth, many people are now building in areas highly prone to flooding.</p>
+                        <p>This does not mean these areas will flood every year, but they are at risk of flooding in the future. So when we talk about an increased level of damage, it is not just because of rising temperatures, but also because more and more people are now in the path of floods.</p>
+                        <blockquote>Another key factor that receives far less attention is the increasing construction of infrastructure within floodplains. Historically, people would not build in flood-prone areas, and that is what protected them from weather related damages. But with population growth, many people are now building in areas highly prone to flooding.</blockquote>
+                        <p>The region's future depends on where things go in terms of climate change. If the current trend of global warming continues and glaciers keep melting at an accelerating pace, it will have damaging effects on the region. More importantly, the region needs to start building adaptation measures aggressively, including moving people out of harm's way. One thing that needs to be done is a clear mapping of high-risk areas, so that people, critical infrastructure such as power stations, schools, hospitals, and other important public infrastructure can be moved away from these risky zones. The other thing that needs to be done is identifying places that are safe for people to live, since experts predict mass migration in the future, prompted by climate disasters. People will start moving away from areas that become riskier over time, and this region is going to be one of the riskier places. If no planning is done now, it will be very difficult to protect people and infrastructure from future calamities.</p>
+                        <p>Climate change is going to have cascading effects not just on the region, but also downstream in other parts of the country. One of the clearest instances of this was in 2010, when Attabad Lake was formed after a landslide brought an entire village down, blocking the Hunza River for months and forming a huge lake, now a major tourist attraction. At the time, however, there was immense risk of flooding downstream. There was concern that the lake might burst and cause severe flooding, so people living along the riverbanks were asked to move, and an emergency was declared nationwide. Ironically, the lake became one of the key reasons for attracting more domestic tourism to the region. Prior to the incident, little was reported about GB, particularly Hunza. But when the village collapsed, it made national news, drawing widespread attention to the region and huge interest in the lake. It is now one of the most visited places in Hunza.</p>
+                        <p>In recent years, the climate in GB has been quite erratic. In Hunza Valley, for example, winter snowfall has drastically decreased. Over the last few years, there have been only a few winters with substantial snowfall. People report experiencing heavy snowfall historically, but now it has become quite rare. In fact, last year, the Winter Olympics in Hunza had to be canceled because there wasn't enough ice formation to make ice hockey feasible. Seasons have become abnormally warm, and this has impacted nearly every sector, including tourism and agriculture. Due to intense flooding and landslides, the tourism sector was disrupted, resulting in huge losses for the economy, and many hotels were forced to let go of their workers.</p>
+                        <p>Beyond severely affecting tourism, climate change has also disrupted supply chains, including the supply of petrol, wheat, and other essentials transported from down south. Petrol shortage in GB because of road blockages have become common during peak tourism season. Last year, many tourists were stranded and unable to find fuel for their return journeys. People were forced to buy expensive fuel, and the situation grew desperate to the point that fights broke out at petrol stations. Locals, especially, were frustrated, and many started blaming tourists for the situation. The uncontrolled influx of tourists into the region has raised a number of concerns, including environmental ones.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+                    <!-- ── End Climate Section ── -->
+
+    <div class="container">
+        <div class="row">
+            <div class="8u skel-cell-important">
+                <section>
 
                     <!-- ── GB Budget Section ── -->
                     <div class="budget-section" id="gb-budget">
@@ -251,34 +301,6 @@
                         <i class="arrow-left"></i> <span class="back-to-blog-text">Back to Blog</span>
                     </a>
                     <p><br><br></p>
-                </section>
-
-                <!--Share Article-->
-
-            </div>
-            <div class="4u">
-                <section>
-                    <h3><strong style="color:#FF0000">Share the Article</strong></h3>
-                    <div class="share-links">
-                        <a href="https://twitter.com/intent/tweet?url=https://salahuddin.github.io/gilgit-baltistan-at-a-glance.html&text=Gilgit-Baltistan%20at%20a%20Glance" class="share-link" target="_blank" rel="noopener">
-                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                            Share on X
-                        </a>
-                        <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://salahuddin.github.io/gilgit-baltistan-at-a-glance.html&title=Gilgit-Baltistan%20at%20a%20Glance" class="share-link" target="_blank" rel="noopener">
-                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                            Share on LinkedIn
-                        </a>
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=https://salahuddin.github.io/gilgit-baltistan-at-a-glance.html" class="share-link" target="_blank" rel="noopener">
-                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                            Share on Facebook
-                        </a>
-                    </div>
-                </section>
-                <hr />
-                <section class="special">
-                    <h3 style="text-align:left"><strong style="color:#FF0000">Read Next</strong></h3>
-                    <h3 style="color:black; text-align:left"><a href="opportunities-for-improving-the-wellbeing.html">Opportunities for improving the well-being of the rural populations</a></h3>
-                    <p style="color:black; text-align:left">Improving the well-being of rural communities is one of the most important challenges faced by the developing world today.</p>
                 </section>
 
             </div>
