@@ -713,8 +713,8 @@ pre code { display: block; line-height: 1.75em; padding: 1em 1.5em; }
 
 .landing-hero {
   background:
-    linear-gradient(90deg, rgba(17, 17, 17, 0.84) 0%, rgba(17, 17, 17, 0.68) 42%, rgba(17, 17, 17, 0.58) 100%),
-    url('../images/home_background_abstract.jpeg') center center / cover no-repeat;
+    linear-gradient(90deg, rgba(17, 17, 17, 0.36) 0%, rgba(17, 17, 17, 0.26) 42%, rgba(17, 17, 17, 0.18) 100%),
+    url('../images/home_background_red.jpeg') center center / cover no-repeat;
   color: #ffffff;
   display: flex;
   align-items: center;
