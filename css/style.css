@@ -1273,6 +1273,10 @@ pre code { display: block; line-height: 1.75em; padding: 1em 1.5em; }
   font-weight: 700;
 }
 
+.landing-read-more.link-arrow {
+  gap: .35em;
+}
+
 .landing-spotlight-copy .landing-read-more,
 .landing-spotlight-copy .landing-read-more .ui-arrow {
   color: #111111 !important;

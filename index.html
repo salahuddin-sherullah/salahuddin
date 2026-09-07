@@ -64,15 +64,15 @@
                     <a href="blog.html" class="landing-outline-link">Visit the blog <span class="ui-arrow" aria-hidden="true"></span></a>
                 </div>
 
-                <a href="gilgit-baltistan-at-a-glance.html" class="landing-spotlight reveal" data-article-spotlight>
+                <div class="landing-spotlight reveal" data-article-spotlight>
                     <div class="landing-spotlight-copy">
                         <p data-article-kicker>Data visual</p>
                         <h3 data-article-title>Gilgit-Baltistan at a glance</h3>
                         <p class="landing-spotlight-description" data-article-description>A data-driven overview of Gilgit-Baltistan spanning population, geography, and household demographics across its ten districts.</p>
-                        <span class="landing-read-more link-arrow">Read more <span class="ui-arrow" aria-hidden="true"></span></span>
+                        <a href="gilgit-baltistan-at-a-glance.html" class="landing-read-more link-arrow" data-article-read-more>Read more <span class="ui-arrow" aria-hidden="true"></span></a>
                     </div>
                     <img src="images/k2-north-face.jpg" alt="Mountain landscape in Gilgit-Baltistan">
-                </a>
+                </div>
 
                 <div class="landing-link-strip reveal">
                     <button type="button" class="active" data-article-nav
@@ -281,10 +281,15 @@
     var title = spotlight.querySelector('[data-article-title]');
     var description = spotlight.querySelector('[data-article-description]');
     var image = spotlight.querySelector('img');
+    var readMore = spotlight.querySelector('[data-article-read-more]');
+
+    if (!readMore) {
+      return;
+    }
 
     buttons.forEach(function(button) {
       button.addEventListener('click', function() {
-        spotlight.href = button.getAttribute('data-href');
+        readMore.href = button.getAttribute('data-href');
         kicker.textContent = button.getAttribute('data-kicker');
         title.textContent = button.getAttribute('data-title');
         description.textContent = button.getAttribute('data-description');
