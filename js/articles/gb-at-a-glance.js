@@ -32,18 +32,40 @@
     const printAction = document.getElementById("caption-print");
     const shareAction = document.getElementById("caption-share");
     const bookmarkAction = document.getElementById("caption-bookmark");
+    const shareDialog = document.getElementById("gb-share-dialog");
+    const shareLinks = document.querySelectorAll("[data-gb-share-link]");
 
     if (printAction) {
         printAction.addEventListener("click", () => window.print());
     }
     if (shareAction) {
         shareAction.addEventListener("click", () => {
-            const shareData = { title: document.title, url: window.location.href };
-            if (navigator.share) {
-                navigator.share(shareData).catch(() => {});
-            } else if (navigator.clipboard && window.isSecureContext) {
-                navigator.clipboard.writeText(shareData.url).catch(() => {});
+            const articleUrl = window.location.href;
+            const articleTitle = document.title;
+
+            shareLinks.forEach((link) => {
+                const service = link.getAttribute("data-gb-share-link");
+                const encodedUrl = encodeURIComponent(articleUrl);
+                const encodedTitle = encodeURIComponent(articleTitle);
+
+                if (service === "linkedin") {
+                    link.href = "https://www.linkedin.com/sharing/share-offsite/?url=" + encodedUrl;
+                } else if (service === "x") {
+                    link.href = "https://twitter.com/intent/tweet?url=" + encodedUrl + "&text=" + encodedTitle;
+                } else {
+                    link.href = "https://www.facebook.com/sharer/sharer.php?u=" + encodedUrl;
+                }
+            });
+
+            if (shareDialog) {
+                shareDialog.showModal();
             }
+        });
+    }
+    if (shareDialog) {
+        document.querySelector("[data-gb-share-close]").addEventListener("click", () => shareDialog.close());
+        shareDialog.addEventListener("click", (event) => {
+            if (event.target === shareDialog) shareDialog.close();
         });
     }
     if (bookmarkAction) {

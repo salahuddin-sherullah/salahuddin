@@ -607,6 +607,73 @@ body.gb-article-nav-open {
     outline: none;
 }
 
+.gb-share-dialog {
+    background: #ffffff;
+    border: 0;
+    box-shadow: 0 18px 48px rgba(17,17,17,.22);
+    color: #111111;
+    max-width: min(28rem, calc(100vw - 2rem));
+    padding: 1.5rem;
+    width: 100%;
+}
+.gb-share-dialog::backdrop {
+    background: rgba(17,17,17,.45);
+}
+.gb-share-dialog-head {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+}
+.gb-share-dialog h2 {
+    color: #111111;
+    font-size: 1.35rem;
+    margin: 0;
+}
+.gb-share-close {
+    appearance: none;
+    background: transparent;
+    border: 0;
+    color: #111111;
+    cursor: pointer;
+    font: 400 2rem/1 var(--body-font);
+    height: 2rem;
+    padding: 0;
+    width: 2rem;
+}
+.gb-share-options {
+    display: grid;
+    gap: .65rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.gb-share-options a {
+    align-items: center;
+    border: 1px solid #d6dde0;
+    color: #111111 !important;
+    display: flex;
+    font-size: .9rem;
+    font-weight: 500;
+    gap: .45rem;
+    justify-content: center;
+    padding: .75rem .4rem;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color .18s ease, border-color .18s ease, color .18s ease;
+}
+.gb-share-options svg {
+    fill: currentColor;
+    flex: 0 0 auto;
+    height: 1rem;
+    width: 1rem;
+}
+.gb-share-options a:hover,
+.gb-share-options a:focus-visible {
+    background: #FF0000;
+    border-color: #FF0000;
+    color: #ffffff !important;
+    outline: none;
+}
+
 /* =============================================================================
    6b. SCROLL SCENE — sticky photo with stat reveals
    ============================================================================= */
@@ -644,8 +711,8 @@ body.gb-article-nav-open {
 }
 .stats-reveal {
     position: absolute;
-    bottom: 3.5em;
-    left: 3.5em;
+    bottom: clamp(1.5rem, 5vw, 3.5rem);
+    left: clamp(1.25rem, 5vw, 3.5rem);
 }
 .stat-reveal-item {
     position: absolute;
@@ -661,7 +728,7 @@ body.gb-article-nav-open {
     transform: translateY(0);
 }
 .sr-value {
-    font-size: 4.4em;
+    font-size: clamp(3rem, 7vw, 5rem);
     font-weight: 700;
     color: #ffffff;
     margin: 0;
@@ -669,16 +736,31 @@ body.gb-article-nav-open {
     letter-spacing: -0.01em;
 }
 .sr-label {
-    font-size: 1.64em;
+    font-size: clamp(0.78rem, 1.8vw, 1.64rem);
     color: rgba(255,255,255,0.8);
     margin: 0.2em 0 0;
     text-transform: uppercase;
     letter-spacing: 0.08em;
 }
 .sr-sub {
-    font-size: 1.44em;
+    font-size: clamp(0.72rem, 1.5vw, 1.44rem);
     color: rgba(255,255,255,0.5);
     margin: 0.1em 0 0;
+}
+@media screen and (max-width: 560px) {
+    .stats-reveal {
+        left: 1.5rem;
+    }
+    .sr-value {
+        font-size: clamp(3.25rem, 14vw, 4rem);
+        letter-spacing: -0.035em;
+    }
+    .sr-label {
+        font-size: 1.05rem;
+    }
+    .sr-sub {
+        font-size: 0.9rem;
+    }
 }
 
 /* =============================================================================
