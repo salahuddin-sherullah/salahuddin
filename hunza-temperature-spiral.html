@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hunza Valley — Temperature Anomaly Spiral</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@700&display=swap');
+  :root{
+    --bg:#f4f5f5;
+    --grid:#c9ced0;
+    --grid-strong:#6f6f6f;
+    --label:#4e5a60;
+    --ring-label:#8e8e8e;
+    --ink:#111;
+    --muted:#626262;
+  }
+  html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);}
+  body{
+    font-family:"Inter",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+    display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;
+    gap:0;margin:0;padding:0;box-sizing:border-box;
+  }
+  .chart-header{border-top:1px solid #d6dde0;margin:0;padding-top:18px;}
+  .chart-header h1{font-family:"Playfair Display",Georgia,serif;font-size:21px;font-weight:700;line-height:1.3;margin:0 0 6px;}
+  .chart-header p{color:#626262;font-size:17px;font-weight:400;line-height:1.45;margin:0;}
+  .chart-header .readout{color:#626262;font-size:15px;font-variant-numeric:tabular-nums;line-height:1.5;margin-top:8px;}
+  #chart{display:flex;justify-content:center;margin-top:-20px;width:100%;}
+  svg{display:block;height:min(80vh,760px);width:auto;max-width:100%;}
+  .month-label{font-size:20px;fill:var(--label);}
+  .ring-label{font-size:13px;fill:var(--ring-label);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+    stroke:var(--bg);stroke-width:4px;paint-order:stroke fill;}
+  .ring-label.zero{fill:#5a5a5a;font-weight:600;}
+  .year-center{font-size:46px;font-weight:700;font-variant-numeric:tabular-nums;
+    stroke:var(--bg);stroke-width:6px;paint-order:stroke fill;}
+  .chart-control-row{align-items:center;display:flex;gap:28px;justify-content:space-between;margin-top:-48px;max-width:680px;width:100%;position:relative;}
+  .controls{color:var(--muted);font-size:14px;}
+  input[type=range]{accent-color:#8f1310;width:120px;}
+  .temperature-legend{color:var(--muted);font-size:12px;font-variant-numeric:tabular-nums;width:280px;}
+  .temperature-legend-scale{background:linear-gradient(90deg,#0d2f7d,#3a78c2,#8a4d9e,#d1492c,#8c1310);height:9px;width:100%;}
+  .temperature-legend-labels{display:flex;justify-content:space-between;margin-top:4px;}
+  .chart-footer{border-bottom:1px solid #d6dde0;margin-top:8px;max-width:680px;padding:14px 0 12px;width:100%;}
+  .caption{color:#999;font-size:14px;text-align:left;line-height:1.5;margin:0 0 8px;}
+  .chart-logo{display:block;height:35px;margin-top:18px;width:auto;}
+  @media (max-width:600px){
+    svg{height:min(58vh,760px);}
+    .chart-control-row{align-items:flex-start;flex-direction:column;gap:12px;margin-top:-28px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="chart-header">
+  <h1>Gilgit Baltistan Temperature Anomalies</h1>
+  <p>Monthly variation relative to the 1991–2020 average · Jan. 1940–Aug. 2026</p>
+  <p class="readout" id="temperature-readout" aria-live="polite"></p>
+</header>
+
+<div id="chart"></div>
+
+<div class="chart-control-row">
+  <div class="controls">
+    <label>Speed <input id="speed" type="range" min="0.25" max="4" step="0.25" value="1"></label>
+  </div>
+  <div class="temperature-legend" aria-label="Temperature anomaly colour scale, cold to warm">
+    <div class="temperature-legend-scale"></div>
+    <div class="temperature-legend-labels"><span data-legend-min></span><span>−3°</span><span>0°</span><span>+3°</span><span data-legend-max></span></div>
+  </div>
+</div>
+
+<footer class="chart-footer">
+  <p class="caption">Source: ERA5</p>
+  <img class="chart-logo" src="images/dark_matter_dark_logo.png" alt="Dark Matter">
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. Data — real monthly anomalies from hunza_temperature_anomaly_monthly.csv
+//    (°C relative to the 1991–2020 mean for that calendar month).
+//    The series is contiguous monthly from Jan 1940 to Aug 2026 with no gaps,
+//    so only the anomalies are stored; year and month come from the index.
+// ─────────────────────────────────────────────────────────────────────────────
+const MONTHS = ["Jan.","Feb.","Mar.","Apr.","May","June","July","Aug.","Sep.","Oct.","Nov.","Dec."];
+const START_YEAR = 1940;          // series begins in January, so index 0 = Jan
+
+const ANOM = [
+  0.09, -2.51, -3.52, -2.89, -2.69, -4.97, -4.48, -4.31, -3.29, -2.1, -3.99, -1.94,   // 1940
+  -1.41, -1.87, -3.31, -2.33, 0.49, 2.25, -0.74, -1.93, -1.45, 6.45, 0.65, 0.13,   // 1941
+  -1.7, -0.21, -1.68, -1.81, -0.37, -2.16, -1.54, -3.35, -0.5, -0.07, 1, -0.89,   // 1942
+  0.14, -0.69, -1.42, -3.01, -3.31, -4.93, -5.82, -2.84, -2, -4.46, -3.85, 2.04,   // 1943
+  -0.98, -2.11, -3.14, -1.12, -0.79, 0.51, 1.05, -1.67, -2.12, -3.73, -1.41, 1.44,   // 1944
+  -1.41, -4.92, -1.27, -3, -1.86, -2.68, -2.41, -3.9, -1.34, -0.42, 0.35, -3.63,   // 1945
+  0.95, -1.7, -3.27, -1.04, -1.07, -2.82, -0.76, -1.23, -0.61, 1.03, 2.21, -0.88,   // 1946
+  -1.15, -2.8, -1.05, -1.54, -1.1, -0.59, -1.14, -0.89, 1.3, -0.08, 0.17, 0.75,   // 1947
+  -1.1, -2.9, -2.12, -0.01, -1.38, -2.99, -3.88, -2.93, -1.43, 2.22, -3.7, 0.88,   // 1948
+  0.76, -1.87, -0.39, -0.8, 1.12, -1.4, -3.41, -3.09, -1.16, -1.16, -3.7, -2.63,   // 1949
+  2.71, -5.32, -2.56, -2.06, 0.13, -1.35, -0.88, -2.95, -2.05, 2.23, -1.69, -0.54,   // 1950
+  1.13, -1, -2.66, -1.46, -1.81, -2.88, -6.03, -3.2, -0.62, 2.53, -2.01, 0.52,   // 1951
+  0.24, -0.74, -1.36, -1.42, -1.75, -0.58, -0.96, -2.52, -3.06, -0.55, -0.36, -1.53,   // 1952
+  -3.49, -2.21, 0.3, -1.17, 0.98, 2.3, -0.55, -2.45, 0.08, -2.26, 0.05, 1.74,   // 1953
+  -0.99, 1.26, -1.21, -1.41, -1.63, -2.67, -6.53, -5.28, -2.93, -5.48, -2.17, -4.32,   // 1954
+  -3, -2.88, 0.44, -5.53, -3.03, -2.36, -5.62, -2.67, -1.37, 1.19, 1.61, 1.84,   // 1955
+  -2.69, -1.39, 0.35, -0.75, 0.37, -1.47, -2.3, -3.71, -0.51, -1.71, -2.23, -1.4,   // 1956
+  0.93, -3.71, -2.69, -2.39, -2.52, -4.9, -5.77, -5.24, -2.68, 0.36, -0.32, 2.23,   // 1957
+  1.7, -3.78, -1.99, -0.69, -3.94, -4.92, -6.1, -6.34, -0.55, -1.23, -0.63, 1.68,   // 1958
+  -1.03, -2.32, -1.36, -1.36, -1.09, -1.53, -6.53, -3.75, 5.03, 3.15, -0.29, -0.19,   // 1959
+  -1.76, -1.01, -0.2, -1.47, -2.67, -4.19, -6.42, -1.6, -0.77, 1.69, -1.65, -1.71,   // 1960
+  -0.28, -3.02, -1.95, -1.07, 0.32, 0.36, 0.47, 0.38, 5.05, 0.11, -3.66, -4.22,   // 1961
+  -1.74, -0.53, -2.05, 1.72, -1.27, -2.71, -3.12, -2.02, -0.73, -5.79, -0.64, -2.02,   // 1962
+  -2.14, -1.08, -1.28, 0.55, -1.92, -2.3, -3.47, -0.52, -1.49, 2.85, -1.4, -1.5,   // 1963
+  -1.3, -0.39, -0.47, 0.47, -3.58, -4.67, -5.46, -5.11, -1.61, -3.17, -1.13, 1.67,   // 1964
+  2.89, -1.08, -1.38, -1.01, -1.27, -1.96, -2.65, -4.45, -2.09, -0.17, -0.18, -2,   // 1965
+  -0.87, 1.62, 0.19, 0.53, -0.79, -3.28, -6.54, -2.85, -1.78, -1.01, -4.06, -0.14,   // 1966
+  -2.43, 0.76, -1.6, -1.29, -2.42, -2.47, -3.85, -0.81, 0.6, -3.29, -3.67, 0.56,   // 1967
+  -0.49, -3.62, 0.62, 0.57, -1.45, -2.61, -1.58, -0.95, -0.29, -2.83, -2.7, 1.89,   // 1968
+  0.11, 0.85, 2.06, -0.51, -2.27, -3.22, -5.09, -4.68, -3.1, 1.53, -2.33, -1.7,   // 1969
+  -0.15, -2.27, -0.35, -0.24, -1.76, -0.94, -2.69, -0.46, 0.8, -1.69, -2.7, -0.11,   // 1970
+  -2.62, -0.32, -0.87, 0.67, 0.99, 3.23, 0.85, -0.04, -2.68, -1.46, -2.04, 0.35,   // 1971
+  3.19, -2.34, 1.93, -2.21, -1.47, -3.91, -5.02, -3.55, -5.54, -3.83, -1.66, 2.19,   // 1972
+  1.98, 1.01, -0.6, 0.27, -0.76, -1.11, -1.78, -0.96, 1.45, -3.35, 0.86, -2.91,   // 1973
+  -0.01, -0.71, 1.1, 0.56, -1.18, -2.86, -4.69, -3.52, -3.71, -3.53, -3.64, -1.24,   // 1974
+  -1.84, -2.35, -1.23, 1.02, -2.77, -2.52, -4.84, -3.52, -1.53, -2.84, -4.67, -1.76,   // 1975
+  0.13, 1.91, -0.08, -0.74, -0.36, 0.01, -0.52, -0.55, -2.33, -0.48, -1.73, -0.71,   // 1976
+  1.79, -2, -1.45, 0.69, -0.93, -0.21, 3.41, 1.01, -0.49, 3.56, -1.19, -0.55,   // 1977
+  -1.37, -0.58, -0.8, 0.31, 0.53, 0.73, 2.76, 1.05, -1.82, 1.62, -0.58, -0.86,   // 1978
+  1.59, -0.65, -2.37, 1.24, -1.27, -3.69, -4.58, -2.81, -3.82, 3.28, -0.95, 0.25,   // 1979
+  0.93, 1.01, -0.07, 0.16, 0.89, 0.2, -0.45, -1.54, -2.98, 2.08, -0.13, 0.48,   // 1980
+  -0.1, 1.63, -0.15, -1.78, 1.97, -3.14, -1.44, -2.21, -2.46, -2.97, -2.1, -2.12,   // 1981
+  -0.08, -1.73, 0.95, -0.78, -0.98, -1.6, -1.13, -1.01, -4.08, -2.14, -0.56, 0.26,   // 1982
+  0.48, -3.56, -1.76, -0.47, -0.62, -2.58, -3.05, 0.89, 1.45, 0.21, -1.96, 0.22,   // 1983
+  -1.09, -1.45, 1.84, 0.46, -0.07, -1.28, 0.88, 2.96, -3.75, -1.97, -0.76, 0.42,   // 1984
+  0.12, -2.29, 1.32, 0.91, -1.96, -1.87, 2.01, 0.87, 0.1, -0.74, -1.24, 1.58,   // 1985
+  -2.02, -2.36, 0.02, 0.63, -0.87, -1.25, 1.35, -0.76, -1.83, 3.01, 2.99, 0.59,   // 1986
+  -1.34, 0.82, 1.18, -0.25, -1.12, -4.68, -5.09, -1.89, 0.38, -0.58, -1.01, 1.38,   // 1987
+  2.05, 1, 0.2, -0.06, -1.01, -0.65, 2.54, -1.59, 0.39, -4.84, 0.23, 1.29,   // 1988
+  -1.4, -1.1, 0.27, -4.54, -3.13, -4.52, -3.21, -4.3, -2.19, -2.47, -2.43, 1.6,   // 1989
+  4.37, -0.38, -1.57, -0.43, 1.17, 1.85, 2.78, 1.55, 3.46, 0.03, -0.85, 3.12,   // 1990
+  -1.86, -1.24, 0.32, -0.61, -0.61, -2.15, -3.39, -1.99, 1.16, -5.25, -1.96, 3.17,   // 1991
+  2.57, -2.4, -0.12, -0.13, -1.22, -2.02, -0.29, 0.46, -2.46, -2.7, 0.48, 0.09,   // 1992
+  -1.55, 1.95, -2.06, -0.75, 1.68, 0.8, -2.68, -2.45, 0.14, -2.94, 0.79, 0.41,   // 1993
+  1.03, -0.56, -0.39, -1.29, -0.61, -0.94, 2.09, 1.58, -1.08, -3.91, -1.99, -0.23,   // 1994
+  -3.36, -1.63, -1.05, 0.5, 0.93, -1.37, -0.61, 0.07, -1.04, -2.09, -1.43, -1.54,   // 1995
+  -1.19, -0.31, 2.59, 0.24, -1.32, -0.67, -2.79, -0.79, 2.68, -3.91, -3.56, -2.03,   // 1996
+  -0.05, -3.97, -0.7, -0.87, -2.19, 1.17, 3.43, -1.7, 0.2, 4.18, 0.65, -0.23,   // 1997
+  0.54, 0.58, -1.4, 0.56, 0.64, -1.15, 0.63, 1.28, 1.09, 2.54, -0.49, -0.52,   // 1998
+  1.87, 2.15, 0.67, 0.3, -0.67, -0.11, 0.75, -0.16, 2.52, -1.19, 0.61, -1.67,   // 1999
+  1.47, -4.55, -2.47, -1.68, 3.36, 2.35, 2.45, -1.21, -0.46, -1.59, 0.43, -0.64,   // 2000
+  -2.01, -1.2, -2.93, 0.47, 0.31, 3.85, 2.73, -1.01, -3.45, -0.71, 0.07, 0.94,   // 2001
+  -2.27, -1.6, -0.16, 0.21, -0.72, 1.05, -0.93, 1.31, -3.07, 4.32, 2.8, 1.7,   // 2002
+  1.01, 0.87, -0.94, -0.15, -3.33, -1.9, 2.77, -0.84, -0.75, -3.99, -0.56, 0.5,   // 2003
+  1.29, -0.36, 1.28, 1.01, -0.62, -0.65, -0.67, -1.49, -0.37, -0.7, -0.65, 3.24,   // 2004
+  -0.37, 1.24, 2.1, -1.42, -0.7, -0.94, 0.81, -0.2, 2.37, 1.05, -2.03, -2.1,   // 2005
+  2.14, 4.75, -0.74, -1.11, 4.21, 2.06, 2.24, 0.32, 0.18, 2.91, 1.61, 0.7,   // 2006
+  -1.95, 1.35, -0.24, 2.2, 3.03, 4.92, 1.03, 0.17, 0.41, -0.88, -0.26, 1,   // 2007
+  0, -2.32, -0.35, 0.4, 1.75, 5.84, 3.66, 0.32, -3.32, -0.37, -0.36, 0.44,   // 2008
+  2.92, 1.1, 0.7, 0.32, -2.6, -2.41, -2.89, 0.7, -2.68, 2.49, -0.8, 0.37,   // 2009
+  1.7, 1.93, 2.58, 0.73, 1.31, -3.81, -4.52, -0.53, -1.67, 0.08, 2.73, 0.45,   // 2010
+  -1.12, 1.26, 0.21, -1.3, 0.75, 1.42, 0.98, 1.22, 0.07, 1.33, 1.53, -1,   // 2011
+  -2.48, 0.2, 0.66, -0.49, -2.16, -3.21, -2.83, 0.73, -0.01, -0.6, 0.19, 0.79,   // 2012
+  -1.77, 0.79, 0.71, -0.03, -1.06, -0.31, -1.75, -0.03, 1.56, 6.59, -2.67, -0.09,   // 2013
+  -0.19, -0.11, 0.56, -0.45, 0.04, -1.7, -2.96, -1.7, -0.6, 0.91, -0.81, -0.95,   // 2014
+  0.59, 1.59, 0.43, -0.77, 0.23, -2.22, 1.04, 0.6, -1.84, -0.17, 1.42, -1.35,   // 2015
+  0.83, -1.37, 1.16, 0.96, 0.6, 1.66, 1.1, -0.4, 2.15, 1.83, 0.7, 0.04,   // 2016
+  2, 1.75, 0.46, 1.02, 0.64, 3.27, 3.46, -0.17, 0.75, 2.28, 1.64, 2.2,   // 2017
+  -1.15, -0.64, -0, 0.23, -1.08, 0.33, -0.03, 2.47, 2.13, -1.41, -0.05, -2.5,   // 2018
+  1.1, 1.17, -1.31, 2.83, -1.72, -4.46, -2.78, 1.05, 4.87, 0.3, 1.34, -1.96,   // 2019
+  0.21, -0.34, 0.53, -0.88, 1.06, 1.16, -0.1, 2.35, 0.38, 1.67, 0.73, 0.75,   // 2020
+  -1.53, 2.6, 1.35, -2.51, 2.46, 2.64, 2.79, 0.04, 4.14, 2.12, -2.31, -1.12,   // 2021
+  1.75, -0.09, 2.83, -0.01, 3.64, 2.25, 4.15, 1.14, 2.81, 0.37, 0.25, -1.02,   // 2022
+  1.88, 3.14, 1.77, 0.45, -0.8, -0.63, -0.12, 1.76, 3.19, -0.49, -0.8, -1.26,   // 2023
+  0.88, -0.76, 1.41, -0.18, 1.38, 2.29, 4.48, 3.12, 3.89, 3.93, 1.25, -2.15,   // 2024
+  1.4, -0.89, -0.12, 0.44, 2.4, 5.71, 5.49, 3.09, 5.44, 0.06, 0.24, 4.03,   // 2025
+  2.46, 0.78, 4.22, 1.33, 0.33, 0.73, 2.77, 2.79   // 2026
+];
+
+const data = ANOM.map((a, i) => ({
+  i,
+  year:  START_YEAR + Math.floor(i / 12),
+  month: i % 12,
+  anom:  a
+}));
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. Scales
+// ─────────────────────────────────────────────────────────────────────────────
+const W = 920, H = 760;
+const cx = W / 2 - 20, cy = 335;
+const R  = 300;
+
+const extent = d3.extent(data, d => d.anom);
+const A_MAX  = Math.ceil(Math.max(Math.abs(extent[0]), extent[1]));   // symmetric
+
+// Anomalies are signed, so the radial domain is symmetric about zero and the
+// 0 °C baseline lands on a real ring rather than at the centre. The inner
+// radius keeps a clear hole for the year and stops the cold months collapsing
+// into an unreadable pinch at the middle.
+const rScale = d3.scaleLinear().domain([-A_MAX, A_MAX]).range([64, R]);
+
+// Colour: blue below baseline, red above, crossing at zero. The stops sit at
+// ±1.5 °C so anything beyond a modest anomaly reads unambiguously blue or red
+// and only the near-baseline band stays neutral violet. Interpolating in HCL
+// walks blue · violet · red with no green or yellow midpoint, dark enough
+// throughout to read on a white ground.
+const colorScale = d3.scaleLinear()
+  .domain([-A_MAX, -1.5, 0, 1.5, A_MAX])
+  .range(["#0d2f7d", "#3a78c2", "#8a4d9e", "#d1492c", "#8c1310"])
+  .interpolate(d3.interpolateHcl)
+  .clamp(true);
+
+document.querySelector("[data-legend-min]").textContent = `−${A_MAX}°`;
+document.querySelector("[data-legend-max]").textContent = `+${A_MAX}°`;
+
+const angleOf = i => (i / 12) * 2 * Math.PI;          // keeps increasing → spiral
+const px = (a, r) =>  Math.sin(a) * r;                // 0 rad = up, clockwise
+const py = (a, r) => -Math.cos(a) * r;
+
+const svg = d3.select("#chart").append("svg")
+  .attr("viewBox", `0 0 ${W} ${H}`)
+  .attr("preserveAspectRatio", "xMidYMid meet");
+
+svg.append("rect").attr("width", W).attr("height", H).attr("fill", "var(--bg)");
+
+const g = svg.append("g").attr("transform", `translate(${cx},${cy})`);
+
+// ── grid: month spokes ──────────────────────────────────────────────────────
+const gridG = g.append("g");
+MONTHS.forEach((_, m) => {
+  const a = angleOf(m);
+  gridG.append("line")
+    .attr("x1", px(a, 40)).attr("y1", py(a, 40))
+    .attr("x2", px(a, R)).attr("y2", py(a, R))
+    .attr("stroke", "var(--grid)")
+    .attr("stroke-width", 1)
+    .attr("stroke-dasharray", "6 6");
+});
+
+// ── grid: anomaly rings, with the 0 °C baseline drawn solid ─────────────────
+const ringVals = d3.range(-A_MAX + 1, A_MAX, 2).concat(0)
+  .filter((v, i, arr) => arr.indexOf(v) === i)
+  .sort(d3.ascending);
+ringVals.forEach(v => {
+  const isZero = v === 0;
+  gridG.append("circle")
+    .attr("r", rScale(v))
+    .attr("fill", "none")
+    .attr("stroke", isZero ? "var(--grid-strong)" : "var(--grid)")
+    .attr("stroke-width", isZero ? 1.4 : 1)
+    .attr("stroke-dasharray", isZero ? null : "4 7");
+});
+gridG.append("circle").attr("r", R).attr("fill", "none")
+  .attr("stroke", "var(--grid-strong)").attr("stroke-width", 1);
+
+// ── month labels ────────────────────────────────────────────────────────────
+MONTHS.forEach((name, m) => {
+  const a = angleOf(m), rad = R + 42;
+  const x = px(a, rad), y = m === 0 ? 18 - cy : py(a, rad);
+  g.append("text").attr("class", "month-label")
+    .attr("x", x).attr("y", y)
+    .attr("text-anchor", Math.abs(x) < 6 ? "middle" : (x > 0 ? "start" : "end"))
+    .attr("dominant-baseline", Math.abs(x) < 6 ? (y < 0 ? "auto" : "hanging") : "middle")
+    .text(name);
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. One coloured path per month step.
+//
+//    A single path can only carry one stroke colour, so the spiral is built
+//    as 1,039 month-to-month segments. To keep them geometrically identical
+//    to one continuous Catmull-Rom curve, each segment is generated from the
+//    four control points surrounding its span and only the middle cubic is
+//    kept: d3's curveCatmullRom emits exactly one "C" command per span, so
+//    the second one is precisely the p1→p2 piece of the full curve. Clamping
+//    the index at the ends duplicates the endpoint, which is what d3 itself
+//    does for the first and last span of a path.
+//
+//    Jan 1940's anomaly is +0.09 °C, so the line begins on the baseline ring.
+// ─────────────────────────────────────────────────────────────────────────────
+const pts = data.map(d => {
+  const a = angleOf(d.i), r = rScale(d.anom);
+  return [px(a, r), py(a, r)];
+});
+
+const curve = d3.line().curve(d3.curveCatmullRom.alpha(0.5));
+
+function spanPath(i) {
+  const P = [i - 1, i, i + 1, i + 2]
+    .map(k => pts[Math.max(0, Math.min(pts.length - 1, k))]);
+  const parts = curve(P).split(/(?=C)/);          // ["M…","C…","C…","C…"]
+  return parts.length === 4
+    ? `M${P[1][0]},${P[1][1]}${parts[2]}`
+    : `M${P[1][0]},${P[1][1]}L${P[2][0]},${P[2][1]}`;
+}
+
+// Marker weight. Round caps and joins on contiguous segments make the 1,039
+// pieces read as one continuous stroke; the slight transparency lets
+// crossings darken the way overlapping marker ink does.
+const STROKE_W = 3;
+
+const segG = g.append("g").attr("fill", "none")
+  .attr("stroke-width", STROKE_W)
+  .attr("stroke-linecap", "round")
+  .attr("stroke-linejoin", "round");
+
+const segments = [];
+for (let i = 0; i < pts.length - 1; i++) {
+  const path = segG.append("path")
+    .attr("d", spanPath(i))
+    .attr("stroke", colorScale((data[i].anom + data[i + 1].anom) / 2))
+    .attr("opacity", 0.9);
+  const node = path.node();
+  const len  = node.getTotalLength();             // one Bézier → O(1)
+  path.attr("visibility", "hidden");
+  segments.push({ path, node, len });
+}
+
+// ── reference overlay, drawn above the data ─────────────────────────────────
+// 87 years of lines bury the baseline ring and the ring labels, so they are
+// repeated on top: a white casing lifts each one off the spiral beneath.
+const topG = g.append("g");
+[[4, "var(--bg)", 0.8], [1.4, "#3d3d3d", 0.8]].forEach(([w, c, o]) => {
+  topG.append("circle").attr("r", rScale(0)).attr("fill", "none")
+    .attr("stroke", c).attr("stroke-width", w).attr("opacity", o);
+});
+ringVals.forEach(v => {
+  topG.append("text")
+    .attr("class", v === 0 ? "ring-label zero" : "ring-label")
+    .attr("x", 0).attr("y", -rScale(v) - 6)
+    .attr("text-anchor", "middle")
+    .text(v === A_MAX ? `+${v} °C` : v > 0 ? `+${v}` : String(v));
+});
+
+// ── drawing head + labels ───────────────────────────────────────────────────
+const head = g.append("circle")
+  .attr("r", 5.5).attr("stroke", "var(--bg)").attr("stroke-width", 2).attr("opacity", 0);
+
+const yearCenter = g.append("text").attr("class", "year-center")
+  .attr("text-anchor", "middle").attr("dominant-baseline", "middle")
+  .attr("y", 2);
+const readout = document.getElementById("temperature-readout");
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. Animate — reveal segments in order, easing the current one open
+// ─────────────────────────────────────────────────────────────────────────────
+const MS_PER_MONTH = 26;                          // ~27 s for 1,040 months
+const DURATION = MS_PER_MONTH * (pts.length - 1);
+const HOLD_MS  = 4000;                            // pause on the finished spiral
+let timer = null, loopHold = null, speed = 1, drawn = -1;
+
+function setSeg(i, frac) {
+  const s = segments[i];
+  if (frac <= 0) {
+    // SVG renders a zero-length dash as a dot when the linecap is round, so
+    // at marker weight an un-drawn segment would leave a visible blob at its
+    // start point — a ghost of the whole spiral. Hide the path instead.
+    s.path.attr("visibility", "hidden");
+    return;
+  }
+  s.path.attr("visibility", null)
+    .attr("stroke-dasharray", frac >= 1 ? null : `${s.len * frac} ${s.len + 1}`);
+}
+
+function render(t) {                              // t ∈ [0,1]
+  const p    = t * (pts.length - 1);
+  const i0   = Math.min(Math.floor(p), segments.length - 1);
+  const frac = Math.min(1, p - i0);
+
+  if (i0 < drawn) {                               // rewound by the loop
+    for (let i = i0 + 1; i <= drawn; i++) setSeg(i, 0);
+  } else {
+    // Start at `drawn`, not drawn + 1: the previously current segment was
+    // left at a partial fraction and has to be completed, or every segment
+    // keeps a small gap — and segment 0 would never appear at all.
+    for (let i = Math.max(0, drawn); i < i0; i++) setSeg(i, 1);
+  }
+  setSeg(i0, frac);
+  drawn = i0;
+
+  const seg = segments[i0];
+  const pt  = seg.node.getPointAtLength(seg.len * frac);
+  const d   = data[Math.min(frac > 0.5 ? i0 + 1 : i0, data.length - 1)];
+
+  head.attr("cx", pt.x).attr("cy", pt.y)
+      .attr("fill", colorScale(d.anom))
+      .attr("opacity", 1);
+
+  yearCenter.text(d.year).attr("fill", colorScale(d.anom));
+  readout.textContent = `${MONTHS[d.month].replace(".", "")} ${d.year} · ${d3.format("+.1f")(d.anom)} °C`;
+}
+
+function play() {
+  if (timer) timer.stop();
+  clearTimeout(loopHold);                         // never stack pending restarts
+  render(0);
+  timer = d3.timer(elapsed => {
+    const t = Math.min(1, (elapsed * speed) / DURATION);
+    render(t);
+    if (t === 1) {
+      timer.stop();
+      loopHold = setTimeout(play, HOLD_MS);       // hold the full spiral, then loop
+    }
+  });
+}
+
+d3.select("#speed").on("input", function () { speed = +this.value; });
+
+play();
+</script>
+</body>
+</html>

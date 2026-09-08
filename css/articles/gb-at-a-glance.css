@@ -574,6 +574,21 @@ body.gb-article-nav-open {
 .climate-section p:last-child {
     margin-bottom: 0;
 }
+.hunza-temperature-spiral {
+    background: #f4f5f5;
+    margin: 2.5em 0 .625em;
+}
+.hunza-temperature-spiral iframe {
+    border: 0;
+    display: block;
+    height: 950px;
+    width: 100%;
+}
+@media screen and (max-width: 736px) {
+    .hunza-temperature-spiral iframe {
+        height: 840px;
+    }
+}
 
 /* Compact article actions below the lead image caption. */
 .caption-actions {
