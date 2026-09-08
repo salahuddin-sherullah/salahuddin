@@ -43,12 +43,18 @@
   .caption{color:#999;font-size:14px;text-align:left;line-height:1.5;margin:0 0 8px;}
   .chart-note{color:#626262;font-size:14px;line-height:1.5;margin:0 0 12px;}
   .chart-logo{display:block;height:35px;margin-top:18px;width:auto;}
+  body.panel .chart-header{border-top:0;padding-top:0;}
+  body.panel .chart-header h1,
+  body.panel .chart-header > p:not(.readout),
+  body.panel .chart-footer{display:none;}
+  body.panel #chart{margin-top:28px;}
   @media (max-width:600px){
     .chart-header-control-row{align-items:flex-start;flex-direction:column;gap:12px;}
   }
 </style>
 </head>
 <body>
+<script>if (new URLSearchParams(location.search).has("panel")) document.body.classList.add("panel");</script>
 
 <header class="chart-header">
   <h1>Gilgit Baltistan Temperature Anomalies</h1>
@@ -293,8 +299,8 @@ function spanPath(i) {
 }
 
 // Marker weight. Round caps and joins on contiguous segments make the 1,039
-// pieces read as one continuous stroke; the slight transparency lets
-// crossings darken the way overlapping marker ink does.
+// pieces read as one continuous stroke. Older years are faded dynamically
+// during playback so the current part of the series remains visually primary.
 const STROKE_W = 3;
 
 const segG = g.append("g").attr("fill", "none")
@@ -312,6 +318,20 @@ for (let i = 0; i < pts.length - 1; i++) {
   const len  = node.getTotalLength();             // one Bézier → O(1)
   path.attr("visibility", "hidden");
   segments.push({ path, node, len });
+}
+
+let lastOpacityIndex = -1;
+function updateHistoricalOpacity(currentIndex) {
+  if (currentIndex === lastOpacityIndex) return;
+  lastOpacityIndex = currentIndex;
+
+  segments.forEach((segment, index) => {
+    const monthsAgo = Math.max(0, currentIndex - index);
+    const opacity = index === currentIndex
+      ? 1
+      : 0.22 + 0.68 * Math.exp(-monthsAgo / 300);
+    segment.path.attr("opacity", opacity);
+  });
 }
 
 // ── reference overlay, drawn above the data ─────────────────────────────────
@@ -344,7 +364,7 @@ const readout = document.getElementById("temperature-readout");
 // ─────────────────────────────────────────────────────────────────────────────
 const MS_PER_MONTH = 26;                          // ~27 s for 1,040 months
 const DURATION = MS_PER_MONTH * (pts.length - 1);
-const HOLD_MS  = 4000;                            // pause on the finished spiral
+const HOLD_MS  = 5000;                            // pause on the finished spiral
 let timer = null, loopHold = null, speed = 1, drawn = -1;
 
 function setSeg(i, frac) {
@@ -375,6 +395,7 @@ function render(t) {                              // t ∈ [0,1]
   }
   setSeg(i0, frac);
   drawn = i0;
+  updateHistoricalOpacity(i0);
 
   const seg = segments[i0];
   const pt  = seg.node.getPointAtLength(seg.len * frac);

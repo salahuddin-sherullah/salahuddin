@@ -99,6 +99,27 @@
     requestFrameHeight();
 })();
 
+(function sizeTemperatureChartsToViewport() {
+    const chart = document.querySelector(".hunza-temperature-spiral");
+    if (!chart) return;
+    const frame = chart.querySelector("iframe");
+
+    function sizeChart() {
+        chart.style.width = "";
+        const left = chart.getBoundingClientRect().left;
+        chart.style.width = Math.max(0, window.innerWidth - left - 16) + "px";
+        const bodyTextWidth = chart.parentElement.getBoundingClientRect().width;
+        frame.contentWindow.postMessage({
+            type: "set-hunza-temperature-content-width",
+            width: bodyTextWidth
+        }, "*");
+    }
+
+    window.addEventListener("resize", sizeChart);
+    frame.addEventListener("load", sizeChart);
+    sizeChart();
+})();
+
 (function initScrollStats() {
     const scene  = document.querySelector('.scroll-scene');
     const items  = document.querySelectorAll('.stat-reveal-item');
