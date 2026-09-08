@@ -78,6 +78,27 @@
     }
 })();
 
+(function sizeHunzaTemperatureSpiral() {
+    const frame = document.querySelector(".hunza-temperature-spiral iframe");
+    if (!frame) return;
+
+    window.addEventListener("message", (event) => {
+        if (event.source !== frame.contentWindow || !event.data || event.data.type !== "hunza-temperature-spiral-height") return;
+
+        const height = Math.ceil(Number(event.data.height));
+        if (Number.isFinite(height) && height > 0) {
+            frame.style.height = height + "px";
+        }
+    });
+
+    function requestFrameHeight() {
+        frame.contentWindow.postMessage({ type: "request-hunza-temperature-spiral-height" }, "*");
+    }
+
+    frame.addEventListener("load", requestFrameHeight);
+    requestFrameHeight();
+})();
+
 (function initScrollStats() {
     const scene  = document.querySelector('.scroll-scene');
     const items  = document.querySelectorAll('.stat-reveal-item');

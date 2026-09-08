@@ -576,17 +576,17 @@ body.gb-article-nav-open {
 }
 .hunza-temperature-spiral {
     background: #f4f5f5;
-    margin: 2.5em 0 .625em;
+    margin: 2.5em 0 .125em;
 }
 .hunza-temperature-spiral iframe {
     border: 0;
     display: block;
-    height: 950px;
+    height: 960px;
     width: 100%;
 }
 @media screen and (max-width: 736px) {
     .hunza-temperature-spiral iframe {
-        height: 840px;
+        height: 870px;
     }
 }
 
