@@ -18,6 +18,93 @@
    Six summary metrics in a responsive 3-column grid.
    On tablet (≤900px) collapses to 2 columns; on mobile (≤560px) to 1 column.
    ============================================================================= */
+/* The scrollytelling map requires the complete viewport. */
+body.gb-no-navigation.gb-content-scrolled #header,
+body.gb-no-navigation.gb-content-scrolled #navButton {
+    display: none !important;
+}
+
+.gb-intro-hero {
+    align-items: center;
+    background: #02061d;
+    box-sizing: border-box;
+    color: #ffffff;
+    display: flex;
+    isolation: isolate;
+    min-height: 100vh;
+    min-height: 100svh;
+    overflow: hidden;
+    padding: 5rem max(2rem, calc((100vw - 72rem) / 2));
+    position: relative;
+}
+.gb-intro-video {
+    height: 100%;
+    inset: 0;
+    position: absolute;
+    width: 100%;
+}
+.gb-intro-video {
+    object-fit: cover;
+    z-index: -2;
+}
+.gb-intro-content {
+    max-width: 50rem;
+}
+.gb-intro-content h1 {
+    color: #ffffff;
+    font-size: clamp(3rem, 7vw, 6.25rem);
+    letter-spacing: -.035em;
+    line-height: .98;
+    margin: 0;
+    text-wrap: balance;
+}
+.gb-intro-byline {
+    color: #ffffff;
+    font-size: .78rem;
+    font-weight: 600;
+    letter-spacing: .13em;
+    margin: 1.7rem 0 0;
+    text-transform: uppercase;
+}
+.gb-intro-transition {
+    border-bottom: 1px solid #cfd5d8;
+    display: flex;
+    justify-content: flex-start;
+    margin: 0 auto;
+    padding: 3.25rem 0 2.25rem;
+    width: min(1200px, calc(100% - 3rem));
+}
+.gb-intro-article {
+    padding-top: 2.25rem;
+}
+.gb-intro-social {
+    display: flex;
+    gap: .9rem;
+}
+.gb-intro-social a {
+    align-items: center;
+    border: 1px solid #cfd5d8;
+    border-radius: 50%;
+    color: #111111 !important;
+    display: inline-flex;
+    height: 2.6rem;
+    justify-content: center;
+    transition: background-color .18s ease, border-color .18s ease, color .18s ease;
+    width: 2.6rem;
+}
+.gb-intro-social svg {
+    fill: currentColor;
+    height: 1rem;
+    width: 1rem;
+}
+.gb-intro-social a:hover,
+.gb-intro-social a:focus-visible {
+    background: #ff0000;
+    border-color: #ff0000;
+    color: #ffffff !important;
+    outline: none;
+}
+
 .gb-article-nav-shell {
     position: fixed;
     left: 0;
@@ -862,6 +949,15 @@ body.gb-article-nav-open {
 }
 
 @media (max-width: 736px) {
+    .gb-intro-hero {
+        padding: 4.5rem 1.5rem 2.5rem;
+    }
+    .gb-intro-content h1 {
+        font-size: clamp(2.7rem, 14vw, 4.4rem);
+    }
+    .gb-intro-transition {
+        width: calc(100% - 3rem);
+    }
     .gb-article-nav-shell {
         top: 4.25rem;
     }

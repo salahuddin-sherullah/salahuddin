@@ -1,0 +1,1294 @@
+<title>Gilgit-Baltistan Bubble Map</title>
+<meta charset="utf-8">
+<style>
+  :root{
+    --bg:#ffffff;
+    --land:#ececec;
+    --border:#d6d6d6;
+    --border-hover:#9a9a9a;
+    --ink:#1a1a1a;
+    --ink-soft:#6b6b6b;
+    --panel:#fafafa;
+    --panel-line:#e6e6e6;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font:14px/1.45 "Helvetica Neue",Helvetica,-apple-system,"Segoe UI",Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  /* reading section above the stage — you scroll down through this to reach
+     the pinned graphic */
+  .intro{max-width:660px;margin:0 auto;padding:16vh 22px 14vh}
+  .intro h1{font-size:30px;font-weight:600;letter-spacing:-.5px;line-height:1.2;
+            margin:0 0 18px}
+  .intro p{font-size:15.5px;line-height:1.72;color:#2e2e2e;margin:0 0 18px}
+  .intro p.lede{font-size:17px;color:#1a1a1a}
+  /* less headroom than the intro: by the time you reach this the graphic is
+     done, and every extra vh is scrolling with nothing in it */
+  .outro{max-width:660px;margin:0 auto;padding:6vh 22px 8vh}
+  .outro h2{font-size:20px;font-weight:600;letter-spacing:-.2px;margin:0 0 16px}
+  .outro p{font-size:15.5px;line-height:1.72;color:#2e2e2e;margin:0 0 18px}
+  .outro code{font-size:14px;background:var(--panel);padding:1px 5px;border-radius:4px}
+
+  /* The graphic gets the whole viewport: the chart fills the pinned box. */
+  .scrolly{position:relative;height:730vh}
+  .sticky{position:sticky;top:0;height:100vh;overflow:hidden;background:var(--bg)}
+  #chart{position:absolute;inset:0}
+  svg{display:block;width:100%;height:100%}
+
+
+  /* non-scaling strokes, or the district borders vanish when the map group is
+     scaled down to fit Pakistan into the opening frame */
+  /* No `fill` on .district: it is set per frame so the districts can read
+     darker than the country while zoomed out, and a CSS fill would outrank the
+     attribute. Non-scaling strokes so the borders survive being scaled down. */
+  .district{stroke:var(--border);stroke-width:.9;vector-effect:non-scaling-stroke}
+  .country path{fill:#e8e8e8;stroke:#d4d4d4;stroke-width:1;
+                vector-effect:non-scaling-stroke}
+  /* same fill, dashed edge: the Line of Control shown as a line, not a border */
+  .country path.loc{stroke:#b9b9b9;stroke-dasharray:4 3}
+  .nbr{font-size:11px;fill:#a2a2a2;text-anchor:middle;pointer-events:none;
+       letter-spacing:.12em;text-transform:uppercase}
+  .district.hi{stroke:var(--border-hover);stroke-width:1.4}
+  /* No `fill` here on purpose: a CSS fill outranks the fill attribute, and each
+     circle sets its own colour from the palette. Declaring it made every circle
+     render grey while the attribute said otherwise. */
+  .bubble{stroke:none;cursor:pointer;fill-opacity:.92;
+          transition:fill-opacity .12s,filter .12s}
+  /* the circles carry their own colour now, so hover cannot recolour them —
+     it lifts them instead */
+  .bubble:hover{fill-opacity:1;filter:brightness(1.18)}
+  .bubble.photo{stroke:rgba(255,255,255,.85);stroke-width:1.6}
+  .dlabel{font-size:11px;fill:#8a8a8a;text-anchor:middle;pointer-events:none;
+          letter-spacing:.06em;text-transform:uppercase}
+  /* under the row the names carry the chart, so they sit a shade darker */
+  .rlabel{font-size:11px;fill:#5c5c5c;text-anchor:middle;pointer-events:none;
+          letter-spacing:.06em;text-transform:uppercase}
+  /* the figure reads as data, not as a caption: no tracking, no uppercasing
+     (which would turn 337k into 337K) */
+  .rlabel .rval{font-size:12.5px;font-weight:600;fill:#1f1f1f;
+                letter-spacing:0;text-transform:none}
+  .rlabel .rname{letter-spacing:.06em}
+  .legend text{font-size:12px;fill:var(--ink)}
+  .legend .lg-title{font-size:13px}
+  .legend circle{fill:none;stroke:#9e9e9e;stroke-width:1}
+
+  /* the total, sitting above the gathered circles */
+  .total{pointer-events:none}
+  /* label above, figure reversed out of a solid block below it */
+  .total .t-label{font-size:25px;font-weight:700;fill:#02061D;text-anchor:middle;
+                  letter-spacing:-.3px}
+  .total .t-box{fill:#02061D}
+  .gdp-dot{fill-opacity:.92}   /* fill comes from START_GREY, set in JS */
+  .total .t-num{font-size:26px;font-weight:700;fill:#fff;text-anchor:middle;
+                letter-spacing:-.2px}
+
+
+  .tip{
+    position:fixed;pointer-events:none;opacity:0;transition:opacity .1s;
+    background:rgba(20,20,20,.92);color:#fff;padding:7px 10px;border-radius:6px;
+    font-size:12px;line-height:1.4;white-space:nowrap;z-index:10;
+    transform:translate(-50%,-115%)
+  }
+  .tip b{font-weight:600}
+  .tip span{color:#b9b9b9}
+  footer{color:var(--ink-soft);font-size:11.5px;line-height:1.6;
+         max-width:1180px;margin:0 auto;padding:0 20px 56px}
+  footer a{color:var(--ink-soft)}
+  /* the measure boxes, revealed once the row has formed */
+  /* `top` is set from JS: the strip is centred midway between the bottom of the
+     value labels and the foot of the viewport, then clamped so it always clears
+     the labels and always stays on screen. */
+  .picker{
+    position:absolute;left:0;right:0;top:70%;z-index:2;
+    display:flex;flex-wrap:wrap;gap:7px;justify-content:center;padding:0 18px;
+    opacity:0;transition:opacity .28s;pointer-events:none
+  }
+  .picker.on{opacity:1;pointer-events:auto}
+  .picker button{
+    flex:0 1 108px;max-width:132px;min-height:52px;padding:7px 6px;
+    border:1px solid #dcdcdc;background:#fff;
+    font:inherit;font-size:11px;line-height:1.22;color:#3d3d3d;
+    text-align:center;cursor:pointer;transition:background .15s,color .15s,border-color .15s
+  }
+  .picker button:hover{background:#f3f3f3}
+  .picker button[aria-pressed="true"]{
+    background:var(--ink);color:#fff;border-color:var(--ink)
+  }
+
+  .warn{position:absolute;top:70px;left:14px;z-index:2;max-width:min(520px,calc(100% - 28px));
+        background:#fff8e1;border:1px solid #f0e0a8;color:#6d5a17;
+        padding:8px 11px;border-radius:6px;font-size:12.5px}
+</style>
+
+<div class="intro">
+  <h1>Gilgit-Baltistan, district by district</h1>
+
+  <p class="lede">Gilgit-Baltistan, the northernmost territory administered by Pakistan,
+  spreads across the ranges where the Karakoram, the Himalaya and the Hindu Kush meet.
+  The boundaries below are its ten districts as of the 2019 geoBoundaries vintage. Four
+  more have since been carved out of them — Roundu, Gupis-Yasin, Darel and Tangir — so
+  the territory counts fourteen today.</p>
+
+  <p>At the 2023 census the ten held 1,709,049 people between them, up 14.5% on the
+  1,492,685 counted in 2017. They are very unevenly filled. Diamer, the most populous, has
+  337,329; Kharmang, the least, has 61,304 — five and a half times fewer. Growth is just as
+  uneven, running from Hunza at 27.4% over those six years down to Ghanche at 0.8%, which
+  is flat to within rounding.</p>
+
+  <p>Each district gets one circle, sitting on the district's centroid and scaled so the
+  circle's <em>area</em> is proportional to its population, not its radius. That is the
+  whole trick of a proportional-symbol map: read the ink, not the width. Scaling the radius
+  instead would make Diamer read as about thirty times Kharmang rather than five and a
+  half.</p>
+
+  <p>It opens on Pakistan and zooms in on the ten districts, so the region is placed
+  before it is measured. The opening frame follows Pakistani convention and shows the whole
+  of the former princely state of Jammu &amp; Kashmir within the national boundary, with the
+  Line of Control drawn dashed. The boundary layer alone would not do this: geoBoundaries
+  maps de-facto administration and stops at the Line of Control, so the India-administered
+  portion is added from Natural Earth's disputed-areas layer. Neighbours are labelled for
+  orientation only — no borders are drawn for them.</p>
+
+  <p> Hover a circle while the map is showing for its 2017 and 2023 counts and the growth
+  between them — once they line up, each one is labelled outright. Note that
+  the boundaries are the ten pre-2019 districts, so the four units split off since are
+  counted inside their parents.</p>
+
+</div>
+
+<div class="scrolly" id="scrolly">
+  <div class="sticky">
+    <div id="chart"></div>
+    <div id="warn" class="warn" hidden></div>
+    <div class="picker" id="picker" role="group" aria-label="Choose a measure"></div>
+  </div>
+</div>
+
+<div class="outro">
+  <h2>Notes on the data</h2>
+
+  <p>The boundaries come from geoBoundaries' open Pakistan ADM2 layer, simplified to a
+  ~400&nbsp;m tolerance — enough to cut the outlines from 2,347 points to 1,166 without any
+  visible change at this size. For a sense of what that costs: the simplified polygons
+  measure 69,088&nbsp;km² against the ~73,000&nbsp;km² usually quoted for the territory.
+  Fine for placing circles, not for measuring land.</p>
+
+  <p>The population table is used as supplied, but it is internally consistent: every
+  stated growth rate matches its own two columns, and the 2017 figures sum to 1,492,685
+  against the 1,492,924 published for the territory that year — a 239-person difference, so
+  this is the published district split rather than a reallocation of it.</p>
+
+  <p>Two things were checked rather than assumed. Every circle's centroid was tested to
+  fall inside its own district, and so was every settlement in the companion
+  <code>gb-settlements.json</code> — a first pass put Kharmang's marker in neighbouring
+  Ghanche, which is exactly the kind of error a bubble map hides well. District labels are
+  placed by a small search that will not let a name drift into a neighbouring district.</p>
+
+  <p>If you reuse this file, one trap is worth knowing: d3-geo wants the opposite polygon
+  winding from the GeoJSON spec. Hand it spec-compliant counter-clockwise rings and every
+  district is read as "the whole sphere minus this shape" — the map fills solid grey and
+  the projection collapses to a world view. The rings in this file are already flipped,
+  and the check is in a comment beside them.</p>
+
+  <p>Nine measures sit behind the boxes under the chart, and the headline figure is not
+  the same kind of number for all of them. Populations, megawatts and tourist counts add
+  up, so their headline is a sum. A poverty index or a literacy rate does not — adding ten
+  percentages together means nothing, and a plain average would weight Hunza's 65,000
+  people the same as Diamer's 337,000. Those use a population-weighted mean instead, which
+  is why their headline reads "Average" rather than "Total". The difference is not small: literacy is 52.4% weighted against
+  54.4% unweighted, child labour 14.0% against 16.2%.</p>
+
+  <p>On the map the circles are grey; they take on colour as they gather into the row,
+  and give it back if you scroll the sequence in reverse. The colours run by rank within
+  whichever measure is showing — darkest for the highest value, brightest for the lowest. That is redundant encoding: in a sorted row it
+  repeats what the order and the circle sizes already say, rather than carrying a second
+  variable. The value labels stay near-black instead of matching their circles, because
+  the light end of the ramp is not legible as text on white.</p>
+
+  <p>The closing figure is a single territory-level estimate with no district breakdown
+  behind it. Rather than size ten circles by numbers that do not exist, the ten gather,
+  give up their colour, fade out, and one circle takes their place. That circle stands for
+  the territory, not for any apportionment: the figure is stated rather than encoded, and
+  it is written into the source as a string rather than summed from the table. Give each
+  district a <code>gdp</code> value and add it to <code>METRICS</code> if a breakdown
+  turns up, and it becomes a tenth selectable measure like the others.</p>
+
+  <p>Two gaps in the source table are shown rather than smoothed over. Ghanche has no
+  child-labour figure, so it gets no circle and reads n/a, and that measure's headline
+  covers nine districts, not ten. And the supplied densities do not all reconcile with
+  population divided by area: Hunza and Ghanche match closely, but Kharmang reads 10 per
+  sq.km against 22.6 computed, Shigar 20 against 9.3 and Skardu 27 against 40.6 — most
+  likely because they are based on post-2019 district areas, after the splits. They are
+  used as given.</p>
+
+  <p>To put a different measure on it, edit <code>DISTRICT_DATA</code> near the top: one
+  row per district with an <code>m</code> object of measure values, and add a matching
+  entry to <code>METRICS</code> saying how to format it, whether it sums or averages, and
+  where to put the two legend circles. The circles, the row order, the labels, the legend
+  and the headline all follow from that. <code>pop2017</code> and <code>growth</code> are
+  optional and only feed the tooltip.</p>
+</div>
+
+<footer>
+  Boundaries: <a href="https://www.geoboundaries.org" target="_blank" rel="noopener">geoBoundaries</a>
+  gbOpen PAK ADM2 (2019 vintage, public domain), simplified to ~400&nbsp;m tolerance.
+  The Pakistan outline is gbOpen PAK ADM0, ODbL-licensed rather than public domain,
+  simplified to ~3&nbsp;km. The India-administered part of Jammu &amp; Kashmir comes from
+  <a href="https://www.naturalearthdata.com" target="_blank" rel="noopener">Natural Earth</a>
+  (public domain); the Line of Control is drawn dashed.
+  Circles sit on each district's area centroid, every one verified to fall inside its own
+  district. Population: 2017 and 2023 census counts.
+</footer>
+<div class="tip" id="tip"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>
+/* ========================================================================
+   1. CONFIG and the measures — the only part you normally touch
+   ======================================================================== */
+const fmtNum = d3.format(",");
+const CONFIG = {
+  /* The closing figure. It is a single territory-level number with no district
+     breakdown in the source, so it is written here as a string rather than
+     summed from the data — and the circles in that view keep whichever measure
+     is selected, they are NOT sized by GDP. Give each district a `gdp` value in
+     DISTRICT_DATA and add it to METRICS if a breakdown turns up. */
+  finalLabel  : "Total estimated GDP",
+  finalValue  : "$2.3B",
+  maxRadius   : 46,               // px radius of the largest circle
+  width       : 1120,
+  margin      : 26,
+  // Fill a district's circle with a photo instead of flat grey. Use local
+  // files or data: URIs — remote hosts may be blocked.
+  //   photos: { Hunza: "photos/hunza.jpg" }
+  photos      : {}
+};
+
+/* ------------------------------------------------------------------------
+   The measures behind the boxes under the chart. Each one says how to format
+   a value, how to summarise the ten districts, and where to put the two
+   legend circles.
+
+   `agg` matters and is not cosmetic. Populations, megawatts and tourist counts
+   add up, so their headline is a sum. A poverty index, a literacy rate or a
+   child-labour rate does not: adding ten percentages together is meaningless,
+   and a plain average of them would weight Hunza's 65,000 people the same as
+   Diamer's 337,000. Those use a population-weighted mean instead, which is
+   why the headline says so. The two answers differ a lot — literacy is 52.4%
+   weighted against 54.4% unweighted, child labour 14.0% against 16.2%.
+   ------------------------------------------------------------------------ */
+const K = v => v >= 1000 ? fmtNum(Math.round(v / 1000)) + "k" : fmtNum(v);
+const MIL = v => v >= 1e6 ? +(v / 1e6).toFixed(1) + "M" : K(v);
+const D = n => v => d3.format("," + "." + n + "f")(v);
+const N = v => fmtNum(Math.round(v));
+
+const METRICS = [
+  {key: "pop",      box: "Population, 2023", short: "population",
+   unit: "",  f: K,    x: v => fmtNum(v), tot: MIL,  agg: "sum",   ticks: [50000, 300000]},
+  {key: "density",  box: "Population Density (per sq.km)", short: "population density",
+   unit: "/km²", f: N, x: N,              tot: D(1), agg: "wmean", ticks: [10, 70]},
+  {key: "mpi",      box: "Multidimensional Poverty Index", short: "poverty index",
+   unit: "",  f: D(3), x: D(3),           tot: D(3), agg: "wmean", ticks: [0.05, 0.40]},
+  {key: "poverty",  box: "Poverty Headcount", short: "poverty headcount",
+   unit: "%", f: D(1), x: D(1),           tot: D(1), agg: "wmean", ticks: [10, 70]},
+  {key: "literacy", box: "Literacy Total", short: "literacy",
+   unit: "%", f: N,    x: N,              tot: D(1), agg: "wmean", ticks: [30, 70]},
+  {key: "child",    box: "Child Labour", short: "child labour",
+   unit: "%", f: D(1), x: D(1),           tot: D(1), agg: "wmean", ticks: [5, 25]},
+  {key: "gen",      box: "Total Power Generation (MW)", short: "power generation",
+   unit: "MW",f: D(1), x: D(2),           tot: D(1), agg: "sum",   ticks: [10, 90]},
+  {key: "demand",   box: "Total Power Demand (MW)", short: "power demand",
+   unit: "MW",f: D(1), x: D(2),           tot: D(1), agg: "sum",   ticks: [20, 160]},
+  {key: "tourists", box: "Total Tourists", short: "tourists",
+   unit: "",  f: K,    x: v => fmtNum(v), tot: K,    agg: "sum",   ticks: [25000, 175000]},
+];
+
+let metric = METRICS[0];
+
+/* Ten colours for ten districts, applied by rank within whichever measure is
+   showing: darkest for the highest value, brightest for the lowest. That is
+   the usual sequential direction, and on a white page it puts the most visual
+   weight on the biggest circles instead of fighting the size encoding.
+
+   Colour here is redundant — in a sorted row it says the same thing as rank
+   and size. It is not carrying a second variable. Flip the array to reverse
+   the ramp. When a measure has fewer than ten districts with figures, the
+   ramp is spread across those it has rather than truncated. */
+const PALETTE = ["#02061D", "#360516", "#69030E", "#9C0107", "#CF0000",
+                 "#DB2E01", "#E75C03", "#F38B05", "#F9A206", "#FEB907"];
+/* On the map the circles are neutral — colour by rank would be meaningless
+   there, since the ranking is what the row is for. They take on the palette as
+   they gather, and hand it back if you scroll the sequence in reverse. */
+const START_GREY = "#b3b3b3";
+/* District fill: darker while Pakistan is on screen, so Gilgit-Baltistan reads
+   as the subject at a third of the country's width, then settling to its normal
+   tone once the country is gone. */
+const LAND_NEAR = "#ececec";
+const LAND_FAR  = "#bdbdbd";
+const rankColor = (i, n) =>
+  PALETTE[Math.round(i * (PALETTE.length - 1) / Math.max(1, n - 1))];
+const MORPH = 750;                  // ms to rearrange when a box is clicked
+
+/* The motion, in milliseconds. It starts on the empty map and runs forward
+   when you scroll down, backward when you scroll up.
+   0 → pop               : circles pop in one by one, in random order
+   pop → pop + hold      : a beat with the finished map
+   then travel           : circles gather, map fades out completely
+   the total fades in as they settle                                       */
+const TIMING = { zoom: 1600,
+                 pop: 1100, popEach: 340, hold: 180,
+                 travel: 1500, stagger: 550, label: 450,
+                 // only `merge` — the ten handing their space to one circle —
+                 // is slowed; every other beat is as it was
+                 hold2: 220, regroup: 1400, hold3: 160, merge: 950 };
+
+/* ========================================================================
+   2. DATA
+   ------------------------------------------------------------------------
+   value = whatever you are mapping. Default here is district area in km²,
+   computed from the polygons themselves (so it is real, not placeholder).
+   lon/lat = where the circle starts. These are district HQ towns, each one
+   verified by point-in-polygon to fall inside its own district.
+   ======================================================================== */
+const DISTRICT_DATA = [
+  {
+    "district": "Gilgit",
+    "hq": "Gilgit",
+    "lon": 74.3144,
+    "lat": 35.9208,
+    "pop2017": 284337,
+    "growth": 14.1,
+    "m": {
+      "pop": 324552,
+      "density": 77,
+      "mpi": 0.081,
+      "poverty": 17.1,
+      "literacy": 67,
+      "child": 7.2,
+      "gen": 92.73,
+      "demand": 167.0,
+      "tourists": 100617
+    }
+  },
+  {
+    "district": "Skardu",
+    "hq": "Skardu",
+    "lon": 75.6333,
+    "lat": 35.2971,
+    "pop2017": 261240,
+    "growth": 6.8,
+    "m": {
+      "pop": 278885,
+      "density": 27,
+      "mpi": 0.172,
+      "poverty": 36.1,
+      "literacy": 54,
+      "child": 16.2,
+      "gen": 36.24,
+      "demand": 148.6,
+      "tourists": 144263
+    }
+  },
+  {
+    "district": "Hunza",
+    "hq": "Karimabad",
+    "lon": 74.6667,
+    "lat": 36.3167,
+    "pop2017": 51398,
+    "growth": 27.4,
+    "m": {
+      "pop": 65497,
+      "density": 6,
+      "mpi": 0.008,
+      "poverty": 2.0,
+      "literacy": 71,
+      "child": 9.7,
+      "gen": 9.61,
+      "demand": 35.61,
+      "tourists": 175205
+    }
+  },
+  {
+    "district": "Nagar",
+    "hq": "Nagar Khas",
+    "lon": 74.75,
+    "lat": 36.2,
+    "pop2017": 71748,
+    "growth": 21.8,
+    "m": {
+      "pop": 87410,
+      "density": 21,
+      "mpi": 0.065,
+      "poverty": 15.2,
+      "literacy": 66,
+      "child": 24.5,
+      "gen": 11.19,
+      "demand": 40.0,
+      "tourists": 50695
+    }
+  },
+  {
+    "district": "Ghizer",
+    "hq": "Gahkuch",
+    "lon": 73.7639,
+    "lat": 36.1725,
+    "pop2017": 172763,
+    "growth": 15.8,
+    "m": {
+      "pop": 200069,
+      "density": 16,
+      "mpi": 0.066,
+      "poverty": 14.3,
+      "literacy": 64,
+      "child": 23.7,
+      "gen": 28.01,
+      "demand": 110.22,
+      "tourists": 97410
+    }
+  },
+  {
+    "district": "Ghanche",
+    "hq": "Khaplu",
+    "lon": 76.3333,
+    "lat": 35.1667,
+    "pop2017": 156608,
+    "growth": 0.8,
+    "m": {
+      "pop": 157822,
+      "density": 18,
+      "mpi": 0.106,
+      "poverty": 24.0,
+      "literacy": 43,
+      "child": null,
+      "gen": 19.54,
+      "demand": 77.5,
+      "tourists": 29475
+    }
+  },
+  {
+    "district": "Shigar",
+    "hq": "Shigar",
+    "lon": 75.7361,
+    "lat": 35.4225,
+    "pop2017": 74709,
+    "growth": 13.3,
+    "m": {
+      "pop": 84608,
+      "density": 20,
+      "mpi": 0.211,
+      "poverty": 44.8,
+      "literacy": 46,
+      "child": 27.8,
+      "gen": 7.3,
+      "demand": 29.71,
+      "tourists": 46891
+    }
+  },
+  {
+    "district": "Kharmang",
+    "hq": "Tolti",
+    "lon": 75.87,
+    "lat": 35.13,
+    "pop2017": 54620,
+    "growth": 12.2,
+    "m": {
+      "pop": 61304,
+      "density": 10,
+      "mpi": 0.157,
+      "poverty": 34.0,
+      "literacy": 49,
+      "child": 9.2,
+      "gen": 13.08,
+      "demand": 19.19,
+      "tourists": 16111
+    }
+  },
+  {
+    "district": "Astore",
+    "hq": "Astore",
+    "lon": 74.8583,
+    "lat": 35.3667,
+    "pop2017": 95422,
+    "growth": 16.9,
+    "m": {
+      "pop": 111573,
+      "density": 21,
+      "mpi": 0.167,
+      "poverty": 35.0,
+      "literacy": 55,
+      "child": 21.9,
+      "gen": 18.85,
+      "demand": 39.36,
+      "tourists": 74617
+    }
+  },
+  {
+    "district": "Diamer",
+    "hq": "Chilas",
+    "lon": 74.1,
+    "lat": 35.4167,
+    "pop2017": 269840,
+    "growth": 25.0,
+    "m": {
+      "pop": 337329,
+      "density": 47,
+      "mpi": 0.429,
+      "poverty": 74.2,
+      "literacy": 29,
+      "child": 5.8,
+      "gen": 26.6,
+      "demand": 94.02,
+      "tourists": 148028
+    }
+  }
+];
+
+/* District polygons, inlined so the file works straight off file:// with no
+   server. Source: geoBoundaries gbOpen PAK ADM2, simplified to ~400 m.
+
+   GOTCHA if you swap in other boundary data: d3-geo wants the OPPOSITE ring
+   winding from the GeoJSON spec (RFC 7946). Exterior rings must be CLOCKWISE
+   in lon/lat; hand it spec-compliant counter-clockwise rings and every polygon
+   is read as "the whole sphere minus this shape" — the map fills solid grey
+   and fitExtent collapses to a world view. These rings are already flipped.
+   Test any new file with d3.geoArea(feature): a GB district should come back
+   around 1e-4 steradians, not ~12.57 (= 4π, the whole sphere).            */
+const GEO = {"type":"FeatureCollection","features":[{"type":"Feature","properties":{"district":"Shigar"},"geometry":{"type":"Polygon","coordinates":[[[77.0189,35.6515],[76.9863,35.6424],[76.9401,35.6186],[76.9309,35.5996],[76.9121,35.5921],[76.8912,35.5556],[76.8723,35.5524],[76.8736,35.5116],[76.8397,35.4919],[76.8352,35.4782],[76.787,35.4713],[76.7485,35.4835],[76.7446,35.4988],[76.7238,35.5158],[76.7179,35.5407],[76.7075,35.5513],[76.6899,35.5529],[76.6892,35.5646],[76.6684,35.5715],[76.656,35.5821],[76.6534,35.5932],[76.6358,35.5996],[76.6339,35.6091],[76.6046,35.6192],[76.6033,35.6319],[76.5772,35.6435],[76.5674,35.661],[76.5407,35.6753],[76.5381,35.6843],[76.527,35.6906],[76.471,35.6938],[76.4495,35.6896],[76.443,35.6747],[76.4261,35.6673],[76.3668,35.6668],[76.3472,35.6462],[76.3277,35.643],[76.3173,35.6234],[76.2977,35.6128],[76.2931,35.6011],[76.2632,35.589],[76.2541,35.5773],[76.2124,35.5625],[76.1974,35.5482],[76.1954,35.5376],[76.1798,35.528],[76.1459,35.519],[76.1303,35.5015],[76.0795,35.4978],[76.0703,35.4755],[76.0528,35.4713],[76.0423,35.4553],[76.015,35.4368],[76.015,35.415],[76.0058,35.4012],[75.9909,35.3954],[75.985,35.3661],[75.987,35.3289],[75.9804,35.3114],[75.9433,35.2869],[75.9212,35.2822],[75.9192,35.3183],[75.8866,35.3444],[75.8808,35.3699],[75.8619,35.3746],[75.8306,35.3741],[75.8071,35.3518],[75.7791,35.3481],[75.7668,35.3353],[75.7479,35.3295],[75.6417,35.3364],[75.6254,35.3449],[75.5967,35.3683],[75.5902,35.3932],[75.5537,35.4081],[75.5498,35.4208],[75.5407,35.4267],[75.5107,35.4283],[75.5055,35.441],[75.4814,35.4506],[75.4697,35.4888],[75.4554,35.4994],[75.441,35.5603],[75.4176,35.5731],[75.4078,35.59],[75.3746,35.599],[75.3557,35.6176],[75.3116,35.6187],[75.2907,35.6374],[75.2498,35.6401],[75.2328,35.6587],[75.1902,35.6723],[75.1731,35.7126],[75.1631,35.7156],[75.1519,35.7325],[75.1339,35.7386],[75.1223,35.7576],[75.0989,35.762],[75.0935,35.7823],[75.0476,35.787],[75.0376,35.8043],[75.0134,35.8141],[75.0076,35.8337],[74.9868,35.8425],[74.9822,35.8512],[74.9804,35.8946],[74.9765,35.9025],[74.957,35.9104],[74.9479,35.9505],[74.9296,35.96],[74.9179,35.9758],[74.9185,35.9853],[74.8989,36.0035],[74.9086,36.0193],[74.927,36.0275],[74.9402,36.0456],[74.9829,36.0539],[75.0033,36.0761],[75.0573,36.0777],[75.0766,36.0695],[75.0827,36.0547],[75.1183,36.0531],[75.1621,36.0777],[75.1702,36.1254],[75.1662,36.1509],[75.1723,36.1641],[75.2222,36.1764],[75.2323,36.1904],[75.2588,36.1953],[75.2935,36.2185],[75.4137,36.2174],[75.428,36.2138],[75.4495,36.1912],[75.4619,36.1896],[75.4716,36.1717],[75.4951,36.1649],[75.4964,36.1512],[75.5277,36.1428],[75.5394,36.1254],[75.7277,36.1217],[75.7394,36.1033],[75.7596,36.0986],[75.7687,36.0754],[75.7843,36.0712],[75.7954,36.0317],[75.8163,36.0285],[75.8299,36.0048],[75.8957,36.0017],[75.927,36.0238],[75.9427,36.0275],[75.9576,36.0512],[75.9908,36.0577],[76.0097,36.0232],[76.0354,36.0085],[76.0807,35.9987],[76.1397,35.9999],[76.1715,35.9852],[76.2213,35.9436],[76.238,35.9179],[76.244,35.8849],[76.2546,35.8714],[76.2788,35.8616],[76.4738,35.8604],[76.5056,35.8665],[76.5389,35.8885],[76.6356,35.9302],[76.6643,35.9192],[76.6734,35.8959],[76.6674,35.8236],[76.684,35.8052],[76.7762,35.7733],[76.8291,35.7488],[76.9123,35.6923],[76.9849,35.6739],[77.0189,35.6515]]]}},{"type":"Feature","properties":{"district":"Diamer"},"geometry":{"type":"Polygon","coordinates":[[[74.4083,35.0648],[74.3612,35.0621],[74.3235,35.0407],[74.2122,35.0423],[74.1832,35.0589],[74.1184,35.0811],[74.1048,35.0985],[74.0816,35.1104],[74.0245,35.1199],[74.0197,35.1302],[73.9529,35.1389],[73.9423,35.1531],[73.8997,35.1824],[73.8397,35.1903],[73.8077,35.2014],[73.7671,35.1919],[73.7497,35.1942],[73.739,35.2037],[73.7226,35.2385],[73.71,35.2448],[73.7013,35.3333],[73.7226,35.3791],[73.7342,35.3862],[73.741,35.4019],[73.7671,35.4209],[73.771,35.4453],[73.7632,35.4556],[73.7245,35.4784],[73.6887,35.4831],[73.6781,35.4981],[73.6626,35.506],[73.6268,35.5036],[73.5678,35.528],[73.4284,35.5343],[73.4139,35.5493],[73.3346,35.5619],[73.3191,35.5768],[73.2814,35.5839],[73.261,35.5997],[73.2156,35.613],[73.2107,35.6256],[73.1449,35.6744],[73.1149,35.731],[73.114,35.749],[73.1381,35.7726],[73.1381,35.8165],[73.1289,35.8254],[73.1364,35.838],[73.1914,35.8545],[73.2005,35.871],[73.2331,35.8809],[73.2362,35.8974],[73.2525,35.9023],[73.2626,35.9427],[73.3135,35.9641],[73.3349,35.9501],[73.3716,35.9476],[73.4062,35.918],[73.4092,35.904],[73.453,35.8916],[73.4764,35.8734],[73.509,35.8611],[73.5635,35.8698],[73.5876,35.8904],[73.6514,35.8967],[73.6833,35.8967],[73.7081,35.8745],[73.7902,35.8598],[73.9111,35.8701],[73.9569,35.8668],[73.9833,35.847],[74.0098,35.8388],[74.0159,35.7983],[74.0699,35.7893],[74.0736,35.7678],[74.0925,35.7678],[74.1172,35.7456],[74.1491,35.7345],[74.1537,35.725],[74.2019,35.7097],[74.2117,35.6859],[74.2443,35.6684],[74.2514,35.6483],[74.2866,35.6424],[74.2983,35.6282],[74.3517,35.6192],[74.3667,35.6033],[74.5081,35.5921],[74.527,35.5964],[74.5433,35.6229],[74.6345,35.6255],[74.6514,35.6181],[74.654,35.5482],[74.6671,35.5439],[74.6749,35.5296],[74.6755,35.5073],[74.7081,35.4808],[74.7016,35.4399],[74.7029,35.363],[74.6951,35.3353],[74.6755,35.3295],[74.6677,35.3194],[74.6677,35.3061],[74.6462,35.2986],[74.6325,35.2811],[74.6208,35.2822],[74.6097,35.2742],[74.6078,35.2603],[74.5316,35.2556],[74.5185,35.2375],[74.5055,35.2306],[74.4703,35.23],[74.4579,35.2109],[74.4358,35.2061],[74.4228,35.1635],[74.4013,35.1422],[74.3987,35.0995],[74.4083,35.0648]]]}},{"type":"Feature","properties":{"district":"Ghizer"},"geometry":{"type":"Polygon","coordinates":[[[72.5671,35.8503],[72.5401,35.8738],[72.5401,35.9357],[72.5566,35.9702],[72.5585,35.9937],[72.543,36.0359],[72.5459,36.154],[72.5672,36.1899],[72.5943,36.2235],[72.6524,36.2493],[72.7095,36.2578],[72.723,36.2727],[72.754,36.2789],[72.7733,36.2992],[72.8111,36.3046],[72.8498,36.3288],[72.8943,36.3725],[72.902,36.4176],[72.9146,36.4293],[72.9601,36.4418],[73.0056,36.4667],[73.023,36.4916],[73.0327,36.4931],[73.0656,36.5211],[73.0985,36.5577],[73.0985,36.6035],[73.1052,36.6299],[73.1149,36.6447],[73.1333,36.6555],[73.1681,36.6617],[73.2136,36.6835],[73.2862,36.6858],[73.3172,36.7029],[73.3549,36.706],[73.5,36.6967],[73.5658,36.6517],[73.8068,36.6509],[73.8755,36.6734],[73.891,36.685],[73.8997,36.7029],[73.8968,36.7269],[73.8581,36.7649],[73.8232,36.7858],[73.7236,36.8153],[73.7022,36.8575],[73.7841,36.8878],[73.8748,36.8926],[73.9156,36.889],[74.0033,36.8237],[74.0532,36.8176],[74.0924,36.8251],[74.134,36.7682],[74.1482,36.7617],[74.1381,36.7274],[74.1472,36.7176],[74.2052,36.7087],[74.2175,36.6858],[74.2409,36.6638],[74.2582,36.6638],[74.2694,36.6572],[74.2765,36.6401],[74.2989,36.6327],[74.2999,36.6099],[74.2908,36.5919],[74.2704,36.5862],[74.2582,36.5682],[74.2429,36.5641],[74.2236,36.5453],[74.2052,36.5404],[74.1839,36.5207],[74.1482,36.5109],[74.137,36.4602],[74.0841,36.434],[74.079,36.3848],[74.0719,36.3734],[74.0638,36.3643],[74.026,36.3498],[74.0234,36.2836],[74.0475,36.27],[74.0579,36.2164],[74.0755,36.2075],[74.0892,36.187],[74.1061,36.177],[74.1114,36.1386],[74.0872,36.0854],[74.0677,36.0159],[74.0449,36.008],[74.0397,35.9895],[74.0234,35.9779],[74.0136,35.9632],[74.0045,35.921],[73.9889,35.9131],[73.9446,35.9067],[73.9335,35.8846],[73.9382,35.8672],[73.9111,35.8701],[73.7902,35.8598],[73.7081,35.8745],[73.6833,35.8967],[73.6514,35.8967],[73.5876,35.8904],[73.5635,35.8698],[73.509,35.8611],[73.4764,35.8734],[73.453,35.8916],[73.4092,35.904],[73.4062,35.918],[73.3716,35.9476],[73.3349,35.9501],[73.3135,35.9641],[73.2626,35.9427],[73.2525,35.9023],[73.2362,35.8974],[73.2331,35.8809],[73.2005,35.871],[73.1914,35.8545],[73.1364,35.838],[73.1289,35.8254],[73.0878,35.8291],[73.024,35.8079],[72.9291,35.8079],[72.8885,35.815],[72.8769,35.8259],[72.8556,35.8314],[72.8169,35.8307],[72.7898,35.815],[72.7462,35.8103],[72.7075,35.7961],[72.6834,35.7961],[72.6582,35.8103],[72.6098,35.8173],[72.5671,35.8503]]]}},{"type":"Feature","properties":{"district":"Hunza"},"geometry":{"type":"Polygon","coordinates":[[[75.9908,36.0577],[75.9576,36.0512],[75.9427,36.0275],[75.927,36.0238],[75.8957,36.0017],[75.8299,36.0048],[75.8163,36.0285],[75.7954,36.0317],[75.7843,36.0712],[75.7687,36.0754],[75.7596,36.0986],[75.7394,36.1033],[75.7277,36.1217],[75.5394,36.1254],[75.5277,36.1428],[75.4964,36.1512],[75.4951,36.1649],[75.4716,36.1717],[75.4619,36.1896],[75.4352,36.2006],[75.428,36.2138],[75.2964,36.2164],[75.2886,36.2222],[75.2808,36.2647],[75.2645,36.2689],[75.2553,36.2873],[75.2404,36.2952],[75.228,36.3157],[75.2182,36.3183],[75.0508,36.3272],[74.957,36.3183],[74.7811,36.3178],[74.7361,36.2983],[74.6195,36.2936],[74.6006,36.2768],[74.5641,36.2695],[74.5413,36.2506],[74.4729,36.2463],[74.3654,36.2537],[74.3485,36.2663],[74.3478,36.2868],[74.4677,36.3535],[74.4651,36.4447],[74.4749,36.4615],[74.4951,36.4688],[74.5075,36.4929],[74.527,36.4992],[74.5263,36.528],[74.5133,36.54],[74.4729,36.5421],[74.4736,36.5678],[74.4658,36.585],[74.443,36.6039],[74.443,36.6274],[74.4306,36.6357],[74.3628,36.641],[74.2994,36.6206],[74.2989,36.6327],[74.2765,36.6401],[74.2694,36.6572],[74.2409,36.6638],[74.2297,36.6736],[74.2052,36.7087],[74.1472,36.7176],[74.1381,36.7274],[74.1482,36.7617],[74.134,36.7682],[74.0924,36.8251],[74.1591,36.8467],[74.1938,36.8721],[74.2044,36.9023],[74.2211,36.9071],[74.3224,36.918],[74.3511,36.9253],[74.41,36.9543],[74.6157,36.9663],[74.6777,36.999],[74.7306,37.0038],[74.782,37.0002],[74.8878,36.9675],[74.9029,36.9591],[74.9075,36.9373],[74.9271,36.9289],[74.9649,36.9386],[75.0027,36.97],[75.036,36.9857],[75.1645,36.9893],[75.1932,36.9857],[75.228,36.97],[75.2794,36.9216],[75.4155,36.9083],[75.4306,36.9011],[75.4548,36.8575],[75.4654,36.8237],[75.4805,36.8164],[75.4896,36.7995],[75.4881,36.7292],[75.4956,36.7171],[75.5077,36.7098],[75.5455,36.705],[75.5818,36.7207],[75.606,36.7401],[75.6468,36.7474],[75.7239,36.751],[75.7708,36.7413],[75.9023,36.6407],[75.9855,36.5266],[76.0626,36.4001],[76.0399,36.3003],[76.0414,36.2783],[76.0671,36.2515],[76.0581,36.2027],[75.993,36.1051],[75.987,36.0843],[75.9908,36.0577]]]}},{"type":"Feature","properties":{"district":"Gilgit"},"geometry":{"type":"Polygon","coordinates":[[[74.8989,36.0035],[74.9185,35.9853],[74.9179,35.9758],[74.9296,35.96],[74.9479,35.9505],[74.957,35.9104],[74.9765,35.9025],[74.983,35.8735],[74.9791,35.8587],[74.9465,35.8524],[74.9329,35.8376],[74.8938,35.8281],[74.8873,35.8025],[74.872,35.7893],[74.8404,35.7802],[74.8201,35.7529],[74.7935,35.7456],[74.755,35.7562],[74.7426,35.7773],[74.7407,35.8048],[74.7498,35.8444],[74.7335,35.8592],[74.6703,35.8576],[74.6566,35.8465],[74.6475,35.7842],[74.6254,35.7636],[74.6202,35.7393],[74.6234,35.6652],[74.5806,35.627],[74.5433,35.6229],[74.527,35.5964],[74.5081,35.5921],[74.3667,35.6033],[74.3517,35.6192],[74.2983,35.6282],[74.2866,35.6424],[74.2514,35.6483],[74.2443,35.6684],[74.2117,35.6859],[74.2019,35.7097],[74.1537,35.725],[74.1491,35.7345],[74.1172,35.7456],[74.0925,35.7678],[74.0736,35.7678],[74.0699,35.7893],[74.0159,35.7983],[74.0098,35.8388],[73.9833,35.847],[73.9569,35.8668],[73.9382,35.8672],[73.9335,35.8846],[73.9446,35.9067],[73.9889,35.9131],[74.0045,35.921],[74.0136,35.9632],[74.0234,35.9779],[74.0397,35.9895],[74.0449,36.008],[74.0677,36.0159],[74.0872,36.0854],[74.1087,36.1265],[74.1061,36.177],[74.0892,36.187],[74.0755,36.2075],[74.0579,36.2164],[74.0475,36.27],[74.0234,36.2836],[74.026,36.3498],[74.0638,36.3643],[74.076,36.38],[74.0886,36.3561],[74.1114,36.3493],[74.112,36.3398],[74.1361,36.3251],[74.142,36.301],[74.1654,36.2905],[74.1798,36.2579],[74.1993,36.2437],[74.1987,36.2211],[74.2097,36.2106],[74.2501,36.178],[74.2781,36.1754],[74.3088,36.1596],[74.3719,36.1512],[74.3719,36.1396],[74.3928,36.1228],[74.4006,36.108],[74.4254,36.098],[74.4768,36.1075],[74.4873,36.1296],[74.5348,36.147],[74.6247,36.1407],[74.6351,36.1307],[74.656,36.1296],[74.6827,36.1091],[74.7172,36.0991],[74.7433,36.0822],[74.8019,36.0765],[74.8221,36.0564],[74.8938,36.0227],[74.8989,36.0035]]]}},{"type":"Feature","properties":{"district":"Nagar"},"geometry":{"type":"Polygon","coordinates":[[[75.2935,36.2185],[75.2588,36.1953],[75.2323,36.1904],[75.2222,36.1764],[75.1723,36.1641],[75.1662,36.1509],[75.1702,36.1254],[75.1621,36.0777],[75.1183,36.0531],[75.0827,36.0547],[75.0766,36.0695],[75.0573,36.0777],[75.0033,36.0761],[74.9829,36.0539],[74.9402,36.0456],[74.927,36.0275],[74.9086,36.0193],[74.8989,36.0035],[74.8938,36.0227],[74.8221,36.0564],[74.8019,36.0765],[74.7433,36.0822],[74.7172,36.0991],[74.6827,36.1091],[74.656,36.1296],[74.6351,36.1307],[74.6247,36.1407],[74.5348,36.147],[74.4873,36.1296],[74.4768,36.1075],[74.4254,36.098],[74.4006,36.108],[74.3928,36.1228],[74.3719,36.1396],[74.3719,36.1512],[74.3088,36.1596],[74.2781,36.1754],[74.2501,36.178],[74.1987,36.2211],[74.1993,36.2437],[74.1798,36.2579],[74.1654,36.2905],[74.142,36.301],[74.1361,36.3251],[74.112,36.3398],[74.1114,36.3493],[74.0886,36.3561],[74.076,36.38],[74.0841,36.434],[74.137,36.4602],[74.1482,36.5109],[74.1839,36.5207],[74.2052,36.5404],[74.2236,36.5453],[74.2429,36.5641],[74.2582,36.5682],[74.2704,36.5862],[74.2969,36.5984],[74.2994,36.6206],[74.3628,36.641],[74.4045,36.6405],[74.443,36.6274],[74.443,36.6039],[74.4658,36.585],[74.4736,36.5678],[74.4729,36.5421],[74.5133,36.54],[74.5263,36.528],[74.527,36.4992],[74.5075,36.4929],[74.4951,36.4688],[74.4749,36.4615],[74.4651,36.4447],[74.4677,36.3535],[74.3478,36.2868],[74.3544,36.2584],[74.4729,36.2463],[74.5413,36.2506],[74.5641,36.2695],[74.6006,36.2768],[74.6195,36.2936],[74.7361,36.2983],[74.7811,36.3178],[75.1062,36.3256],[75.228,36.3157],[75.2404,36.2952],[75.2553,36.2873],[75.2645,36.2689],[75.2808,36.2647],[75.2935,36.2185]]]}},{"type":"Feature","properties":{"district":"Astore"},"geometry":{"type":"Polygon","coordinates":[[[75.2468,34.7242],[74.9554,34.7264],[74.907,34.7343],[74.8644,34.751],[74.8247,34.7717],[74.7783,34.8178],[74.7444,34.8408],[74.6912,34.8559],[74.6757,34.8686],[74.6351,34.8757],[74.6235,34.9218],[74.6031,34.9503],[74.5993,35.013],[74.5809,35.0217],[74.5712,35.0486],[74.547,35.0732],[74.5296,35.0835],[74.4686,35.0882],[74.4083,35.0648],[74.3987,35.0995],[74.4013,35.1422],[74.4228,35.1635],[74.4358,35.2061],[74.4579,35.2109],[74.4703,35.23],[74.5055,35.2306],[74.5185,35.2375],[74.5316,35.2556],[74.6078,35.2603],[74.6097,35.2742],[74.6208,35.2822],[74.6325,35.2811],[74.6462,35.2986],[74.6677,35.3061],[74.6677,35.3194],[74.6755,35.3295],[74.6951,35.3353],[74.6996,35.347],[74.7081,35.4808],[74.6755,35.5073],[74.6749,35.5296],[74.6671,35.5439],[74.654,35.5482],[74.6514,35.6181],[74.6345,35.6255],[74.5806,35.627],[74.6234,35.6652],[74.6202,35.7393],[74.6254,35.7636],[74.6475,35.7842],[74.6566,35.8465],[74.6703,35.8576],[74.7335,35.8592],[74.7498,35.8444],[74.7407,35.8048],[74.7426,35.7773],[74.755,35.7562],[74.7935,35.7456],[74.8201,35.7529],[74.827,35.7634],[74.854,35.7382],[74.8599,35.7213],[74.8873,35.7118],[74.8892,35.6705],[74.8834,35.6514],[74.8547,35.6366],[74.8508,35.5805],[74.8801,35.5646],[74.8886,35.5476],[74.9107,35.5407],[74.9133,35.5301],[74.9257,35.5227],[74.9583,35.5036],[74.9954,35.4951],[75.0052,35.4707],[75.0208,35.4702],[75.0423,35.4516],[75.0801,35.4453],[75.0834,35.4304],[75.1159,35.4198],[75.1218,35.4049],[75.1394,35.3943],[75.1452,35.3677],[75.1713,35.3481],[75.1752,35.3157],[75.1707,35.2391],[75.1967,35.2247],[75.2013,35.2157],[75.2462,35.2029],[75.2593,35.1816],[75.258,35.1693],[75.2306,35.1528],[75.2234,35.1342],[75.2222,35.0593],[75.214,35.0277],[75.1957,35.0151],[75.1896,34.9918],[75.1743,34.9885],[75.157,34.9659],[75.1377,34.9609],[75.1336,34.9468],[75.1082,34.9201],[75.1132,34.9084],[75.1316,34.9],[75.1876,34.8942],[75.1906,34.8842],[75.2161,34.8675],[75.2222,34.8274],[75.2405,34.8182],[75.2466,34.7964],[75.2468,34.7242]]]}},{"type":"Feature","properties":{"district":"Kharmang"},"geometry":{"type":"Polygon","coordinates":[[[76.5381,34.8522],[76.5283,34.8505],[76.4995,34.8108],[76.4799,34.7983],[76.3937,34.7723],[76.371,34.7586],[76.3287,34.6952],[76.2985,34.6865],[76.182,34.6853],[76.1518,34.689],[76.1321,34.7114],[76.0656,34.7151],[76.0369,34.7089],[76.0084,34.6941],[76.0019,34.7218],[75.9707,34.7358],[75.9648,34.7754],[75.9283,34.8219],[75.8795,34.831],[75.8769,34.8428],[75.8326,34.8545],[75.8202,34.8663],[75.8169,34.8925],[75.7648,34.9309],[75.7518,34.9891],[75.7583,35.0521],[75.7642,35.0617],[75.785,35.0676],[75.8058,35.0926],[75.8221,35.0995],[75.8332,35.1427],[75.8475,35.1592],[75.929,35.1661],[75.9635,35.1848],[75.9837,35.1858],[76.0078,35.1789],[76.0287,35.1624],[76.1733,35.1629],[76.1902,35.1523],[76.1922,35.1352],[76.2078,35.1177],[76.2677,35.1134],[76.2899,35.0905],[76.3186,35.0894],[76.3453,35.074],[76.4261,35.066],[76.4365,35.0292],[76.4515,35.0233],[76.4593,35.0105],[76.4606,34.9859],[76.4899,34.9614],[76.4932,34.9283],[76.5186,34.9128],[76.5199,34.8668],[76.5381,34.8522]]]}},{"type":"Feature","properties":{"district":"Skardu"},"geometry":{"type":"Polygon","coordinates":[[[74.9789,35.8587],[74.9868,35.8425],[75.0076,35.8337],[75.0134,35.8141],[75.0376,35.8043],[75.0476,35.787],[75.0935,35.7823],[75.0989,35.762],[75.1223,35.7576],[75.1339,35.7386],[75.1519,35.7325],[75.1811,35.7031],[75.1902,35.6723],[75.2328,35.6587],[75.2498,35.6401],[75.2907,35.6374],[75.3116,35.6187],[75.3557,35.6176],[75.3746,35.599],[75.4078,35.59],[75.4176,35.5731],[75.441,35.5603],[75.4554,35.4994],[75.4697,35.4888],[75.4814,35.4506],[75.5055,35.441],[75.5107,35.4283],[75.5407,35.4267],[75.5498,35.4208],[75.5537,35.4081],[75.5902,35.3932],[75.5967,35.3683],[75.6254,35.3449],[75.6417,35.3364],[75.7479,35.3295],[75.7668,35.3353],[75.7791,35.3481],[75.8071,35.3518],[75.8306,35.3741],[75.8619,35.3746],[75.8808,35.3699],[75.8866,35.3444],[75.9192,35.3183],[75.9212,35.2327],[75.929,35.2215],[75.9759,35.2077],[75.9861,35.1851],[75.9635,35.1848],[75.929,35.1661],[75.8475,35.1592],[75.8332,35.1427],[75.8221,35.0995],[75.8058,35.0926],[75.785,35.0676],[75.7642,35.0617],[75.7583,35.0521],[75.7518,34.9891],[75.7648,34.9309],[75.8169,34.8925],[75.8202,34.8663],[75.8326,34.8545],[75.8769,34.8428],[75.8795,34.831],[75.9283,34.8219],[75.9648,34.7754],[75.9707,34.7358],[76.0019,34.7218],[76.0078,34.7095],[76.0084,34.6941],[75.9537,34.6306],[75.8948,34.5795],[75.7148,34.5733],[75.6634,34.5858],[75.6393,34.6069],[75.4947,34.6119],[75.4769,34.6285],[75.4256,34.6516],[75.3337,34.6834],[75.2718,34.724],[75.2468,34.7242],[75.2466,34.7964],[75.2405,34.8182],[75.2222,34.8274],[75.2161,34.8675],[75.1906,34.8842],[75.1876,34.8942],[75.1468,34.8967],[75.1132,34.9084],[75.1082,34.9201],[75.1336,34.9468],[75.1377,34.9609],[75.157,34.9659],[75.1743,34.9885],[75.1896,34.9918],[75.1957,35.0151],[75.214,35.0277],[75.2222,35.0593],[75.2234,35.1342],[75.2306,35.1528],[75.258,35.1693],[75.2593,35.1816],[75.2462,35.2029],[75.2013,35.2157],[75.1967,35.2247],[75.1707,35.2391],[75.1752,35.3157],[75.1713,35.3481],[75.1452,35.3677],[75.1394,35.3943],[75.1218,35.4049],[75.1159,35.4198],[75.0834,35.4304],[75.0801,35.4453],[75.0423,35.4516],[75.0208,35.4702],[75.0052,35.4707],[74.9954,35.4951],[74.9583,35.5036],[74.9257,35.5227],[74.9133,35.5301],[74.9107,35.5407],[74.8886,35.5476],[74.8801,35.5646],[74.8508,35.5805],[74.8547,35.6366],[74.8834,35.6514],[74.8892,35.6705],[74.8873,35.7118],[74.8599,35.7213],[74.854,35.7382],[74.827,35.7634],[74.8404,35.7802],[74.872,35.7893],[74.8873,35.8025],[74.8938,35.8281],[74.9329,35.8376],[74.9465,35.8524],[74.9789,35.8587]]]}},{"type":"Feature","properties":{"district":"Ghanche"},"geometry":{"type":"Polygon","coordinates":[[[75.9212,35.2822],[75.9433,35.2869],[75.9804,35.3114],[75.987,35.3289],[75.985,35.3661],[75.9909,35.3954],[76.0058,35.4012],[76.015,35.415],[76.015,35.4368],[76.0423,35.4553],[76.0528,35.4713],[76.0703,35.4755],[76.0795,35.4978],[76.1303,35.5015],[76.1459,35.519],[76.1798,35.528],[76.1954,35.5376],[76.1974,35.5482],[76.2124,35.5625],[76.2541,35.5773],[76.2632,35.589],[76.2931,35.6011],[76.2977,35.6128],[76.3173,35.6234],[76.3277,35.643],[76.3472,35.6462],[76.3668,35.6668],[76.4261,35.6673],[76.443,35.6747],[76.4495,35.6896],[76.471,35.6938],[76.527,35.6906],[76.5381,35.6843],[76.5407,35.6753],[76.5674,35.661],[76.5772,35.6435],[76.6033,35.6319],[76.6046,35.6192],[76.6339,35.6091],[76.6358,35.5996],[76.6534,35.5932],[76.656,35.5821],[76.6684,35.5715],[76.6892,35.5646],[76.6899,35.5529],[76.7075,35.5513],[76.7179,35.5407],[76.7238,35.5158],[76.7446,35.4988],[76.7485,35.4835],[76.787,35.4713],[76.8352,35.4782],[76.8397,35.4919],[76.8736,35.5116],[76.8723,35.5524],[76.8912,35.5556],[76.9121,35.5921],[76.9309,35.5996],[76.9401,35.6186],[76.9863,35.6424],[77.0189,35.6515],[77.0348,35.6284],[77.1164,35.6247],[77.1346,35.5989],[77.1497,35.5989],[77.1603,35.5903],[77.1784,35.5473],[77.189,35.5374],[77.2842,35.5276],[77.3099,35.5116],[77.3447,35.5091],[77.3493,35.4981],[77.3689,35.487],[77.375,35.4734],[77.4037,35.4624],[77.5897,35.4685],[77.6259,35.4747],[77.6592,35.4944],[77.7151,35.4968],[77.7499,35.5178],[77.8028,35.5042],[77.8149,35.471],[77.7968,35.4353],[77.7711,35.4131],[77.7333,35.3564],[77.6017,35.307],[77.573,35.3033],[77.5367,35.2836],[77.502,35.2527],[77.4959,35.2379],[77.4475,35.1848],[77.3734,35.1724],[77.3311,35.1588],[77.3009,35.118],[77.2752,35.102],[77.0786,35.071],[77.006,35.0475],[76.9577,35.0005],[76.9063,34.9856],[76.8518,34.9484],[76.8186,34.9336],[76.8004,34.9088],[76.7853,34.8716],[76.7672,34.8616],[76.7067,34.853],[76.5381,34.8522],[76.5199,34.8668],[76.5186,34.9128],[76.4932,34.9283],[76.4899,34.9614],[76.4606,34.9859],[76.4593,35.0105],[76.4515,35.0233],[76.4365,35.0292],[76.4261,35.066],[76.3453,35.074],[76.3186,35.0894],[76.2899,35.0905],[76.2677,35.1134],[76.2078,35.1177],[76.1922,35.1352],[76.1902,35.1523],[76.1733,35.1629],[76.0287,35.1624],[76.0078,35.1789],[75.9861,35.1851],[75.9759,35.2077],[75.929,35.2215],[75.9179,35.2556],[75.9212,35.2822]]]}}]};
+
+/* Pakistan's outline, for the opening frame. Simplified hard — 80,513 points
+   down to 452, and every island but the mainland dropped — because it is only
+   ever seen as context at a fifth of its own size. Same winding rule applies. */
+const PAKISTAN = {"type":"FeatureCollection","features":[{"type":"Feature","properties":{"name":"Pakistan"},"geometry":{"type":"MultiPolygon","coordinates":[[[[74.706,37.071],[74.739,37.022],[74.839,37.059],[74.906,36.93],[74.917,36.979],[75.141,37.027],[75.233,36.959],[75.4,36.955],[75.455,36.722],[75.64,36.77],[75.865,36.67],[75.946,36.603],[75.926,36.565],[76.035,36.409],[75.985,36.346],[76.062,36.227],[76.003,36.232],[76.029,36.174],[75.933,36.136],[75.957,36.046],[76.101,36.016],[76.169,35.821],[76.359,35.828],[76.366,35.864],[76.583,35.92],[76.586,35.776],[76.687,35.752],[76.777,35.658],[76.759,35.518],[76.848,35.4],[76.987,35.356],[77.022,35.295],[76.991,35.211],[77.087,35.167],[77.12,35.065],[77.018,35.038],[76.998,34.939],[76.87,34.972],[76.749,34.926],[76.682,34.76],[76.474,34.794],[76.158,34.643],[76.036,34.67],[75.749,34.516],[75.395,34.549],[75.25,34.647],[74.703,34.693],[74.58,34.77],[74.376,34.803],[73.954,34.671],[73.948,34.573],[73.751,34.344],[73.904,34.353],[73.976,34.265],[73.89,34.06],[73.921,34.013],[74.124,34.055],[74.215,34.038],[74.263,33.974],[74.22,33.867],[74.066,33.82],[73.96,33.724],[73.976,33.635],[74.187,33.456],[74.171,33.347],[74.103,33.27],[74.021,33.259],[74.014,33.198],[74.112,33.164],[74.17,33.074],[74.324,33.031],[74.353,32.983],[74.318,32.92],[74.414,32.904],[74.46,32.781],[74.637,32.752],[74.637,32.814],[74.705,32.842],[74.655,32.729],[74.695,32.66],[74.639,32.614],[74.688,32.487],[74.877,32.494],[74.979,32.448],[75.082,32.48],[75.14,32.415],[75.29,32.371],[75.379,32.231],[75.318,32.218],[75.233,32.084],[75.212,32.119],[74.999,32.034],[74.88,32.052],[74.809,31.955],[74.599,31.885],[74.552,31.753],[74.473,31.721],[74.618,31.569],[74.586,31.499],[74.656,31.425],[74.554,31.365],[74.513,31.133],[74.57,31.083],[74.603,31.135],[74.69,31.129],[74.7,31.077],[74.563,31.048],[74.551,30.987],[74.427,30.94],[74.262,30.772],[74.282,30.73],[74.099,30.612],[74.074,30.523],[73.933,30.463],[73.965,30.424],[73.883,30.36],[73.974,30.198],[73.807,30.067],[73.399,29.945],[73.284,29.572],[72.947,29.027],[72.389,28.767],[72.301,28.669],[72.208,28.394],[71.929,28.122],[71.899,27.96],[71.666,27.876],[71.203,27.834],[70.872,27.703],[70.738,27.741],[70.676,27.921],[70.589,28.009],[70.373,28.011],[70.134,27.805],[70.027,27.562],[69.587,27.181],[69.515,27.01],[69.511,26.744],[69.887,26.567],[70.056,26.602],[70.175,26.552],[70.177,26.251],[70.085,26.082],[70.101,25.939],[70.27,25.714],[70.387,25.675],[70.661,25.703],[70.666,25.397],[70.89,25.148],[70.939,24.939],[71.099,24.687],[70.982,24.614],[70.996,24.481],[71.121,24.401],[71.027,24.347],[70.942,24.369],[70.864,24.317],[70.886,24.274],[70.806,24.244],[70.658,24.24],[70.585,24.278],[70.576,24.344],[70.611,24.424],[70.72,24.467],[70.663,24.485],[70.121,24.309],[70.031,24.173],[69.765,24.171],[69.594,24.299],[69.189,24.258],[69.08,24.297],[68.988,24.257],[68.927,24.326],[68.765,24.326],[68.771,24.385],[68.712,24.344],[68.693,24.394],[68.561,24.334],[68.591,24.21],[68.434,24.123],[68.384,24.183],[68.266,24.082],[68.228,24.132],[68.261,24.171],[68.199,24.126],[68.271,24.185],[68.217,24.24],[68.135,24.143],[68.049,24.127],[68.02,24.167],[68.005,24.113],[67.952,24.148],[67.963,24.207],[67.934,24.192],[67.99,24.213],[67.967,24.248],[67.921,24.241],[67.9,24.174],[67.939,24.177],[67.891,24.136],[67.887,24.223],[67.78,24.189],[67.775,24.102],[67.719,24.112],[67.766,24.08],[67.709,24.047],[67.672,24.089],[67.489,24.041],[67.591,24.124],[67.449,24.146],[67.512,24.156],[67.536,24.293],[67.619,24.353],[67.455,24.446],[67.506,24.462],[67.449,24.447],[67.481,24.505],[67.392,24.562],[67.47,24.539],[67.512,24.585],[67.465,24.687],[67.532,24.709],[67.512,24.743],[67.594,24.741],[67.357,24.8],[67.329,24.765],[67.296,24.814],[67.121,24.777],[67.094,24.823],[67.082,24.748],[66.985,24.796],[66.984,24.839],[67.024,24.825],[66.969,24.826],[66.975,24.871],[66.862,24.862],[66.981,24.789],[66.851,24.861],[66.665,24.826],[66.726,24.923],[66.692,24.886],[66.746,25.184],[66.547,25.365],[66.595,25.421],[66.552,25.54],[66.434,25.56],[66.375,25.624],[66.177,25.577],[66.091,25.456],[66.349,25.545],[66.385,25.496],[66.516,25.491],[66.481,25.45],[66.52,25.405],[66.28,25.467],[65.817,25.416],[65.637,25.354],[65.273,25.379],[65.19,25.304],[64.742,25.316],[64.641,25.251],[64.695,25.184],[64.588,25.155],[64.617,25.222],[64.563,25.266],[64.403,25.238],[64.096,25.326],[64.128,25.355],[64.071,25.392],[64.168,25.38],[64.231,25.464],[63.998,25.497],[63.915,25.414],[64.04,25.409],[63.975,25.365],[64.049,25.38],[64.004,25.358],[64.061,25.329],[63.676,25.395],[63.476,25.286],[63.447,25.318],[63.496,25.206],[62.536,25.268],[62.351,25.179],[62.329,25.12],[62.374,25.094],[62.259,25.104],[62.316,25.12],[62.305,25.175],[62.166,25.22],[62.063,25.182],[62.089,25.101],[61.908,25.109],[61.85,25.035],[61.726,25.029],[61.806,25.194],[61.764,25.194],[61.767,25.151],[61.698,25.185],[61.738,25.141],[61.618,25.176],[61.672,25.648],[61.736,25.742],[61.84,25.745],[61.82,25.849],[61.891,25.883],[61.818,25.967],[61.896,26.261],[61.961,26.26],[62.033,26.334],[62.215,26.268],[62.228,26.33],[62.272,26.328],[62.258,26.446],[62.303,26.508],[62.445,26.567],[62.795,26.651],[63.197,26.647],[63.186,26.837],[63.246,26.85],[63.251,27.092],[63.333,27.118],[63.199,27.259],[62.937,27.201],[62.776,27.253],[62.825,27.299],[62.791,27.339],[62.848,27.463],[62.761,28.026],[62.793,28.279],[62.597,28.248],[62.389,28.432],[61.91,28.564],[61.646,28.803],[61.533,29.01],[61.479,29.024],[61.507,29.062],[61.353,29.276],[61.36,29.378],[60.873,29.859],[62.471,29.39],[63.577,29.487],[64.115,29.377],[64.16,29.391],[64.179,29.483],[64.543,29.588],[65.065,29.529],[66.252,29.849],[66.373,29.971],[66.229,30.069],[66.367,30.421],[66.278,30.569],[66.392,30.941],[66.578,30.977],[66.692,31.077],[66.731,31.209],[66.956,31.308],[67.038,31.312],[67.024,31.237],[67.07,31.214],[67.155,31.248],[67.278,31.198],[67.773,31.322],[67.786,31.4],[67.637,31.397],[67.568,31.523],[67.714,31.513],[67.858,31.624],[67.985,31.645],[68.171,31.835],[68.279,31.757],[68.544,31.713],[68.591,31.753],[68.433,31.763],[68.576,31.834],[68.709,31.771],[68.79,31.622],[68.908,31.597],[69.117,31.701],[69.2,31.855],[69.331,31.925],[69.238,32.458],[69.454,32.658],[69.388,32.77],[69.547,32.875],[69.496,32.886],[69.496,33.021],[69.582,33.103],[69.711,33.09],[69.795,33.132],[69.877,33.094],[70.021,33.138],[70.071,33.219],[70.164,33.219],[70.327,33.331],[70.297,33.43],[70.173,33.518],[70.2,33.643],[70.143,33.658],[70.143,33.725],[70.004,33.732],[69.859,33.925],[69.904,34.04],[70.495,33.94],[70.872,33.971],[71.083,34.063],[71.176,34.363],[71.024,34.451],[71.011,34.534],[71.117,34.629],[71.107,34.702],[71.226,34.753],[71.35,34.914],[71.512,34.975],[71.559,35.033],[71.532,35.091],[71.681,35.209],[71.543,35.31],[71.657,35.443],[71.594,35.5],[71.62,35.571],[71.499,35.63],[71.551,35.727],[71.38,35.905],[71.387,35.953],[71.195,36.04],[71.251,36.13],[71.523,36.334],[71.577,36.327],[71.558,36.373],[71.637,36.477],[71.807,36.399],[71.81,36.508],[72.082,36.589],[72.097,36.647],[72.208,36.66],[72.185,36.711],[72.247,36.752],[72.501,36.779],[72.653,36.852],[72.891,36.839],[73.148,36.895],[73.542,36.873],[73.844,36.926],[74.047,36.826],[74.121,36.838],[74.176,36.917],[74.309,36.919],[74.427,37.011],[74.534,36.957],[74.519,37.017],[74.706,37.071]]]]}}]};
+
+/* geoBoundaries' PAK ADM0 draws Pakistan on de-facto administration, so it
+   stops at the Line of Control and omits the India-administered part of Jammu &
+   Kashmir. Pakistan's own official maps show the whole of the former princely
+   state within the national boundary, which is the convention this piece
+   follows. This is that missing portion — India-administered J&K, Ladakh and
+   the Siachen Glacier — from Natural Earth's disputed-areas layer, drawn in the
+   same fill with a dashed edge for the Line of Control. */
+const KASHMIR = {"type":"FeatureCollection","features":[{"type":"Feature","properties":{"name":"Jammu & Kashmir (India-administered)"},"geometry":{"type":"MultiPolygon","coordinates":[[[[77.8,35.495],[77.883,35.431],[77.986,35.494],[78.044,35.492],[78.001,35.269],[78.13,35.055],[78.148,34.943],[78.296,34.625],[78.379,34.579],[78.665,34.526],[78.802,34.415],[78.922,34.372],[78.976,34.309],[78.976,34.217],[78.73,34.079],[78.721,33.994],[78.787,33.808],[78.801,33.494],[78.965,33.344],[79.125,33.29],[79.14,33.125],[79.095,33.055],[79.109,33.008],[79.176,32.993],[79.212,32.92],[79.201,32.838],[79.24,32.702],[79.215,32.508],[79.113,32.472],[79.075,32.371],[78.943,32.346],[78.882,32.376],[78.771,32.462],[78.737,32.546],[78.751,32.613],[78.713,32.638],[78.63,32.578],[78.408,32.558],[78.294,32.473],[78.27,32.504],[78.293,32.575],[78.378,32.657],[78.367,32.765],[78.009,32.61],[77.858,32.873],[77.721,33.013],[77.554,32.923],[77.349,32.867],[77.088,32.95],[76.755,33.195],[76.626,33.189],[76.542,33.233],[76.294,33.148],[76.237,33.063],[76.101,33.013],[75.955,32.901],[75.815,32.932],[75.812,32.884],[75.909,32.773],[75.926,32.641],[75.839,32.507],[75.743,32.464],[75.698,32.406],[75.573,32.375],[75.502,32.301],[75.442,32.36],[75.298,32.332],[75.024,32.466],[74.907,32.445],[74.838,32.475],[74.689,32.471],[74.63,32.588],[74.685,32.831],[74.654,32.837],[74.574,32.753],[74.501,32.746],[74.439,32.786],[74.346,32.767],[74.307,32.81],[74.337,32.87],[74.311,32.994],[74.154,33.04],[74.002,33.178],[73.992,33.253],[74.096,33.328],[74.158,33.494],[74.142,33.549],[73.977,33.648],[73.966,33.735],[74.035,33.829],[74.178,33.858],[74.272,33.962],[74.228,34.013],[73.977,34.005],[73.894,34.054],[73.893,34.115],[73.995,34.176],[73.991,34.219],[73.938,34.304],[73.829,34.315],[73.775,34.371],[73.863,34.517],[73.926,34.565],[73.919,34.643],[73.949,34.663],[74.349,34.773],[75.018,34.63],[75.213,34.645],[75.348,34.557],[75.612,34.498],[75.777,34.504],[76.023,34.677],[76.155,34.662],[76.438,34.763],[76.536,34.726],[76.653,34.747],[76.744,34.819],[76.758,34.915],[76.853,34.943],[76.921,34.921],[77.013,34.986],[77.042,35.107],[77.8,35.495]]],[[[77.049,35.11],[76.777,35.646],[76.843,35.641],[76.915,35.583],[77.058,35.58],[77.141,35.525],[77.281,35.528],[77.384,35.472],[77.661,35.458],[77.8,35.495],[77.049,35.11]]]]}}]};
+
+// neighbours, for orientation only — no borders drawn for them
+const NEIGHBOURS = [
+  {name: "Afghanistan", lon: 64.0, lat: 34.2},
+  {name: "Iran",        lon: 60.2, lat: 28.6},
+  {name: "China",       lon: 80.2, lat: 36.4},
+  {name: "India",       lon: 77.6, lat: 27.2},
+];
+
+/* ========================================================================
+   3. STAGE
+   ======================================================================== */
+const W = CONFIG.width, M = CONFIG.margin;
+const projection = d3.geoMercator();
+const path = d3.geoPath(projection);
+
+projection.fitWidth(W - M * 2, GEO);
+const b0 = path.bounds(GEO);
+const H = Math.ceil(b0[1][1] - b0[0][1]) + M * 2;
+projection.fitExtent([[M, M], [W - M, H - M]], GEO);
+
+const CX = W / 2;
+const AXIS = H * 0.50;          // the horizontal line the row is centred on
+
+const svg = d3.select("#chart").append("svg")
+  .attr("viewBox", `0 0 ${W} ${H}`)
+  .attr("xmlns", "http://www.w3.org/2000/svg");
+
+const defs     = svg.append("defs");
+// country, districts and their names zoom together, so they share a wrapper
+const gMap     = svg.append("g");
+const gCountry = gMap.append("g").attr("class", "country");
+const gLand    = gMap.append("g");
+const gNames   = gMap.append("g");
+// labels sit outside the zoomed group, or they would be scaled to nothing
+const gNbr     = svg.append("g");
+const gLegend  = svg.append("g").attr("class", "legend");
+const gBubbles = svg.append("g");
+const gRowLab  = svg.append("g").attr("opacity", 0);
+const gTotal   = svg.append("g").attr("class", "total").attr("opacity", 0);
+
+const gFinal   = svg.append("g").attr("class", "total").attr("opacity", 0);
+
+const totalLab = gTotal.append("text").attr("class", "t-label").attr("x", CX);
+const totalBox = gTotal.append("rect").attr("class", "t-box");
+const totalNum = gTotal.append("text").attr("class", "t-num").attr("x", CX);
+// one circle in place of the ten, since there is no district breakdown to size
+// them by; it takes the footprint of the cluster it replaces
+const finalDot = gFinal.append("circle").attr("class", "gdp-dot")
+                       .attr("cx", CX).attr("fill", START_GREY);
+const finalLab = gFinal.append("text").attr("class", "t-label").attr("x", CX)
+                       .text(CONFIG.finalLabel);
+const finalBox = gFinal.append("rect").attr("class", "t-box");
+const finalNum = gFinal.append("text").attr("class", "t-num").attr("x", CX)
+                       .text(CONFIG.finalValue);
+
+gCountry.selectAll("path")
+  .data([...PAKISTAN.features, ...KASHMIR.features])
+  .join("path")
+    .attr("d", path)
+    .attr("class", (d, i) => i === 0 ? "pak" : "loc");
+
+gLand.selectAll("path")
+  .data(GEO.features)
+  .join("path")
+    .attr("class", "district")
+    .attr("d", path)
+    .attr("data-district", d => d.properties.district);
+
+const CENTROID = new Map(GEO.features.map(f => [f.properties.district, path.centroid(f)]));
+
+/* The zoom runs between two views of the same projection, which is fitted to
+   Gilgit-Baltistan. Rendering the country in that projection makes it far
+   larger than the frame, so the opening scales the map group down to fit it,
+   and the zoom is that transform running back to the identity. Doing it as a
+   transform rather than reprojecting each frame keeps the district geometry at
+   full fidelity and costs nothing per frame. */
+const WHOLE = {type: "FeatureCollection",
+               features: [...PAKISTAN.features, ...KASHMIR.features]};
+const pakBounds = path.bounds(WHOLE);
+// 0.84 rather than filling the frame, to leave room for the neighbour labels
+const pakK = 0.84 * Math.min((W - 2 * M) / (pakBounds[1][0] - pakBounds[0][0]),
+                             (H - 2 * M) / (pakBounds[1][1] - pakBounds[0][1]));
+const VIEW_PAK = [(pakBounds[0][0] + pakBounds[1][0]) / 2,
+                  (pakBounds[0][1] + pakBounds[1][1]) / 2, W / pakK];
+const VIEW_GB  = [W / 2, H / 2, W];
+const zoomPath = d3.interpolateZoom(VIEW_PAK, VIEW_GB);
+// returns the components too, so unscaled labels can be placed by hand
+const zoomAt = t => {
+  const [cx, cy, w] = zoomPath(t);
+  const k = W / w;
+  return {k, tx: W / 2 - k * cx, ty: H / 2 - k * cy};
+};
+
+// projected once; positioned per frame through the current zoom
+const NBR_XY = NEIGHBOURS.map(d => ({name: d.name, p: projection([d.lon, d.lat])}));
+gNbr.selectAll("text")
+  .data(NBR_XY)
+  .join("text")
+    .attr("class", "nbr")
+    .text(d => d.name);
+const tip = d3.select("#tip");
+const fmt = fmtNum;
+const pct = d3.format(".1f");        // so 25 shows as 25.0, like its neighbours
+
+const val  = d => d.m[metric.key];               // the selected measure
+const sfx  = () => metric.unit === "%" ? "%" : "";   // only "%" is short enough
+                                                     // to sit under a circle
+// "34.3%" and "35.9/km²" take no space; "263.1 MW" does
+const unitJoin = u => !u ? "" : /^[a-z]/i.test(u) ? " " + u : u;
+const vLab = v => v == null ? "n/a" : metric.f(v) + sfx();
+const vTip = v => v == null ? "no figure in the source"
+                            : metric.x(v) + unitJoin(metric.unit);
+const vTot = v => metric.tot(v) + unitJoin(metric.unit);
+const clamp01 = v => v < 0 ? 0 : v > 1 ? 1 : v;
+const ease = d3.easeCubicInOut;
+
+/* Name labels get placed by a tiny candidate search: try the centroid first,
+   then a ring of offsets around it, and keep whichever position sits furthest
+   from every circle edge. A candidate is only valid if it falls inside its own
+   district, so a label can never drift into a neighbour.                   */
+function placeLabels(bubbles) {
+  const CAND = [[0,0],[0,-34],[0,34],[-52,0],[52,0],[0,-62],[0,62],
+                [-62,-30],[62,-30],[-62,30],[62,30],[0,-88],[0,88],
+                [-92,0],[92,0],[-92,-46],[92,-46],[-92,46],[92,46]];
+  const placed = [];
+  return GEO.features.map(f => {
+    const c = CENTROID.get(f.properties.district);
+    let best = null;
+    for (const [dx, dy] of CAND) {
+      const x = c[0] + dx, y = c[1] + dy;
+      if (x < 46 || x > W - 46 || y < 18 || y > H - 12) continue;
+      if (!d3.geoContains(f, projection.invert([x, y]))) continue;
+      let clear = Infinity;
+      for (const t of bubbles)
+        clear = Math.min(clear, Math.hypot(x - t.x, y - t.y) - t.r - 11);
+      for (const p of placed)
+        clear = Math.min(clear, Math.hypot(x - p.x, y - p.y) / 2.6 - 9);
+      const score = Math.min(clear, 30) * 100 - Math.hypot(dx, dy);
+      if (!best || score > best.score) best = {x, y, score};
+    }
+    if (!best) best = {x: c[0], y: c[1]};
+    placed.push(best);
+    return {name: f.properties.district, x: best.x, y: best.y};
+  });
+}
+
+/* ========================================================================
+   4. LAYOUT — recomputed only when the data or mode changes
+   ======================================================================== */
+const STATE = {};
+
+/* Seeded random, so the closing cluster settles into the same shape on every
+   load instead of drifting between reloads. */
+function lcg(seed) {
+  let s = seed >>> 0;
+  return () => ((s = (Math.imul(s, 1103515245) + 12345) >>> 0) & 0x7fffffff) / 0x7fffffff;
+}
+
+/* Settle the circles into a disc around (0, 0) for the closing step. Equal pull
+   toward one centre plus collision rounds the outline off in a way
+   d3.packSiblings does not — that grows a chain outward and leaves a lumpy
+   silhouette. The result depends on where the circles start, so rather than
+   hard-code parameters tuned to one dataset this tries a few configurations and
+   keeps the roundest. Ten circles and a few hundred ticks costs nothing. */
+function discScore(nodes) {
+  const enc = d3.packEnclose(nodes.map(n => ({x: n.x, y: n.y, r: n.r})));
+  const xs = nodes.flatMap(n => [n.x - n.r, n.x + n.r]);
+  const ys = nodes.flatMap(n => [n.y - n.r, n.y + n.r]);
+  const aspect = (Math.max(...xs) - Math.min(...xs)) /
+                 (Math.max(...ys) - Math.min(...ys));
+  const fill = d3.sum(nodes, n => n.r * n.r) / (enc.r * enc.r);
+  return fill / (1 + Math.abs(aspect - 1) * 2);
+}
+
+function settle(nodes, strength, spread) {
+  const golden = Math.PI * (3 - Math.sqrt(5));
+  nodes.forEach((n, i) => {
+    const a = i * golden, rad = spread * Math.sqrt(i);
+    n.x = rad * Math.cos(a);
+    n.y = rad * Math.sin(a);
+  });
+  d3.forceSimulation(nodes)
+    .randomSource(lcg(0x2F6E2B1))
+    .force("x", d3.forceX(0).strength(strength))
+    .force("y", d3.forceY(0).strength(strength))
+    .force("collide", d3.forceCollide(n => n.r + 0.7).iterations(8))
+    .stop()
+    .tick(600);
+  return nodes;
+}
+
+function clusterInto(items) {
+  const CAND = [[0.60, 8], [0.60, 14], [0.60, 24],
+                [0.30, 8], [0.15, 14], [0.085, 8]];
+  let best = null;
+  for (const [strength, spread] of CAND) {
+    const nodes = settle(items.map(it => ({...it})), strength, spread);
+    const score = discScore(nodes);
+    if (!best || score > best.score) best = {score, nodes};
+  }
+  return best.nodes;
+}
+
+/* Label widths, measured rather than guessed, so a long name like KHARMANG
+   always gets enough horizontal room in the row. measureText does not account
+   for letter-spacing, so that is added back. */
+const textWidth = (() => {
+  const c = document.createElement("canvas").getContext("2d");
+  return (t, size, weight, track) => {
+    c.font = `${weight || 400} ${size}px "Helvetica Neue",Helvetica,Arial,sans-serif`;
+    return c.measureText(t).width + (track ? t.length * size * 0.06 : 0);
+  };
+})();
+// a slot has to clear whichever of the two label lines is wider
+const slotFor = d => 14 + Math.max(textWidth(d.district.toUpperCase(), 11, 400, true),
+                                   textWidth(vLab(val(d)), 12.5, 600, false));
+
+function layout() {
+  const rows   = DISTRICT_DATA;
+  const valued = rows.filter(d => val(d) != null);
+  const sized  = valued.length > 0;
+
+  const maxValue = d3.max(valued, val) || 1;
+
+  /* Sum only what is additive; otherwise a population-weighted mean. See the
+     note on METRICS — this is the difference between a real figure and a
+     meaningless one. */
+  const total = metric.agg === "sum"
+    ? d3.sum(valued, val)
+    : d3.sum(valued, d => val(d) * d.m.pop) / d3.sum(valued, d => d.m.pop);
+
+  /* The gathered state is a single row, largest population on the left. Each
+     circle gets a slot at least as wide as its own label, so the names
+     underneath can never collide however lopsided the data is — that floor is
+     why the row has to be measured rather than simply computed from the radii.
+     If the row still overruns the frame, every radius shrinks by the same
+     factor, which keeps the circles area-proportional to each other. */
+  const GAP = 14;
+  // the 56 below the axis is the two label lines' worth of room
+  // 104 above the axis is the block and the label above it
+  let effMax = Math.min(CONFIG.maxRadius, AXIS - M - 104, H - M - AXIS - 56);
+  // the closing disc sits on the same axis and needs its own headroom
+  const discLimit = Math.min(AXIS - M - 110, H - M - AXIS - 10);
+  let r, sorted, radii, slots, rowW, disc, enc;
+  for (let pass = 0; pass < 6; pass++) {
+    r = d3.scaleSqrt().domain([0, maxValue]).range([0, effMax]);
+    /* Only districts that actually have a figure take part. A district with no
+       value is left out of the row entirely rather than holding a slot with a
+       placeholder — Ghanche has no child-labour figure, so that measure shows
+       nine circles, and the headline says nine districts. */
+    sorted = valued.slice().sort((a, b) => val(b) - val(a));
+    radii  = sorted.map(d => r(val(d)));
+    slots  = sorted.map((d, i) => Math.max(2 * radii[i] + GAP, slotFor(d)));
+    rowW   = d3.sum(slots);
+
+    disc = clusterInto(sorted.map((d, i) => ({r: radii[i], district: d.district})));
+    enc  = d3.packEnclose(disc.map(o => ({x: o.x, y: o.y, r: o.r})))
+        || {x: 0, y: 0, r: 1};
+
+    // shrink by whichever of the two arrangements is the tighter fit
+    const kRow  = rowW  <= W - 2 * M ? 1 : 0.94 * (W - 2 * M) / rowW;
+    const kDisc = enc.r <= discLimit ? 1 : discLimit / enc.r;
+    if (kRow === 1 && kDisc === 1) break;
+    effMax *= Math.min(kRow, kDisc);
+  }
+  const discSeat = new Map(disc.map(o => [o.district, o]));
+  const maxR = d3.max(radii) || 1;
+
+  // walk the slots left to right; each circle sits at its slot's centre
+  const seatX = new Map();
+  let cursor = (W - rowW) / 2;
+  sorted.forEach((d, i) => {
+    seatX.set(d.district, cursor + slots[i] / 2);
+    cursor += slots[i];
+  });
+
+  /* Home position on the map: the polygon's area centroid, all ten verified to
+     fall inside their own district, so no fallback is needed. */
+  const withGeom = sorted.map((d, i) => {
+    const [x, y] = CENTROID.get(d.district);
+    const px = seatX.get(d.district);
+    const color = rankColor(i, sorted.length);
+    const ds = discSeat.get(d.district);
+    return {...d, x, y, r: radii[i], px, py: AXIS, color, col0: color,
+            // seat in the closing disc, centred on the same axis
+            dx: CX + (ds.x - enc.x), dy: AXIS + (ds.y - enc.y),
+            // where this circle was under the previous measure, so a switch
+            // can slide from there; equal by default, meaning no morph
+            r0: radii[i], px0: px, lab0: vLab(val(d)),
+            dist: Math.hypot(x - CX, y - AXIS)};
+  });
+  // normalised travel distance — staggers departures, outermost first
+  const maxDist = d3.max(withGeom, d => d.dist) || 1;
+  withGeom.forEach(d => d.far = d.dist / maxDist);
+
+  /* Random pop order, shuffled once here rather than per frame — frame() has
+     to stay a pure function of time or the rewind would not mirror it. Each
+     Replay reshuffles, so the reveal is never the same twice. */
+  const popOrder = d3.shuffle(d3.range(withGeom.length));
+  const spread = Math.max(1, withGeom.length - 1);
+  withGeom.forEach((d, i) => {
+    d.popAt = (popOrder[i] / spread) * (TIMING.pop - TIMING.popEach);
+  });
+
+  /* "Total" vs "Average" is the one thing the headline still has to carry, now
+     that the line underneath it is gone. That the averages are population-
+     weighted, and that child labour covers nine districts rather than ten, are
+     both stated in the notes below the chart. */
+  const headLab = (metric.agg === "sum" ? "Total " : "Average ") + metric.short;
+
+  Object.assign(STATE, {rows: withGeom, sized, r, effMax, maxR, rowW,
+                        discR: enc.r, maxValue, total, n: valued.length, headLab,
+                        tot0: vTot(total), head0: headLab});
+
+  // only fires if DISTRICT_DATA is edited to have no values at all
+  d3.select("#warn")
+    .attr("hidden", sized ? true : null)
+    .text(sized ? "" :
+      "No rows in DISTRICT_DATA have a `value`, so there is nothing to size or total.");
+
+  const photoRows = withGeom.filter(d => CONFIG.photos[d.district]);
+  defs.selectAll("pattern")
+    .data(photoRows, d => d.district)
+    .join(enter => {
+      const p = enter.append("pattern")
+        .attr("id", d => "ph-" + d.district)
+        .attr("patternUnits", "objectBoundingBox")
+        .attr("width", 1).attr("height", 1);
+      p.append("image").attr("preserveAspectRatio", "xMidYMid slice")
+        .attr("href", d => CONFIG.photos[d.district]);
+      return p;
+    })
+    .select("image")
+      .attr("width", d => 2 * d.r).attr("height", d => 2 * d.r);
+
+  // biggest first, so small circles stay on top and stay hoverable
+  const ordered = withGeom.slice().sort((a, c) => c.r - a.r);
+
+  gBubbles.selectAll("circle")
+    .data(ordered, d => d.district)
+    .join("circle")
+      .attr("class", d => "bubble" + (CONFIG.photos[d.district] ? " photo" : ""))
+      .attr("cx", d => d.x).attr("cy", d => d.y).attr("r", d => d.r)
+      .on("mousemove", (ev, d) => {
+        const line = `<br>${metric.box}: ${vTip(val(d))}`;
+        // population context, unless population is what is already on screen
+        const ctx = metric.key === "pop"
+          ? `<br><span>2017: ${fmt(d.pop2017)} · ${d.growth > 0 ? "+" : ""}${pct(d.growth)}%</span>`
+          : `<br><span>population ${fmt(d.m.pop)}</span>`;
+        tip.html(`<b>${d.district} <span>· HQ ${d.hq}</span></b>${line}${ctx}`)
+           .style("left", ev.clientX + "px").style("top", ev.clientY + "px")
+           .style("opacity", 1);
+        gLand.selectAll("path").classed("hi", p => p.properties.district === d.district);
+      })
+      .on("mouseleave", () => {
+        tip.style("opacity", 0);
+        gLand.selectAll("path").classed("hi", false);
+      });
+
+  gNames.selectAll("text")
+    .data(placeLabels(withGeom), d => d.name)
+    .join("text")
+      .attr("class", "dlabel")
+      .attr("x", d => d.x).attr("y", d => d.y)
+      .text(d => d.name);
+
+  drawLegend();
+
+  // the total sits just above the top of the gathered cluster
+  /* Name on one baseline under the row, value on a second line below it.
+     Exact figures stay in the tooltip — on the chart itself a rounded figure
+     is what can actually be read at this size. The text is written in frame()
+     rather than here, because a measure switch has to swap it mid-fade. */
+  const lab = gRowLab.selectAll("text")
+    .data(withGeom, d => d.district)
+    .join("text")
+      .attr("class", "rlabel")
+      .attr("y", AXIS + maxR + 24);
+  lab.selectAll("tspan").remove();
+  lab.append("tspan").attr("class", "rname").text(d => d.district);
+  lab.append("tspan").attr("class", "rval").attr("dy", 16);
+
+  /* Stacked upward from the top of the row: count line, then the block with
+     the figure in it, then the label above that. */
+  const boxBot   = AXIS - maxR - 18;
+  const boxH     = 40;                 // 34 left the glyph box overhanging the
+  const boxTop   = boxBot - boxH;      // block by ~2px at the top
+  totalBox.attr("y", boxTop).attr("height", boxH);
+  // baseline set from the cap height, not the box centre, so the figure looks
+  // centred rather than measuring centred
+  totalNum.attr("y", boxBot - 11);
+  totalLab.attr("y", boxTop - 13);
+
+  // the closing headline sits above the disc, which is wider than the row is tall
+  finalDot.attr("cy", AXIS).attr("r", enc.r);
+  const fBot = AXIS - enc.r - 20, fTop = fBot - boxH;
+  finalBox.attr("y", fTop).attr("height", boxH);
+  finalNum.attr("y", fBot - 11);
+  finalLab.attr("y", fTop - 13);
+  const fw = textWidth(CONFIG.finalValue, 26, 700, false) + 26;
+  finalBox.attr("x", CX - fw / 2).attr("width", fw);
+}
+
+function drawLegend() {
+  gLegend.selectAll("*").remove();
+  if (!STATE.sized) return;
+
+  const r = STATE.r;
+  const ticks  = metric.ticks.slice().sort(d3.ascending);
+  const rSmall = r(ticks[0]);
+  const rBig   = r(ticks[ticks.length - 1]);
+  const baseY  = H - M - 4;
+  const x0     = M + 96;
+  const smallCx = x0 + rSmall;
+  const bigCx   = smallCx + rSmall + 12 + rBig;
+  const g = gLegend.append("g");
+
+  g.append("text").attr("class", "lg-title")
+    .attr("x", (smallCx + bigCx) / 2).attr("y", baseY - 2 * rBig - 12)
+    .attr("text-anchor", "middle").text(metric.box);
+  g.append("circle").attr("cx", smallCx).attr("cy", baseY - rSmall).attr("r", rSmall);
+  g.append("circle").attr("cx", bigCx).attr("cy", baseY - rBig).attr("r", rBig);
+  // abbreviated, or "300,000" would be wider than the circle it labels
+  g.append("text").attr("x", x0 - 10).attr("y", baseY)
+    .attr("text-anchor", "end").text(vLab(ticks[0]));
+  g.append("text").attr("x", bigCx + rBig + 10).attr("y", baseY)
+    .attr("text-anchor", "start").text(vLab(ticks[ticks.length - 1]));
+}
+
+/* ========================================================================
+   5. FRAME — a pure function of elapsed milliseconds, so Replay and the
+   reduced-motion jump-to-end both go through the same code path
+   ======================================================================== */
+const ZOOMED = TIMING.zoom;                       // in on the districts
+const POPPED = ZOOMED + TIMING.pop;               // every circle in place
+const GATHER = POPPED + TIMING.hold;              // when the circles set off
+const ROW    = GATHER + TIMING.travel * 0.82 + TIMING.label; // the sorted row
+const GROUPED = ROW + TIMING.hold2 + TIMING.regroup;         // gathered, grey
+const DISC   = GROUPED + TIMING.hold3 + TIMING.merge;        // one circle
+const DURATION = DISC;
+
+function frame(ms) {
+  if (!STATE.sized) ms = 0;                        // nothing to gather toward
+  const {popEach, travel, stagger, label} = TIMING;
+  const at = (t0, dur) => ease(clamp01((ms - t0) / dur));
+
+  /* A measure switch slides each circle from where it was to where it now
+     belongs, resizing on the way. morph runs 0 -> 1 for that; at rest it sits
+     at 1 and these all collapse to the current geometry. */
+  const mE   = ease(clamp01(morph));
+  const rOf  = d => d.r0  + (d.r  - d.r0)  * mE;
+  const pxOf = d => d.px0 + (d.px - d.px0) * mE;
+
+  // --- circles pop in, each on its own randomly assigned beat ---------
+  // easeBackOut overshoots slightly before settling, which is what reads as
+  // a pop rather than a fade; radius may exceed d.r for a moment
+  /* --- the opening zoom: Pakistan, then in on the districts ----------- */
+  const zm = at(0, TIMING.zoom);
+  const z  = zoomAt(zm);
+  gMap.attr("transform", zm >= 1 ? null : `translate(${z.tx},${z.ty}) scale(${z.k})`);
+  gCountry.attr("opacity", 1 - zm);
+  // labels ride the zoom without being scaled by it, and leave with the country
+  gNbr.attr("opacity", 1 - zm)
+      .selectAll("text")
+        .attr("x", d => z.tx + z.k * d.p[0])
+        .attr("y", d => z.ty + z.k * d.p[1]);
+  gLand.selectAll("path").attr("fill",
+    zm >= 1 ? LAND_NEAR : d3.interpolateRgb(LAND_FAR, LAND_NEAR)(zm));
+
+  // the pops start once the zoom has landed, not at time zero
+  const popP = d => clamp01((ms - (ZOOMED + d.popAt)) / popEach);
+  const popR = d => rOf(d) * d3.easeBackOut(popP(d));
+
+  // --- the map goes all the way out as they gather --------------------
+  gLand.attr("opacity", 1 - at(GATHER, travel * 0.8));
+  // district names would be illegible over the country, so they arrive with the zoom
+  gNames.attr("opacity", zm * (1 - at(GATHER, travel * 0.32)));
+  // the legend arrives with the circles it describes, then leaves with them
+  const arrived = d3.mean(STATE.rows, popP) || 0;
+  gLegend.attr("opacity", Math.min(arrived, 1 - at(GATHER, travel * 0.26)));
+
+  // each circle leaves on its own clock — outermost first
+  const dur = travel - stagger;
+  const trav = d => ease(clamp01((ms - (GATHER + (1 - d.far) * stagger)) / dur));
+  /* Colour is resolved here rather than in layout() because two separate
+     transitions can be running through it: grey-to-palette as the circles
+     gather, and old-palette-to-new when a measure is switched. Interpolating
+     in one place keeps them from fighting each other. */
+  const tint = at(GATHER + travel * 0.15, travel * 0.7);
+  const colNow = d => morph >= 1 ? d.color
+                                 : d3.interpolateRgb(d.col0, d.color)(mE);
+  const fillNow = d => {
+    if (CONFIG.photos[d.district]) return `url(#ph-${d.district})`;
+    const c = colNow(d);
+    const gathered = tint >= 1 ? c : d3.interpolateRgb(START_GREY, c)(tint);
+    /* Back to grey as they regroup: rank colour means nothing once the point is
+       a single territory-wide figure, so the encoding is given up before the
+       circles are replaced by one. */
+    return rg <= 0 ? gathered : d3.interpolateRgb(gathered, START_GREY)(rg);
+  };
+
+  /* The closing step slides each circle from its seat in the row to its seat in
+     the disc. Composed with the map-to-row travel rather than replacing it, so
+     one expression covers all three arrangements and the reverse still mirrors. */
+  const rg  = at(ROW + TIMING.hold2, TIMING.regroup);
+  // the crossfade: the ten leave, one circle takes their place
+  const mg  = at(GROUPED + TIMING.hold3, TIMING.merge);
+  const sx  = d => pxOf(d) + (d.dx - pxOf(d)) * rg;
+  const sy  = d => d.py    + (d.dy - d.py)    * rg;
+
+  gBubbles.selectAll("circle")
+    .attr("r", popR)
+    .attr("cx", d => d.x + (sx(d) - d.x) * trav(d))
+    .attr("cy", d => d.y + (sy(d) - d.y) * trav(d))
+    .attr("fill", fillNow);
+
+  // the ten fade out as the single circle fades in
+  gBubbles.attr("opacity", 1 - mg);
+
+  /* Tooltips belong to the finished map and nowhere else. On the map a circle
+     carries no figure, so hovering is the only way to read one. In the row each
+     circle already has its name and value printed underneath, so a tooltip
+     would only repeat them, and by the closing step the circles are no longer
+     what the graphic is about. */
+  const onMap = ms >= POPPED && ms <= GATHER;
+  gBubbles.attr("pointer-events", onMap ? null : "none");
+  if (!onMap) {
+    // pointer-events:none means mouseleave may never fire, so clear by hand
+    tip.style("opacity", 0);
+    gLand.selectAll("path").classed("hi", false);
+  }
+
+  /* Labels and the headline dip to nothing halfway through a morph and come
+     back with the new values, so the text swap happens while it is invisible
+     rather than as a visible flicker of the old numbers. */
+  const swapped = morph >= 0.5;
+  const dip = morph >= 1 ? 1 : Math.abs(morph * 2 - 1);
+  gRowLab.selectAll("text")
+    .attr("x", pxOf)
+    .each(function (d) {
+      const t = this.querySelector(".rval");
+      if (t) {
+        t.setAttribute("x", pxOf(d));
+        t.textContent = swapped ? vLab(val(d)) : d.lab0;
+      }
+      const n = this.querySelector(".rname");
+      if (n) n.setAttribute("x", pxOf(d));
+    });
+  const numTxt = swapped ? vTot(STATE.total) : STATE.tot0;
+  totalLab.text(swapped ? STATE.headLab : STATE.head0);
+  totalNum.text(numTxt);
+  // the block is sized to whatever figure is currently in it
+  const bw = textWidth(numTxt, 26, 700, false) + 26;
+  totalBox.attr("x", CX - bw / 2).attr("width", bw);
+
+  const arrival = at(GATHER + travel * 0.82, label);
+  // the row's labels and headline leave as the disc's headline arrives
+  gTotal.attr("opacity", arrival * dip * (1 - rg));
+  gRowLab.attr("opacity", arrival * dip * (1 - rg));
+  gFinal.attr("opacity", mg);
+
+  // the boxes belong to the row: not before it, and not once it regroups
+  const showPicker = Math.abs(ms - ROW) < 1;
+  if (showPicker !== pickerOn) {
+    pickerOn = showPicker;
+    picker.classList.toggle("on", showPicker);
+    if (showPicker) placePicker();
+  }
+}
+
+/* ========================================================================
+   6. PLAYBACK + CONTROLS
+   ======================================================================== */
+const scrolly  = document.getElementById("scrolly");
+const picker   = document.getElementById("picker");
+const reduce   = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* Three resting states, as positions on the one timeline:
+     0  empty map
+     1  every circle popped in — the map complete
+     2  gathered cluster with the total above it
+
+   Crossing a threshold PLAYS that step: the timeline then advances on its own
+   clock, one millisecond per millisecond. You do not keep scrolling to drive
+   it — one scroll past the threshold is enough and it runs on its own. */
+/* ZOOMED is a beat on the timeline, not a resting state: crossing the first
+   threshold plays the zoom and the circles popping in as one move, so the
+   districts never sit there empty waiting for another scroll. */
+const STEPS = [0, POPPED, ROW, DISC];
+
+/* Thresholds as fractions of the stage's scroll span. Each band has to be long
+   enough that its transition finishes while the graphic is still pinned — but no
+   longer, because whatever is left over after the last one is dead scroll
+   between the finished graphic and the notes underneath. The last threshold sits
+   at 0.72 so the tail is only about a viewport and a half, enough to cover the
+   2.7s closing step at an unhurried scroll. */
+const AT   = [0.10, 0.42, 0.72];
+const HYST = 0.04;               // deadband, so parking on a threshold cannot flap
+
+/* `current` is the step actually reached, `desired` is what scroll asks for.
+   Every transition between adjacent steps runs start to finish and cannot be
+   cut short or redirected part-way; if scroll has moved on by the time one
+   lands, the next plays straight after it. That is what keeps a fast scroll
+   from breaking things: a flick past both thresholds sets desired = 2 while
+   current is still 0, so the pop plays in full and the gather follows it, in
+   order, with nothing skipped or snapped. */
+let current = 0, desired = 0, pos = 0, timer = null, pickerOn = false;
+
+const stageP = () => {
+  const span = scrolly.offsetHeight - innerHeight;
+  return span <= 0 ? 0 : clamp01((scrollY - scrolly.offsetTop) / span);
+};
+
+function stepFor(p, cur) {
+  let s = cur;
+  while (s < AT.length && p >= AT[s]) s++;                 // advance
+  while (s > 0 && p < AT[s - 1] - HYST) s--;               // retreat
+  return s;
+}
+
+function pump() {
+  if (timer) return;                        // a step is playing; it will re-pump
+  if (desired === current) { frame(pos); return; }
+
+  const next = current + Math.sign(desired - current);
+  const from = STEPS[current], to = STEPS[next];
+  const dir  = to > from ? 1 : -1;
+
+  timer = d3.timer(elapsed => {
+    pos = from + dir * elapsed;
+    if (dir > 0 ? pos >= to : pos <= to) {
+      pos = to;
+      timer.stop(); timer = null;
+      current = next;
+      frame(pos);
+      pump();                               // straight into the next step
+      return;
+    }
+    frame(pos);
+  });
+}
+
+function onScroll() {
+  desired = stepFor(stageP(), desired);
+  // reduced motion: the states still change with scroll, they just do not
+  // animate — that reader still gets the map, the cluster and the total
+  if (reduce) snapTo(desired);
+  else pump();
+}
+
+/* Sit the boxes halfway between the value labels and the foot of the viewport.
+   Measured rather than set as a fixed offset, because the SVG letterboxes
+   inside the pane, so where the labels actually land moves with the window. */
+function placePicker() {
+  const labs = document.querySelectorAll(".rlabel");
+  if (!labs.length) return;
+  let low = 0;
+  labs.forEach(l => { const b = l.getBoundingClientRect().bottom; if (b > low) low = b; });
+  const stTop = document.querySelector(".sticky").getBoundingClientRect().top;
+  const h = picker.offsetHeight;
+  let top = (low + innerHeight) / 2 - h / 2;
+  top = Math.min(top, innerHeight - h - 14);   // never off the bottom
+  top = Math.max(top, low + 10);               // never over the labels
+  picker.style.top = (top - stTop) + "px";
+}
+
+/* ---- choosing a measure ------------------------------------------------
+   Recompute the layout for the new measure, then remember where every circle
+   was so frame() can slide it across. layout() sets r0/px0 equal to the new
+   geometry, so they have to be overwritten after it runs, not before. */
+let morph = 1, morphTimer = null;
+
+function selectMetric(m) {
+  if (m === metric || morphTimer) return;      // ignore clicks mid-rearrange
+  const was = new Map(STATE.rows.map(d =>
+    [d.district, {r: d.r, px: d.px, lab: vLab(val(d)), color: d.color}]));
+  const tot0 = vTot(STATE.total), head0 = STATE.headLab;
+
+  metric = m;
+  layout();
+
+  STATE.rows.forEach(d => {
+    const p = was.get(d.district);
+    if (p) { d.r0 = p.r; d.px0 = p.px; d.lab0 = p.lab; d.col0 = p.color; }
+  });
+  STATE.tot0 = tot0;
+  STATE.head0 = head0;
+
+  picker.querySelectorAll("button").forEach((b, i) =>
+    b.setAttribute("aria-pressed", METRICS[i] === metric));
+
+  morph = 0;
+  morphTimer = d3.timer(e => {
+    morph = clamp01(e / MORPH);
+    if (morph >= 1) { morph = 1; morphTimer.stop(); morphTimer = null; placePicker(); }
+    frame(pos);
+  });
+}
+
+METRICS.forEach(m => {
+  const b = document.createElement("button");
+  b.type = "button";
+  b.textContent = m.box;
+  b.setAttribute("aria-pressed", m === metric);
+  b.addEventListener("click", () => selectMetric(m));
+  picker.appendChild(b);
+});
+
+// jump straight to a step, no animation — used on load
+function snapTo(s) {
+  if (timer) { timer.stop(); timer = null; }
+  current = desired = s;
+  pos = STEPS[s];
+  frame(pos);
+}
+
+layout();
+snapTo(stepFor(stageP(), 0));        // honour a restored scroll position
+addEventListener("scroll", onScroll, {passive: true});
+addEventListener("resize", () => { onScroll(); if (pickerOn) placePicker(); });
+</script>
