@@ -187,7 +187,7 @@ function addChartFooter(svg, totalH, source) {
         .text("Source: " + source);
 
     svg.append("image")
-        .attr("href", "images/dark_matter_dark_logo.png")
+        .attr("href", "images/shared/brand/dark_matter_dark_logo.png")
         .attr("x", 0)
         .attr("y", totalH - 30)
         .attr("height", 35);
@@ -1499,7 +1499,7 @@ function addChartFooter(svg, totalH, source) {
         .attr("font-size", 14).attr("fill", "#999999")
         .text("Source: GB Finance Department, Budget 2024–25");
     svg.append("image")
-        .attr("href", "images/dark_matter_dark_logo.png")
+        .attr("href", "images/shared/brand/dark_matter_dark_logo.png")
         .attr("x", 0).attr("y", totalH - 26)
         .attr("height", 35);
 })();

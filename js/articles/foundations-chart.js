@@ -91,6 +91,6 @@
         .text("Source: Wikipedia · Exchange rates as of December 31, 2020");
     footer.append("img")
         .attr("class", "foundations-chart-logo")
-        .attr("src", "images/dark_matter_dark_logo.png")
+        .attr("src", "images/shared/brand/dark_matter_dark_logo.png")
         .attr("alt", "Dark Matter");
 })();

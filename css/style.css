@@ -375,7 +375,7 @@ pre code { display: block; line-height: 1.75em; padding: 1em 1.5em; }
 /* Profile page — full-height image with floating text panel */
 .banner-profile {
   width: 100%; height: 100vh; position: relative;
-  background-image: url("../images/banner_profile_blurred.jpg");
+  background-image: url("../images/shared/site/banner_profile_blurred.jpg");
   background-size: cover; overflow: hidden; z-index: 1;
 }
 @media (max-width: 768px) {
@@ -409,7 +409,7 @@ pre code { display: block; line-height: 1.75em; padding: 1em 1.5em; }
 /* Blog page — fixed parallax background */
 .blog-image {
   width: 100%; height: 100vh; position: relative;
-  background-image: url("../images/blog-banner.jpg");
+  background-image: url("../images/pages/blog/blog-banner.jpg");
   background-attachment: fixed;
   background-size: cover; overflow: hidden; z-index: 1;
 }
@@ -770,7 +770,7 @@ pre code { display: block; line-height: 1.75em; padding: 1em 1.5em; }
 /* Music page — image-led hero matching the main page structure */
 .music-image {
   width: 100%; height: 100vh; position: relative;
-  background-image: url("../images/edm_2.jpg");
+  background-image: url("../images/pages/57/edm_2.jpg");
   background-attachment: fixed;
   background-position: center center;
   background-size: cover; overflow: hidden; z-index: 1;
@@ -841,7 +841,7 @@ pre code { display: block; line-height: 1.75em; padding: 1em 1.5em; }
 .landing-hero {
   background:
     linear-gradient(90deg, rgba(17, 17, 17, 0.36) 0%, rgba(17, 17, 17, 0.26) 42%, rgba(17, 17, 17, 0.18) 100%),
-    url('../images/home_background_red.jpeg') center center / cover no-repeat;
+    url('../images/pages/home/home_background_red.jpeg') center center / cover no-repeat;
   color: #ffffff;
   display: flex;
   align-items: center;
@@ -850,7 +850,7 @@ pre code { display: block; line-height: 1.75em; padding: 1em 1.5em; }
 }
 
 .profile-hero {
-  background: url('../images/banner_profile_blurred.jpg') center center / cover no-repeat;
+  background: url('../images/shared/site/banner_profile_blurred.jpg') center center / cover no-repeat;
 }
 
 .profile-hero-copy {

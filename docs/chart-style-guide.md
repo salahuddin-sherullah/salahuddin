@@ -209,7 +209,7 @@ function addChartFooter(svg, totalH, source) {
         .text("Source: " + source);
 
     svg.append("image")
-        .attr("href", "images/dark_matter_dark_logo.png")
+        .attr("href", "images/shared/brand/dark_matter_dark_logo.png")
         .attr("x", 0)
         .attr("y", totalH - 34)   // logo top; bottom at totalH - 1
         .attr("height", 35);
