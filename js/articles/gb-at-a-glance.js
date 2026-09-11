@@ -529,6 +529,79 @@ function addChartFooter(svg, totalH, source) {
     update();
 })();
 
+(function initPhotoScrollStory() {
+    const story = document.querySelector('.gb-photo-scroll-story');
+    if (!story) return;
+
+    const images = Array.from(story.querySelectorAll('.gb-photo-scroll-story__image'));
+    const lines = Array.from(story.querySelectorAll('.gb-photo-scroll-story__line'));
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function setFrame() {
+        const scrollable = story.offsetHeight - window.innerHeight;
+        const scrolled = -story.getBoundingClientRect().top;
+        const progress = Math.max(0, Math.min(1, scrolled / scrollable));
+        // A scene is one full text journey. The short gaps between scenes are
+        // reserved exclusively for fading to the next photograph.
+        const sceneStarts = lines.map((line, index) => index * 1.18);
+        const sceneLength = 1;
+        const fadeLength = .18;
+        const timeline = progress * (sceneStarts[sceneStarts.length - 1] + sceneLength);
+
+        const fadingScene = sceneStarts.slice(0, -1).findIndex(start => (
+            timeline >= start + sceneLength && timeline < start + sceneLength + fadeLength
+        ));
+
+        images.forEach((image, index) => {
+            let opacity = 0;
+            if (fadingScene !== -1) {
+                const fadeStart = sceneStarts[fadingScene] + sceneLength;
+                const fadeProgress = (timeline - fadeStart) / fadeLength;
+                if (index === fadingScene) opacity = 1 - fadeProgress;
+                if (index === fadingScene + 1) opacity = fadeProgress;
+            } else {
+                const activeImage = sceneStarts.reduce((active, start, index) => (
+                    timeline >= start ? index : active
+                ), 0);
+                opacity = index === activeImage ? 1 : 0;
+            }
+            image.style.opacity = opacity;
+            image.classList.toggle('is-active', opacity > .5);
+        });
+
+        lines.forEach((line, index) => {
+            const localProgress = Math.max(0, Math.min(1, (timeline - sceneStarts[index]) / sceneLength));
+            const isVisible = timeline >= sceneStarts[index] && timeline <= sceneStarts[index] + sceneLength;
+            line.style.opacity = isVisible ? 1 : 0;
+            line.style.transform = 'translateY(' + (110 - localProgress * 220) + 'vh)';
+            line.classList.toggle('is-active', isVisible);
+        });
+    }
+
+    if (reduceMotion) {
+        images.forEach((image, index) => { image.style.opacity = index === 0 ? 1 : 0; });
+        lines.forEach((line, index) => {
+            line.style.opacity = index === 0 ? 1 : 0;
+            line.style.transform = 'translateY(0)';
+        });
+        return;
+    }
+
+    let frameRequested = false;
+    function update() {
+        if (frameRequested) return;
+        frameRequested = true;
+        requestAnimationFrame(() => {
+            frameRequested = false;
+            setFrame();
+        });
+    }
+
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    setFrame();
+})();
+
 
 /* =============================================================================
    ARTICLE SECTION NAV — fixed left rail with expandable section list

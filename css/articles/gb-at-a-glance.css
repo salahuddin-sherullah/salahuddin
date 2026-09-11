@@ -892,6 +892,75 @@ body.gb-article-nav-open {
     padding: 4px 12px 0;
     line-height: 1.4;
 }
+
+/* =============================================================================
+   6d. PHOTO SCROLL STORY
+   ============================================================================= */
+.gb-photo-scroll-story {
+    /* Each image gets a full scroll-length for its text, plus the two transitions. */
+    height: 300vh;
+    position: relative;
+}
+.gb-photo-scroll-story__sticky {
+    background: #101510;
+    height: 100vh;
+    inset: 0;
+    overflow: hidden;
+    position: sticky;
+    top: 0;
+}
+.gb-photo-scroll-story__images,
+.gb-photo-scroll-story__image {
+    inset: 0;
+    position: absolute;
+}
+.gb-photo-scroll-story__image {
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity .18s linear;
+    width: 100%;
+}
+.gb-photo-scroll-story__image.is-active {
+    opacity: 1;
+}
+.gb-photo-scroll-story__copy {
+    color: #ffffff;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    position: absolute;
+}
+.gb-photo-scroll-story__line {
+    bottom: 0;
+    color: #ffffff !important;
+    font-family: var(--body-font);
+    font-size: clamp(2rem, 4.8vw, 5.4rem);
+    font-weight: 600;
+    left: clamp(1.5rem, 7vw, 8rem);
+    letter-spacing: -.035em;
+    line-height: .98;
+    margin: 0;
+    max-width: min(15ch, calc(100vw - 3rem));
+    opacity: 0;
+    position: absolute;
+    text-shadow: 0 2px 16px rgba(0, 0, 0, .5);
+    text-wrap: balance;
+    transform: translateY(110vh);
+    will-change: opacity, transform;
+}
+@media (max-width: 736px) {
+    .gb-photo-scroll-story__line {
+        bottom: auto;
+        left: 1.5rem;
+        max-width: calc(100vw - 3rem);
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .gb-photo-scroll-story { height: 100vh; }
+    .gb-photo-scroll-story__image { transition: none; }
+    .gb-photo-scroll-story__line { transform: translateY(0); }
+}
 .photo-credit a {
     color: #8a9aa3;
     text-decoration: underline;
