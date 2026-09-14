@@ -1,0 +1,13 @@
+.gb-budget-page #header { background: #111111; }
+.gb-budget-hero { background: linear-gradient(125deg, #17020b 0%, #500713 48%, #dc180e 100%); color: #fff; min-height: 68vh; display: flex; align-items: end; padding: 8rem max(2rem, calc((100vw - 72rem) / 2)) 6rem; }
+.gb-budget-hero__inner { max-width: 52rem; }
+.gb-budget-hero h1 { color: #fff; font-size: clamp(3rem, 7vw, 6.25rem); letter-spacing: -.035em; line-height: .98; margin: 0; text-wrap: balance; }
+.gb-budget-hero__eyebrow, .gb-budget-hero__byline { color: #fff; font-size: .78rem; font-weight: 600; letter-spacing: .13em; margin: 0 0 1.25rem; text-transform: uppercase; }
+.gb-budget-hero__byline { margin: 1.7rem 0 0; }
+.gb-budget-hero__dek { color: #fff; font-size: clamp(1.1rem, 2vw, 1.35rem); line-height: 1.45; margin: 1.4rem 0 0; max-width: 44rem; }
+.gb-budget-transition { border-bottom: 1px solid #cfd5d8; display: flex; justify-content: flex-start; margin: 0 auto; padding: 2.25rem 0; width: min(1200px, calc(100% - 3rem)); }
+.gb-budget-article { padding-top: 2.75rem; }
+.gb-budget-article .gb-subsection-heading { margin-top: 2.7rem; }
+.gb-budget-sources { margin-top: 2.5rem; }
+.gb-budget-article .back-to-blog-link { color: #111 !important; font-size: 18px; }
+@media (max-width: 736px) { .gb-budget-hero { min-height: 62vh; padding: 7rem 1.5rem 3rem; } }

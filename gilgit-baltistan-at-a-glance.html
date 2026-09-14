@@ -59,9 +59,6 @@
             <a href="#gb-climate" class="gb-article-nav-item" data-gb-nav-target="gb-climate">
                 <span class="gb-article-nav-label">Climate</span>
             </a>
-            <a href="#gb-budget" class="gb-article-nav-item" data-gb-nav-target="gb-budget">
-                <span class="gb-article-nav-label">Budget</span>
-            </a>
         </nav>
     </aside>
 
@@ -73,7 +70,7 @@
         </video>
         <div class="gb-intro-content">
             <h1 id="gb-intro-title">Gilgit-Baltistan at a glance</h1>
-            <p class="gb-intro-byline">Salahuddin <span aria-hidden="true">|</span> Feb 2026</p>
+            <p class="gb-intro-byline">Salahuddin <span aria-hidden="true">|</span> Sep 2026</p>
         </div>
     </section>
 
@@ -119,11 +116,12 @@
     --ink-soft:#6b6b6b;
     --panel:#fafafa;
     --panel-line:#e6e6e6;
+    font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
   }
 #gb-bubble-map * {box-sizing:border-box}
-#gb-bubble-map body {
+#gb-bubble-map .scrolly {
     margin:0; background:var(--bg); color:var(--ink);
-    font:14px/1.45 "Helvetica Neue",Helvetica,-apple-system,"Segoe UI",Arial,sans-serif;
+    font:14px/1.45 "Inter", "Helvetica Neue", Arial, sans-serif;
     -webkit-font-smoothing:antialiased;
   }
 #gb-bubble-map /* reading section above the stage — you scroll down through this to reach
@@ -143,7 +141,7 @@
   .scrolly {position:relative;height:730vh}
 #gb-bubble-map .sticky {position:sticky;top:0;height:100vh;overflow:hidden;background:var(--bg)}
 #gb-bubble-map #chart {position:absolute;inset:0}
-#gb-bubble-map svg {display:block;width:100%;height:100%}
+#gb-bubble-map svg {display:block;width:100%;height:100%;font-family:"Inter", "Helvetica Neue", Arial, sans-serif}
 #gb-bubble-map /* non-scaling strokes, #gb-bubble-map or the district borders vanish when the map group is
      scaled down to fit Pakistan into the opening frame */
   /* No `fill` on .district: it is set per frame so the districts can read
@@ -182,12 +180,12 @@
 #gb-bubble-map /* the total, #gb-bubble-map sitting above the gathered circles */
   .total {pointer-events:none}
 #gb-bubble-map /* label above, #gb-bubble-map figure reversed out of a solid block below it */
-  .total .t-label {font-size:25px;font-weight:700;fill:#02061D;text-anchor:middle;
+  .total .t-label {font-family:"Playfair Display", Georgia, serif;font-size:25px;font-weight:700;fill:#02061D;text-anchor:middle;
                   letter-spacing:-.3px}
 #gb-bubble-map .total .t-box {fill:#02061D}
 #gb-bubble-map .gdp-dot {fill-opacity:.92}
 #gb-bubble-map /* fill comes from START_GREY, #gb-bubble-map set in JS */
-  .total .t-num {font-size:26px;font-weight:700;fill:#fff;text-anchor:middle;
+  .total .t-num {font-family:"Inter", "Helvetica Neue", Arial, sans-serif;font-size:26px;font-weight:700;fill:#fff;text-anchor:middle;
                 letter-spacing:-.2px}
 #gb-bubble-map .tip {
     position:fixed;pointer-events:none;opacity:0;transition:opacity .1s;
@@ -213,7 +211,7 @@
 #gb-bubble-map .picker button {
     flex:0 1 108px;max-width:132px;min-height:52px;padding:7px 6px;
     border:1px solid #dcdcdc;background:#fff;
-    font:inherit;font-size:11px;line-height:1.22;color:#3d3d3d;
+    font:inherit;font-size:13px;line-height:1.22;color:#3d3d3d;
     text-align:center;cursor:pointer;transition:background .15s,color .15s,border-color .15s
   }
 #gb-bubble-map .picker button:hover {background:#f3f3f3}
@@ -252,20 +250,7 @@
                     <div class="economy-section" id="gb-economy">
                         <h2 class="gb-section-heading" style="margin-top: 2em;"><strong style="color:#FF0000">Economy</strong></h2>
                         <p>The region's economy, just like everything else in the region, has undergone significant transformation. It was not long ago that GB was largely an agricultural economy. And despite the region’s huge size, the arable land is actually quite small. Approximately 1% of the region’s area is cultivable due to rugged terrain and the limited availability of water channels. The landholding is also quite small with most households owning less than 1 acre of land. Compare this to the average farm size in Punjab which is 5-6 acres.</p>
-
-                    </div>
-                </section>
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="row">
-            <div class="8u skel-cell-important">
-                <section>
-                    <div class="economy-section" id="gb-economy-continuation">
                         <p>For most of its history, agriculture sustained the region and also provided some monetary income to farmers. In Hunza, for example, potato planting was the biggest economic activity of the year. Today, subsistence farming is nearly non-existent in Hunza, and the little that remains is done for household consumption or for growing high value fruits such as cherries. There are districts, however, such as Skardu, where agriculture still remains a significant part of the economy.</p>
-
                     </div>
                 </section>
             </div>
@@ -373,32 +358,6 @@
         <div class="row">
             <div class="8u skel-cell-important">
                 <section>
-
-                    <!-- ── GB Budget Section ── -->
-                    <div class="budget-section" id="gb-budget">
-                        <h2 class="gb-section-heading" style="margin-top: 2em;"><strong style="color:#FF0000">Budget</strong></h2>
-                        <p>Gilgit-Baltistan's annual budget of PKR 140.2 billion is primarily financed through federal grant-in-aid, reflecting the territory's continued fiscal dependence on Islamabad. Non-development expenditure accounts for the largest share at PKR 86.6 billion, driven by the federal grant and a structural budget deficit. The development budget of PKR 34.5 billion funds infrastructure and capital projects, while the wheat subsidy of PKR 19.1 billion underscores the state's role in food security for mountain communities.</p>
-                        <div id="budget-chart"></div>
-
-                        <!-- ── Non-Development Sub-Section ── -->
-                        <h3 class="gb-subsection-heading" style="margin-top: 1.5em;"><strong>Non-Development Expenditure</strong></h3>
-                        <p>Non-development spending of PKR 86.6 billion is dominated by employee-related expenses at PKR 47 billion — 54% of the non-development budget — reflecting GB's large public sector workforce. Grants, subsidies, and write-offs account for a further PKR 28.3 billion, primarily driven by federal transfers and deficit financing.</p>
-                        <div id="budget-donut-chart"></div>
-                        <!-- ── End Non-Development Sub-Section ── -->
-
-                        <!-- ── Development Expenditure Sub-Section ── -->
-                        <h3 class="gb-subsection-heading" style="margin-top: 1.5em;"><strong>Development Expenditure</strong></h3>
-                        <p>The Annual Development Programme (ADP) allocates PKR 34.5 billion across GB's ten districts for capital projects, infrastructure, and public services. Gilgit and Diamer receive the largest absolute allocations, reflecting their population size and administrative significance. On a per-capita basis, however, smaller districts such as Hunza and Astore fare comparatively better — pointing to geographic and equity considerations in budget distribution.</p>
-                        <div id="budget-donut2-chart"></div>
-
-                        <h3 class="gb-subsection-heading" style="margin-top: 1.5em;"><strong>ADP Allocation by District</strong></h3>
-                        <p>The Annual Development Programme (ADP) allocates PKR 34.5 billion across GB's ten districts for capital projects, infrastructure, and public services. Gilgit and Diamer receive the largest absolute allocations, reflecting their population size and administrative significance. On a per-capita basis, however, smaller districts such as Hunza and Astore fare comparatively better — pointing to geographic and equity considerations in budget distribution.</p>
-                        <div id="budget-bubble-chart"></div>
-                        <!-- ── End Development Expenditure Sub-Section ── -->
-                    </div>
-                    <!-- ── End GB Budget Section ── -->
-
-                    <p style="margin-top:2em;"><em>Data sources: Pakistan Bureau of Statistics — District Census Results 2023; GB Tourism Department; PPIB / AEDB hydropower data; GB Finance Department, Budget 2024–25.</em></p>
 
                     <a style="font-size: 18px; color: #111111;" class="back-to-blog-link" href="blog.html">
                         <i class="arrow-left"></i> <span class="back-to-blog-text">Back to Blog</span>
@@ -798,12 +757,19 @@ const NEIGHBOURS = [
    3. STAGE
    ======================================================================== */
 const W = CONFIG.width, M = CONFIG.margin;
+const COMPACT_LAYOUT = window.matchMedia("(max-width: 600px)").matches;
 const projection = d3.geoMercator();
 const path = d3.geoPath(projection);
 
 projection.fitWidth(W - M * 2, GEO);
 const b0 = path.bounds(GEO);
-const H = Math.ceil(b0[1][1] - b0[0][1]) + M * 2;
+/* A portrait canvas on phones gives the opening Pakistan view enough vertical
+   room to show the entire country rather than shrinking it to fit GB's much
+   wider desktop frame. */
+const H = Math.max(
+  Math.ceil(b0[1][1] - b0[0][1]) + M * 2,
+  COMPACT_LAYOUT ? Math.round(W * 1.5) : 0
+);
 projection.fitExtent([[M, M], [W - M, H - M]], GEO);
 
 const CX = W / 2;

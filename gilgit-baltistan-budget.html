@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Gilgit-Baltistan Budget | Salahuddin</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="An interactive look at the Gilgit-Baltistan budget for 2024–25." />
+    <meta name="keywords" content="Gilgit-Baltistan, budget, development, ADP" />
+    <!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/skel.min.js"></script>
+    <script src="js/skel-layers.min.js"></script>
+    <script src="js/init.js"></script>
+    <noscript>
+        <link rel="stylesheet" href="css/skel.css" />
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/style-xlarge.css" />
+    </noscript>
+    <link rel="stylesheet" href="css/articles/gb-at-a-glance.css?v=20260914-1" />
+    <link rel="stylesheet" href="css/articles/gb-budget.css?v=20260914-1" />
+    <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+</head>
+
+<body id="top" class="article-page gb-budget-page">
+    <header id="header" class="skel-layers-fixed">
+        <h1 class="nav-title"><a href="index.html">SALAHUDDIN</a></h1>
+        <nav id="nav">
+            <ul>
+                <li><a href="index.html" class="underlineheader aheader">Home</a></li>
+                <li><a href="blog.html" class="underlineheader aheader">Blog</a></li>
+                <li class="has-subnav"><a href="research-and-strategy.html" class="underlineheader aheader">Services</a>
+                    <ul>
+                        <li><a href="research-and-strategy.html">Research and Strategy</a></li>
+                        <li><a href="data-and-storytelling.html">Data and Storytelling</a></li>
+                        <li><a href="ai-adoption.html">AI Adoption</a></li>
+                    </ul>
+                </li>
+                <li><a href="profile.html" class="underlineheader aheader">Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="gb-budget-hero" aria-labelledby="budget-title">
+        <div class="gb-budget-hero__inner">
+            <p class="gb-budget-hero__eyebrow">Gilgit-Baltistan · 2024–25</p>
+            <h1 id="budget-title">The Gilgit-Baltistan budget</h1>
+            <p class="gb-budget-hero__dek">Where the money comes from, where it goes, and what it says about the region’s fiscal dependence.</p>
+            <p class="gb-budget-hero__byline">Salahuddin <span aria-hidden="true">|</span> Feb 2026</p>
+        </div>
+    </section>
+
+    <div class="gb-budget-transition">
+        <nav class="gb-intro-social" aria-label="Share this article">
+            <a href="#" data-gb-share-link="linkedin" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.94 8.5H3.56V20h3.38V8.5ZM5.25 3A2.02 2.02 0 0 0 3.2 5.03c0 1.1.9 2 2.02 2 1.12 0 2.03-.9 2.03-2A2.02 2.02 0 0 0 5.25 3Zm15.55 9.84c0-3.49-1.86-5.12-4.34-5.12-2 0-2.9 1.1-3.4 1.88V8.5H9.68c.04.72 0 11.5 0 11.5h3.38v-6.42c0-.34.02-.68.12-.92.27-.68.9-1.38 1.95-1.38 1.37 0 1.92 1.04 1.92 2.56V20h3.38v-7.16Z"/></svg></a>
+            <a href="#" data-gb-share-link="x" target="_blank" rel="noopener noreferrer" aria-label="Share on X"><svg viewBox="0 0 1200 1227" aria-hidden="true"><path d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163Z"/></svg></a>
+            <a href="#" data-gb-share-link="facebook" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.8 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.6-1.5H17V3.9c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8V10H8.6v3h2.5v8h2.7Z"/></svg></a>
+        </nav>
+    </div>
+
+    <main class="container gb-budget-article" data-reading-start>
+        <div class="row">
+            <div class="8u skel-cell-important">
+                <section>
+                    <p>You must have heard that Gilgit-Baltistan is a tax-free zone. What does that actually mean? The answer is a bit more complex than you might imagine.</p>
+                    <p>First, we must look at how Gilgit-Baltistan is funded. The region's government is largely funded by the federal government in Islamabad, in fact, over 90% of the funds used to run the GB administration are provided by Islamabad. The region is, in effect, entirely dependent on funds from the federal government and does not generate much revenue on its own. It does, however, generate some revenue by collecting fees from different sectors of the economy, particularly tourism. But this fee income is not substantial, constituting less than 1% of GB's total revenue.</p>
+                    <p>This dependence on the federal government means GB relies on Islamabad for nearly all of its government expenses, including salaries for government employees and the running of public institutions and utilities. For the longest time, the GB budget has been controversial because of the region's status: it does not get the same budgetary treatment as other provinces of Pakistan. GB is entirely dependent on decisions made in the capital, and the budget it receives is not enough to cater to the needs of a highly vulnerable region. Even basic climate adaptation would require a huge amount of funding that is simply not available to the region right now.</p>
+                    <div id="budget-chart"></div>
+
+                    <h2 class="gb-subsection-heading"><strong>Non-Development Expenditure</strong></h2>
+                    <p>The budget itself is largely split between non-development and development expenses, and, similar to many other provinces, non-development expenses are quite high. This means the size of the government in Gilgit-Baltistan is actually quite large, evident from the sheer presence of government institutions and officers across the region. The overall size of the government is not proportionate to the population, it is not uncommon in Gilgit to see a government vehicle on the road every few minutes.</p>
+                    <p>What's really strange is that despite having no meaningful tax revenue source, the government still seems to have a lot of money and resources at its disposal. The size of the government is kept inflated for political reasons, the federal government wants to maintain its influence and control over what the region gets. So while there are no tax revenues substantial enough to fund the local government on its own, the local government remains very well funded regardless.</p>
+                    <div id="budget-donut-chart"></div>
+
+                    <h2 class="gb-subsection-heading"><strong>Development Expenditure</strong></h2>
+                    <p>Now, coming to the tax question: the region is not entirely tax-free. People pay sales tax just like they do in other parts of the country. Anything bought in GB costs the same as in any other province, sometimes even more, given the added insurance and transportation costs. But there is one thing that does differentiate it from other provinces: its connectivity to China. GB remains a tax-free zone for Chinese goods, meaning anything imported from China comes in without the application of duties.</p>
+                    <div id="budget-donut2-chart"></div>
+
+                    <h2 class="gb-subsection-heading"><strong>ADP Allocation by District</strong></h2>
+                    <p>There are certain benefits to working in Gilgit-Baltistan. Residents are exempted from income tax, which is quite high in other parts of Pakistan, and they don't have to pay taxes on the purchase or sale of assets, including land and vehicles. If you live and work in GB, you don't need to file income tax at all, since there is no income tax to file in the first place. But this comes with a catch: salaries in GB tend to be lower, and these tax benefits are largely offset by that lower pay. There is also very little economic activity in the formal sector, meaning few job opportunities within the region, so most people travel elsewhere in the country for employment. As a result, these tax benefits only apply to a small percentage of the population that actually lives and works in GB.</p>
+                    <div id="budget-bubble-chart"></div>
+
+                    <p class="gb-budget-sources"><em>Data source: GB Finance Department, Budget 2024–25.</em></p>
+                    <a class="back-to-blog-link" href="gilgit-baltistan-at-a-glance.html"><i class="arrow-left"></i> <span class="back-to-blog-text">Back to Gilgit-Baltistan at a glance</span></a>
+                    <p><br><br></p>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="row double"><div class="6u"><a href="index.html"><h2 style="letter-spacing:10px;font-size:27px;">SALAH<span style="color:#FF0000;">UDDIN</span></h2></a><hr class="white"><h4>CONTACT</h4><h4>salahuddin.iba@gmail.com</h4></div><div class="6u"><h3 style="font-size:15pt">"The highest activity a human being can attain is learning for understanding, because to understand is to be free."</h3><p>― Baruch Spinoza</p></div></div>
+            <ul class="copyright"><hr class="major"><p>&copy; Salahuddin. Hosted by Github.</p></ul>
+        </div>
+    </footer>
+    <script src="js/articles/gb-at-a-glance.js?v=20260914-1"></script>
+</body>
+</html>

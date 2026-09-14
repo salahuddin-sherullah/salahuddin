@@ -48,17 +48,39 @@
   body.panel .chart-header > p:not(.readout),
   body.panel .chart-footer{display:none;}
   body.panel #chart{margin-top:28px;}
+  body.social{
+    box-sizing:border-box;
+    min-height:1080px;
+    overflow:hidden;
+    padding:46px 60px 34px;
+  }
+  body.social .chart-header{border-top:0;padding-top:0;}
+  body.social .chart-header h1{font-size:40px;line-height:1.12;margin-bottom:10px;}
+  body.social .chart-header > p:not(.readout){font-size:20px;line-height:1.35;}
+  body.social .chart-header .readout{display:none;}
+  body.social .chart-header-control-row{margin-top:12px;}
+  body.social .controls{display:none;}
+  body.social #chart{margin-top:18px;}
+  body.social svg{max-width:850px;}
+  body.social .chart-footer{border-bottom:0;margin-top:0;padding:8px 0 0;}
+  body.social .chart-note{display:none;}
+  body.social .caption{font-size:15px;margin:0;}
+  body.social .chart-logo{height:80px;margin-top:12px;}
   @media (max-width:600px){
     .chart-header-control-row{align-items:flex-start;flex-direction:column;gap:12px;}
   }
 </style>
 </head>
 <body>
-<script>if (new URLSearchParams(location.search).has("panel")) document.body.classList.add("panel");</script>
+<script>
+  const chartParams = new URLSearchParams(location.search);
+  if (chartParams.has("panel")) document.body.classList.add("panel");
+  if (chartParams.has("social")) document.body.classList.add("social");
+</script>
 
 <header class="chart-header">
-  <h1>Gilgit Baltistan Temperature Anomalies</h1>
-  <p>Monthly variation relative to the 1991–2020 average · Jan. 1940–Aug. 2026</p>
+  <h1>Gilgit-Baltistan temperature anomalies</h1>
+  <p>Recent decades show warmer-than-baseline months occurring more often and with greater intensity · Jan. 1940–Aug. 2026</p>
   <p class="readout" id="temperature-readout" aria-live="polite"></p>
   <div class="chart-header-control-row">
     <div class="controls">

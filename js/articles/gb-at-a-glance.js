@@ -854,7 +854,7 @@ function addChartFooter(svg, totalH, source) {
     wrap.append("div").attr("class", "chart-title")
         .text("Electricity Supply and Shortfall by Season");
     wrap.append("div").attr("class", "chart-subtitle")
-        .text("Seasonal bars extend to the upper end of estimated peak demand; red shows available generation and the light-gray remainder shows the indicative shortfall.");
+        .text("GB's electricity deficit is most acute in winter, when available generation falls to roughly 90 MW against peak demand of 270–300 MW.");
 
     const legend = wrap.append("div").attr("class", "energy-chart-legend");
     [["supply", "Available generation"], ["capacity", "Installed capacity"], ["gap", "Indicative shortfall"]].forEach(([key, label]) => {
