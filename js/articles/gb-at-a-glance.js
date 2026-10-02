@@ -183,7 +183,7 @@ function addChartFooter(svg, totalH, source) {
         .attr("x", 0)
         .attr("y", totalH - 48)
         .attr("font-size", 14)
-        .attr("fill", "#999999")
+        .attr("fill", "#6b6b6b")
         .text("Source: " + source);
 
     svg.append("image")
@@ -191,6 +191,54 @@ function addChartFooter(svg, totalH, source) {
         .attr("x", 0)
         .attr("y", totalH - 30)
         .attr("height", 35);
+}
+
+/* Development donuts (ADP, PSDP): draw 1:1 at the column's own width so their
+   labels match the other charts (14px), shrinking the ring rather than the
+   type. Below the narrowest 1:1 layout the drawing scales down as before. */
+function donutFit(card) {
+    const cs = getComputedStyle(card);
+    const avail = card.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    const MIN_W = 480, LABEL_ROOM = 156;   // label gap + widest wrapped label at 14px
+    if (avail < MIN_W) {
+        /* too narrow for labels around the ring at 14px: ring alone, legend below */
+        const W = Math.max(240, Math.floor(avail));
+        const R_OUTER = Math.round(Math.min(130, W / 2 - 12));
+        return {W, H: 2 * R_OUTER + 40, CX: W / 2, CY: R_OUTER + 20, R_OUTER, R_INNER: Math.round(R_OUTER * 0.71), narrow: true};
+    }
+    const W = Math.floor(avail);
+    const R_OUTER = Math.round(Math.max(90, Math.min(155, W / 2 - LABEL_ROOM)));
+    const R_INNER = Math.round(R_OUTER * 0.71);
+    const CY = R_OUTER + 100;
+    return {W, H: CY + R_OUTER + 90, CX: W / 2, CY, R_OUTER, R_INNER, narrow: false};
+}
+function donutLegend(card, arcs, color, total) {
+    const legend = card.append("div").attr("class", "gb-donut-legend");
+    arcs.forEach(d => {
+        const row = legend.append("div").attr("class", "gb-donut-legend__row");
+        row.append("span").attr("class", "gb-donut-legend__swatch").style("background", color(d.data.label));
+        row.append("span").attr("class", "gb-donut-legend__label").text(d.data.label);
+        row.append("span").attr("class", "gb-donut-legend__value")
+            .text(d.data.value.toFixed(1) + "B | " + (d.data.value / total * 100).toFixed(1) + "%");
+    });
+}
+/* Single (full-column) charts: draw at their natural width, capped at the text
+   column's usable width so they never scroll sideways on desktop. Below MIN
+   (phones) keep the natural width, as before. The card's right padding is 1.6em. */
+function columnFit(mount, natural, min) {
+    if (!mount) return natural;
+    const padR = parseFloat(getComputedStyle(mount).fontSize) * 1.6;
+    const avail = Math.floor(mount.clientWidth - padR);
+    return avail >= min ? Math.min(natural, avail) : natural;
+}
+function rebuildOnResize(mount, build) {
+    let w = mount.clientWidth, raf = 0;
+    new ResizeObserver(() => {
+        if (mount.clientWidth === w) return;
+        w = mount.clientWidth;
+        cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(build);
+    }).observe(mount);
 }
 
 
@@ -1370,39 +1418,37 @@ function addChartFooter(svg, totalH, source) {
 
 
 /* =============================================================================
-   7. BUDGET MARIMEKKO CHART — GB budget 2024–25 source breakdown
+   7. BUDGET MARIMEKKO CHART — GB budget 2026–27 source breakdown
    ============================================================================= */
 
 (function buildBudgetChart() {
     const DATA = {
         label: "Total Budget",
-        value: 140.172,
+        value: 158.542423,
         children: [
             {
-                label: "Non-Development", value: 86.6,
+                label: "Non-Development", value: 96.569113,
                 children: [
-                    { label: "Federal Grant-in-Aid",       value: 68.000 },
-                    { label: "Local Revenues",             value: 5.019  },
-                    { label: "Budget Deficit",             value: 10.625 },
-                    { label: "Recovery Electricity Bills", value: 1.400  },
-                    { label: "GB Revenue Authority",       value: 1.303  },
-                    { label: "Savings / Surrenders",       value: 0.253  },
+                    { label: "Federal Grant-in-Aid",       value: 88.000 },
+                    { label: "Local Revenues",             value: 6.098  },
+                    { label: "PM Flood Rehabilitation Grant", value: 1.276 },
+                    { label: "Savings / Surrenders",       value: 0.740  },
+                    { label: "Other Grants & Dividends",   value: 0.455  },
                 ]
             },
             {
-                label: "Development", value: 34.5,
+                label: "Development", value: 43.973310,
                 children: [
-                    { label: "ADP Allocation",             value: 20.000 },
-                    { label: "ETI (FEC Component)",        value: 1.000  },
-                    { label: "Federal PSDP",               value: 9.500  },
+                    { label: "GB ADP / FEC",               value: 23.000 },
+                    { label: "Federal PSDP",               value: 16.973310 },
                     { label: "PSDP (PM Initiatives)",      value: 4.000  },
                 ]
             },
             {
-                label: "Wheat Subsidy", value: 19.072,
+                label: "Wheat Subsidy", value: 18.000,
                 children: [
-                    { label: "Federal Subsidy (Wheat)",    value: 15.872 },
-                    { label: "Sale Proceeds of Wheat",     value: 3.200  },
+                    { label: "Federal Subsidy (Wheat)",    value: 15.000 },
+                    { label: "Sale Proceeds of Wheat",     value: 3.000  },
                 ]
             },
         ]
@@ -1419,7 +1465,7 @@ function addChartFooter(svg, totalH, source) {
 
     const TOTAL      = DATA.value;
     const margin     = { top: 20, right: 40, bottom: 138, left: 40 };
-    const totalW     = 740;
+    const totalW     = columnFit(document.getElementById("budget-chart"), 740, 560);
     const totalH     = 472;
     const INNER_W    = totalW - margin.left - margin.right;
     const INNER_H    = totalH - margin.top - margin.bottom;
@@ -1439,9 +1485,9 @@ function addChartFooter(svg, totalH, source) {
         .append("div").attr("class", "budget-wrap");
 
     wrap.append("div").attr("class", "chart-title")
-        .text("Inflows by Source — GB Budget 2024–25");
+        .text("Where the FY2026–27 Budget Comes From");
     wrap.append("div").attr("class", "chart-subtitle")
-        .text("Gilgit-Baltistan's PKR 140.17B budget is dominated by federal inflows, with more than 70% tied to Islamabad.");
+        .text("Gilgit-Baltistan's PKR 158.54B budget remains dominated by federal inflows, with PKR 88B in grant-in-aid for non-development expenditure.");
 
     const svg = wrap.append("svg")
         .attr("width",  totalW)
@@ -1462,7 +1508,7 @@ function addChartFooter(svg, totalH, source) {
         g.append("text")
             .attr("x", -6).attr("y", INNER_H * (1 - t / 100) + 4)
             .attr("text-anchor", "end")
-            .attr("font-size", 14).attr("fill", "#8a9aa3")
+            .attr("font-size", 14).attr("fill", "#5f6d75")
             .text(t + "%");
     });
 
@@ -1528,14 +1574,14 @@ function addChartFooter(svg, totalH, source) {
                         .text(shortName);
                     g.append("text")
                         .attr("x", cat.x + 7).attr("y", cy + 8)
-                        .attr("font-size", 13).attr("fill", "rgba(255,255,255,0.65)")
+                        .attr("font-size", 15).attr("fill", "rgba(255,255,255,0.65)")
                         .attr("dominant-baseline", "middle")
                         .attr("pointer-events", "none")
                         .text(fmtB(sub.value));
                 } else {
                     g.append("text")
                         .attr("x", cat.x + cat.colW / 2).attr("y", cy)
-                        .attr("text-anchor", "middle").attr("font-size", 13)
+                        .attr("text-anchor", "middle").attr("font-size", 15)
                         .attr("fill", "rgba(255,255,255,0.7)")
                         .attr("dominant-baseline", "middle")
                         .attr("pointer-events", "none")
@@ -1546,21 +1592,27 @@ function addChartFooter(svg, totalH, source) {
             yCursor += segH;
         });
 
-        // X-axis labels below each column
+        // X-axis labels below each column. A heading too wide for a narrow
+        // column (~9.5px per spaced capital at 14px) wraps onto two lines, and
+        // that column's value and share move down a line to make room.
         const xMid = cat.x + cat.colW / 2;
-        g.append("text")
+        const words = cat.label.toUpperCase().split(" ");
+        const wrapLabel = words.length > 1 && cat.label.length * 9.5 > cat.colW + GAP;
+        const nameLines = wrapLabel ? [words.slice(0, -1).join(" "), words[words.length - 1]] : [words.join(" ")];
+        const shift = (nameLines.length - 1) * 18;
+        const name = g.append("text")
             .attr("x", xMid).attr("y", INNER_H + 22)
-            .attr("text-anchor", "middle").attr("font-size", 12)
-            .attr("fill", "#353535").attr("letter-spacing", "0.04em")
-            .text(cat.label.toUpperCase());
+            .attr("text-anchor", "middle").attr("font-size", 14)
+            .attr("fill", "#353535").attr("letter-spacing", "0.04em");
+        nameLines.forEach((ln, i) => name.append("tspan").attr("x", xMid).attr("dy", i ? 18 : 0).text(ln));
         g.append("text")
-            .attr("x", xMid).attr("y", INNER_H + 40)
-            .attr("text-anchor", "middle").attr("font-size", 13)
+            .attr("x", xMid).attr("y", INNER_H + 40 + shift)
+            .attr("text-anchor", "middle").attr("font-size", 15)
             .attr("fill", "#FF0000").attr("font-weight", "600")
             .text(fmtB(cat.value) + " PKR");
         g.append("text")
-            .attr("x", xMid).attr("y", INNER_H + 57)
-            .attr("text-anchor", "middle").attr("font-size", 12)
+            .attr("x", xMid).attr("y", INNER_H + 57 + shift)
+            .attr("text-anchor", "middle").attr("font-size", 14)
             .attr("fill", "#353535")
             .text("(" + (cat.value / TOTAL * 100).toFixed(0) + "% of total)");
     });
@@ -1569,8 +1621,8 @@ function addChartFooter(svg, totalH, source) {
     // Default offsets from bottom: source −48, logo −30. At 85% → source −41, logo −26.
     svg.append("text")
         .attr("x", 0).attr("y", totalH - 41)
-        .attr("font-size", 14).attr("fill", "#999999")
-        .text("Source: GB Finance Department, Budget 2024–25");
+        .attr("font-size", 14).attr("fill", "#6b6b6b")
+        .text("Source: GB Finance Department, Budget 2026–27");
     svg.append("image")
         .attr("href", "images/shared/brand/dark_matter_dark_logo.png")
         .attr("x", 0).attr("y", totalH - 26)
@@ -1580,20 +1632,21 @@ function addChartFooter(svg, totalH, source) {
 
 /* =============================================================================
    8. NON-DEVELOPMENT DONUT CHART — expenditure by major object classification
+      FY2025–26 is the latest full-year object-wise schedule in the source.
    ============================================================================= */
 
 (function buildBudgetDonutChart() {
     const DATA = [
-        { label: "Employees Related Expenses",               value: 47.00 },
-        { label: "Grants, Subsidies, Writeoffs, Loans etc.", value: 28.32 },
-        { label: "Operating Expenses",                       value: 7.76  },
-        { label: "Capital & Other Operational Expenditures", value: 3.06  },
-        { label: "Employees Retirement Benefits",            value: 0.45  },
+        { label: "Employees Related Expenses",               value: 59.600000 },
+        { label: "Grants, Subsidies, Writeoffs, Loans etc.", value: 12.778675 },
+        { label: "Operating Expenses",                       value: 9.710791  },
+        { label: "Capital & Other Operational Expenditures", value: 5.301976  },
+        { label: "Employees Retirement Benefits",            value: 0.800558  },
     ];
 
-    const TOTAL   = 86.60;
+    const TOTAL   = 88.192;
     const PALETTE = ["#d00100","#f48c06","#faa307","#ffba08","#ffd60a"];
-    const W       = 620;
+    const W       = columnFit(document.getElementById("budget-donut-chart"), 620, 560);
     const H       = 580;
     const CX      = W / 2;
     const CY      = H / 2 - 40;  // shifted up to reduce gap between subtitle and donut ring
@@ -1605,9 +1658,9 @@ function addChartFooter(svg, totalH, source) {
         .append("div").attr("class", "budget-donut-wrap");
 
     wrap.append("div").attr("class", "chart-title")
-        .text("Outflows — Non-Development Expenditure");
+        .text("Running Costs by Type, FY2025–26");
     wrap.append("div").attr("class", "chart-subtitle")
-        .text("Over half of GB's non-development budget goes to paying off government employees");
+        .text("The latest full-year object-wise schedule shows employee-related expenses as the largest component of the non-development budget.");
 
     const svg = wrap.append("svg")
         .attr("width", W).attr("height", H)
@@ -1630,7 +1683,7 @@ function addChartFooter(svg, totalH, source) {
     const centreVal = g.append("text")
         .attr("text-anchor", "middle").attr("y", -10)
         .attr("font-size", 28).attr("font-weight", "700").attr("fill", "#d00100")
-        .text("86.6B");
+        .text("88.2B");
     const centreLabel = g.append("text")
         .attr("text-anchor", "middle").attr("y", 14)
         .attr("font-size", 14).attr("fill", "#4c4c4c").attr("letter-spacing", "0.05em")
@@ -1673,7 +1726,7 @@ function addChartFooter(svg, totalH, source) {
         })
         .on("mouseleave", function() {
             d3.select(this).attr("d", arc);
-            centreVal.text("86.6B");
+            centreVal.text("88.2B");
             centreLabel.text("PKR TOTAL");
             centreSub.text("NON-DEVELOPMENT");
             tooltip.style("opacity", 0);
@@ -1727,49 +1780,42 @@ function addChartFooter(svg, totalH, source) {
             .text(d.data.value.toFixed(1) + "B | " + (d.data.value / TOTAL * 100).toFixed(1) + "%");
     });
 
-    addChartFooter(svg, H, "GB Finance Department, Budget 2024–25");
+    addChartFooter(svg, H, "GB Finance Department, Budget 2025–26");
 })();
 
 /* =============================================================================
-   9b. DEVELOPMENT EXPENDITURE DONUT — by Sector
+   9b. DEVELOPMENT EXPENDITURE DONUT — ADP main allocation by sector
    Style mirrors the Non-Development donut: no polylines, labels placed directly
    beside each slice at LABEL_RADIUS. Only slices > 5% are labelled.
    ============================================================================= */
-(function buildBudgetDonut2Chart() {
+function buildBudgetDonut2Chart() {
     const mount = document.getElementById("budget-donut2-chart");
     if (!mount) return;
+    mount.innerHTML = "";
 
     const DATA = [
-        { label: "Infrastructure, Transport & Urban Development", value: 7.97 },
-        { label: "Energy & Power",                               value: 3.31 },
-        { label: "Education",                                    value: 2.11 },
-        { label: "Health",                                       value: 1.74 },
-        { label: "Economic Development Sectors",                 value: 1.08 },
-        { label: "Governance, Law & Administration",             value: 0.84 },
-        { label: "Planning, Technology & Coordination",          value: 0.83 },
-        { label: "Social Protection & Welfare",                  value: 0.29 },
-        { label: "Water & Irrigation",                           value: 0.19 },
-        { label: "Miscellaneous",                                value: 0.20 },
+        { label: "Infrastructure, Transport & Urban Development", value: 8.012042 },
+        { label: "Energy & Power",                               value: 3.224474 },
+        { label: "Education",                                    value: 2.155990 },
+        { label: "Health",                                       value: 1.751141 },
+        { label: "Planning, Technology & Coordination",          value: 1.852360 },
+        { label: "Economic Development Sectors",                 value: 1.115354 },
+        { label: "Governance, Law & Administration",             value: 0.860671 },
+        { label: "Social Protection & Welfare",                  value: 0.300759 },
+        { label: "Water & Irrigation",                           value: 0.189069 },
+        { label: "Miscellaneous",                                value: 0.101193 },
     ];
-    const TOTAL   = 18.56;
+    const TOTAL   = 19.563052;
     const PALETTE = ["#360516","#6a040f","#9d0208","#d00100","#db2f01","#e85d05","#f48c06","#faa307","#ffba08","#ffd60a"];
 
-    const W       = 680;
-    const H       = 580;
-    const CX      = W / 2;
-    const CY      = H / 2 - 40;
-    const R_OUTER = 155;
-    const R_INNER = 110;
     const PAD     = 0.018;
 
     const wrap = d3.select(mount);
     const card = wrap.append("div").attr("class", "budget-donut2-wrap");
-    card.append("div").attr("class", "chart-title").text("Outflows — Development Expenditure");
-    card.append("div").attr("class", "chart-subtitle")
-        .text("Infrastructure & transport account for 43% of GB's total development spending");
+    const {W, H, CX, CY, R_OUTER, R_INNER, narrow} = donutFit(card.node());
 
     const svg = card.append("svg")
-        .attr("width", W).attr("height", H)
+        .attr("width", "100%").attr("viewBox", `0 0 ${W} ${H}`)
         .style("display", "block")
         .style("overflow", "visible");
 
@@ -1789,7 +1835,7 @@ function addChartFooter(svg, totalH, source) {
     const centreVal = g.append("text")
         .attr("text-anchor", "middle").attr("y", -10)
         .attr("font-size", 28).attr("font-weight", "700").attr("fill", "#d00100")
-        .text("18.56B");
+        .text("19.56B");
     const centreLabel = g.append("text")
         .attr("text-anchor", "middle").attr("y", 14)
         .attr("font-size", 14).attr("fill", "#4c4c4c").attr("letter-spacing", "0.05em")
@@ -1832,7 +1878,7 @@ function addChartFooter(svg, totalH, source) {
         })
         .on("mouseleave", function() {
             d3.select(this).attr("d", arc);
-            centreVal.text("18.56B");
+            centreVal.text("19.56B");
             centreLabel.text("PKR TOTAL");
             centreSub.text("DEVELOPMENT");
             tooltip.style("opacity", 0);
@@ -1841,8 +1887,9 @@ function addChartFooter(svg, totalH, source) {
     // Outside labels — no connector lines, placed directly beside slice
     // Only render slices with > 5% share (value > 0.928B)
     const LABEL_RADIUS = R_OUTER + 18;
+    if (narrow) donutLegend(card, arcs, color, TOTAL);
 
-    arcs.forEach(d => {
+    if (!narrow) arcs.forEach(d => {
         if (d.data.value / TOTAL < 0.05) return;  // skip slices ≤ 5%
 
         const midAngle = (d.startAngle + d.endAngle) / 2;
@@ -1867,7 +1914,9 @@ function addChartFooter(svg, totalH, source) {
         const LINE_H    = 17;
         const VALUE_GAP = 10;
         const nameH     = lines.length * LINE_H;
-        const baseY     = ly - nameH / 2;
+        const labelOffsetY = d.data.label === "Economic Development Sectors" ? -26
+            : d.data.label === "Energy & Power" ? 12 : 0;
+        const baseY     = ly - nameH / 2 + labelOffsetY;
 
         lines.forEach((l, i) => {
             g.append("text")
@@ -1884,8 +1933,131 @@ function addChartFooter(svg, totalH, source) {
             .text(d.data.value.toFixed(1) + "B | " + (d.data.value / TOTAL * 100).toFixed(1) + "%");
     });
 
-    addChartFooter(svg, H, "GB Finance Department, Budget 2024–25");
-})();
+}
+if (document.getElementById("budget-donut2-chart")) { buildBudgetDonut2Chart(); rebuildOnResize(document.getElementById("budget-donut2-chart"), buildBudgetDonut2Chart); }
+
+/* =============================================================================
+   9c. FEDERAL PSDP DONUT — allocation by project group, FY2024–25
+   ============================================================================= */
+function buildBudgetPsdpChart() {
+    const mount = document.getElementById("budget-psdp-chart");
+    if (!mount) return;
+    mount.innerHTML = "";
+
+    const DATA = [
+        { label: "PM's Special Package", value: 4.000000 },
+        { label: "Energy & Power", value: 3.878173 },
+        { label: "Health & Medical Education", value: 2.450000 },
+        { label: "Roads & Connectivity", value: 1.800000 },
+        { label: "Water & Sanitation", value: 1.371827 },
+    ];
+    const TOTAL = 13.5;
+    const PALETTE = ["#360516", "#6a040f", "#9d0208", "#d00100", "#db2f01"];
+
+    const wrap = d3.select(mount);
+    const card = wrap.append("div").attr("class", "budget-psdp-wrap");
+    const {W, H, CX, CY, R_OUTER, R_INNER, narrow} = donutFit(card.node());
+
+    const svg = card.append("svg")
+        .attr("width", "100%").attr("viewBox", `0 0 ${W} ${H}`)
+        .style("display", "block")
+        .style("overflow", "visible");
+
+    const tooltip = wrap.append("div").attr("class", "bar-tooltip budget-tooltip");
+    const color = d3.scaleOrdinal().domain(DATA.map(d => d.label)).range(PALETTE);
+    const pie = d3.pie().value(d => d.value).sort(null).padAngle(0.018);
+    const arc = d3.arc().innerRadius(R_INNER).outerRadius(R_OUTER);
+    const arcHover = d3.arc().innerRadius(R_INNER).outerRadius(R_OUTER + 9);
+    const arcs = pie(DATA);
+    const g = svg.append("g").attr("transform", `translate(${CX},${CY})`);
+
+    const centreVal = g.append("text")
+        .attr("text-anchor", "middle").attr("y", -10)
+        .attr("font-size", 28).attr("font-weight", "700").attr("fill", "#d00100")
+        .text("13.5B");
+    const centreLabel = g.append("text")
+        .attr("text-anchor", "middle").attr("y", 14)
+        .attr("font-size", 14).attr("fill", "#4c4c4c").attr("letter-spacing", "0.05em")
+        .text("PKR TOTAL");
+    const centreSub = g.append("text")
+        .attr("text-anchor", "middle").attr("y", 30)
+        .attr("font-size", 14).attr("font-weight", "600").attr("fill", "#000000")
+        .text("PSDP");
+
+    g.selectAll("path.slice")
+        .data(arcs)
+        .join("path")
+        .attr("class", "slice")
+        .attr("d", arc)
+        .attr("fill", d => color(d.data.label))
+        .style("cursor", "pointer")
+        .style("transition", "d 0.18s ease")
+        .on("mouseenter", function(event, d) {
+            d3.select(this).attr("d", arcHover);
+            const pct = (d.data.value / TOTAL * 100).toFixed(1);
+            centreVal.text(d.data.value.toFixed(2) + "B");
+            centreLabel.text(pct + "% of total");
+            centreSub.text(d.data.label.length > 20 ? d.data.label.slice(0, 19) + "…" : d.data.label);
+            tooltip.style("opacity", 1)
+                .html(`
+                    <div class="tt-district">Federal PSDP</div>
+                    <div style="color:#fff;margin-bottom:6px">${d.data.label}</div>
+                    <div class="tt-multi-row"><span class="tt-multi-label">Value</span><span class="tt-multi-val">${d.data.value.toFixed(2)}B PKR</span></div>
+                    <div class="tt-multi-row"><span class="tt-multi-label">Share</span><span class="tt-multi-val">${pct}%</span></div>
+                `)
+                .style("left", (event.clientX + 16) + "px")
+                .style("top", (event.clientY - 50) + "px");
+        })
+        .on("mousemove", function(event) {
+            tooltip.style("left", (event.clientX + 16) + "px").style("top", (event.clientY - 50) + "px");
+        })
+        .on("mouseleave", function() {
+            d3.select(this).attr("d", arc);
+            centreVal.text("13.5B");
+            centreLabel.text("PKR TOTAL");
+            centreSub.text("PSDP");
+            tooltip.style("opacity", 0);
+        });
+
+    const LABEL_RADIUS = R_OUTER + 18;
+    if (narrow) donutLegend(card, arcs, color, TOTAL);
+    if (!narrow) arcs.forEach(d => {
+        const midAngle = (d.startAngle + d.endAngle) / 2;
+        const onRight = Math.sin(midAngle) >= 0;
+        const anchor = onRight ? "start" : "end";
+        const sign = onRight ? 1 : -1;
+        const lx = Math.sin(midAngle) * LABEL_RADIUS;
+        const ly = -Math.cos(midAngle) * LABEL_RADIUS;
+        const textX = lx + sign * 6;
+        const words = d.data.label.split(" ");
+        let line = "", lines = [];
+        words.forEach(word => {
+            const test = line ? line + " " + word : word;
+            if (test.length > 18 && line) { lines.push(line); line = word; }
+            else line = test;
+        });
+        if (line) lines.push(line);
+
+        const LINE_H = 17;
+        const VALUE_GAP = 10;
+        const nameH = lines.length * LINE_H;
+        const labelOffsetY = d.data.label === "Energy & Power" ? 12 : 0;
+        const baseY = ly - nameH / 2 + labelOffsetY;
+        lines.forEach((label, i) => {
+            g.append("text")
+                .attr("x", textX).attr("y", baseY + i * LINE_H)
+                .attr("text-anchor", anchor)
+                .attr("font-size", 14).attr("fill", "#505050")
+                .text(label);
+        });
+        g.append("text")
+            .attr("x", textX).attr("y", baseY + nameH + VALUE_GAP)
+            .attr("text-anchor", anchor)
+            .attr("font-size", 14).attr("font-weight", "600").attr("fill", "#FF0000")
+            .text(d.data.value.toFixed(1) + "B | " + (d.data.value / TOTAL * 100).toFixed(1) + "%");
+    });
+}
+if (document.getElementById("budget-psdp-chart")) { buildBudgetPsdpChart(); rebuildOnResize(document.getElementById("budget-psdp-chart"), buildBudgetPsdpChart); }
 
 /* =============================================================================
    9. BUDGET BUBBLE CHART — District Budget vs Per Capita Budget
@@ -1910,8 +2082,8 @@ function addChartFooter(svg, totalH, source) {
         { district: "Kharmang", budget:  624.96, population:  61304, perCapita: 0.010194359 },
     ];
 
-    const margin  = { top: 34, right: 40, bottom: 143, left: 70 };
-    const totalW  = 660;
+    const margin  = { top: 34, right: 128, bottom: 143, left: 70 };   // right: room for the average label
+    const totalW  = columnFit(mount, 660, 560);
     const totalH  = 590;
     const W       = totalW - margin.left - margin.right;
     const H       = totalH - margin.top  - margin.bottom;

@@ -3,8 +3,8 @@
 <head>
     <title>Gilgit-Baltistan Budget | Salahuddin</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="description" content="An interactive look at the Gilgit-Baltistan budget for 2024–25." />
-    <meta name="keywords" content="Gilgit-Baltistan, budget, development, ADP" />
+    <meta name="description" content="An interactive look at the Gilgit-Baltistan budget, including ADP and PSDP allocations." />
+    <meta name="keywords" content="Gilgit-Baltistan, budget, development, ADP, PSDP" />
     <!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
     <script src="js/jquery.min.js"></script>
     <script src="js/skel.min.js"></script>
@@ -15,8 +15,10 @@
         <link rel="stylesheet" href="css/style.css" />
         <link rel="stylesheet" href="css/style-xlarge.css" />
     </noscript>
-    <link rel="stylesheet" href="css/articles/gb-at-a-glance.css?v=20260914-1" />
-    <link rel="stylesheet" href="css/articles/gb-budget.css?v=20260914-1" />
+    <link rel="stylesheet" href="css/articles/gb-at-a-glance.css?v=20261002-3" />
+    <link rel="stylesheet" href="css/articles/gb-budget.css?v=20261002-18" />
+    <link rel="preload" as="image" type="image/webp" href="images/pages/gb-budget/gb-budget-hero.webp?v=2" media="(min-width: 737px)" />
+    <link rel="preload" as="image" type="image/webp" href="images/pages/gb-budget/gb-budget-hero-828.webp?v=2" media="(max-width: 736px)" />
     <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
 </head>
 
@@ -41,18 +43,18 @@
 
     <section class="gb-budget-hero" aria-labelledby="budget-title">
         <div class="gb-budget-hero__inner">
-            <p class="gb-budget-hero__eyebrow">Gilgit-Baltistan · 2024–25</p>
+            <p class="gb-budget-hero__eyebrow">Gilgit-Baltistan · FY2026–27</p>
             <h1 id="budget-title">The Gilgit-Baltistan budget</h1>
-            <p class="gb-budget-hero__dek">Where the money comes from, where it goes, and what it says about the region’s fiscal dependence.</p>
-            <p class="gb-budget-hero__byline">Salahuddin <span aria-hidden="true">|</span> Feb 2026</p>
+            <p class="gb-budget-hero__dek">A 100-rupee guide to where Gilgit-Baltistan’s budget comes from, what it keeps running, and what remains for development.</p>
+            <p class="gb-budget-hero__byline">Salahuddin <span aria-hidden="true">|</span> Oct 2026</p>
         </div>
     </section>
 
     <div class="gb-budget-transition">
         <nav class="gb-intro-social" aria-label="Share this article">
-            <a href="#" data-gb-share-link="linkedin" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.94 8.5H3.56V20h3.38V8.5ZM5.25 3A2.02 2.02 0 0 0 3.2 5.03c0 1.1.9 2 2.02 2 1.12 0 2.03-.9 2.03-2A2.02 2.02 0 0 0 5.25 3Zm15.55 9.84c0-3.49-1.86-5.12-4.34-5.12-2 0-2.9 1.1-3.4 1.88V8.5H9.68c.04.72 0 11.5 0 11.5h3.38v-6.42c0-.34.02-.68.12-.92.27-.68.9-1.38 1.95-1.38 1.37 0 1.92 1.04 1.92 2.56V20h3.38v-7.16Z"/></svg></a>
-            <a href="#" data-gb-share-link="x" target="_blank" rel="noopener noreferrer" aria-label="Share on X"><svg viewBox="0 0 1200 1227" aria-hidden="true"><path d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163Z"/></svg></a>
-            <a href="#" data-gb-share-link="facebook" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.8 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.6-1.5H17V3.9c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8V10H8.6v3h2.5v8h2.7Z"/></svg></a>
+            <a href="#" data-gb-share-link="linkedin" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+            <a href="#" data-gb-share-link="x" target="_blank" rel="noopener noreferrer" aria-label="Share on X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.234 10.162 22.977 0h-2.072l-7.591 8.824L7.251 0H.258l9.168 13.343L.258 24H2.33l8.016-9.318L16.749 24h6.993zm-2.837 3.299-.929-1.329L3.076 1.56h3.182l5.965 8.532.929 1.329 7.754 11.09h-3.182z"/></svg></a>
+            <a href="#" data-gb-share-link="facebook" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg></a>
         </nav>
     </div>
 
@@ -60,25 +62,87 @@
         <div class="row">
             <div class="8u skel-cell-important">
                 <section>
-                    <p>You must have heard that Gilgit-Baltistan is a tax-free zone. What does that actually mean? The answer is a bit more complex than you might imagine.</p>
-                    <p>First, we must look at how Gilgit-Baltistan is funded. The region's government is largely funded by the federal government in Islamabad, in fact, over 90% of the funds used to run the GB administration are provided by Islamabad. The region is, in effect, entirely dependent on funds from the federal government and does not generate much revenue on its own. It does, however, generate some revenue by collecting fees from different sectors of the economy, particularly tourism. But this fee income is not substantial, constituting less than 1% of GB's total revenue.</p>
-                    <p>This dependence on the federal government means GB relies on Islamabad for nearly all of its government expenses, including salaries for government employees and the running of public institutions and utilities. For the longest time, the GB budget has been controversial because of the region's status: it does not get the same budgetary treatment as other provinces of Pakistan. GB is entirely dependent on decisions made in the capital, and the budget it receives is not enough to cater to the needs of a highly vulnerable region. Even basic climate adaptation would require a huge amount of funding that is simply not available to the region right now.</p>
-                    <div id="budget-chart"></div>
+                    <p>Have you ever wondered how Gilgit-Baltistan actually runs? Who pays the teacher in Ghizer, keeps the district hospital in Astore open, or makes sure wheat reaches a village in Ghanche at a subsidised price? GB is often called tax-free, so the question is a fair one. If the region does not raise money the way a province does, where does the money come from?</p>
+                    <p>“Tax-free” is misleading on many fronts. Most goods sold in GB, from cement to cooking oil, are made down-country, and the sales tax is built into their price long before they reach a shop in Gilgit. What sets GB apart is narrower: some direct taxes, the kind levied on income and property, are applied differently than in the provinces, and trade across the Khunjerab border with China gets special treatment. To understand how GB really runs, we have to set the tax rules aside and follow the budget itself.</p>
 
-                    <h2 class="gb-subsection-heading"><strong>Non-Development Expenditure</strong></h2>
-                    <p>The budget itself is largely split between non-development and development expenses, and, similar to many other provinces, non-development expenses are quite high. This means the size of the government in Gilgit-Baltistan is actually quite large, evident from the sheer presence of government institutions and officers across the region. The overall size of the government is not proportionate to the population, it is not uncommon in Gilgit to see a government vehicle on the road every few minutes.</p>
-                    <p>What's really strange is that despite having no meaningful tax revenue source, the government still seems to have a lot of money and resources at its disposal. The size of the government is kept inflated for political reasons, the federal government wants to maintain its influence and control over what the region gets. So while there are no tax revenues substantial enough to fund the local government on its own, the local government remains very well funded regardless.</p>
+                    <p>Let’s set the context first and look at the scale. GB’s latest budget, for FY2026–27 (the fiscal year from July 2026 to June 2027), is PKR 158.54B, equal to about 0.84 percent of Pakistan’s federal budget of PKR 18,771B. By comparison, Punjab’s budget is PKR 5,903B, about 37 times GB’s. Sindh’s is PKR 3,562B (about 22 times), Khyber Pakhtunkhwa’s PKR 2,170B (about 14 times) and Balochistan’s PKR 1,089B (about 7 times). On those numbers alone, GB looks tiny. But GB is also home to just 1.7 million people, a smaller population than many individual districts in Punjab.</p>
+                    <p>Divide the money by the people and the picture flips. GB’s budget works out to about Rs 92,768 per resident, higher than any of the four provinces. That is roughly double Punjab’s Rs 46,233, about 45 percent more than Sindh’s Rs 63,961 and about 27 percent more than Balochistan’s Rs 73,154.</p>
+                    <div id="budget-compare-chart"></div>
+                    <p>While that sounds generous, it says more about the cost of governing GB than about its wealth. Running a school, a hospital or a wheat depot in a valley that is snowed in for months costs far more than doing the same on the plains. And there is a deeper difference. Under the National Finance Commission (NFC) award, each province gets a fixed, constitutionally protected share of the taxes Islamabad collects. Punjab can count on its slice every year, whoever is in power. GB is not a province and has no seat at the NFC table. Its money arrives largely as a federal grant, an amount Islamabad decides year after year. So GB spends more per resident than any province, and controls very little of where that money comes from. Hold on to that tension. The rest of this story follows from it.</p>
+
+                    <p>So let’s make it simple. Imagine GB’s budget is 100 rupees, based on the average of the last five budgets, FY2022–23 to FY2026–27. Each square below is one of those rupees. As you scroll, we will open each part in turn: the money that keeps the government running, the money that builds new things, and the money that keeps wheat affordable.</p>
+
+                    <div class="gb-waffle" id="gb-waffle" aria-label="Gilgit-Baltistan budget inflows in 100 squares">
+                        <div class="gb-waffle__scrolly">
+                            <div class="gb-waffle__sticky">
+                                <div class="gb-waffle__chart"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="gb-waffle__note">One square is one rupee of the average budget, FY2022–23 to FY2026–27. Shares are rounded to whole squares.</p>
+
+                    <h2 class="gb-subsection-heading"><strong>The FY2026–27 Budget in Real Numbers</strong></h2>
+                    <p>Now swap the illustrative rupees for real ones. This year’s budget is PKR 158.54B, and it splits almost exactly the same way. Non-development spending, the government’s running costs such as salaries, electricity bills and fuel for police vehicles, takes PKR 96.57B, about 61 of every 100 rupees. Development spending, the money for building new things such as roads, power plants and schools, takes PKR 43.97B, about 28. The wheat subsidy takes PKR 18B, about 11.</p>
+                    <p>Now look at where that money comes from. Of the PKR 96.57B for running costs, PKR 88B arrives as federal grant-in-aid: money Islamabad hands over each year, with no obligation to pay it back. GB’s own revenue target, from things like tourism fees, licence fees and electricity bills, is just PKR 6.10B. Development money comes through two channels. PKR 23B flows through GB’s Annual Development Programme (ADP), the list of projects the GB government picks itself, such as a new school block or a link road. Another PKR 20.97B comes through the federal Public Sector Development Programme (PSDP), projects Islamabad funds directly, such as the Naltar-III hydropower plant. The wheat subsidy is PKR 15B from the federal government and PKR 3B recovered from selling the wheat.</p>
+                    <div id="budget-chart"></div>
+                    <p>Add up what Islamabad sends directly, the grant-in-aid, the PSDP and the wheat subsidy, and it comes to about PKR 124B, close to 78 of every 100 rupees. Grant-in-aid alone is more than half the budget this year, above its five-year average of 49 rupees. GB’s own revenue, plus what it earns from selling wheat, covers about 6. That is fiscal dependence in plain terms: GB collects enough to pay a few bills, while the salaries, the hospitals and the wheat all hang on decisions made in Islamabad. And that’s exactly why the budget sits at the centre of the debate over GB’s constitutional status and how it is treated next to the provinces.</p>
+
+                    <h2 class="gb-subsection-heading"><strong>Where the Money Goes</strong></h2>
+                    <p>So far we have followed the money in. Now follow it out. If Islamabad pays for most of GB’s budget, what does that money actually buy? Picture the same 100 rupees once more, this time leaving the treasury. As you scroll, each block opens to show who spends it: the departments that run the region day to day, and the sectors where new things are being built.</p>
+
+                    <div class="gb-waffle" id="gb-waffle-out" aria-label="Gilgit-Baltistan budget spending in 100 squares">
+                        <div class="gb-waffle__scrolly">
+                            <div class="gb-waffle__sticky">
+                                <div class="gb-waffle__chart"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="gb-waffle__note">The three blocks use the same five-year averages as the inflows. Departments use FY2022–23 to FY2025–26 and sectors use FY2023–24 and FY2024–25; the notes at the end explain why.</p>
+
+                    <h2 class="gb-subsection-heading"><strong>Running Costs</strong></h2>
+                    <p>Now put real numbers on those squares, starting with the running costs. These are the bills that come back every year: salaries, office costs, grants and subsidies, and repairs. The latest full-year breakdown by type of spending is for FY2025–26, when running costs totalled PKR 88.19B. Of every 100 rupees, about 68 went on salaries and other staff costs, 14 on grants and subsidies, and 11 on day-to-day operating costs such as fuel, electricity and stationery.</p>
+                    <p>None of this is optional. Teachers, nurses and police officers have to be paid every month, and hospitals and offices have to keep their lights on. But the numbers also say something about the shape of the state in GB. Nearly 7 of every 10 running rupees go to staff, and anyone who has spent time in Gilgit will recognise the footprint: government offices, government housing, government vehicles on every main road. For a region of 1.7 million people, that is a large state. The cost is flexibility. When most of the budget is spoken for before the year even begins, there is little left for new needs, whether that is protecting villages from glacial floods, connecting remote valleys or improving the services people already rely on. This year, running costs rise again, to PKR 96.57B.</p>
                     <div id="budget-donut-chart"></div>
 
-                    <h2 class="gb-subsection-heading"><strong>Development Expenditure</strong></h2>
-                    <p>Now, coming to the tax question: the region is not entirely tax-free. People pay sales tax just like they do in other parts of the country. Anything bought in GB costs the same as in any other province, sometimes even more, given the added insurance and transportation costs. But there is one thing that does differentiate it from other provinces: its connectivity to China. GB remains a tax-free zone for Chinese goods, meaning anything imported from China comes in without the application of duties.</p>
-                    <div id="budget-donut2-chart"></div>
+                    <h2 class="gb-subsection-heading"><strong>Development Spending</strong></h2>
+                    <p>Development spending is where the future gets built. This year it is PKR 43.97B: PKR 23B through GB’s own ADP and PKR 20.97B through federal PSDP projects. In a region where every road has to be cut into a mountainside and every power line strung across a valley, building anything costs more, and these are the rupees that pay for it.</p>
+                    <p>The latest year with project-level detail is FY2024–25. That year, the ADP’s main allocation was PKR 19.56B, with another PKR 1.44B held as block allocations, lump sums set aside for projects that get picked during the year. Infrastructure, transport and urban development took the biggest share at PKR 8.01B, followed by energy and power at PKR 3.22B and education at PKR 2.16B. Federal PSDP added PKR 13.5B, led by the PM’s Special Package for GB (PKR 4B) and energy projects such as Naltar-III.</p>
 
-                    <h2 class="gb-subsection-heading"><strong>ADP Allocation by District</strong></h2>
-                    <p>There are certain benefits to working in Gilgit-Baltistan. Residents are exempted from income tax, which is quite high in other parts of Pakistan, and they don't have to pay taxes on the purchase or sale of assets, including land and vehicles. If you live and work in GB, you don't need to file income tax at all, since there is no income tax to file in the first place. But this comes with a catch: salaries in GB tend to be lower, and these tax benefits are largely offset by that lower pay. There is also very little economic activity in the formal sector, meaning few job opportunities within the region, so most people travel elsewhere in the country for employment. As a result, these tax benefits only apply to a small percentage of the population that actually lives and works in GB.</p>
+                    <div class="gb-budget-development-full" aria-label="Development allocation charts">
+                        <div class="gb-budget-development-header">
+                            <div class="chart-title">Development Allocations: ADP and PSDP, FY2024–25</div>
+                            <div class="chart-subtitle">GB’s own ADP (left) and federal PSDP projects (right). The ADP figure excludes PKR 1.44B in block allocations.</div>
+                        </div>
+                        <div class="gb-budget-development-grid">
+                            <div id="budget-donut2-chart"></div>
+                            <div id="budget-psdp-chart"></div>
+                        </div>
+                        <div class="gb-budget-development-footer">
+                            <span>Source: GB Finance Department, ADP and Federal PSDP 2024–25</span>
+                            <img src="images/shared/brand/dark_matter_dark_logo.png" alt="Dark Matter" />
+                        </div>
+                    </div>
+
+                    <h2 class="gb-subsection-heading"><strong>Where the Development Money Lands</strong></h2>
+                    <p>Development money also has a map. In FY2024–25, Gilgit received the largest district allocation, PKR 2.18B, followed by Diamer at PKR 1.99B and Skardu at PKR 1.92B. But bigger districts have more people to serve, so totals only tell half the story. Divide each district’s allocation by its population and the order changes. Hunza and Kharmang come out on top, at around Rs 11,000 and Rs 10,200 per resident. Diamer drops to the bottom, at about Rs 5,900.</p>
+                    <p>That should give us pause. Diamer has the highest poverty rate in GB, at 74 percent, and the lowest literacy, at 29 percent. The district that arguably needs development most receives the least of it per resident. (The PKR 6.57B spent at GB level and the PKR 1.44B in block allocations are not tied to any one district, so they are left out of the chart.)</p>
                     <div id="budget-bubble-chart"></div>
 
-                    <p class="gb-budget-sources"><em>Data source: GB Finance Department, Budget 2024–25.</em></p>
+                    <h2 class="gb-subsection-heading"><strong>So, How Does GB Run?</strong></h2>
+                    <p>Mostly on money that Islamabad decides to send. Nearly 8 of every 10 rupees arrive from the federal government. The single biggest slice goes on salaries, committed before the year even begins, and what is left for building is spread unevenly across the districts that need it.</p>
+                    <p>The tax-free label does bring residents real benefits, particularly on income and property. But those benefits sit next to a harder reality: few formal jobs, lower salaries, and young people leaving for work down-country. A region that raises 6 rupees out of every 100 has very little say over its own priorities. Until GB can grow its own revenue, from tourism, hydropower and trade, and gets a real voice in how federal money is shared, its budget will remain a list of what Islamabad is willing to pay for.</p>
+
+                    <section class="gb-budget-notes" aria-labelledby="budget-notes-title">
+                        <h2 class="gb-subsection-heading" id="budget-notes-title"><strong>Notes on Data and Methodology</strong></h2>
+                        <p><strong>Budget estimates.</strong> All figures are Budget Estimates from the GB Finance Department: allocations, not actual spending. Amounts are in PKR and rounded.</p>
+                        <p><strong>Inflows.</strong> The 100 rupees are the average of the five budgets from FY2022–23 to FY2026–27, about PKR 136.6B a year, which smooths out one-off items. Related line items are grouped, and shares are rounded to whole squares.</p>
+                        <p><strong>Outflows.</strong> The same three blocks as the inflows. Departments are averaged over FY2022–23 to FY2025–26, since FY2026–27 is tabled for the first quarter only. Sectors use FY2023–24 and FY2024–25, combining ADP sectors with federal PSDP schemes, which I grouped by what they build.</p>
+                        <p><strong>Federal and local shares.</strong> The roughly 78 rupees from Islamabad add FY2026–27 grant-in-aid, federal PSDP and the federal wheat subsidy. They leave out GB’s own ADP, so the figure is conservative. The local 6 rupees are the revenue target plus wheat sales.</p>
+                        <p><strong>Chart years.</strong> Each chart uses the latest year with full detail: FY2025–26 for running costs by type, and FY2024–25 for the ADP, PSDP and district charts. Per-resident figures use the 2023 Census.</p>
+                        <p><strong>Comparison with the provinces.</strong> Treat it as indicative. GB’s budget includes about PKR 21B of federal PSDP, which provincial totals do not. Without it, GB still spends about Rs 80,500 per resident, more than any province. The 0.84 percent compares size, not a share of the federal budget.</p>
+                        <p><strong>Two budget figures.</strong> Media reports put GB’s FY2026–27 budget at PKR 218.8B; the official Budget Outlay says PKR 158.54B. This article uses the official figure. At PKR 218.8B, the per-resident gap would only widen.</p>
+                        <p class="gb-budget-sources"><em>Sources: GB Finance Department, Budget Estimates FY2020–21 to FY2026–27; Annual Development Programme 2023–24 and 2024–25; Pakistan Bureau of Statistics, Census 2023; provincial budgets as reported by Dawn, Samaa, Profit and Business Recorder; federal budget as reported by Radio Pakistan.</em></p>
+                    </section>
                     <a class="back-to-blog-link" href="gilgit-baltistan-at-a-glance.html"><i class="arrow-left"></i> <span class="back-to-blog-text">Back to Gilgit-Baltistan at a glance</span></a>
                     <p><br><br></p>
                 </section>
@@ -92,6 +156,8 @@
             <ul class="copyright"><hr class="major"><p>&copy; Salahuddin. Hosted by Github.</p></ul>
         </div>
     </footer>
-    <script src="js/articles/gb-at-a-glance.js?v=20260914-1"></script>
+    <script src="js/articles/gb-at-a-glance.js?v=20261002-6"></script>
+    <script src="js/articles/gb-budget-compare.js?v=20261002-11"></script>
+    <script src="js/articles/gb-budget-waffle.js?v=20261002-4"></script>
 </body>
 </html>

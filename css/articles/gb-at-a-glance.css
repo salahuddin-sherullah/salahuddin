@@ -406,6 +406,8 @@ body.gb-article-nav-open {
 #budget-chart,
 #budget-donut-chart,
 #budget-donut2-chart,
+#budget-psdp-chart,
+#budget-compare-chart,
 #budget-bubble-chart {
     font-weight: 400;
 }
@@ -417,6 +419,8 @@ body.gb-article-nav-open {
 #budget-chart svg,
 #budget-donut-chart svg,
 #budget-donut2-chart svg,
+#budget-psdp-chart svg,
+#budget-compare-chart svg,
 #budget-bubble-chart svg {
     font-weight: 400;
 }

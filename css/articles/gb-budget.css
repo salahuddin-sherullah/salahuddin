@@ -1,13 +1,93 @@
 .gb-budget-page #header { background: #111111; }
-.gb-budget-hero { background: linear-gradient(125deg, #17020b 0%, #500713 48%, #dc180e 100%); color: #fff; min-height: 68vh; display: flex; align-items: end; padding: 8rem max(2rem, calc((100vw - 72rem) / 2)) 6rem; }
-.gb-budget-hero__inner { max-width: 52rem; }
+/* hero: the GB Assembly photograph under a black gradient, darkest on the left where the title sits */
+.gb-budget-hero { --gb-hero-img: url("../../images/pages/gb-budget/gb-budget-hero.webp?v=2"); background: linear-gradient(100deg, rgba(0, 0, 0, .8) 0%, rgba(0, 0, 0, .62) 40%, rgba(0, 0, 0, .28) 75%, rgba(0, 0, 0, .14) 100%), var(--gb-hero-img) 62% center / cover no-repeat, #000; color: #fff; min-height: calc(100vh - 22px); min-height: calc(100svh - 22px); display: flex; align-items: end; padding: 8rem max(2rem, calc((100vw - 72rem) / 2)) 6rem; }
+.gb-budget-hero__inner { max-width: 52rem; text-shadow: 0 1px 14px rgba(0, 0, 0, .45), 0 1px 2px rgba(0, 0, 0, .35); }
 .gb-budget-hero h1 { color: #fff; font-size: clamp(3rem, 7vw, 6.25rem); letter-spacing: -.035em; line-height: .98; margin: 0; text-wrap: balance; }
-.gb-budget-hero__eyebrow, .gb-budget-hero__byline { color: #fff; font-size: .78rem; font-weight: 600; letter-spacing: .13em; margin: 0 0 1.25rem; text-transform: uppercase; }
+.gb-budget-hero__eyebrow, .gb-budget-hero__byline { color: #fff; font-size: calc(.78rem + 2px); font-weight: 600; letter-spacing: .13em; margin: 0 0 1.25rem; text-transform: uppercase; }
 .gb-budget-hero__byline { margin: 1.7rem 0 0; }
 .gb-budget-hero__dek { color: #fff; font-size: clamp(1.1rem, 2vw, 1.35rem); line-height: 1.45; margin: 1.4rem 0 0; max-width: 44rem; }
 .gb-budget-transition { border-bottom: 1px solid #cfd5d8; display: flex; justify-content: flex-start; margin: 0 auto; padding: 2.25rem 0; width: min(1200px, calc(100% - 3rem)); }
 .gb-budget-article { padding-top: 2.75rem; }
 .gb-budget-article .gb-subsection-heading { margin-top: 2.7rem; }
+.gb-budget-article section > p,
+.gb-budget-article section > .gb-subsection-heading,
+.gb-budget-article section > .back-to-blog-link { display: block; max-width: 48rem; }
 .gb-budget-sources { margin-top: 2.5rem; }
+.gb-budget-notes { margin-top: 3.5rem; max-width: 48rem; }
+.gb-budget-notes p { color: #4a4a4a; font-size: .92em; line-height: 1.65; }
+.gb-budget-notes p strong { color: #1a1a1a; }
+.gb-budget-notes .gb-budget-sources { margin-top: 1.75rem; }
+.gb-budget-article #budget-chart + p,
+.gb-budget-article #budget-compare-chart + p { margin-top: 2rem; }
+/* GB vs provinces comparison (js/articles/gb-budget-compare.js) */
+#budget-compare-chart { position: relative; }
+.gb-compare-card { margin-top: 1.25em; }
+/* desktop: widen to the article container, like the development card, so the 1:1 panels keep room */
+/* desktop: only the side-by-side comparison breaks out to the article container, like the development card */
+@media (min-width: 981px) { .gb-compare-card { width: min(150%, calc(100vw - 4rem)); } }
+
+/* development donuts on narrow screens: slices listed under the ring */
+.gb-donut-legend { display: grid; gap: .55rem; margin: .5rem 0 0; }
+.gb-donut-legend__row { align-items: baseline; display: grid; font-size: 14px; gap: .6rem; grid-template-columns: 12px 1fr auto; line-height: 1.35; }
+.gb-donut-legend__swatch { align-self: center; height: 12px; width: 12px; }
+.gb-donut-legend__label { color: #505050; }
+.gb-donut-legend__value { color: #CF0000; font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
+.gb-compare-grid { gap: 2.5rem; }
+.gb-compare-table { border: 0; clip: rect(0 0 0 0); clip-path: inset(50%); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; white-space: nowrap; width: 1px; }
 .gb-budget-article .back-to-blog-link { color: #111 !important; font-size: 18px; }
-@media (max-width: 736px) { .gb-budget-hero { min-height: 62vh; padding: 7rem 1.5rem 3rem; } }
+.gb-budget-development-full { border-bottom: 1px solid #bcc7cd; border-top: 1px solid #bcc7cd; margin-top: 1.25rem; padding: 1.4em 0 1.6em; width: min(1200px, calc(100vw - 3rem)); }
+.gb-budget-development-header { margin-bottom: 1.25rem; }
+.gb-budget-development-header .chart-subtitle { margin-bottom: 0; max-width: 52rem; }
+.gb-budget-development-grid { display: grid; gap: 2rem; grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; }
+.gb-budget-development-grid > div { min-width: 0; }
+.gb-budget-development-grid .budget-donut2-wrap,
+.gb-budget-development-grid .budget-psdp-wrap { background: #ffffff; border: 0; box-sizing: border-box; height: 100%; margin-top: 0; overflow-x: auto; padding: 0 1.6em 0 0; }
+.gb-budget-development-grid svg { height: auto; max-width: 100%; }
+.gb-budget-development-footer { align-items: flex-start; color: #6b6b6b; display: flex; flex-direction: column; font-size: 14px; gap: .4rem; margin-top: 1.15rem; }
+.gb-budget-development-footer img { height: 35px; width: auto; }
+@media (max-width: 980px) {
+    .gb-budget-hero { min-height: calc(100vh - 56px); min-height: calc(100svh - 56px); }
+    .gb-budget-development-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 736px) {
+    .gb-budget-hero { --gb-hero-img: url("../../images/pages/gb-budget/gb-budget-hero-828.webp?v=2"); background: linear-gradient(180deg, rgba(0, 0, 0, .4) 0%, rgba(0, 0, 0, .64) 55%, rgba(0, 0, 0, .86) 100%), var(--gb-hero-img) 62% center / cover no-repeat, #000; padding: 7rem 1.5rem 3rem; }
+}
+
+/* Budget in 100 squares — scroll-driven waffle (js/articles/gb-budget-waffle.js) */
+.gb-waffle { --gb-waffle-accent: #CF0000; --gb-waffle-tot: #585252; --gb-waffle-top: 0px; --gb-waffle-stage: calc(100vh - var(--gb-waffle-top)); margin: 2rem 0 1rem; width: 100%; }
+.gb-waffle__scrolly { position: relative; }
+.gb-waffle__sticky { background: #fff; height: var(--gb-waffle-stage); overflow: hidden; position: sticky; top: var(--gb-waffle-top); }
+.gb-waffle__chart { height: 100%; position: relative; }
+.gb-waffle__chart svg { display: block; height: 100%; width: 100%; }
+.gb-waffle__boundary { fill: none; pointer-events: none; stroke: #1a1a1a; stroke-linecap: round; stroke-linejoin: round; }
+/* text sections scroll over the sticky chart, one screen per step */
+.gb-waffle__steps { margin-top: calc(-1 * var(--gb-waffle-stage)); pointer-events: none; position: relative; z-index: 1; }
+.gb-waffle__step { align-items: center; box-sizing: border-box; display: flex; height: 100vh; padding: 0 0 0 0; }
+.gb-waffle__card { background: rgba(255, 255, 255, .96); border: 1px solid #e3e3e3; border-radius: 4px; box-shadow: 0 6px 24px rgba(0, 0, 0, .06); box-sizing: border-box; padding: 20px 22px; pointer-events: auto; }
+.gb-waffle__step-k { color: #595959; font-size: 13px; letter-spacing: .14em; margin: 0 0 10px; text-transform: uppercase; }
+.gb-waffle__card h3 { font-size: 21px; font-weight: 600; letter-spacing: -.3px; line-height: 1.22; margin: 0; }
+.gb-waffle__card p:last-child { color: #3e3e3e; font-size: 15px; line-height: 1.6; margin: 12px 0 0; }
+.gb-waffle__fig { font-size: 26px; font-weight: 700; letter-spacing: -.5px; line-height: 1.2; margin: 14px 0 0; }
+.gb-waffle__fig span { color: #6b6b6b; display: block; font-size: 14px; font-weight: 400; letter-spacing: 0; margin-top: 3px; }
+.gb-waffle__note { color: #6b6b6b; font-size: 14px; line-height: 1.6; margin: 0 0 2rem; max-width: 48rem; }
+/* desktop: widen to the full article container, cards on the left, chart on the right */
+@media (min-width: 981px) {
+    .gb-waffle { width: min(150%, calc(100vw - 4rem)); }
+    .gb-waffle__chart { margin-left: 40%; width: 60%; }
+    .gb-waffle__card { width: 36%; }
+}
+/* narrow: chart in the upper part of the screen, cards rest below it */
+@media (max-width: 980px) {
+    .gb-waffle__chart { height: 56%; }
+    .gb-waffle__step { align-items: flex-end; padding-bottom: 4vh; }
+    .gb-waffle__card { width: 100%; padding: 16px 18px; }
+    .gb-waffle__card h3 { font-size: 18px; }
+    .gb-waffle__card p:last-child { font-size: 14px; line-height: 1.5; margin-top: 8px; }
+    .gb-waffle__fig { font-size: 21px; margin-top: 8px; }
+    .gb-waffle__step-k { margin-bottom: 6px; }
+}
+    .gb-waffle__saybody h3 { font-size: 19px; }
+    .gb-waffle__saybody p { font-size: 13px; line-height: 1.45; margin-top: 10px; }
+    .gb-waffle__fig { font-size: 20px; margin-top: 8px; }
+    .gb-waffle__step-k { margin-bottom: 8px; }
+}
