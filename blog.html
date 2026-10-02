@@ -149,7 +149,7 @@
                         </a>
                     </article>
 
-                    <article class="blog-feed-card">
+                    <article class="blog-feed-card" hidden data-blog-more>
                         <a href="flaws_of_development_sector.html" class="blog-feed-link">
                             <img src="images/shared/article-previews/development_flaws.jpg" alt="Development sector field scene">
                             <div class="blog-feed-copy">
@@ -281,8 +281,20 @@
 
   function initBlogFeed() {
     var button = document.querySelector('[data-blog-more-button]');
-    var hiddenCards = document.querySelectorAll('[data-blog-more]');
     var grid = document.querySelector('.blog-feed-grid');
+
+    /* Show the first six posts (two rows of three); everything after them opens
+       with "View more". Decided here rather than in the markup, so adding a new
+       post at the top never pushes a seventh card into a third row. */
+    var INITIAL_CARDS = 6;
+    var feedCards = grid ? grid.querySelectorAll('.blog-feed-card') : [];
+    for (var c = 0; c < feedCards.length; c++) {
+      if (c >= INITIAL_CARDS) {
+        feedCards[c].hidden = true;
+        feedCards[c].setAttribute('data-blog-more', '');
+      }
+    }
+    var hiddenCards = document.querySelectorAll('[data-blog-more]');
     var cardActions = document.querySelectorAll('.blog-feed-card-action');
     var shareDialog = document.getElementById('blog-share-dialog');
     var shareLinks = document.querySelectorAll('[data-blog-share-link]');
