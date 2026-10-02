@@ -1,6 +1,6 @@
 .gb-budget-page #header { background: #111111; }
 /* hero: the GB Assembly photograph under a black gradient, darkest on the left where the title sits */
-.gb-budget-hero { --gb-hero-img: url("../../images/pages/gb-budget/gb-budget-hero.webp?v=2"); background: linear-gradient(100deg, rgba(0, 0, 0, .8) 0%, rgba(0, 0, 0, .62) 40%, rgba(0, 0, 0, .28) 75%, rgba(0, 0, 0, .14) 100%), var(--gb-hero-img) 62% center / cover no-repeat, #000; color: #fff; min-height: calc(100vh - 22px); min-height: calc(100svh - 22px); display: flex; align-items: end; padding: 8rem max(2rem, calc((100vw - 72rem) / 2)) 6rem; }
+.gb-budget-hero { --gb-hero-img: url("../../images/pages/gb-budget/gb-budget-hero.webp?v=2"); background: linear-gradient(100deg, rgba(0, 0, 0, .8) 0%, rgba(0, 0, 0, .62) 40%, rgba(0, 0, 0, .28) 75%, rgba(0, 0, 0, .14) 100%), var(--gb-hero-img) 62% center / cover no-repeat, #000; color: #fff; min-height: calc(100vh - 22px); min-height: calc(var(--gb-vh, 100svh) - 22px); display: flex; align-items: end; padding: 8rem max(2rem, calc((100vw - 72rem) / 2)) 6rem; }
 .gb-budget-hero__inner { max-width: 52rem; text-shadow: 0 1px 14px rgba(0, 0, 0, .45), 0 1px 2px rgba(0, 0, 0, .35); }
 .gb-budget-hero h1 { color: #fff; font-size: clamp(3rem, 7vw, 6.25rem); letter-spacing: -.035em; line-height: .98; margin: 0; text-wrap: balance; }
 .gb-budget-hero__eyebrow, .gb-budget-hero__byline { color: #fff; font-size: calc(.78rem + 2px); font-weight: 600; letter-spacing: .13em; margin: 0 0 1.25rem; text-transform: uppercase; }
@@ -46,7 +46,7 @@
 .gb-budget-development-footer { align-items: flex-start; color: #6b6b6b; display: flex; flex-direction: column; font-size: 14px; gap: .4rem; margin-top: 1.15rem; }
 .gb-budget-development-footer img { height: 35px; width: auto; }
 @media (max-width: 980px) {
-    .gb-budget-hero { min-height: calc(100vh - 56px); min-height: calc(100svh - 56px); }
+    .gb-budget-hero { min-height: calc(100vh - 56px); min-height: calc(var(--gb-vh, 100svh) - 56px); }
     .gb-budget-development-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 736px) {
@@ -54,15 +54,15 @@
 }
 
 /* Budget in 100 squares — scroll-driven waffle (js/articles/gb-budget-waffle.js) */
-.gb-waffle { --gb-waffle-accent: #CF0000; --gb-waffle-tot: #585252; --gb-waffle-top: 0px; --gb-waffle-stage: calc(100vh - var(--gb-waffle-top)); margin: 2rem 0 1rem; width: 100%; }
+.gb-waffle { --gb-waffle-accent: #CF0000; --gb-waffle-tot: #585252; --gb-waffle-top: 0px; --gb-waffle-stage: calc(var(--gb-vh, 100vh) - var(--gb-waffle-top)); margin: 2rem 0 1rem; width: 100%; }
 .gb-waffle__scrolly { position: relative; }
 .gb-waffle__sticky { background: #fff; height: var(--gb-waffle-stage); overflow: hidden; position: sticky; top: var(--gb-waffle-top); }
-.gb-waffle__chart { height: 100%; position: relative; }
+.gb-waffle__chart { height: 100%; position: relative; transition: opacity .28s ease; }
 .gb-waffle__chart svg { display: block; height: 100%; width: 100%; }
 .gb-waffle__boundary { fill: none; pointer-events: none; stroke: #1a1a1a; stroke-linecap: round; stroke-linejoin: round; }
 /* text sections scroll over the sticky chart, one screen per step */
 .gb-waffle__steps { margin-top: calc(-1 * var(--gb-waffle-stage)); pointer-events: none; position: relative; z-index: 1; }
-.gb-waffle__step { align-items: center; box-sizing: border-box; display: flex; height: 100vh; padding: 0 0 0 0; }
+.gb-waffle__step { align-items: center; box-sizing: border-box; display: flex; height: var(--gb-vh, 100vh); padding: 0 0 0 0; }
 .gb-waffle__card { background: rgba(255, 255, 255, .96); border: 1px solid #e3e3e3; border-radius: 4px; box-shadow: 0 6px 24px rgba(0, 0, 0, .06); box-sizing: border-box; padding: 20px 22px; pointer-events: auto; }
 .gb-waffle__step-k { color: #595959; font-size: 13px; letter-spacing: .14em; margin: 0 0 10px; text-transform: uppercase; }
 .gb-waffle__card h3 { font-size: 21px; font-weight: 600; letter-spacing: -.3px; line-height: 1.22; margin: 0; }
@@ -79,7 +79,7 @@
 /* narrow: chart in the upper part of the screen, cards rest below it */
 @media (max-width: 980px) {
     .gb-waffle__chart { height: 56%; }
-    .gb-waffle__step { align-items: flex-end; padding-bottom: 4vh; }
+    .gb-waffle__step { align-items: flex-end; padding-bottom: calc(var(--gb-vh, 100vh) * .04); }
     .gb-waffle__card { width: 100%; padding: 16px 18px; }
     .gb-waffle__card h3 { font-size: 18px; }
     .gb-waffle__card p:last-child { font-size: 14px; line-height: 1.5; margin-top: 8px; }

@@ -15,6 +15,25 @@
      7. Paint          — drawing one frame between two steps
      8. Scroll driver  — thresholds play steps on their own clock
    ============================================================================= */
+/* Freeze the screen height in pixels (--gb-vh) for the hero and the waffle steps.
+   Brave and Chrome on iPhone resize the page area when their toolbar slides in
+   or out, which changes 100vh mid-scroll; with 35 screen-tall steps that made
+   the page leap by more than a screen. On touch devices the height is measured
+   once and re-measured only when the width changes (rotation); elsewhere it
+   follows every resize. */
+(function freezeViewportHeight() {
+    const root = document.documentElement;
+    const touch = matchMedia("(pointer: coarse)").matches;
+    let w = innerWidth;
+    const set = () => root.style.setProperty("--gb-vh", innerHeight + "px");
+    set();
+    addEventListener("resize", () => {
+        if (touch && innerWidth === w) return;
+        w = innerWidth;
+        set();
+    });
+})();
+
 (function buildBudgetWaffles() {
     if (typeof d3 === "undefined") return;
 
@@ -335,6 +354,7 @@
         const TRIGGER = 0.4;              // how far the next card is in before it takes over
         const STEP_MS = 1500;             // one step's transition
         const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const FADE_MS = 280;              // reduced motion: fade out, switch, fade in
 
         const scrolly = root.querySelector(".gb-waffle__scrolly");
         const sticky  = root.querySelector(".gb-waffle__sticky");
@@ -380,12 +400,25 @@
             anim = pos === target ? 0 : requestAnimationFrame(tick);
             if (!anim) last = 0;
         }
+        /* Reduced motion (e.g. iOS Settings > Accessibility > Motion): no zooming
+           or sliding. The chart fades out, changes while hidden and fades back in,
+           so the change still reads as a transition rather than a jump. */
+        let fadeTimer = 0;
+        function fadeTo() {
+            if (fadeTimer) return;                  // a fade is under way; it lands on the latest target
+            chart.style.opacity = "0";
+            fadeTimer = setTimeout(() => {
+                pos = target; draw();
+                chart.style.opacity = "1";
+                fadeTimer = 0;
+            }, FADE_MS);
+        }
         function onScroll() {
             headerOffset();
             const t = activeStep();
             if (t === target) return;
             target = t;
-            if (reduce) { pos = target; draw(); return; }
+            if (reduce) { fadeTo(); return; }
             if (!anim) anim = requestAnimationFrame(tick);
         }
 
