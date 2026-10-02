@@ -767,51 +767,6 @@ pre code { display: block; line-height: 1.75em; padding: 1em 1.5em; }
   transform: translateY(-2px);
 }
 
-/* Music page — image-led hero matching the main page structure */
-.music-image {
-  width: 100%; height: 100vh; height: var(--site-vh, 100vh); position: relative;
-  background-image: url("../images/pages/57/edm_2.jpg");
-  background-attachment: fixed;
-  background-position: center center;
-  background-size: cover; overflow: hidden; z-index: 1;
-}
-.music-image::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: rgba(54,5,22,0.55);
-  z-index: 1;
-}
-.music-image-content {
-  max-width: 560px; width: 100%; margin: 0 auto;
-  position: absolute; top: 180px; left: 10%; z-index: 2;
-}
-.music-mark {
-  width: 82px;
-  margin: 0 0 1.5em 0;
-  filter: invert(1);
-}
-.music-image-content h1 {
-  color: #ffffff;
-  font-size: 4rem;
-  letter-spacing: .12em;
-  margin-bottom: .25em;
-}
-.music-image-content p {
-  color: #ffffff;
-  font-size: 1.25em;
-  letter-spacing: 0;
-}
-@media (max-width: 768px) {
-  .music-image { background-position: 45% center; }
-  .music-image-content {
-    position: relative; top: 150px; left: 0; width: 90%; max-width: none;
-  }
-  .music-image-content h1 {
-    font-size: 3rem;
-    letter-spacing: .08em;
-  }
-}
-
 /* Home page — editorial landing layout */
 .landing-page {
   background: #ffffff;
@@ -2877,45 +2832,6 @@ body.article-page blockquote + cite {
   flex-direction: column;
   flex: 1 1 auto;
   min-width: 0;
-}
-
-/* Music track grid */
-.music-track-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 4em;
-  margin-top: 1.5em;
-}
-
-.music-track-card {
-  min-width: 0;
-}
-
-.music-track-card img {
-  aspect-ratio: 1;
-  object-fit: cover;
-  width: 100%;
-  margin-bottom: 1em;
-}
-
-.music-track-card h3 {
-  font-size: 1.1em;
-  letter-spacing: .04em;
-  margin-bottom: 0;
-}
-
-@media (max-width: 980px) {
-  .music-track-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 2.5em;
-  }
-}
-
-@media (max-width: 736px) {
-  .music-track-grid {
-    grid-template-columns: 1fr;
-    gap: 1.25em;
-  }
 }
 
 /* Blog post card: lifts on hover */
