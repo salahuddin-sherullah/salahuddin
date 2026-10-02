@@ -18,6 +18,37 @@
  * in the navPanel config below.
  */
 
+/* ── Frozen screen height (--site-vh) ─────────────────────────────────
+ * Brave and Chrome on iPhone resize the page area when their toolbar
+ * slides in or out, which changes 100vh mid-scroll. Anything sized in
+ * screen heights then grows or shrinks and the page leaps. So the height
+ * is measured once in pixels and exposed as --site-vh (with --gb-vh kept
+ * as an alias for the GB articles). On touch devices it is re-measured
+ * only when the width changes (rotation); elsewhere on every resize.
+ * CSS: height: var(--site-vh, 100vh);  JS: window.siteViewportHeight()
+ * Runs in <head>, so the value is set before the page first renders.
+ * ──────────────────────────────────────────────────────────────────────*/
+(function() {
+    var root = document.documentElement;
+    var touch = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+    var width = window.innerWidth;
+    var height = window.innerHeight;
+
+    function set() {
+        height = window.innerHeight;
+        root.style.setProperty('--site-vh', height + 'px');
+        root.style.setProperty('--gb-vh', height + 'px');
+    }
+
+    window.siteViewportHeight = function() { return height; };
+    set();
+    window.addEventListener('resize', function() {
+        if (touch && window.innerWidth === width) return;
+        width = window.innerWidth;
+        set();
+    });
+})();
+
 (function($) {
 
     skel.init({

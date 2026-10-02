@@ -29,29 +29,11 @@
    0. SCROLL SCENE — stat reveals on scroll
    ============================================================================= */
 
-/* =============================================================================
-   0. FROZEN SCREEN HEIGHT (--gb-vh) — shared by both GB articles
-   Brave and Chrome on iPhone resize the page area when their toolbar slides in
-   or out, which changes 100vh mid-scroll; every screen-tall section above the
-   reader then grows or shrinks and the page leaps. On touch devices the height
-   is measured once and re-measured only when the width changes (rotation);
-   elsewhere it follows every resize. CSS sizes sections with var(--gb-vh), and
-   scroll-progress code reads gbViewportHeight() instead of innerHeight.
-   ============================================================================= */
-let gbFrozenVh = window.innerHeight;
-function gbViewportHeight() { return gbFrozenVh; }
-(function freezeViewportHeight() {
-    const root = document.documentElement;
-    const touch = matchMedia("(pointer: coarse)").matches;
-    let w = innerWidth;
-    const set = () => { gbFrozenVh = innerHeight; root.style.setProperty("--gb-vh", innerHeight + "px"); };
-    set();
-    addEventListener("resize", () => {
-        if (touch && innerWidth === w) return;
-        w = innerWidth;
-        set();
-    });
-})();
+/* Frozen screen height: set site-wide by js/init.js (--site-vh / --gb-vh).
+   Scroll-progress code reads gbViewportHeight() instead of innerHeight. */
+function gbViewportHeight() {
+    return window.siteViewportHeight ? window.siteViewportHeight() : window.innerHeight;
+}
 
 (function initShareLinks() {
     const shareLinks = document.querySelectorAll("[data-gb-share-link]");

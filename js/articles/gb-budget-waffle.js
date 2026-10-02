@@ -15,7 +15,7 @@
      7. Paint          — drawing one frame between two steps
      8. Scroll driver  — thresholds play steps on their own clock
    ============================================================================= */
-/* Screen-tall steps use var(--gb-vh), set by freezeViewportHeight() in gb-at-a-glance.js. */
+/* Screen-tall steps use var(--gb-vh), set site-wide by js/init.js. */
 (function buildBudgetWaffles() {
     if (typeof d3 === "undefined") return;
 
