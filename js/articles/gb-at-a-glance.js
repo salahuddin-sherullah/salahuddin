@@ -28,6 +28,31 @@
 /* =============================================================================
    0. SCROLL SCENE — stat reveals on scroll
    ============================================================================= */
+
+/* =============================================================================
+   0. FROZEN SCREEN HEIGHT (--gb-vh) — shared by both GB articles
+   Brave and Chrome on iPhone resize the page area when their toolbar slides in
+   or out, which changes 100vh mid-scroll; every screen-tall section above the
+   reader then grows or shrinks and the page leaps. On touch devices the height
+   is measured once and re-measured only when the width changes (rotation);
+   elsewhere it follows every resize. CSS sizes sections with var(--gb-vh), and
+   scroll-progress code reads gbViewportHeight() instead of innerHeight.
+   ============================================================================= */
+let gbFrozenVh = window.innerHeight;
+function gbViewportHeight() { return gbFrozenVh; }
+(function freezeViewportHeight() {
+    const root = document.documentElement;
+    const touch = matchMedia("(pointer: coarse)").matches;
+    let w = innerWidth;
+    const set = () => { gbFrozenVh = innerHeight; root.style.setProperty("--gb-vh", innerHeight + "px"); };
+    set();
+    addEventListener("resize", () => {
+        if (touch && innerWidth === w) return;
+        w = innerWidth;
+        set();
+    });
+})();
+
 (function initShareLinks() {
     const shareLinks = document.querySelectorAll("[data-gb-share-link]");
     const articleUrl = encodeURIComponent(window.location.href);
@@ -95,7 +120,7 @@
 
     function reveal() {
         const scrolled   = -scene.getBoundingClientRect().top;
-        const scrollable = scene.offsetHeight - window.innerHeight;
+        const scrollable = scene.offsetHeight - gbViewportHeight();
         const progress   = Math.max(0, Math.min(1, scrolled / scrollable));
 
         var activeIndex = -1;
@@ -586,7 +611,7 @@ function rebuildOnResize(mount, build) {
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     function setFrame() {
-        const scrollable = story.offsetHeight - window.innerHeight;
+        const scrollable = story.offsetHeight - gbViewportHeight();
         const scrolled = -story.getBoundingClientRect().top;
         const progress = Math.max(0, Math.min(1, scrolled / scrollable));
         // A scene is one full text journey. The short gaps between scenes are

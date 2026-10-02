@@ -32,7 +32,7 @@ body.gb-no-navigation.gb-content-scrolled #navButton {
     display: flex;
     isolation: isolate;
     min-height: 100vh;
-    min-height: 100svh;
+    min-height: var(--gb-vh, 100svh);
     overflow: hidden;
     padding: 5rem max(2rem, calc((100vw - 72rem) / 2));
     position: relative;
@@ -791,13 +791,13 @@ body.gb-article-nav-open {
    ============================================================================= */
 .scroll-scene {
     position: relative;
-    height: 320vh;
+    height: calc(var(--gb-vh, 100vh) * 3.2);
 }
 .scene-sticky {
     position: sticky;
     top: 0;
     width: 100%;
-    height: 100vh;
+    height: var(--gb-vh, 100vh);
     overflow: hidden;
 }
 .scene-img {
@@ -885,7 +885,7 @@ body.gb-article-nav-open {
 }
 .photo-break img {
     width: 100%;
-    height: 100vh;
+    height: var(--gb-vh, 100vh);
     object-fit: cover;
     display: block;
 }
@@ -902,12 +902,12 @@ body.gb-article-nav-open {
    ============================================================================= */
 .gb-photo-scroll-story {
     /* Each image gets a full scroll-length for its text, plus the two transitions. */
-    height: 300vh;
+    height: calc(var(--gb-vh, 100vh) * 3);
     position: relative;
 }
 .gb-photo-scroll-story__sticky {
     background: #101510;
-    height: 100vh;
+    height: var(--gb-vh, 100vh);
     inset: 0;
     overflow: hidden;
     position: sticky;
@@ -961,7 +961,7 @@ body.gb-article-nav-open {
     }
 }
 @media (prefers-reduced-motion: reduce) {
-    .gb-photo-scroll-story { height: 100vh; }
+    .gb-photo-scroll-story { height: var(--gb-vh, 100vh); }
     .gb-photo-scroll-story__image { transition: none; }
     .gb-photo-scroll-story__line { transform: translateY(0); }
 }

@@ -15,25 +15,7 @@
      7. Paint          — drawing one frame between two steps
      8. Scroll driver  — thresholds play steps on their own clock
    ============================================================================= */
-/* Freeze the screen height in pixels (--gb-vh) for the hero and the waffle steps.
-   Brave and Chrome on iPhone resize the page area when their toolbar slides in
-   or out, which changes 100vh mid-scroll; with 35 screen-tall steps that made
-   the page leap by more than a screen. On touch devices the height is measured
-   once and re-measured only when the width changes (rotation); elsewhere it
-   follows every resize. */
-(function freezeViewportHeight() {
-    const root = document.documentElement;
-    const touch = matchMedia("(pointer: coarse)").matches;
-    let w = innerWidth;
-    const set = () => root.style.setProperty("--gb-vh", innerHeight + "px");
-    set();
-    addEventListener("resize", () => {
-        if (touch && innerWidth === w) return;
-        w = innerWidth;
-        set();
-    });
-})();
-
+/* Screen-tall steps use var(--gb-vh), set by freezeViewportHeight() in gb-at-a-glance.js. */
 (function buildBudgetWaffles() {
     if (typeof d3 === "undefined") return;
 
