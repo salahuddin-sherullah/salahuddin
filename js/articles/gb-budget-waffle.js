@@ -160,7 +160,7 @@
              p: cfg.firstP},
             ...groups.flatMap((g, i) => [
                 {focus: g.id, level: "group", k: "", h: g.name,
-                 fig: squares(g.id) + " rupees", sub: "",
+                 fig: squares(g.id) + " rupees", sub: "out of 100 rupees",
                  p: g.explain},
                 ...(g.noBreakdown ? [] : g.kids.map(l => ({
                     focus: l.id, parent: g.id, level: "leaf",
