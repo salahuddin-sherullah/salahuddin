@@ -23,21 +23,21 @@
     const INFLOWS = {
         period: "FY2022–23 to FY2026–27",
         receipts: [
-            {id:"g-nondevelopment", name:"A. Non-Development Budget", shortName:"non-development", goesTo:"non-development activities",
+            {id:"g-nondevelopment", name:"A. Non-Development Budget", shortName:"non-development",
              explain:"This is the money used to keep government services running day to day, by paying people, running schools and hospitals, and keeping government offices open. It is not mainly for building new projects.", children:[
                 {id:"r-grant", name:"Federal Grant-in-Aid", share:49.0, plain:"are provided by the federal government in Islamabad. A grant-in-aid is simply money Islamabad gives Gilgit-Baltistan to help run everyday public services, such as schools, hospitals and government offices; it does not have to be paid back"},
                 {id:"r-local", name:"Local Revenue / Non-Tax Revenue Target", share:3.7, plain:"are raised inside Gilgit-Baltistan, through things such as local taxes, licence fees, tourism fees, utility charges and payments for use of natural resources"},
                 {id:"r-deficit", name:"Budget Deficit Financing", share:5.4, plain:"come from extra money arranged when the government’s normal income is not enough to cover what it plans to spend. This can include additional federal support or money set aside to cover unpaid bills"},
                 {id:"r-savings", name:"One-off Savings, Surrenders, Recoveries & Adjustments", share:1.5, plain:"come from money that was not spent or has been recovered, for example when a government job remains vacant, a project costs less than expected, or an earlier payment is returned"}
             ]},
-            {id:"g-development", name:"B. Development Budget", shortName:"development", goesTo:"development activities",
+            {id:"g-development", name:"B. Development Budget", shortName:"development",
              explain:"This is money for making things better or building new things, such as roads, schools, hospitals, water systems and bridges.", children:[
                 {id:"r-adp", name:"ADP Allocation (Rupee Component)", share:15.0, plain:"come from Gilgit-Baltistan’s own main pot for building and improving things, such as roads, schools, hospitals and water systems"},
                 {id:"r-psdp", name:"Federal PSDP (incl. PM Initiatives)", share:11.1, plain:"are provided by the federal government in Islamabad for building and improvement projects, such as important roads, bridges, hospitals, schools and other shared facilities"},
                 {id:"r-fec", name:"FEC Component", share:0.6, plain:"are set aside to pay for things that must be bought from outside Pakistan, or for specialist help from abroad, such as imported hospital machines or engineering equipment. The label FEC means this money may need to be paid in a foreign currency, such as US dollars", singularPlain:"is set aside to pay for things that must be bought from outside Pakistan, or for specialist help from abroad, such as imported hospital machines or engineering equipment. The label FEC means this money may need to be paid in a foreign currency, such as US dollars"},
                 {id:"r-other-development", name:"Other Development Funds", share:1.4, plain:"come from special one-off pools of money outside the usual development budget. This can include emergency help from the Prime Minister, money released late for a particular project, or funding for a single need such as flood repairs, a water scheme or a hospital upgrade", singularPlain:"comes from special one-off pools of money outside the usual development budget. This can include emergency help from the Prime Minister, money released late for a particular project, or funding for a single need such as flood repairs, a water scheme or a hospital upgrade"}
             ]},
-            {id:"g-wheat", name:"C. Wheat Subsidy", shortName:"wheat subsidy", goesTo:"the wheat subsidy", noBreakdown:true,
+            {id:"g-wheat", name:"C. Wheat Subsidy", shortName:"wheat subsidy", noBreakdown:true,
              explain:"This helps keep wheat affordable for people in Gilgit-Baltistan. It brings together federal support, money from wheat sales and money left over from an earlier period.", children:[
                 {id:"r-wheat", name:"Federal subsidy, sale proceeds & carry-forwards", share:12.3, plain:"comes from federal support, money recovered from wheat sales and funds carried forward from an earlier period. Together, these help meet the cost of supplying wheat at an affordable price, including transport to remote areas"}
             ]}
@@ -52,7 +52,7 @@
     const OUTFLOWS = {
         period: "FY2022–23 to FY2026–27",
         receipts: [
-            {id:"o-nondevelopment", name:"A. Non-Development Spending", shortName:"non-development", goesTo:"non-development activities",
+            {id:"o-nondevelopment", name:"A. Non-Development Spending", shortName:"non-development",
              explain:"This is what it costs to keep the government running every year: the salaries of teachers, doctors and police, the bills of offices and hospitals, and the grants and subsidies the government pays out.", children:[
                 {id:"o-finance", name:"Finance Department", share:15.0436, plain:"are held by the Finance Department. This is money managed centrally rather than by a single service, mostly grants, subsidies and other payments the government makes on behalf of the whole administration"},
                 {id:"o-education", name:"School & Higher Education", share:12.2631, plain:"pay for schools, colleges and the teachers who run them, from primary classrooms to technical and higher education. Education is the largest single service the government runs"},
@@ -61,7 +61,7 @@
                 {id:"o-home", name:"Police, Home & Prisons", share:8.0649, plain:"pay for policing, prisons and the upkeep of law and order across the region"},
                 {id:"o-health", name:"Health", share:6.4518, plain:"run hospitals, district health centres and dispensaries, and pay the doctors, nurses and health workers in them"}
             ]},
-            {id:"o-development", name:"B. Development Spending", shortName:"development", goesTo:"development activities",
+            {id:"o-development", name:"B. Development Spending", shortName:"development",
              explain:"This is what Gilgit-Baltistan spends on building for the future: power plants, roads, hospitals, schools and water systems, through its own ADP and the federal PSDP.", children:[
                 {id:"o-energy", name:"Energy & Power", share:6.1707, plain:"build hydropower plants and the regional grid, such as the Naltar-III and Shagarthang hydropower projects. In a region that still runs short of electricity every winter, this is the biggest development priority"},
                 {id:"o-roads", name:"Roads & Transport", share:5.7259, plain:"build and upgrade roads and bridges, including the road from Pissan to Hoper in Nagar and the corridor from Thalichi in GB to Shounter in AJ&K"},
@@ -71,7 +71,7 @@
                 {id:"o-water", name:"Water, Sanitation & Urban Development", share:2.7287, plain:"pay for water supply, sewerage, irrigation and urban development, such as Gilgit’s sewerage system and the Greater Water Supply scheme in Hunza"},
                 {id:"o-education-dev", name:"Schools & Colleges", share:2.1688, plain:"build and improve schools, colleges and technical institutes"}
             ]},
-            {id:"o-wheat", name:"C. Wheat Subsidy", shortName:"wheat subsidy", goesTo:"the wheat subsidy", noBreakdown:true,
+            {id:"o-wheat", name:"C. Wheat Subsidy", shortName:"wheat subsidy", noBreakdown:true,
              explain:"This pays for buying wheat, carrying it to every corner of the region and selling it below cost, so that flour stays affordable in places that are cut off for months at a time.", children:[
                 {id:"o-wheat-all", name:"Wheat purchase, transport & subsidised sale", share:12.3329, plain:"buy wheat, carry it to remote areas and sell it at a subsidised price"}
             ]}
@@ -161,13 +161,14 @@
             ...groups.flatMap((g, i) => [
                 {focus: g.id, level: "group", k: "", h: g.name,
                  fig: squares(g.id) + " rupees", sub: "",
-                 p: `Out of the total 100 rupees, ${squares(g.id)} rupees go to ${g.goesTo}. ${g.explain}`},
+                 p: g.explain},
                 ...(g.noBreakdown ? [] : g.kids.map(l => ({
                     focus: l.id, parent: g.id, level: "leaf",
                     k: g.name.slice(3),
                     h: l.name, fig: `${squares(l.id)} ${rupeeWord(squares(l.id))}`,
                     sub: `out of ${squares(g.id)} rupees for ${g.shortName}`,
-                    p: `Out of the ${squares(g.id)} rupees for ${g.shortName}, ${squares(l.id)} ${rupeeWord(squares(l.id))} ${squares(l.id) === 1 && l.singularPlain ? l.singularPlain : l.plain}.`
+                    /* the figure and sub-line carry the numbers; the description just explains */
+                    p: `${squares(l.id) === 1 && l.singularPlain ? "This rupee " + l.singularPlain : "These rupees " + l.plain}.`
                 }))),
                 /* a bridge card between categories, pointing to the next one */
                 ...(i < groups.length - 1 ? [{
@@ -434,14 +435,14 @@
         ramp: ["#CF0000", "#DB2E01", "#E75C03", "#F38B05", "#F9A206", "#FEB907"],
         tone: "var(--gb-waffle-accent)", flow: "inflows",
         aria: "Waffle chart of 100 squares, one per rupee of average budget inflow",
-        firstP: "Think of all budget inflows as 100 rupees. The money coming in is split into three main categories: non-development, development and wheat subsidy.",
-        lastP: "Together, these categories make up all 100 rupees."
+        firstP: "Think of all the money coming in as a single pile. It is split into three main categories: non-development, development and wheat subsidy.",
+        lastP: "Together, these three categories make up the whole budget."
     });
     buildWaffle(document.getElementById("gb-waffle-out"), OUTFLOWS, {
         ramp: ["#02061D", "#360516", "#69030E", "#9C0107"],
         tone: "var(--gb-waffle-accent)", flow: "outflows",
         aria: "Waffle chart of 100 squares, one per rupee of average budget spending",
-        firstP: "Now follow the same 100 rupees out of the treasury. They are spent in the same three blocks, non-development, development and wheat subsidy, but this time we open each one to see who spends it and on what.",
-        lastP: "Together, these make up all 100 rupees of spending."
+        firstP: "Now follow the same money out of the treasury. It is spent in the same three blocks, non-development, development and wheat subsidy, but this time we open each one to see who spends it and on what.",
+        lastP: "Together, these three blocks make up all of the spending."
     });
 })();
