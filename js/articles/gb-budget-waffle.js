@@ -189,10 +189,18 @@
             .attr("aria-label", cfg.aria);
         const gCell = svg.append("g");
         const gBoundary = svg.append("g");
+        const gNum = svg.append("g").attr("aria-hidden", "true");
 
         CELLS.forEach(c => {
             c.rect = gCell.append("rect").attr("class", "gb-waffle__cell").attr("rx", 1);
             c.rect.append("title").text(`${c.of.l.name} · ${c.of.g.name.slice(3)}`);
+            /* each number sits in a box the size of its square, which clips it.
+               Like an odometer it rolls from 0 up to its value: num shows the
+               current whole number and num2 the next one, scrolling up from below */
+            c.box = gNum.append("svg").attr("overflow", "hidden").attr("opacity", 0);
+            c.num  = c.box.append("text").attr("class", "gb-waffle__num").attr("text-anchor", "middle").attr("dominant-baseline", "central");
+            c.num2 = c.box.append("text").attr("class", "gb-waffle__num").attr("text-anchor", "middle").attr("dominant-baseline", "central");
+            c.val = 0;    // where the counter is now (fractional while rolling)
         });
         const BOUNDARIES = groups.map(g => ({g, path: gBoundary.append("path").attr("class", "gb-waffle__boundary")}));
 
@@ -276,6 +284,15 @@
         const boundaryFocus = (s, g) => !s.focus && !s.highlight ? 1
             : groupFocus(s) === g.id || s.highlight === g.id ? 1 : 0.2;
 
+        let lastS = 0;   // current square size, for the number roll
+        /* draw a square's counter at its current (possibly fractional) value:
+           the whole number slides up out of the square as the next slides in */
+        function placeNumber(c) {
+            const whole = Math.floor(c.val), frac = c.val - whole;
+            c.num.text(whole).attr("x", lastS / 2).attr("y", lastS / 2 - frac * lastS);
+            c.num2.text(whole + 1).attr("x", lastS / 2).attr("y", lastS / 2 + (1 - frac) * lastS)
+                  .attr("visibility", frac > 0 ? null : "hidden");
+        }
         function paint(a, b, t) {
             const A = STATE[a], B = STATE[b], e = ease(t);
             const cam = camera(a, b, t);
@@ -291,12 +308,22 @@
 
             /* a cell takes its category's colour, or its source's once the category
                has been opened, and fades while another category is being read */
+            const fs = Math.min(60, cam.S * 0.42);   // number size follows the square, larger when zoomed in
+            lastS = cam.S;
             CELLS.forEach(c => {
                 const o = c.of;
-                c.rect.attr("x", cam.ox + c.c * cam.P).attr("y", cam.oy + c.r * cam.P)
+                const fill = mixc(o.g.col, o.l.col, splitOf(o.g.id));
+                const x = cam.ox + c.c * cam.P, y = cam.oy + c.r * cam.P;
+                c.rect.attr("x", x).attr("y", y)
                       .attr("width", cam.S).attr("height", cam.S)
-                      .attr("fill", css(mixc(o.g.col, o.l.col, splitOf(o.g.id))))
+                      .attr("fill", css(fill))
                       .attr("opacity", lerp(opacityFor(A, o), opacityFor(B, o), e));
+                const ink = (0.299 * fill[0] + 0.587 * fill[1] + 0.114 * fill[2]) / 255 > 0.55 ? "#1a1a1a" : "#ffffff";
+                c.box.attr("x", x).attr("y", y).attr("width", cam.S).attr("height", cam.S)
+                     .attr("visibility", fs < 8 ? "hidden" : null);
+                c.num.style("font-size", fs + "px").attr("fill", ink);
+                c.num2.style("font-size", fs + "px").attr("fill", ink);
+                placeNumber(c);
             });
 
             /* subtle outlines keep the three main blocks readable */
@@ -381,7 +408,7 @@
             pos = Math.abs(dist) <= move ? target : pos + Math.sign(dist) * move;
             draw();
             anim = pos === target ? 0 : requestAnimationFrame(tick);
-            if (!anim) last = 0;
+            if (!anim) { last = 0; showNumbers(target); }
         }
         /* Reduced motion (e.g. iOS Settings > Accessibility > Motion): no zooming
            or sliding. The chart fades out, changes while hidden and fades back in,
@@ -394,13 +421,77 @@
                 pos = target; draw();
                 chart.style.opacity = "1";
                 fadeTimer = 0;
+                showNumbers(target);
             }, FADE_MS);
         }
+        /* ---- 9. The running total ----------------------------------------------
+           One number per card, in the last square of whatever is in focus: 100 on
+           the opening and closing cards, and on a card about one category or source
+           (or the "Next" card pointing to one) that group's total. It rolls from 0
+           up to the total like an odometer once the chart has settled, and clears
+           as soon as the chart starts to move. */
+        function numbering(st) {
+            const id = st.focus || st.highlight;
+            if (!id) return [[CELLS[N - 1], N]];
+            const {from, to} = PLAN.get(id);
+            return [[CELLS[to], to - from + 1]];
+        }
+        let numFor = -1, numTimer = null, inView = false;
+        function hideNumbers() {
+            if (numTimer) { numTimer.stop(); numTimer = null; }
+            numFor = -1;
+            CELLS.forEach(c => { c.val = 0; c.box.attr("opacity", 0); });
+        }
+        function showNumbers(i) {
+            if (numFor === i || !inView) return;
+            hideNumbers();
+            numFor = i;
+            const list = numbering(STATE[i]);
+            if (reduce) { list.forEach(([c, n]) => { c.val = n; placeNumber(c); c.box.attr("opacity", 1); }); return; }
+            /* the counter rolls from 0 up to the total like an odometer: it picks up
+               speed smoothly, cruises, and glides to a stop on the total (ease in
+               and out). The curve is "smootherstep", which eases the speed itself as
+               well as the position, so the roll builds up and dies away with no jolt
+               at either end, the way a mechanical counter does. Bigger totals roll
+               for longer (1.2s plus 70ms a rupee, 8s at most: about 5.4s for 60, 8s
+               for 100), keeping the top speed near 23 numbers a second */
+            const per = Math.max(12, Math.min(90, 1100 / list.length));
+            const rollMs = n => Math.min(8000, 1200 + 70 * n);
+            const rollEase = t => t * t * t * (t * (t * 6 - 15) + 10);   // smootherstep
+            list.forEach(([c]) => { c.val = 0; placeNumber(c); });
+            let started = 0;
+            numTimer = d3.timer(el => {
+                const k = Math.min(list.length, Math.floor(el / per) + 1);
+                for (; started < k; started++) {
+                    list[started][0].rollStart = el;
+                    list[started][0].box.attr("opacity", 1);
+                }
+                let busy = started < list.length;
+                for (let j = 0; j < started; j++) {
+                    const [c, n] = list[j];
+                    if (c.val === n) continue;
+                    const p = Math.min(1, (el - c.rollStart) / rollMs(n));
+                    c.val = p >= 1 ? n : n * rollEase(p);
+                    placeNumber(c);
+                    if (c.val !== n) busy = true;
+                }
+                if (!busy) { numTimer.stop(); numTimer = null; }
+            });
+        }
+        const settled = () => !anim && !fadeTimer;
+        /* count only while the chart is on screen, so the reader sees it happen */
+        new IntersectionObserver(entries => {
+            inView = entries[0].intersectionRatio >= 0.6;
+            if (!inView) hideNumbers();
+            else if (settled()) showNumbers(target);
+        }, {threshold: [0, 0.6]}).observe(chart);
+
         function onScroll() {
             headerOffset();
             const t = activeStep();
-            if (t === target) return;
+            if (t === target) { if (settled()) showNumbers(target); return; }
             target = t;
+            hideNumbers();
             if (reduce) { fadeTo(); return; }
             if (!anim) anim = requestAnimationFrame(tick);
         }
@@ -427,6 +518,11 @@
         cameras();
         draw();
         addEventListener("scroll", onScroll, {passive: true});
+        /* the reading-progress bar (created later by init.js) slides in; measure
+           again once it has landed */
+        document.addEventListener("transitionend", e => {
+            if (e.target.classList && e.target.classList.contains("reading-progress")) { headerOffset(); cameras(); draw(); }
+        });
         addEventListener("resize", () => { headerOffset(); cameras(); draw(); });
         new ResizeObserver(() => { cameras(); draw(); }).observe(chart);
     }

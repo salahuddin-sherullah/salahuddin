@@ -59,6 +59,7 @@
 .gb-waffle__sticky { background: #fff; height: var(--gb-waffle-stage); overflow: hidden; position: sticky; top: var(--gb-waffle-top); }
 .gb-waffle__chart { height: 100%; position: relative; transition: opacity .28s ease; }
 .gb-waffle__chart svg { display: block; height: 100%; width: 100%; }
+.gb-waffle__num { font-family: inherit; font-variant-numeric: tabular-nums; font-weight: 400; pointer-events: none; user-select: none; }
 .gb-waffle__boundary { fill: none; pointer-events: none; stroke: #1a1a1a; stroke-linecap: round; stroke-linejoin: round; }
 /* text sections scroll over the sticky chart, one screen per step */
 .gb-waffle__steps { margin-top: calc(-1 * var(--gb-waffle-stage)); pointer-events: none; position: relative; z-index: 1; }
