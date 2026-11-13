@@ -28,7 +28,7 @@
         {key: "budget", title: "Total budget (PKR billion)", fmt: d3.format(",.0f")},
         {key: "perCap", title: "Budget per resident (Rs)",   fmt: d3.format(",.0f")}
     ];
-    const fmtB = d3.format(",.2f"), fmtM = d3.format(",.2f"), fmtRs = d3.format(",.0f");
+    const fmtB = d3.format(",.1f"), fmtM = d3.format(",.1f"), fmtRs = d3.format(",.0f");
 
     /* card: same anatomy as the article's other charts (title and subtitle
        inside a bordered card, a two-column grid of panels, source and logo) */
@@ -40,7 +40,7 @@
     const footer = card.append("div").attr("class", "gb-budget-development-footer");
     footer.append("span").text("Source: GB Finance Department, Annual Budget Statement 2026–27; provincial budgets as reported by Dawn, Samaa, Profit and Business Recorder; PBS, Census 2023");
     footer.append("span").attr("class", "gb-compare-note")
-        .text("Note: GB’s budget is PKR 158.54B in the official FY2026–27 budget documents; media reports put it at PKR 218.8B. See the notes at the end of the article.");
+        .text("Note: GB’s budget is PKR 158.5B in the official FY2026–27 budget documents; media reports put it at PKR 218.8B. See the notes at the end of the article.");
     footer.append("img").attr("src", "images/shared/brand/dark_matter_dark_logo.png").attr("alt", "Dark Matter");
 
     /* the same numbers as a table, for screen readers. It sits outside the card:

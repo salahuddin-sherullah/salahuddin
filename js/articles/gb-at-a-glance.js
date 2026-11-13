@@ -1467,8 +1467,8 @@ function rebuildOnResize(mount, build) {
         "Wheat Subsidy":   ["#023e8a","#0077b6"],
     };
 
-    // Format a PKR billion value: strip trailing decimal zeros (68.000 → "68B", 9.5 → "9.5B")
-    const fmtB = v => parseFloat(v.toFixed(3)) + "B";
+    // Display PKR billion values rounded to one decimal place.
+    const fmtB = v => parseFloat(v.toFixed(1)) + "B";
 
     const TOTAL      = DATA.value;
     const margin     = { top: 20, right: 40, bottom: 138, left: 40 };
@@ -1494,7 +1494,7 @@ function rebuildOnResize(mount, build) {
     wrap.append("div").attr("class", "chart-title")
         .text("Where the FY2026–27 Budget Comes From");
     wrap.append("div").attr("class", "chart-subtitle")
-        .text("Gilgit-Baltistan's PKR 158.54B budget remains dominated by federal inflows, with PKR 88B in grant-in-aid for non-development expenditure.");
+        .text("Gilgit-Baltistan's PKR 158.5B budget remains dominated by federal inflows, with PKR 88B in grant-in-aid for non-development expenditure.");
 
     const svg = wrap.append("svg")
         .attr("width",  totalW)
@@ -1713,14 +1713,14 @@ function rebuildOnResize(mount, build) {
         .on("mouseenter", function(event, d) {
             d3.select(this).attr("d", arcHover);
             const pct = (d.data.value / TOTAL * 100).toFixed(1);
-            centreVal.text(d.data.value.toFixed(2) + "B");
+            centreVal.text(d.data.value.toFixed(1) + "B");
             centreLabel.text(pct + "% of total");
             centreSub.text(d.data.label.length > 20 ? d.data.label.slice(0, 19) + "…" : d.data.label);
             tooltip.style("opacity", 1)
                 .html(`
                     <div class="tt-district">Non-Development</div>
                     <div style="color:#fff;margin-bottom:6px">${d.data.label}</div>
-                    <div class="tt-multi-row"><span class="tt-multi-label">Value</span><span class="tt-multi-val">${d.data.value.toFixed(2)}B PKR</span></div>
+                    <div class="tt-multi-row"><span class="tt-multi-label">Value</span><span class="tt-multi-val">${d.data.value.toFixed(1)}B PKR</span></div>
                     <div class="tt-multi-row"><span class="tt-multi-label">Share</span><span class="tt-multi-val">${pct}%</span></div>
                 `)
                 .style("left", (event.clientX + 16) + "px")
@@ -1842,7 +1842,7 @@ function buildBudgetDonut2Chart() {
     const centreVal = g.append("text")
         .attr("text-anchor", "middle").attr("y", -10)
         .attr("font-size", 28).attr("font-weight", "700").attr("fill", "#d00100")
-        .text("19.56B");
+        .text("19.6B");
     const centreLabel = g.append("text")
         .attr("text-anchor", "middle").attr("y", 14)
         .attr("font-size", 14).attr("fill", "#4c4c4c").attr("letter-spacing", "0.05em")
@@ -1865,14 +1865,14 @@ function buildBudgetDonut2Chart() {
         .on("mouseenter", function(event, d) {
             d3.select(this).attr("d", arcHover);
             const pct = (d.data.value / TOTAL * 100).toFixed(1);
-            centreVal.text(d.data.value.toFixed(2) + "B");
+            centreVal.text(d.data.value.toFixed(1) + "B");
             centreLabel.text(pct + "% of total");
             centreSub.text(d.data.label.length > 20 ? d.data.label.slice(0, 19) + "…" : d.data.label);
             tooltip.style("opacity", 1)
                 .html(`
                     <div class="tt-district">Development</div>
                     <div style="color:#fff;margin-bottom:6px">${d.data.label}</div>
-                    <div class="tt-multi-row"><span class="tt-multi-label">Value</span><span class="tt-multi-val">${d.data.value.toFixed(2)}B PKR</span></div>
+                    <div class="tt-multi-row"><span class="tt-multi-label">Value</span><span class="tt-multi-val">${d.data.value.toFixed(1)}B PKR</span></div>
                     <div class="tt-multi-row"><span class="tt-multi-label">Share</span><span class="tt-multi-val">${pct}%</span></div>
                 `)
                 .style("left", (event.clientX + 16) + "px")
@@ -1885,7 +1885,7 @@ function buildBudgetDonut2Chart() {
         })
         .on("mouseleave", function() {
             d3.select(this).attr("d", arc);
-            centreVal.text("19.56B");
+            centreVal.text("19.6B");
             centreLabel.text("PKR TOTAL");
             centreSub.text("DEVELOPMENT");
             tooltip.style("opacity", 0);
@@ -2002,14 +2002,14 @@ function buildBudgetPsdpChart() {
         .on("mouseenter", function(event, d) {
             d3.select(this).attr("d", arcHover);
             const pct = (d.data.value / TOTAL * 100).toFixed(1);
-            centreVal.text(d.data.value.toFixed(2) + "B");
+            centreVal.text(d.data.value.toFixed(1) + "B");
             centreLabel.text(pct + "% of total");
             centreSub.text(d.data.label.length > 20 ? d.data.label.slice(0, 19) + "…" : d.data.label);
             tooltip.style("opacity", 1)
                 .html(`
                     <div class="tt-district">Federal PSDP</div>
                     <div style="color:#fff;margin-bottom:6px">${d.data.label}</div>
-                    <div class="tt-multi-row"><span class="tt-multi-label">Value</span><span class="tt-multi-val">${d.data.value.toFixed(2)}B PKR</span></div>
+                    <div class="tt-multi-row"><span class="tt-multi-label">Value</span><span class="tt-multi-val">${d.data.value.toFixed(1)}B PKR</span></div>
                     <div class="tt-multi-row"><span class="tt-multi-label">Share</span><span class="tt-multi-val">${pct}%</span></div>
                 `)
                 .style("left", (event.clientX + 16) + "px")
