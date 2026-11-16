@@ -1,0 +1,886 @@
+{
+  "audit_date": "2026-11-16",
+  "scope": "All nine narratives and 19 charts checked against the supplied November 2026 figures; selected underlying sources cross-checked. Historical narrative structure retained.",
+  "update_sha256": "5c9882144caa831e9203ed08ec774f038943220c00fe55eccc4f314e504b690a",
+  "source_checks": [
+    {
+      "source": 7,
+      "result": "Economic Survey 2025–26 chapter and Statistical Appendix inspected; annual sales history revised to Appendix Table 14.1. FY26 narrative consistently uses chapter Table 14.3; conflicting appendix observations disclosed."
+    },
+    {
+      "source": 2,
+      "result": "Pakistan Electricity Review 2026 inspected; renewable capacity corrected to 2.8 GW. State of Industry and Performance Report loss/recovery differences disclosed without splicing series."
+    },
+    {
+      "source": 11,
+      "result": "Official report fetch returned HTTP 403. Supplied update figures retained with attribution, including QESCO 38.38%, the reported aggregate and the company-sum discrepancy. Not independently reverified against the full report."
+    },
+    {
+      "source": 20,
+      "result": "November 4, 2026 report checked; CY2027 range explicitly identified as proposed scenarios."
+    },
+    {
+      "source": 94,
+      "result": "July 9, 2026 report checked for January–May import volumes, cumulative imports and 2026 panel price range."
+    },
+    {
+      "source": 105,
+      "result": "October 26, 2026 SBP policy statement checked: 12% effective October 27."
+    },
+    {
+      "source": 10,
+      "result": "July 16, 2026 report checked: 4.6 GWh of battery imports in 2025, up 220%; not installed capacity."
+    }
+  ],
+  "corrections": [
+    "FY21–FY23 household/industrial sales replaced with Economic Survey restated observations; FY23 changes recomputed.",
+    "FY25 utility-scale renewable capacity corrected from 2.9 GW to 2.8 GW.",
+    "2021–2024 tariff increase corrected from 61% to approximately 62% (21/13 - 1).",
+    "Added FY26 partial-year household and industrial shares, and agricultural sales comparison, with separate reporting periods.",
+    "Added CY2027 capacity-payment proposal and clarified projections versus actual payments.",
+    "Removed an inapplicable January 2025 citation from FY25/FY26 debt stocks.",
+    "Dated historical regional benchmarks and ownership/payment narrative; clarified ratios.",
+    "Removed chart table disclosures and original-document links and mentions; preserved source citations and accessible chart labels."
+  ],
+  "remaining_limitations": "Unrefreshed historical benchmarks and scenarios are explicitly dated as 2024 edition data. Some underlying years precede 2024. Newer aggregates with different definitions are not substituted into incompatible historical series. Secondary-source or unverifiable figures retain qualifications.",
+  "articles": [
+    {
+      "part": 1,
+      "source": "data/energy-series/articles/01.md",
+      "charts": [
+        {
+          "id": "capacity-mix",
+          "status": "Not updated · 2024",
+          "note": "2024 edition data, not updated. Ownership and provincial shares retain the 2024 comparison. The updated FY25 fuel mix appears below."
+        },
+        {
+          "id": "thermal",
+          "status": "Updated",
+          "note": "Updated to FY25. All labels are shares of total utility-scale capacity; rooftop solar is excluded. Rounded thermal fuel shares sum to 56%, compared with the reported headline of about 57%. The chart uses the components so its shares total 100%. RFO means furnace oil. The newer March 2026 total includes net-metered solar and is discussed separately."
+        },
+        {
+          "id": "geography",
+          "status": "Not updated · 2024",
+          "note": "2024 edition data, not updated. All four capacity and demand shares retain the 2024 comparison. North comprises Punjab and KPK; South comprises Sindh and Balochistan."
+        },
+        {
+          "id": "customers",
+          "status": "Updated",
+          "note": "Updated to FY25. The ten consumer counts total 40,435,207 connections, including K-Electric and excluding TESCO. Rounded shares sum to 99.8%; slice areas are normalised to that total. Connections are not people."
+        }
+      ],
+      "data_notes": [
+        "Updated: FY25 utility-scale capacity and fuel mix; March 2026 total capacity including net-metered solar. The latter is 49,651 MW, including 7,319 MW of net-metered solar, and has a different reporting boundary. The FY25 renewable capacity is corrected to 2.8 GW using Renewables First’s chart; the supplied update rounded component estimates to 2.9 GW. Rounded fuel shares may not total 100%. [2][7]",
+        "2024 edition data, not updated: the 2024 ownership and provincial shares; north–south capacity and demand shares; village electrification and population access estimates; the named overloaded grids; the Guddu example; and FY23 transmission losses of 2.4% / PKR 30.7 billion. [0]",
+        "Seasonal peaks of about 28 GW / 16 GW are served system peaks. NEPRA’s computed demand peak above 33 GW uses a different basis. The capacity–demand gap is not a measure of continuously dispatchable spare power. [2][9]",
+        "FY25’s approximately 29% import exposure includes RLNG, imported coal, furnace oil and electricity imports. It is broader than the 2024 edition’s 22% comparison. The original past average of around 48% has not been updated. [0][2]",
+        "The original 26,000 MW transmission claim is replaced by transformer-loading evidence. The update reports 25,950 MVA of transformation capacity; MVA cannot be substituted directly for generating MW. Consumer and loss datasets have different coverage: the consumer chart includes KE and excludes TESCO; Rs. 397 billion covers ex-WAPDA DISCO losses and under-recovery. [2][11]"
+      ],
+      "changes": [
+        "--- ",
+        "+++ ",
+        "@@ -72,7 +72,7 @@",
+        " ",
+        " {{pdf:01.18}}",
+        " ",
+        "-- **Utility-Scale Renewables and Small Plants:** About 7% (2.9 GW), excluding rooftop solar. [2]",
+        "+- **Utility-Scale Renewables and Small Plants:** About 7% (2.8 GW), excluding rooftop solar. [2]",
+        " ",
+        " {{chart:thermal}}",
+        " "
+      ]
+    },
+    {
+      "part": 2,
+      "source": "data/energy-series/articles/02.md",
+      "charts": [
+        {
+          "id": "tariffs",
+          "status": "Not updated · 2021–24",
+          "note": "2024 edition data, not updated. The chart compares 2021 and 2024 tariffs. Consumer classes, taxes and exchange-rate dates are not harmonised, so these figures should not be compared directly with industrial tariff estimates."
+        },
+        {
+          "id": "bill",
+          "status": "Not updated · 2024",
+          "note": "2024 edition data, not updated. These are illustrative bill shares, not a current bill calculator. The updated Rs. 3.23/unit debt-service surcharge does not establish a new percentage split."
+        },
+        {
+          "id": "imports",
+          "status": "Not updated · 2004–24",
+          "note": "2024 edition data, not updated. The series covers 2004–2024; intermediate points are approximate readings of the historical chart. FY25’s approximately 29% includes RLNG, imported coal, furnace oil and electricity imports. Its broader definition prevents a direct extension of this series."
+        },
+        {
+          "id": "fuel-cost",
+          "status": "Updated · monthly basis",
+          "note": "Updated to October 2025, the latest comparable fuel-cost observation in the supplied update. These are monthly fuel costs, not complete tariffs or annual averages. HSD was not dispatched and is omitted, rather than shown as zero. The update cites a NEPRA decision dated 9 December 2025 but does not provide its direct link."
+        }
+      ],
+      "data_notes": [
+        "Updated: April 2025 tariff announcements, FY25 generation and DISCO performance, October 2025 fuel costs, and the 12% SBP policy rate effective 27 October 2026. CY2027 figures are planning assumptions, not current tariffs or exchange rates. The 2021–2024 regional chart implies a 61.5% Pakistan tariff increase, rounded to 62%. [2][11][14][20][105][108]",
+        "2024 edition data, not updated: the 2021–24 price-growth comparisons, regional tariffs, and the illustrative bill split of generation 48%, transmission 3%, distribution 8%, taxes 15% and additional charges 26%. These explain the period through 2024, not the composition of a current bill. [0]",
+        "2024 edition data, not updated: the original Russia–Ukraine fuel-price spikes, August 2022 RLNG peak of $54/MMBtu, the RLNG price-sensitivity estimate, and the intermediate 2004–24 fuel-share series. The old $13/MMBtu observation is not a current price. FY25’s import share uses a broader definition. [0][2]",
+        "The fuel-cost chart uses October 2025 actual costs from the supplied update, not the 2024 edition’s FY24 annual medians. HSD was not dispatched; it does not have zero fuel cost. The update cites a NEPRA FCA decision dated 9 December 2025 but supplies no direct decision link. [108]",
+        "2024 edition data, not updated: the historical exchange rates and Rs. 14/unit currency effect; the US Fed comparison and Rs. 4.3/unit interest effect; Rs. 0.7 trillion attributed to unused power; and the original 84% capacity-growth / 30% demand-growth comparison. Rs. 279/USD is a CY2027 planning assumption. The current capacity-charge rate has a different basis from the original Rs. 5.5/unit illustration. [0][20][31]",
+        "2024 edition data, not updated: FY23 transmission losses, the Rs. 1.15/unit loss cost and Rs. 2.3/unit recovery-saving estimates; PKR 860 billion tax revenue, 9% tax-base share, seven-tax count, original income-tax brackets, Rs. 8/unit tax burden and FY23 agriculture taxes. The 18% GST figure and Rs. 3.23/unit debt surcharge are updated separately. [0][24][35]",
+        "2024 edition data, not updated: the 9.3% textile-export decline, PIDE competitiveness and production-cost estimates, and approximately 1,200 captive units / 5,000 MW. The newer industrial sales figures describe a recovery in grid purchases; they do not establish that the earlier economic costs have disappeared. [0][7]"
+      ],
+      "changes": [
+        "--- ",
+        "+++ ",
+        "@@ -4,7 +4,7 @@",
+        " ",
+        " {{pdf:02.02}}",
+        " ",
+        "-First let’s consider how Pakistan compared to other regional economies in 2024. Electricity costs were among the highest in South Asia, a situation that has significant implications for the economy, businesses, and household budgets. With a tariff of $0.21 per kWh, Pakistan’s electricity was nearly three times more expensive than in India ($0.08) and Bangladesh ($0.075). While neighboring countries have seen a decline in electricity prices between 2021 and 2024, Pakistan’s prices surged from $0.13 to $0.21 per kWh, a 61% increase. [0][N]",
+        "+First let’s consider how Pakistan compared to other regional economies in 2024. Electricity costs were among the highest in South Asia, a situation that has significant implications for the economy, businesses, and household budgets. With a tariff of $0.21 per kWh, Pakistan’s electricity was nearly three times as expensive as in India ($0.08) and Bangladesh ($0.075). While neighboring countries have seen a decline in electricity prices between 2021 and 2024, Pakistan’s prices surged from $0.13 to $0.21 per kWh, an approximately 62% increase. [0][N]",
+        " ",
+        " {{chart:tariffs}}",
+        " ",
+        "@@ -28,7 +28,7 @@",
+        " ",
+        " {{pdf:02.07}}",
+        " ",
+        "-The largest portion of the bill, electricity generation costs, accounts for nearly half (48%) of the final cost and is driven by the following four factors: [0][N]",
+        "+The largest portion of the bill, electricity generation costs, accounted for nearly half (48%) of the final cost in the 2024 illustration and is driven by the following four factors: [0][N]",
+        " ",
+        " {{pdf:02.08}}",
+        " "
+      ]
+    },
+    {
+      "part": 3,
+      "source": "data/energy-series/articles/03.md",
+      "charts": [
+        {
+          "id": "capacity",
+          "status": "Partly updated",
+          "note": "Updated to FY25 for installed capacity and served seasonal peaks. The dashed 23,000 MW average-demand line is 2024 edition data, not updated. Served peaks differ from NEPRA’s computed demand above 33,000 MW. Nameplate capacity is not continuously dispatchable spare power."
+        },
+        {
+          "id": "payments",
+          "status": "Not updated · 2024",
+          "note": "2024 edition data, not updated. Both ownership and capacity-payment shares retain the 2024 groupings. Current payment totals cannot be allocated using these historical shares."
+        }
+      ],
+      "data_notes": [
+        "Capacity payments cover fixed availability obligations; fuel reimbursement is an energy charge. The 2024 edition’s driver analogy and payment explanation are retained with that classification corrected. [0]",
+        "FY26’s Rs. 1.941 trillion determination, CY2026’s Rs. 1.923 trillion projection and CY2027’s Rs. 1.914–1.962 trillion projections refer to different periods. They are not all measures of payments for unused plants. [20][31][32]",
+        "2024 edition data, not updated: the original 23,000 MW average-demand illustration; the 84% capacity-growth / 30% demand-growth comparison; the Rs. 1.05 trillion idle-plant estimate; and the PKR 100/USD versus PKR 300/USD currency illustration. The original Rs. 500 billion conclusion was inconsistent with the chapter’s own total and has been replaced by the updated annual capacity-payment scale. [0]",
+        "2024 edition data, not updated: ownership/payment shares of 46/17/37% and 49/36/15%; the approximately $15 billion Chinese power debt; and proposed savings of $550–750 million annually or Rs. 2.5–3/unit from extending maturities from ten to fifteen years. No completed reprofiling is confirmed in the update. [0][108]",
+        "Renegotiation savings quoted over remaining contract lives are not annual savings. Rs. 117–137 billion divided by 111 TWh gives the illustrative Rs. 1.05–1.23/unit range; it is not an official tariff reduction. The Rs. 260 billion interest waiver is a one-off amount. [2][39][42][43]",
+        "The original discussion of sovereign guarantees, investor confidence and arbitration remains, while wording has been updated to recognise negotiated revisions and terminations since 2024. [37][38]"
+      ],
+      "changes": [
+        "--- ",
+        "+++ ",
+        "@@ -4,7 +4,7 @@",
+        " ",
+        " {{pdf:03.02}}",
+        " ",
+        "-Capacity payments are payments made to power plants simply for being available, even when their electricity isn’t needed. While intended to ensure stable power access, these contracts have saddled Pakistan with about Rs. 1.9 trillion in annual capacity payments, weighing down the power sector and making electricity more expensive for everyone. Let’s break down how this system emerged, why it’s so costly, and what steps can help ease the burden. The FY26 determination was Rs. 1.941 trillion; the CY2026 projection was Rs. 1.923 trillion. [20][31][32]",
+        "+Capacity payments are payments made to power plants simply for being available, even when their electricity isn’t needed. While intended to ensure stable power access, these contracts have saddled Pakistan with about Rs. 1.9 trillion in annual capacity payments, weighing down the power sector and making electricity more expensive for everyone. Let’s break down how this system emerged, why it’s so costly, and what steps can help ease the burden. The FY26 determination was Rs. 1.941 trillion; the CY2026 projection was Rs. 1.923 trillion. The November 2026 proposal put CY2027 payments at Rs. 1.914–1.962 trillion across scenarios; these are projections, not payments already made. [20][31][32]",
+        " ",
+        " {{pdf:03.03}}",
+        " ",
+        "@@ -82,15 +82,15 @@",
+        " ",
+        " {{pdf:03.21}}",
+        " ",
+        "-- 36% goes toward CPEC projects, many of which are coal-fired and carry dollar-based costs. [0][N]",
+        "+- 36% went toward CPEC projects, many of which are coal-fired and carry dollar-based costs. [0][N]",
+        " ",
+        " {{pdf:03.22}}",
+        " ",
+        "-- 15% funds Independent Power Producers (IPPs), particularly those operating under older contracts. [0][N]",
+        "+- 15% funded Independent Power Producers (IPPs), particularly those operating under older contracts. [0][N]",
+        " ",
+        " {{pdf:03.23}}",
+        " ",
+        "-- 49% is allocated to government-owned power plants, including hydel and nuclear. [0][N]",
+        "+- 49% was allocated to government-owned power plants, including hydel and nuclear. [0][N]",
+        " ",
+        " {{chart:payments}}",
+        " "
+      ]
+    },
+    {
+      "part": 4,
+      "source": "data/energy-series/articles/04.md",
+      "charts": [
+        {
+          "id": "losses",
+          "status": "Partly updated",
+          "note": "Updated to FY25 for the final bar: Rs. 265 billion in losses above allowed targets and Rs. 132 billion in under-recovery, excluding K-Electric. FY23–FY24 bars are 2024 edition data, not updated on a comparable basis. Later reports give different historical baselines and collection definitions, so the bars do not establish a comparable percentage decline. No FY26 performance series is supplied."
+        },
+        {
+          "id": "discos",
+          "status": "Updated",
+          "note": "Updated to FY25 using the supplied NEPRA performance-report figures. Financial losses measure breaches of allowed targets, not all lost electricity. The reported Rs. 265.01 billion total excludes K-Electric; the displayed companies do not reproduce the full aggregate. K-Electric’s Rs. 1.05 billion calculation is disputed. The 8% global reference is 2024 edition data, not updated."
+        },
+        {
+          "id": "benchmark",
+          "status": "Partly updated",
+          "note": "Updated to FY25 for Pakistan’s ex-WAPDA DISCO loss rate of 17.55%. Foreign rates and the 8% global reference are 2024 edition data, not updated; their underlying years and coverage are not harmonised. K-Electric’s separate FY25 rate is 14.73%."
+        }
+      ],
+      "data_notes": [
+        "The headline is updated from the 2024 edition’s approximately Rs. 500 billion burden to Rs. 397 billion for FY25: Rs. 265 billion in financial losses from exceeding allowed T&D targets and Rs. 132 billion in under-recovery. The total is not entirely physical electricity loss and excludes K-Electric. [11]",
+        "2024 edition data, not updated: the Rs. 5/unit cost estimate, 8% global benchmark, international loss rates and reform examples, the reported 10–20% smart-meter improvement in India, and the 10% improvement in Pakistani pilots. These are historical claims reported in 2024, not newly verified results. [0]",
+        "2024 edition data, not updated on a comparable basis: the FY23–FY24 financial-loss bars. FY25 is updated using the supplied performance-report series. Renewables First’s State of Industry series reports different historical loss and collection totals; combining those would create a misleading trend. No comparable FY26 series is supplied. [0][2][11][34]",
+        "The peer chart updates Pakistan to FY25 but retains the original foreign benchmarks. Their reporting years and coverage are not harmonised. KE’s separate displayed financial-loss calculation is under court challenge. [0][11]",
+        "Source differences: the supplied performance-report series gives QESCO’s FY25 loss rate as 38.38%, while Renewables First’s State of Industry chart gives 38.44%. The chart retains the performance-report basis throughout. Its listed ex-KE company losses sum to Rs. 265.50 billion, compared with the reported aggregate of Rs. 265.01 billion; the listed companies omit TESCO. The aggregate is reported separately, not presented as their sum. [2][11][108]"
+      ],
+      "changes": [
+        "--- ",
+        "+++ ",
+        "@@ -38,7 +38,7 @@",
+        " ",
+        " {{pdf:04.10}}",
+        " ",
+        "-Pakistan’s FY25 ex-WAPDA DISCO loss rate of 17.55% remains high against the historical international benchmarks. [11] Neighboring India, once facing losses over 25%, has successfully reduced its T&D losses to around 15% by implementing strategic reforms. Bangladesh has also made strides, with T&D losses at approximately 10.3%, closer to the global average. Developed countries such as the U.S. and Singapore keep T&D losses well under 8% due to advanced infrastructure and robust management practices. [0][N]",
+        "+Pakistan’s FY25 ex-WAPDA DISCO loss rate of 17.55% remains high against the historical international benchmarks. [11] The comparison published in 2024 reported India’s losses at around 15%, down from more than 25%, and Bangladesh’s at approximately 10.3%. It put the U.S. and Singapore below 8%. These historical benchmarks illustrate the scope for better infrastructure and management, but have not been refreshed to FY25. [0][N]",
+        " ",
+        " {{pdf:04.11}}",
+        " "
+      ]
+    },
+    {
+      "part": 5,
+      "source": "data/energy-series/articles/05.md",
+      "charts": [
+        {
+          "id": "debt",
+          "status": "Partly updated",
+          "note": "Updated endpoints: Rs. 2,393 billion in June 2024, Rs. 1,614 billion in June 2025 and Rs. 1,675 billion in June 2026. Another official reply reports Rs. 1,641 billion for June 2025. Earlier points are 2024 edition data, not updated; intermediate values are approximate chart readings. The September 2025 refinancing occurred after the June 2025 reduction."
+        }
+      ],
+      "data_notes": [
+        "Debt stocks use Rs. 2.393 trillion at June 2024, Rs. 1.614 trillion at June 2025 and Rs. 1.675 trillion at June 2026. Another National Assembly reply gives Rs. 1.641 trillion for June 2025. The old forecast of Rs. 2.8 trillion by 2025 is superseded; the current debt-to-GDP ratio is not updated. [2][36][53]",
+        "Updated: FY25–FY26 interest additions, the September 2025 bank refinancing, and FY27 budget allocations. The Rs. 779 billion decline between the June 2024 and June 2025 stocks is a net change, not the face value of the subsequent refinancing. [2][36][53][58][66]",
+        "2024 edition data, not updated: the early tariff-versus-cost history, 2008 import-bill increase, original plant examples, Rs. 135 billion unfunded subsidy in 2019–20, 90-day tariff-revision lag, past government clearances and the study’s manufacturing-cost, profit, industrial-output and export-price estimates. The HUBCO/Port Qasim claim of two years idle and capacity claims up to 60% remains an unrefreshed example, not a current plant assessment. [0]",
+        "Historical circular-debt chart points before FY24 are not updated; intermediate values are approximate readings of the historical chart. FY24–FY26 endpoints are updated. [0][36][53]",
+        "The September 2025 refinancing restructures existing loans and supplies funds for arrears. It cannot explain a debt reduction already measured at June 2025, and transferring liabilities to bank financing is not the same as eliminating their repayment cost. [58][62]",
+        "Rs. 830 billion and the associated subsidy components are FY27 budget allocations, not actual expenditure. The supplied update’s Rs. 1.2115 trillion FY25 subsidy outturn is a secondary-source figure not verified against its primary document. The original broader surcharge estimate of 13% / Rs. 8 per unit is not updated; the separately identified debt service surcharge is Rs. 3.23 per unit. [0][24][65][66][108]"
+      ],
+      "changes": [
+        "--- ",
+        "+++ ",
+        "@@ -1,6 +1,6 @@",
+        " {{pdf:05.01}}",
+        " ",
+        "-In Pakistan, circular debt is a persistent problem that continuously drains the energy sector and the economy. This debt arises when one party in the energy supply chain can’t pay its dues, causing a domino effect of unpaid bills that cycles through the entire system. Circular debt has grown into a massive burden, standing at Rs. 1.675 trillion at the end of June 2026. The stock fell from Rs. 2.393 trillion in June 2024 to Rs. 1.614 trillion in June 2025, before rising again. [33][36][53] [N] Here’s how this cycle works, why it’s so costly, and what steps could help break it.",
+        "+In Pakistan, circular debt is a persistent problem that continuously drains the energy sector and the economy. This debt arises when one party in the energy supply chain can’t pay its dues, causing a domino effect of unpaid bills that cycles through the entire system. Circular debt has grown into a massive burden, standing at Rs. 1.675 trillion at the end of June 2026. The stock fell from Rs. 2.393 trillion in June 2024 to Rs. 1.614 trillion in June 2025, before rising again. [2][36][53] [N] Here’s how this cycle works, why it’s so costly, and what steps could help break it.",
+        " ",
+        " {{chart:debt}}",
+        " "
+      ]
+    },
+    {
+      "part": 6,
+      "source": "data/energy-series/articles/06.md",
+      "charts": [
+        {
+          "id": "markets",
+          "status": "Not updated · 1989–2024",
+          "note": "2024 edition data, not updated. The historical comparison covers 1989 and 2024 and counts 230 jurisdictions in each year without defining coverage. Pakistan’s 2026 market opening is discussed separately."
+        }
+      ],
+      "data_notes": [
+        "2024 edition data, not updated: the original global power-market counts, IFEM estimate of 3.6% / Rs. 10 per litre, the 2023 motorcycle-fuel scheme and Rs. 450 billion annual cost estimate, historical 11% gas-connection growth, provincial gas disputes, and the Rs. 30 billion fertilizer and Rs. 28 billion captive-gas subsidy examples. The fuel scheme is described as an announcement rather than confirmed delivery. [0][108]",
+        "CTBCM commercial operations began in January 2026. The first 400 MW auction had been initiated, with proposals due 20 November 2026 and an auction scheduled for 13 January 2027 in the supplied update. Market opening is not the same as system-wide competition. [13][70][71]",
+        "Captive-gas pricing and the off-grid levy replace the original planned cut-off. The statutory levy schedule and notified rupee amounts are different measures; the supplied update records several changes to the formula. [75][77][78][80]",
+        "The 175 billion-ton Thar resource and 3,300 MW of operating Thar IPPs are supported by the update. The original ‘largest in Asia’ and ‘centuries of energy’ descriptions are not used as current quantified claims. [7][83]",
+        "Hydropower capacity is updated to 11,615 MW at March 2026, including newer projects. The 2024 edition’s claim of no large projects since Tarbela and Ghazi-Barotha is superseded. The original 60,000 MW potential remains the comparison baseline; projects under construction are not counted as operating capacity. [7][84][85][87]",
+        "2024 edition data, not updated: the original residential-sector loss attribution of 16.4% / 7% and agriculture’s 63% recovery rate. The residential figures are not reused as current household-specific loss rates. Agricultural sales are updated, but implementation of the tube-well solarisation programme is not independently refreshed. [0][2][108]",
+        "Updated agricultural consumption: July–March FY26 use was 2,636 GWh versus 4,566 GWh in the same FY25 period, a 42.3% decrease. Full-year FY25 sales and nine-month FY26 sales are kept separate. [7]"
+      ],
+      "changes": [
+        "--- ",
+        "+++ ",
+        "@@ -38,7 +38,7 @@",
+        " ",
+        " {{pdf:06.10}}",
+        " ",
+        "-Certain sectors have long benefited from subsidized gas, notably the fertilizer industry, which received discounted feedstock gas to keep urea prices low. However, the Rs. 30 billion subsidy in 2024 did not translate into lower prices for farmers, who face inflated black-market rates due to hoarding and smuggling, often with the alleged involvement of officials. Similarly, export-oriented industries with captive power plants received Rs. 28 billion in gas subsidies in FY23 to boost competitiveness, yet export gains remain limited. In response to IMF pressure, the government has moved from subsidies to penalties: captive-gas prices rose to Rs. 3,500/MMBtu in February 2025, alongside an off-grid levy whose statutory rate phases up to 20% in August 2026. [75][77][78] Captive gas use at SNGPL subsequently fell from about 150 to 26 mmcfd as industry returned to the grid. [76][80] [N]",
+        "+Certain sectors have long benefited from subsidized gas, notably the fertilizer industry, which received discounted feedstock gas to keep urea prices low. However, the Rs. 30 billion subsidy in 2024 did not translate into lower prices for farmers, who face inflated black-market rates due to hoarding and smuggling, often with the alleged involvement of officials. Similarly, export-oriented industries with captive power plants received Rs. 28 billion in gas subsidies in FY23 to boost competitiveness, yet export gains remain limited. In response to IMF pressure, the government has moved from subsidies to penalties: captive-gas prices rose to Rs. 3,500/MMBtu in February 2025, alongside an off-grid levy whose statutory schedule reached 20% in August 2026. [75][77][78] Captive gas use at SNGPL subsequently fell from about 150 to 26 mmcfd as industry returned to the grid. [76][80] [N]",
+        " ",
+        " {{pdf:06.11}}",
+        " ",
+        "@@ -66,7 +66,7 @@",
+        " ",
+        " {{pdf:06.17}}",
+        " ",
+        "-Agriculture also bears heavily on electricity costs, with a reported recovery rate of just 63% in the 2024 comparison. [0][N] Instead of charging higher rates, the government has initiated a program to solarize agricultural tube wells, a move aimed at reducing electricity demand and improving financial viability. Agricultural grid sales fell from around 11 TWh in FY22 to 5.8 TWh in FY25 as solar pumps displaced grid and diesel use. [2]",
+        "+Agriculture also bears heavily on electricity costs, with a reported recovery rate of just 63% in the 2024 comparison. [0][N] Instead of charging higher rates, the government has initiated a program to solarize agricultural tube wells, a move aimed at reducing electricity demand and improving financial viability. Agricultural grid sales fell from around 11 TWh in FY22 to 5.8 TWh in FY25 as solar pumps displaced grid and diesel use. [2] In July–March FY26, agricultural grid consumption was 2,636 GWh, down about 42% from 4,566 GWh in the same months a year earlier. [7]",
+        " ",
+        " {{pdf:06.18}}",
+        " "
+      ]
+    },
+    {
+      "part": 7,
+      "source": "data/energy-series/articles/07.md",
+      "charts": [
+        {
+          "id": "transport",
+          "status": "Not updated · scenario",
+          "note": "2024 edition data, not updated. Vehicle counts and the 4,500 MW estimate describe an illustrative full-electrification scenario, not a forecast. Areas do not encode quantities. Actual demand and savings depend on adoption, charging patterns, efficiency and the generation mix."
+        }
+      ],
+      "data_notes": [
+        "FY25 capacity and served seasonal peaks replace the old 46,000 MW / 30,000 MW / 17,000 MW comparison. The original 23,000 MW average-demand figure is not updated. NEPRA’s computed peak above 33 GW has a different basis. [0][1][2][9]",
+        "Updated FY26 consumption uses Economic Survey 2025–26, chapter Table 14.3: July–March household use of 39,472 GWh (47.48%) and industrial use of 26,205 GWh (31.52%). The statistical appendix reports different provisional totals, including 40,189 GWh for households and 26,236 GWh for industry. The narrative consistently uses the chapter table, matching the supplied update, and does not combine those two series. [7][108]",
+        "Solar imports are not operating installed capacity. New-user net billing replaced the old Rs. 22 export-credit / 2–3-year payback illustration. Existing-agreement protections and export compensation are dated policy details, not universal guaranteed rates. IEEFA’s 6.5-year scenario includes a 5 kWh battery with a 10 kW system. [35][97][98][106][109]",
+        "2024 edition data, not updated: vehicle counts, 2030 projections, $13 billion transport fuel bill, 30% emissions share, retrofit and EV prices, the 75% fuel-saving claim and company/service examples. They remain estimates published in 2024, not current quotations. [0]",
+        "The 4,500 MW transport, 4,900 MW household and combined 9,400 MW figures remain historical full-electrification scenarios. Neither a 30% national emissions reduction nor elimination of the entire fuel-import bill is guaranteed: results depend on adoption, charging, the generation mix and replacement energy costs. [0]",
+        "2024 edition data, not updated: the 28% global household-electricity benchmark, $1.3 billion household-gas cost, 17 million gas-connected households, appliance efficiencies of 75% versus 45%, and 2,100 / 2,100 / 700 MW household-demand estimates. The Economic Survey’s over 10.9 million gas consumers has a different definition and has not been substituted into the original household scenario. [0][7]"
+      ],
+      "changes": [
+        "--- ",
+        "+++ ",
+        "@@ -70,7 +70,7 @@",
+        " ",
+        " {{pdf:07.18}}",
+        " ",
+        "-Residential demand accounted for 50.8% of national electricity use in FY25 (57,455 GWh), well above the historical global benchmark of 28%. [7][0] Still, millions of households use gas for cooking, heating and water. The annual cost of that household gas was estimated at $1.3 billion in 2024, highlighting the opportunity to use energy more efficiently. [0][N]",
+        "+Residential demand accounted for 50.8% of national electricity use in FY25 (57,455 GWh), well above the historical global benchmark of 28%. In July–March FY26, households used 39,472 GWh, or 47.5% of consumption in the Economic Survey’s chapter table. The shorter period is not comparable with a full-year total. [7][0][N] Still, millions of households use gas for cooking, heating and water. The annual cost of that household gas was estimated at $1.3 billion in 2024, highlighting the opportunity to use energy more efficiently. [0][N]",
+        " ",
+        " {{pdf:07.19}}",
+        " "
+      ]
+    },
+    {
+      "part": 8,
+      "source": "data/energy-series/articles/08.md",
+      "charts": [
+        {
+          "id": "sales",
+          "status": "Updated",
+          "note": "Updated: all FY21–FY25 observations use Economic Survey 2025–26, Statistical Appendix Table 14.1, including revised FY21–FY23 values. FY23 sales fell 3.3% for households and 1.5% for industry. July–March FY26 figures in the text are partial-year observations and are not joined to this annual series."
+        }
+      ],
+      "data_notes": [
+        "Updated: the entire FY21–FY25 sales chart now uses Economic Survey 2025–26, Statistical Appendix Table 14.1. Revised FY21–FY23 observations replace the earlier series; FY23 falls are 1.5% for industry and 3.3% for households. FY25 industrial sales rose 4.9%. No partial-year FY26 point is connected to the annual line. [7]",
+        "Updated FY26 consumption uses Economic Survey 2025–26, chapter Table 14.3: July–March household use of 39,472 GWh (47.48%) and industrial use of 26,205 GWh (31.52%). The statistical appendix reports different provisional totals, including 40,189 GWh for households and 26,236 GWh for industry. The narrative consistently uses the chapter table, matching the supplied update, and does not combine those two series. [7][108]",
+        "2024 edition data, not updated: the global and peer industrial-use shares, 2021–24 tariff increase and 16-cent estimate, India/Vietnam/China comparisons, spinning’s energy-cost share of 34% to 54%, captive-power shares of over 50% / 60%, and corporate solar examples and savings. These refer to the period through 2024. [0]",
+        "April 2025’s announced industrial tariff and July 2025’s reported effective rates have different dates and coverage. The planned captive-gas cut-off became a price-and-levy phase-out; the original January 2025 forecast is superseded. [14][75][77][101]",
+        "Pakistan’s open-access use-of-system charges are updated to Rs. 6.23–19.62/unit. The Chilean 4–6-cent contract and 1–2-cent wheeling examples, 10–20-year contract proposal, and 2020–21 industrial-support result of 4.3% to 18% are not updated. The 2024 edition’s five recommendations are retained. [0][13][69]"
+      ],
+      "changes": [
+        "--- ",
+        "+++ ",
+        "@@ -1,6 +1,6 @@",
+        " {{pdf:08.01}}",
+        " ",
+        "-Pakistan’s industrial power consumption tells a troubling story. Industry accounted for 25.8% of electricity use in FY25, below the historical global benchmark of 42% and regional comparisons of India (42%), Bangladesh (45%) and China (58%). [7][0][N] Up until 2022, things looked promising, with steady growth. But industrial sales fell in FY23 and again in FY24, as high energy prices eroded competitiveness. There are now signs of recovery: sales rose to 29,181 GWh in FY25, and July–March FY26 consumption increased about 24% year on year to 26,205 GWh. [7]",
+        "+Pakistan’s industrial power consumption tells a troubling story. Industry accounted for 25.8% of electricity use in FY25, below the historical global benchmark of 42% and regional comparisons of India (42%), Bangladesh (45%) and China (58%). [7][0][N] Up until 2022, things looked promising, with steady growth. But industrial sales fell in FY23 and again in FY24, as high energy prices eroded competitiveness. There are now signs of recovery: sales rose to 29,181 GWh in FY25, and July–March FY26 consumption increased about 24% year on year to 26,205 GWh, or 31.5% of consumption in the Economic Survey’s chapter table. This covers nine months, not a full year. [7][N]",
+        " ",
+        " {{chart:sales}}",
+        " "
+      ]
+    },
+    {
+      "part": 9,
+      "source": "data/energy-series/articles/09.md",
+      "charts": [
+        {
+          "id": "solar-prices",
+          "status": "New · historical and updated",
+          "note": "Updated for the reported 2026 range of 10–12 US cents per watt. The 28-to-11-cent comparison is 2024 edition data, not updated; its precise endpoint dates are not specified. The shaded range is not a confidence interval. Panel prices exclude inverters, installation and batteries."
+        },
+        {
+          "id": "solar-imports",
+          "status": "New · updated",
+          "note": "Updated to January–May 2026, compared with the same five months of 2025. Imports fell from 11,781 MW to 4,574 MW, a 61% decrease after rounding. The chart converts MW to GW. These are imported module volumes, not installed capacity or full-year totals."
+        }
+      ],
+      "data_notes": [
+        "Updated: FY25 module imports and distributed-solar estimates, January–May 2026 import volumes, May 2026 cumulative imports, 2026 panel prices and net-billing reports, and 2025 battery imports. The like-for-like import chart ends in May because both years cover the same five months. Later cumulative or differently dated observations are not substituted into that comparison. [2][10][35][94][106]",
+        "The 2021–24 grid-price and panel-price comparisons remain historical. April 2025’s national average tariff and 2026 panel-price reporting are updated separately. Panel prices exclude inverters, installation and batteries. The combined claim of solar and battery prices falling over 90% since 2010 is not updated and should not imply identical cost paths. [0][14][94]",
+        "Historical import values of $310 million in 2020, $714 million in 2023 and $2.1 billion in FY24 are retained. A comparable full-year FY25 import value is NOT CONFIRMED in the supplied update; 17.9 GW is a module volume. Cumulative imports are not installed capacity, and 38 GW of distributed solar is an estimate. [0][2][94]",
+        "Net billing supersedes the original Rs. 21 export credit, Rs. 33-per-unit savings shortcut and below-two-year payback. Savings depend on self-consumption and system design. The original five-year global payback comparison is not updated. IEEFA’s 6.5-year example includes a battery; it is not a universal solar-only result. [0][35][106][109]",
+        "2024 edition data, not updated: the original 20–30% off-grid population estimate, Qist Bazaar programme status and the ADB Energy Transition Mechanism pathway. The reported 4.6 GWh of 2025 battery imports is not a measure of storage already installed and operating. [0][10]"
+      ],
+      "changes": [
+        "--- ",
+        "+++ ",
+        "@@ -18,7 +18,7 @@",
+        " ",
+        " {{pdf:09.05}}",
+        " ",
+        "-In FY24 alone, Pakistan imported $2.1 billion worth of solar panels, triple the $714 million imported in 2023, and nearly seven times more than the $310 million imported in 2020. The country is clearly investing heavily in solar as an alternative to expensive grid electricity. In FY25, module imports reached 17.9 GW; cumulative imports were about 55.7 GW by May 2026. [2][94] The country’s distributed solar fleet is estimated at around 38 GW in FY25. [2] [N]",
+        "+In FY24 alone, Pakistan imported $2.1 billion worth of solar panels, triple the $714 million imported in 2023, and nearly seven times as much as the $310 million imported in 2020. The country is clearly investing heavily in solar as an alternative to expensive grid electricity. In FY25, module imports reached 17.9 GW; cumulative imports were about 55.7 GW by May 2026. [2][94] The country’s distributed solar fleet is estimated at around 38 GW in FY25. [2] [N]",
+        " ",
+        " {{chart:solar-imports}}",
+        " "
+      ]
+    }
+  ],
+  "validation": {
+    "results": [
+      {
+        "file": "energy-01-electricity-ecosystem.html",
+        "width": 1366,
+        "overflow": false,
+        "tables": 0,
+        "pdfText": false,
+        "originalFileLinks": 0,
+        "missing": [],
+        "chartCount": 4,
+        "notes": [
+          {
+            "id": "fig-capacity-mix",
+            "note": "2024 edition data, not updated. Ownership and provincial shares retain the 2024 comparison. The updated FY25 fuel mix appears below. [0]",
+            "drawn": true,
+            "width": 768
+          },
+          {
+            "id": "fig-thermal",
+            "note": "Updated to FY25. All labels are shares of total utility-scale capacity; rooftop solar is excluded. Rounded thermal fuel shares sum to 56%, compared with the reported headline of about 57%. The chart uses the components so its shares total 100%. RFO means furnace oil. The newer March 2026 total includes net-metered solar and is discussed separately. [2]",
+            "drawn": true,
+            "width": 768
+          },
+          {
+            "id": "fig-geography",
+            "note": "2024 edition data, not updated. All four capacity and demand shares retain the 2024 comparison. North comprises Punjab and KPK; South comprises Sindh and Balochistan. [0]",
+            "drawn": true,
+            "width": 768
+          },
+          {
+            "id": "fig-customers",
+            "note": "Updated to FY25. The ten consumer counts total 40,435,207 connections, including K-Electric and excluding TESCO. Rounded shares sum to 99.8%; slice areas are normalised to that total. Connections are not people. [11]",
+            "drawn": true,
+            "width": 768
+          }
+        ],
+        "sourceZero": "Salahuddin, Caravan Media / Pakistan and Counting, Energy Series (December 2024)."
+      },
+      {
+        "file": "energy-02-electricity-prices.html",
+        "width": 1366,
+        "overflow": false,
+        "tables": 0,
+        "pdfText": false,
+        "originalFileLinks": 0,
+        "missing": [],
+        "chartCount": 4,
+        "notes": [
+          {
+            "id": "fig-tariffs",
+            "note": "2024 edition data, not updated. The chart compares 2021 and 2024 tariffs. Consumer classes, taxes and exchange-rate dates are not harmonised, so these figures should not be compared directly with industrial tariff estimates. [0]",
+            "drawn": true,
+            "width": 768
+          },
+          {
+            "id": "fig-bill",
+            "note": "2024 edition data, not updated. These are illustrative bill shares, not a current bill calculator. The updated Rs. 3.23/unit debt-service surcharge does not establish a new percentage split. [0][24][25]",
+            "drawn": true,
+            "width": 1200
+          },
+          {
+            "id": "fig-imports",
+            "note": "2024 edition data, not updated. The series covers 2004–2024; intermediate points are approximate readings of the historical chart. FY25’s approximately 29% includes RLNG, imported coal, furnace oil and electricity imports. Its broader definition prevents a direct extension of this series. [0][2]",
+            "drawn": true,
+            "width": 768
+          },
+          {
+            "id": "fig-fuel-cost",
+            "note": "Updated to October 2025, the latest comparable fuel-cost observation in the supplied update. These are monthly fuel costs, not complete tariffs or annual averages. HSD was not dispatched and is omitted, rather than shown as zero. The update cites a NEPRA decision dated 9 December 2025 but does not provide its direct link. [108]",
+            "drawn": true,
+            "width": 768
+          }
+        ],
+        "sourceZero": "Salahuddin, Caravan Media / Pakistan and Counting, Energy Series (December 2024)."
+      },
+      {
+        "file": "energy-03-capacity-payments.html",
+        "width": 1366,
+        "overflow": false,
+        "tables": 0,
+        "pdfText": false,
+        "originalFileLinks": 0,
+        "missing": [],
+        "chartCount": 2,
+        "notes": [
+          {
+            "id": "fig-capacity",
+            "note": "Updated to FY25 for installed capacity and served seasonal peaks. The dashed 23,000 MW average-demand line is 2024 edition data, not updated. Served peaks differ from NEPRA’s computed demand above 33,000 MW. Nameplate capacity is not continuously dispatchable spare power. [2][9][0]",
+            "drawn": true,
+            "width": 768
+          },
+          {
+            "id": "fig-payments",
+            "note": "2024 edition data, not updated. Both ownership and capacity-payment shares retain the 2024 groupings. Current payment totals cannot be allocated using these historical shares. [0]",
+            "drawn": true,
+            "width": 768
+          }
+        ],
+        "sourceZero": "Salahuddin, Caravan Media / Pakistan and Counting, Energy Series (December 2024)."
+      },
+      {
+        "file": "energy-04-distribution-losses.html",
+        "width": 1366,
+        "overflow": false,
+        "tables": 0,
+        "pdfText": false,
+        "originalFileLinks": 0,
+        "missing": [],
+        "chartCount": 3,
+        "notes": [
+          {
+            "id": "fig-losses",
+            "note": "Updated to FY25 for the final bar: Rs. 265 billion in losses above allowed targets and Rs. 132 billion in under-recovery, excluding K-Electric. FY23–FY24 bars are 2024 edition data, not updated on a comparable basis. Later reports give different historical baselines and collection definitions, so the bars do not establish a comparable percentage decline. No FY26 performance series is supplied. [11][34][0]",
+            "drawn": true,
+            "width": 768
+          },
+          {
+            "id": "fig-discos",
+            "note": "Updated to FY25 using the supplied NEPRA performance-report figures. Financial losses measure breaches of allowed targets, not all lost electricity. The reported Rs. 265.01 billion total excludes K-Electric; the displayed companies do not reproduce the full aggregate. K-Electric’s Rs. 1.05 billion calculation is disputed. The 8% global reference is 2024 edition data, not updated. [11]",
+            "drawn": true,
+            "width": 768
+          },
+          {
+            "id": "fig-benchmark",
+            "note": "Updated to FY25 for Pakistan’s ex-WAPDA DISCO loss rate of 17.55%. Foreign rates and the 8% global reference are 2024 edition data, not updated; their underlying years and coverage are not harmonised. K-Electric’s separate FY25 rate is 14.73%. [11][0]",
+            "drawn": true,
+            "width": 768
+          }
+        ],
+        "sourceZero": "Salahuddin, Caravan Media / Pakistan and Counting, Energy Series (December 2024)."
+      },
+      {
+        "file": "energy-05-circular-debt.html",
+        "width": 1366,
+        "overflow": false,
+        "tables": 0,
+        "pdfText": false,
+        "originalFileLinks": 0,
+        "missing": [],
+        "chartCount": 1,
+        "notes": [
+          {
+            "id": "fig-debt",
+            "note": "Updated endpoints: Rs. 2,393 billion in June 2024, Rs. 1,614 billion in June 2025 and Rs. 1,675 billion in June 2026. Another official reply reports Rs. 1,641 billion for June 2025. Earlier points are 2024 edition data, not updated; intermediate values are approximate chart readings. The September 2025 refinancing occurred after the June 2025 reduction. [0][2][36][58]",
+            "drawn": true,
+            "width": 768
+          }
+        ],
+        "sourceZero": "Salahuddin, Caravan Media / Pakistan and Counting, Energy Series (December 2024)."
+      },
+      {
+        "file": "energy-06-politics-and-energy.html",
+        "width": 1366,
+        "overflow": false,
+        "tables": 0,
+        "pdfText": false,
+        "originalFileLinks": 0,
+        "missing": [],
+        "chartCount": 1,
+        "notes": [
+          {
+            "id": "fig-markets",
+            "note": "2024 edition data, not updated. The historical comparison covers 1989 and 2024 and counts 230 jurisdictions in each year without defining coverage. Pakistan’s 2026 market opening is discussed separately. [0]",
+            "drawn": true,
+            "width": 768
+          }
+        ],
+        "sourceZero": "Salahuddin, Caravan Media / Pakistan and Counting, Energy Series (December 2024)."
+      },
+      {
+        "file": "energy-07-residential-demand.html",
+        "width": 1366,
+        "overflow": false,
+        "tables": 0,
+        "pdfText": false,
+        "originalFileLinks": 0,
+        "missing": [],
+        "chartCount": 1,
+        "notes": [
+          {
+            "id": "fig-transport",
+            "note": "2024 edition data, not updated. Vehicle counts and the 4,500 MW estimate describe an illustrative full-electrification scenario, not a forecast. Areas do not encode quantities. Actual demand and savings depend on adoption, charging patterns, efficiency and the generation mix. [0]",
+            "drawn": true,
+            "width": 768
+          }
+        ],
+        "sourceZero": "Salahuddin, Caravan Media / Pakistan and Counting, Energy Series (December 2024)."
+      },
+      {
+        "file": "energy-08-industrial-demand.html",
+        "width": 1366,
+        "overflow": false,
+        "tables": 0,
+        "pdfText": false,
+        "originalFileLinks": 0,
+        "missing": [],
+        "chartCount": 1,
+        "notes": [
+          {
+            "id": "fig-sales",
+            "note": "Updated: all FY21–FY25 observations use Economic Survey 2025–26, Statistical Appendix Table 14.1, including revised FY21–FY23 values. FY23 sales fell 3.3% for households and 1.5% for industry. July–March FY26 figures in the text are partial-year observations and are not joined to this annual series. [7]",
+            "drawn": true,
+            "width": 768
+          }
+        ],
+        "sourceZero": "Salahuddin, Caravan Media / Pakistan and Counting, Energy Series (December 2024)."
+      },
+      {
+        "file": "energy-09-solar-revolution.html",
+        "width": 1366,
+        "overflow": false,
+        "tables": 0,
+        "pdfText": false,
+        "originalFileLinks": 0,
+        "missing": [],
+        "chartCount": 2,
+        "notes": [
+          {
+            "id": "fig-solar-prices",
+            "note": "Updated for the reported 2026 range of 10–12 US cents per watt. The 28-to-11-cent comparison is 2024 edition data, not updated; its precise endpoint dates are not specified. The shaded range is not a confidence interval. Panel prices exclude inverters, installation and batteries. [0][94]",
+            "drawn": true,
+            "width": 768
+          },
+          {
+            "id": "fig-solar-imports",
+            "note": "Updated to January–May 2026, compared with the same five months of 2025. Imports fell from 11,781 MW to 4,574 MW, a 61% decrease after rounding. The chart converts MW to GW. These are imported module volumes, not installed capacity or full-year totals. [94]",
+            "drawn": true,
+            "width": 768
+          }
+        ],
+        "sourceZero": "Salahuddin, Caravan Media / Pakistan and Counting, Energy Series (December 2024)."
+      },
+      {
+        "file": "energy-01-electricity-ecosystem.html",
+        "width": 390,
+        "overflow": false,
+        "tables": 0,
+        "pdfText": false,
+        "originalFileLinks": 0,
+        "missing": [],
+        "chartCount": 4,
+        "notes": [
+          {
+            "id": "fig-capacity-mix",
+            "note": "2024 edition data, not updated. Ownership and provincial shares retain the 2024 comparison. The updated FY25 fuel mix appears below. [0]",
+            "drawn": true,
+            "width": 358
+          },
+          {
+            "id": "fig-thermal",
+            "note": "Updated to FY25. All labels are shares of total utility-scale capacity; rooftop solar is excluded. Rounded thermal fuel shares sum to 56%, compared with the reported headline of about 57%. The chart uses the components so its shares total 100%. RFO means furnace oil. The newer March 2026 total includes net-metered solar and is discussed separately. [2]",
+            "drawn": true,
+            "width": 358
+          },
+          {
+            "id": "fig-geography",
+            "note": "2024 edition data, not updated. All four capacity and demand shares retain the 2024 comparison. North comprises Punjab and KPK; South comprises Sindh and Balochistan. [0]",
+            "drawn": true,
+            "width": 358
+          },
+          {
+            "id": "fig-customers",
+            "note": "Updated to FY25. The ten consumer counts total 40,435,207 connections, including K-Electric and excluding TESCO. Rounded shares sum to 99.8%; slice areas are normalised to that total. Connections are not people. [11]",
+            "drawn": true,
+            "width": 358
+          }
+        ],
+        "sourceZero": "Salahuddin, Caravan Media / Pakistan and Counting, Energy Series (December 2024)."
+      },
+      {
+        "file": "energy-02-electricity-prices.html",
+        "width": 390,
+        "overflow": false,
+        "tables": 0,
+        "pdfText": false,
+        "originalFileLinks": 0,
+        "missing": [],
+        "chartCount": 4,
+        "notes": [
+          {
+            "id": "fig-tariffs",
+            "note": "2024 edition data, not updated. The chart compares 2021 and 2024 tariffs. Consumer classes, taxes and exchange-rate dates are not harmonised, so these figures should not be compared directly with industrial tariff estimates. [0]",
+            "drawn": true,
+            "width": 358
+          },
+          {
+            "id": "fig-bill",
+            "note": "2024 edition data, not updated. These are illustrative bill shares, not a current bill calculator. The updated Rs. 3.23/unit debt-service surcharge does not establish a new percentage split. [0][24][25]",
+            "drawn": true,
+            "width": 358
+          },
+          {
+            "id": "fig-imports",
+            "note": "2024 edition data, not updated. The series covers 2004–2024; intermediate points are approximate readings of the historical chart. FY25’s approximately 29% includes RLNG, imported coal, furnace oil and electricity imports. Its broader definition prevents a direct extension of this series. [0][2]",
+            "drawn": true,
+            "width": 358
+          },
+          {
+            "id": "fig-fuel-cost",
+            "note": "Updated to October 2025, the latest comparable fuel-cost observation in the supplied update. These are monthly fuel costs, not complete tariffs or annual averages. HSD was not dispatched and is omitted, rather than shown as zero. The update cites a NEPRA decision dated 9 December 2025 but does not provide its direct link. [108]",
+            "drawn": true,
+            "width": 358
+          }
+        ],
+        "sourceZero": "Salahuddin, Caravan Media / Pakistan and Counting, Energy Series (December 2024)."
+      },
+      {
+        "file": "energy-03-capacity-payments.html",
+        "width": 390,
+        "overflow": false,
+        "tables": 0,
+        "pdfText": false,
+        "originalFileLinks": 0,
+        "missing": [],
+        "chartCount": 2,
+        "notes": [
+          {
+            "id": "fig-capacity",
+            "note": "Updated to FY25 for installed capacity and served seasonal peaks. The dashed 23,000 MW average-demand line is 2024 edition data, not updated. Served peaks differ from NEPRA’s computed demand above 33,000 MW. Nameplate capacity is not continuously dispatchable spare power. [2][9][0]",
+            "drawn": true,
+            "width": 358
+          },
+          {
+            "id": "fig-payments",
+            "note": "2024 edition data, not updated. Both ownership and capacity-payment shares retain the 2024 groupings. Current payment totals cannot be allocated using these historical shares. [0]",
+            "drawn": true,
+            "width": 358
+          }
+        ],
+        "sourceZero": "Salahuddin, Caravan Media / Pakistan and Counting, Energy Series (December 2024)."
+      },
+      {
+        "file": "energy-04-distribution-losses.html",
+        "width": 390,
+        "overflow": false,
+        "tables": 0,
+        "pdfText": false,
+        "originalFileLinks": 0,
+        "missing": [],
+        "chartCount": 3,
+        "notes": [
+          {
+            "id": "fig-losses",
+            "note": "Updated to FY25 for the final bar: Rs. 265 billion in losses above allowed targets and Rs. 132 billion in under-recovery, excluding K-Electric. FY23–FY24 bars are 2024 edition data, not updated on a comparable basis. Later reports give different historical baselines and collection definitions, so the bars do not establish a comparable percentage decline. No FY26 performance series is supplied. [11][34][0]",
+            "drawn": true,
+            "width": 358
+          },
+          {
+            "id": "fig-discos",
+            "note": "Updated to FY25 using the supplied NEPRA performance-report figures. Financial losses measure breaches of allowed targets, not all lost electricity. The reported Rs. 265.01 billion total excludes K-Electric; the displayed companies do not reproduce the full aggregate. K-Electric’s Rs. 1.05 billion calculation is disputed. The 8% global reference is 2024 edition data, not updated. [11]",
+            "drawn": true,
+            "width": 358
+          },
+          {
+            "id": "fig-benchmark",
+            "note": "Updated to FY25 for Pakistan’s ex-WAPDA DISCO loss rate of 17.55%. Foreign rates and the 8% global reference are 2024 edition data, not updated; their underlying years and coverage are not harmonised. K-Electric’s separate FY25 rate is 14.73%. [11][0]",
+            "drawn": true,
+            "width": 358
+          }
+        ],
+        "sourceZero": "Salahuddin, Caravan Media / Pakistan and Counting, Energy Series (December 2024)."
+      },
+      {
+        "file": "energy-05-circular-debt.html",
+        "width": 390,
+        "overflow": false,
+        "tables": 0,
+        "pdfText": false,
+        "originalFileLinks": 0,
+        "missing": [],
+        "chartCount": 1,
+        "notes": [
+          {
+            "id": "fig-debt",
+            "note": "Updated endpoints: Rs. 2,393 billion in June 2024, Rs. 1,614 billion in June 2025 and Rs. 1,675 billion in June 2026. Another official reply reports Rs. 1,641 billion for June 2025. Earlier points are 2024 edition data, not updated; intermediate values are approximate chart readings. The September 2025 refinancing occurred after the June 2025 reduction. [0][2][36][58]",
+            "drawn": true,
+            "width": 358
+          }
+        ],
+        "sourceZero": "Salahuddin, Caravan Media / Pakistan and Counting, Energy Series (December 2024)."
+      },
+      {
+        "file": "energy-06-politics-and-energy.html",
+        "width": 390,
+        "overflow": false,
+        "tables": 0,
+        "pdfText": false,
+        "originalFileLinks": 0,
+        "missing": [],
+        "chartCount": 1,
+        "notes": [
+          {
+            "id": "fig-markets",
+            "note": "2024 edition data, not updated. The historical comparison covers 1989 and 2024 and counts 230 jurisdictions in each year without defining coverage. Pakistan’s 2026 market opening is discussed separately. [0]",
+            "drawn": true,
+            "width": 358
+          }
+        ],
+        "sourceZero": "Salahuddin, Caravan Media / Pakistan and Counting, Energy Series (December 2024)."
+      },
+      {
+        "file": "energy-07-residential-demand.html",
+        "width": 390,
+        "overflow": false,
+        "tables": 0,
+        "pdfText": false,
+        "originalFileLinks": 0,
+        "missing": [],
+        "chartCount": 1,
+        "notes": [
+          {
+            "id": "fig-transport",
+            "note": "2024 edition data, not updated. Vehicle counts and the 4,500 MW estimate describe an illustrative full-electrification scenario, not a forecast. Areas do not encode quantities. Actual demand and savings depend on adoption, charging patterns, efficiency and the generation mix. [0]",
+            "drawn": true,
+            "width": 358
+          }
+        ],
+        "sourceZero": "Salahuddin, Caravan Media / Pakistan and Counting, Energy Series (December 2024)."
+      },
+      {
+        "file": "energy-08-industrial-demand.html",
+        "width": 390,
+        "overflow": false,
+        "tables": 0,
+        "pdfText": false,
+        "originalFileLinks": 0,
+        "missing": [],
+        "chartCount": 1,
+        "notes": [
+          {
+            "id": "fig-sales",
+            "note": "Updated: all FY21–FY25 observations use Economic Survey 2025–26, Statistical Appendix Table 14.1, including revised FY21–FY23 values. FY23 sales fell 3.3% for households and 1.5% for industry. July–March FY26 figures in the text are partial-year observations and are not joined to this annual series. [7]",
+            "drawn": true,
+            "width": 358
+          }
+        ],
+        "sourceZero": "Salahuddin, Caravan Media / Pakistan and Counting, Energy Series (December 2024)."
+      },
+      {
+        "file": "energy-09-solar-revolution.html",
+        "width": 390,
+        "overflow": false,
+        "tables": 0,
+        "pdfText": false,
+        "originalFileLinks": 0,
+        "missing": [],
+        "chartCount": 2,
+        "notes": [
+          {
+            "id": "fig-solar-prices",
+            "note": "Updated for the reported 2026 range of 10–12 US cents per watt. The 28-to-11-cent comparison is 2024 edition data, not updated; its precise endpoint dates are not specified. The shaded range is not a confidence interval. Panel prices exclude inverters, installation and batteries. [0][94]",
+            "drawn": true,
+            "width": 358
+          },
+          {
+            "id": "fig-solar-imports",
+            "note": "Updated to January–May 2026, compared with the same five months of 2025. Imports fell from 11,781 MW to 4,574 MW, a 61% decrease after rounding. The chart converts MW to GW. These are imported module volumes, not installed capacity or full-year totals. [94]",
+            "drawn": true,
+            "width": 358
+          }
+        ],
+        "sourceZero": "Salahuddin, Caravan Media / Pakistan and Counting, Energy Series (December 2024)."
+      }
+    ],
+    "errors": []
+  }
+}

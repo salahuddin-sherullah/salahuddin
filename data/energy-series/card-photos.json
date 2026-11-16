@@ -1,0 +1,90 @@
+[
+  {
+    "part": 2,
+    "image": "cards/electricity-prices.webp",
+    "alt": "A bank of electricity meters mounted on a wall",
+    "photographer": "Alexander Schimmeck",
+    "source_url": "https://unsplash.com/photos/white-and-black-electric-meter-k_-KlaENC-Q",
+    "image_url": "https://images.unsplash.com/photo-1605688688509-2d0af3946fc5?fit=crop&w=1200&h=700&q=85&fm=webp",
+    "license": "Unsplash License",
+    "license_url": "https://unsplash.com/license",
+    "usage": "Illustrative editorial stock photography; not a claim that the scene is in Pakistan unless identified as such."
+  },
+  {
+    "part": 3,
+    "image": "cards/capacity-payments.webp",
+    "alt": "Power-station cooling towers beside a river",
+    "photographer": "Hansjörg Keller",
+    "source_url": "https://unsplash.com/photos/a-body-of-water-with-two-cooling-towers-in-the-background-WmQgU73hngg",
+    "image_url": "https://images.unsplash.com/photo-1729954924953-ff957b3e9edc?fit=crop&w=1200&h=700&q=85&fm=webp",
+    "license": "Unsplash License",
+    "license_url": "https://unsplash.com/license",
+    "usage": "Illustrative editorial stock photography; not a claim that the scene is in Pakistan unless identified as such."
+  },
+  {
+    "part": 4,
+    "image": "cards/distribution-losses.webp",
+    "alt": "Electrical distribution equipment and overhead wires",
+    "photographer": "shraga kopstein",
+    "source_url": "https://unsplash.com/photos/a-bunch-of-wires-that-are-hanging-from-a-pole-RsRuvn51SCQ",
+    "image_url": "https://images.unsplash.com/photo-1716784592039-4c81b8d1db15?fit=crop&w=1200&h=700&q=85&fm=webp",
+    "license": "Unsplash License",
+    "license_url": "https://unsplash.com/license",
+    "usage": "Illustrative editorial stock photography; not a claim that the scene is in Pakistan unless identified as such."
+  },
+  {
+    "part": 5,
+    "image": "cards/circular-debt.webp",
+    "alt": "Energy bills and a calculator on a desk",
+    "photographer": "Giorgio Tomassetti",
+    "source_url": "https://unsplash.com/photos/bills-and-calculator-sit-on-a-desk-hBhouoXClKw",
+    "image_url": "https://images.unsplash.com/photo-1753955900090-d252808f350d?fit=crop&w=1200&h=700&q=85&fm=webp",
+    "license": "Unsplash License",
+    "license_url": "https://unsplash.com/license",
+    "usage": "Illustrative editorial stock photography; not a claim that the scene is in Pakistan unless identified as such."
+  },
+  {
+    "part": 6,
+    "image": "cards/politics-and-energy.webp",
+    "alt": "The flag of Pakistan flying above a mountain landscape",
+    "photographer": "Ali Khokhar",
+    "source_url": "https://unsplash.com/photos/a-flag-flying-on-top-of-a-mountain-TlC4DzclSN8",
+    "image_url": "https://images.unsplash.com/photo-1693141520831-f0466dd82cdc?fit=crop&w=1200&h=700&q=85&fm=webp",
+    "license": "Unsplash License",
+    "license_url": "https://unsplash.com/license",
+    "usage": "Illustrative editorial stock photography; not a claim that the scene is in Pakistan unless identified as such."
+  },
+  {
+    "part": 7,
+    "image": "cards/residential-demand.webp",
+    "alt": "A home interior with an illuminated lamp",
+    "photographer": "Christopher Stites",
+    "source_url": "https://unsplash.com/photos/cozy-living-room-with-armchairs-illuminated-lamp-and-window-light-tedtXRcL1AI",
+    "image_url": "https://images.unsplash.com/photo-1778766017582-44ba4512f532?fit=crop&w=1200&h=700&q=85&fm=webp",
+    "license": "Unsplash License",
+    "license_url": "https://unsplash.com/license",
+    "usage": "Illustrative editorial stock photography; not a claim that the scene is in Pakistan unless identified as such."
+  },
+  {
+    "part": 8,
+    "image": "cards/industrial-demand.webp",
+    "alt": "Rows of yarn and spinning machines in a textile mill",
+    "photographer": "Prince Prabhakaran",
+    "source_url": "https://unsplash.com/photos/a-large-room-with-rows-of-machines-and-spools-of-thread-pM2kkL8Vu9E",
+    "image_url": "https://images.unsplash.com/photo-1636986056375-184676d8ca14?fit=crop&w=1200&h=700&q=85&fm=webp",
+    "license": "Unsplash License",
+    "license_url": "https://unsplash.com/license",
+    "usage": "Illustrative editorial stock photography; not a claim that the scene is in Pakistan unless identified as such."
+  },
+  {
+    "part": 9,
+    "image": "cards/solar-revolution.webp",
+    "alt": "Photovoltaic panels installed on a roof",
+    "photographer": "Sergio Martins",
+    "source_url": "https://unsplash.com/photos/solar-panels-installed-on-a-grey-corrugated-metal-roof-0b3KYOuSNho",
+    "image_url": "https://images.unsplash.com/photo-1780445392628-d6f5b9e5609b?fit=crop&w=1200&h=700&q=85&fm=webp",
+    "license": "Unsplash License",
+    "license_url": "https://unsplash.com/license",
+    "usage": "Illustrative editorial stock photography; not a claim that the scene is in Pakistan unless identified as such."
+  }
+]

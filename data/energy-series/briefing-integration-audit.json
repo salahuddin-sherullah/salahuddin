@@ -1,0 +1,89 @@
+{
+  "date": "2026-11-16",
+  "briefing_credit": "Intelligence Briefing, Dark Matter",
+  "scope": "Integrate the five themes throughout the existing nine-part narrative, preserving the original narrative blocks and established chart layout.",
+  "integration": {
+    "1": "Distributed solar generation beyond utility statistics; consumer resilience and grid flexibility.",
+    "2": "LNG supplier concentration, Hormuz disruption, fuel prices and foreign-exchange exposure.",
+    "3": "Fixed obligations spread across fewer grid units, with an explicitly illustrative calculation.",
+    "4": "Unequal access to self-generation; distinguish reduced purchases, losses and unpaid bills.",
+    "5": "Rigid LNG contracts, possible surpluses and supply shocks; separate gas and power arrears.",
+    "6": "Thar coal trade-offs, ETIP, financing horizons, and conditional NDC targets.",
+    "7": "Battery storage, electrified transport, charging needs and the new-sales NEV target.",
+    "8": "Industrial solar/storage/grid combinations, auction storage requirements and SME access.",
+    "9": "Avoided fuel imports and solar resilience, with a conditional forecast separated from estimated cumulative savings."
+  },
+  "new_charts": [
+    {
+      "id": "distributed-solar",
+      "part": 1,
+      "type": "bars",
+      "references": [
+        111
+      ]
+    },
+    {
+      "id": "lng-exposure",
+      "part": 2,
+      "type": "bars",
+      "references": [
+        112
+      ]
+    },
+    {
+      "id": "fixed-cost-pressure",
+      "part": 3,
+      "type": "bars",
+      "references": [
+        110
+      ]
+    },
+    {
+      "id": "climate-target",
+      "part": 6,
+      "type": "stacked",
+      "references": [
+        116
+      ]
+    },
+    {
+      "id": "battery-imports",
+      "part": 7,
+      "type": "bars",
+      "references": [
+        114
+      ]
+    },
+    {
+      "id": "solar-import-savings",
+      "part": 9,
+      "type": "estimates",
+      "references": [
+        113
+      ]
+    }
+  ],
+  "clarifications": [
+    "Generation shares use the dated Ember/Renewables First FY23–FY25 estimate (10% to 28%), distinct from installed capacity and calendar-year datasets.",
+    "Battery 7.6 GWh is cumulative over 2018–2025; annual 2024/2025 chart values are 1.43/4.59 GWh. Energy and power units are not interchanged.",
+    "Avoided imports >$12 billion are cumulative through February 2026. $6.3 billion is an additional conditional projection, not an audited full-year result.",
+    "NEV 30% is a target for new sales in 2030. The 3,000 charging-station figure is a policy objective, not an operating-station count.",
+    "NEPRA’s 10% requirement is a firm-capacity ratio for a specified wheeling auction, not a nationwide rooftop mandate.",
+    "Climate investment estimates cover different horizons and broader sectors. The 33% conditional component means percentage points of projected 2035 emissions, not 33% of funding.",
+    "Fixed-cost pressure is a transparent illustration, not observed solar-related tariff growth."
+  ],
+  "not_reproduced_as_verified_facts": [
+    "155% grid tariff growth and 8–12-cent panel price range: incompatible with existing dated comparisons; retained established figures.",
+    "LNG spot-price bands, 4,500 MW shortfall, 10–24 days of reserves, oil-price import-bill sensitivity and 1.8% GDP projection: no matched dated underlying series supplied.",
+    "$378 million annual stranded loss and Rs. 1.92–3.6 trillion power-debt range: not verified as comparable; existing dated power debt retained.",
+    "4.5 GW H1 2026 batteries and $280 million FY26 imports: missing compatible power/energy/value definitions and underlying source.",
+    "58% residential battery share: source headline and sector table disagree in denominator; no share chart derived from that headline.",
+    "Battery manufacturing policy status, 35–40% duties, fewer than 100 chargers, current fuel prices and 1–1.5-year EV payback: not used as verified current measurements.",
+    "39% high-income household and 30% industrial solar adoption figures: unclear denominator; equity argument integrated without those percentages.",
+    "Rs. 2 billion Thar rail allocation: not established against a dated budget table; domestic-coal and rail trade-off discussed qualitatively."
+  ],
+  "validation": {
+    "all_original_narrative_markers_preserved": true,
+    "browser_results": "27 page/viewport checks (1366px, 390px, 320px); 25 charts; no overflow, missing citations, duplicate insight rendering or chart tables; static fallbacks load."
+  }
+}

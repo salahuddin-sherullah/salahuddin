@@ -1,0 +1,121 @@
+/* Shared chart and editorial styles for all nine Energy Series articles. */
+.series-figure.energy-one-figure { max-width:var(--series-reading-width);border-color:#bcc7cd;padding:22px 0 24px; }
+.series-figure.energy-one-donut { max-width:var(--series-reading-width); }
+.energy-one-figure figcaption h3 { font-family:"Playfair Display",serif;font-size:18px;font-weight:700;line-height:1.3;margin:0 0 6px; }
+.series-article .energy-one-figure .series-chart-subtitle { font-size:17px;font-weight:400;line-height:1.4;color:#626262;margin:0 0 16px;max-width:var(--series-reading-width); }
+.energy-one-plot { width:100%;min-width:0; }
+.energy-one-plot svg { display:block;max-width:100%;font-family:var(--body-font); }
+.energy-one-plot > img,.energy-one-plot noscript img { display:block;width:100%;height:auto; }
+.energy-one-panels { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px; }
+.energy-one-panel { min-width:0; }
+.series-article .energy-one-footer p { font-size:14px;line-height:1.5;font-weight:400;color:#6b6b6b;max-width:48rem;margin:0 0 6px; }
+.energy-one-footer { margin-top:16px; }
+.energy-one-footer > img { display:block;height:35px;width:auto;margin-top:8px; }
+.energy-one-figure .series-figure-links { margin-top:16px; }
+.energy-one-figure .series-data { margin-top:12px;padding-top:12px; }
+.energy-one-mobile-key { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 20px;list-style:none;padding:0;margin:8px 0 0;font-size:14px;line-height:1.5; }
+.energy-one-mobile-key li { display:grid;grid-template-columns:10px 1fr auto;gap:6px;padding:0;align-items:center; }
+.energy-one-mobile-key i { width:10px;height:10px; }
+.energy-one-mobile-key strong { color:#cf0000;font-weight:600; }
+.energy-one-plot .energy-one-slice:focus { outline:none;stroke:#111;stroke-width:2px; }
+@media(max-width:600px) { .energy-one-panels { grid-template-columns:1fr;gap:16px; } }
+
+/* Consistent section headings and compact narrative lists throughout the series. */
+.series-article > h2 { font-size:28px;line-height:1.25;margin-top:2.2rem;margin-bottom:1rem; }
+.series-article > h3 { font-size:20px;line-height:1.3;margin-top:1.6rem; }
+.series-article > :is(ul,ol) { margin-top:0;margin-bottom:.5rem;line-height:1.65; }
+.series-article > :is(ul,ol) > li { margin-bottom:.25rem; }
+
+.series-article :is(.series-notes,.series-sources) > h2 { font-size:22px;line-height:1.3;margin-bottom:1rem; }
+
+.series-article .energy-one-key-title { font-size:13px;font-weight:600;line-height:1.4;margin:8px 0 4px; }
+
+/* Article 2: the bill breakdown spans the full article container. */
+.series-figure.energy-one-figure#fig-bill { max-width:none; }
+
+/* Article 7: move transport callouts below the illustration on narrow screens. */
+.energy-seven-key { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 16px;list-style:none;padding:0;margin:12px 0 0;font-size:14px;line-height:1.5; }
+.energy-seven-key li { display:grid;grid-template-columns:10px 1fr;gap:7px;padding:0;align-items:start; }
+.energy-seven-key i { width:10px;height:10px;margin-top:5px; }
+.energy-seven-key span > :is(strong,span) { display:block; }
+.energy-seven-key strong { font-weight:600;color:#03071e; }
+#fig-transport [data-region]:focus { outline:none;stroke:#505050;stroke-width:3px; }
+
+/* Reading-column captions also apply to the intentionally full-width figures. */
+.energy-one-figure figcaption,.energy-one-footer { max-width:var(--series-reading-width); }
+.series-article > :is(ul,ol) { font-size:1.08rem; }
+.series-article > h3 { margin-bottom:1rem; }
+.series-article .energy-journey { margin:3rem 0 3.5rem;padding:22px 0 24px;border-color:#bcc7cd; }
+.series-article .energy-journey figcaption { max-width:var(--series-reading-width); }
+.series-article .energy-journey figcaption h3 { font-family:"Playfair Display",serif;font-size:18px;line-height:1.3;font-weight:700;letter-spacing:normal;margin:0 0 6px; }
+.series-article .energy-journey figcaption > p { font-size:17px;line-height:1.4;color:#626262;margin:0 0 16px; }
+.series-article .energy-journey .energy-chart-footer { max-width:var(--series-reading-width);flex-direction:column;align-items:flex-start;gap:8px;font-size:14px;line-height:1.5;color:#6b6b6b; }
+.series-article .energy-journey .energy-chart-footer img { width:auto;height:35px; }
+@media(max-width:600px) { .series-article > :is(ul,ol) { font-size:1rem; } }
+
+/* Keep the selectable journey and its explanation together in the viewport. */
+#power-journey { padding:14px 0 18px;scroll-margin-top:128px; }
+#power-journey figcaption > p { margin-bottom:8px; }
+#power-journey .energy-journey-direction { margin:8px 0 6px; }
+#power-journey .energy-journey-stops { position:relative;grid-template-columns:repeat(4,minmax(0,1fr));align-items:start;gap:0; }
+#power-journey .energy-journey-stop { padding-bottom:6px; }
+#power-journey .energy-journey-stop svg { height:clamp(103.68px,20.16svh,161.28px);width:100%; }
+#power-journey .energy-journey-stop-label { min-height:0;padding:6px 8px 0 0;row-gap:2px; }
+#power-journey .energy-journey-return { appearance:none;display:flex;align-items:center;justify-content:space-between;width:100%;height:auto;min-height:34px;line-height:1.4;padding:5px 0;margin:0;background:transparent;border:0;border-top:1px dashed #b9b2ad;border-radius:0;box-shadow:none;font:inherit;font-size:13px;font-weight:400;letter-spacing:normal;text-transform:none;color:#817873;cursor:pointer; }
+#power-journey .energy-journey-return > span:last-child { width:24px;height:24px;line-height:22px; }
+#power-journey .energy-journey-return:hover,#power-journey .energy-journey-return[aria-pressed=true] { color:#cf0000;border-color:#cf0000; }
+#power-journey .energy-journey-stories { padding:12px 16px;margin:6px 0 0; }
+#power-journey.is-interactive .energy-journey-stories { display:grid; }
+#power-journey.is-interactive .energy-journey-story { grid-area:1/1;margin:0;min-width:0; }
+#power-journey.is-interactive .energy-journey-story[hidden] { display:block;visibility:hidden;pointer-events:none; }
+#power-journey .energy-journey-story .energy-section-number { display:none; }
+#power-journey .energy-journey-story h4 { font-size:18px;line-height:1.3;margin:0 0 6px; }
+#power-journey .energy-journey-story p { font-size:15px;line-height:1.5;margin:0 0 6px; }
+#power-journey .energy-journey-story .energy-journey-stake { font-size:14px;line-height:1.4;margin:0; }
+#power-journey .energy-chart-footer { margin-top:12px;font-size:12px;line-height:1.4;gap:6px; }
+#power-journey .energy-chart-footer img { height:28px; }
+@media(max-width:600px) {
+ #power-journey figcaption > p { font-size:15px; }
+ #power-journey .energy-journey-direction { display:none; }
+ #power-journey .energy-journey-stops { grid-template-columns:repeat(4,minmax(0,1fr));gap:0; }
+ #power-journey .energy-journey-stop { display:block;padding:0; }
+ #power-journey .energy-journey-stop svg { height:100.8px; }
+ #power-journey .energy-journey-stop-label { display:block;padding:6px 5px 0 0;border-top:2px solid #dedbd7; }
+ #power-journey .energy-journey-stop-label > span,#power-journey .energy-journey-stop-label small { display:none; }
+ #power-journey .energy-journey-stop-label strong { display:block;font-size:13px;line-height:1.3; }
+ #power-journey .energy-journey-return { margin-top:6px; }
+ #power-journey .energy-journey-stories { padding:10px 12px; }
+ #power-journey .energy-journey-story h4 { font-size:16px; }
+ #power-journey .energy-journey-story p { font-size:14px; }
+ #power-journey .energy-journey-story .energy-journey-stake { font-size:13px; }
+}
+@media print {
+ #power-journey.is-interactive .energy-journey-stories { display:block; }
+ #power-journey.is-interactive .energy-journey-story[hidden] { display:block;visibility:visible; }
+ #power-journey.is-interactive .energy-journey-story + .energy-journey-story { margin-top:1rem; }
+}
+
+@media(max-width:600px),(max-height:700px) {
+ #power-journey { padding-bottom:8px; }
+ #power-journey .energy-chart-footer { margin-top:8px;gap:4px; }
+ #power-journey .energy-chart-footer img { height:20px; }
+}
+@media(max-height:700px) and (min-width:601px) {
+ #power-journey { padding-top:10px; }
+ #power-journey .energy-journey-direction { display:none; }
+ #power-journey .energy-journey-stop svg { height:92.16px; }
+}
+
+#power-journey .journey-stop-compact { display:none; }
+@media(max-width:600px) {
+ #power-journey .journey-stop-full { display:none; }
+ #power-journey .journey-stop-compact { display:inline; }
+}
+
+/* A single continuous path bridges the SVG artwork without stretching it. */
+#power-journey .journey-flow { position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none; }
+#power-journey .journey-flow path { fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round; }
+#power-journey .journey-flow-track { stroke:#bbb5af; }
+#power-journey .journey-flow-current { stroke:#cf0000; }
+#power-journey .journey-flow-dot { fill:#cf0000;stroke:white;stroke-width:2; }
+#power-journey .has-continuous-wire .journey-wire { visibility:hidden; }

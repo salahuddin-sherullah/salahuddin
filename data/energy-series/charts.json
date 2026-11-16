@@ -1,0 +1,986 @@
+{
+  "source_document": "Caravan Media - Energy Series V6.pdf",
+  "source_date": "December 2024",
+  "figures": [
+    {
+      "id": "capacity-mix",
+      "title": "One power system. Many owners, places and fuels.",
+      "subtitle": "Shares of installed capacity in the source\u2019s 2024 snapshot.",
+      "source_page": 4,
+      "source": "NEPRA, State of Industry Report; Caravan Media calculations",
+      "panels": [
+        {
+          "title": "Who owns it?",
+          "rows": [
+            [
+              "Government",
+              46
+            ],
+            [
+              "CPEC",
+              17
+            ],
+            [
+              "KE and other IPPs",
+              37
+            ]
+          ],
+          "unit": "%",
+          "series": [
+            "Share"
+          ],
+          "maximum": 100
+        },
+        {
+          "title": "Where is it?",
+          "rows": [
+            [
+              "Punjab",
+              43
+            ],
+            [
+              "Sindh",
+              35
+            ],
+            [
+              "Khyber Pakhtunkhwa",
+              14
+            ],
+            [
+              "Balochistan",
+              8
+            ]
+          ],
+          "unit": "%",
+          "series": [
+            "Share"
+          ],
+          "maximum": 100
+        },
+        {
+          "title": "What powers it?",
+          "rows": [
+            [
+              "Thermal",
+              63
+            ],
+            [
+              "Hydel",
+              23
+            ],
+            [
+              "Nuclear",
+              8
+            ],
+            [
+              "Renewables",
+              6
+            ]
+          ],
+          "unit": "%",
+          "series": [
+            "Share"
+          ],
+          "maximum": 100
+        }
+      ],
+      "note": "These are the report\u2019s groupings. CPEC is shown separately from other IPPs; the categories are not a legal ownership classification.",
+      "kind": "bars"
+    },
+    {
+      "id": "thermal",
+      "title": "Most installed capacity depends on burning fuel",
+      "subtitle": "Share of total installed capacity, not share of electricity generated.",
+      "source_page": 5,
+      "source": "NEPRA, State of Industry Report",
+      "panels": [
+        {
+          "title": "Thermal sources",
+          "rows": [
+            [
+              "Gas",
+              23
+            ],
+            [
+              "Coal",
+              16
+            ],
+            [
+              "RLNG",
+              13
+            ],
+            [
+              "Oil",
+              10
+            ]
+          ],
+          "unit": "%",
+          "series": [
+            "Share"
+          ],
+          "maximum": 30
+        }
+      ],
+      "note": "The four rounded values add to 62%; the source reports a thermal total of 63%. RLNG means regasified liquefied natural gas. Bars preserve the printed values rather than force them to add up.",
+      "kind": "bars"
+    },
+    {
+      "id": "geography",
+      "title": "The power and the customers are in different places",
+      "subtitle": "North\u2013south shares of generation capacity and demand in the source.",
+      "source_page": 6,
+      "source": "Caravan Media calculations",
+      "panels": [
+        {
+          "title": "Share of national total",
+          "rows": [
+            [
+              "North",
+              57,
+              77
+            ],
+            [
+              "South",
+              43,
+              23
+            ]
+          ],
+          "unit": "%",
+          "series": [
+            "Generation capacity",
+            "Demand"
+          ],
+          "maximum": 100
+        }
+      ],
+      "note": "The report groups Punjab and Khyber Pakhtunkhwa as the North, and Sindh and Balochistan as the South.",
+      "kind": "bars"
+    },
+    {
+      "id": "customers",
+      "title": "38.2 million connections, unevenly spread",
+      "subtitle": "Share of consumers by distribution company, FY2022\u201323.",
+      "source_page": 7,
+      "source": "NEPRA, State of Industry Report",
+      "panels": [
+        {
+          "title": "Share of consumers",
+          "rows": [
+            [
+              "MEPCO",
+              21
+            ],
+            [
+              "LESCO",
+              16
+            ],
+            [
+              "FESCO",
+              13
+            ],
+            [
+              "GEPCO",
+              12
+            ],
+            [
+              "PESCO",
+              11
+            ],
+            [
+              "IESCO",
+              10
+            ],
+            [
+              "K-Electric",
+              9
+            ],
+            [
+              "HESCO",
+              3
+            ],
+            [
+              "SEPCO",
+              2
+            ],
+            [
+              "QESCO",
+              2
+            ],
+            [
+              "TESCO",
+              null
+            ]
+          ],
+          "unit": "%",
+          "series": [
+            "Share"
+          ],
+          "maximum": 25
+        }
+      ],
+      "note": "The PDF labels TESCO but gives no numerical share. It is left unquantified here; the other rounded labels total 99%.",
+      "kind": "bars"
+    },
+    {
+      "id": "tariffs",
+      "title": "Pakistan\u2019s tariff moved against its neighbours",
+      "subtitle": "Average power tariffs as reported in the original comparison; US cents per kWh.",
+      "source_page": 9,
+      "source": "Statista, Tribune, Paradigm Shift and Atif Mian, as cited by Caravan Media",
+      "panels": [
+        {
+          "title": "US cents per unit",
+          "rows": [
+            [
+              "India",
+              12,
+              8
+            ],
+            [
+              "Bangladesh",
+              9,
+              7.5
+            ],
+            [
+              "Pakistan",
+              13,
+              21
+            ]
+          ],
+          "unit": "\u00a2",
+          "series": [
+            "2021",
+            "2024"
+          ],
+          "maximum": 25
+        }
+      ],
+      "note": "Indicative comparison: the PDF does not specify harmonised consumer bands, tax treatment or exchange-rate dates. These are historical figures, not current tariff quotations.",
+      "kind": "bars"
+    },
+    {
+      "id": "bill",
+      "title": "Your bill, reduced to 100 rupees",
+      "subtitle": "An illustrative breakdown of the final bill in the source.",
+      "source_page": 10,
+      "source": "Caravan Media, Energy Series",
+      "panels": [
+        {
+          "title": "Rupees out of every 100",
+          "rows": [
+            [
+              "Generation",
+              48
+            ],
+            [
+              "Transmission",
+              3
+            ],
+            [
+              "Distribution",
+              8
+            ],
+            [
+              "Taxes",
+              15
+            ],
+            [
+              "Additional charges",
+              26
+            ]
+          ],
+          "unit": " Rs",
+          "series": [
+            "Share"
+          ],
+          "maximum": 100
+        }
+      ],
+      "note": "A simplified allocation, not a tariff calculator. Actual bills vary with consumer category, usage, adjustments and taxes.",
+      "kind": "bill"
+    },
+    {
+      "id": "imports",
+      "title": "Import exposure rose, then fell sharply",
+      "subtitle": "Imported and domestic shares in the source\u2019s fuel-share graphic, 2004\u20132024.",
+      "source_page": 11,
+      "source": "Farooq Tirmizi, Pakistan Today, as cited in the source",
+      "panels": [
+        {
+          "title": "Share (%)",
+          "rows": [
+            [
+              "2004",
+              16,
+              84
+            ],
+            [
+              "2005",
+              16,
+              84
+            ],
+            [
+              "2006",
+              21,
+              79
+            ],
+            [
+              "2007",
+              27,
+              73
+            ],
+            [
+              "2008",
+              31,
+              69
+            ],
+            [
+              "2009",
+              27,
+              73
+            ],
+            [
+              "2010",
+              36,
+              64
+            ],
+            [
+              "2011",
+              29,
+              71
+            ],
+            [
+              "2012",
+              36,
+              64
+            ],
+            [
+              "2013",
+              36,
+              64
+            ],
+            [
+              "2014",
+              36,
+              64
+            ],
+            [
+              "2015",
+              36,
+              64
+            ],
+            [
+              "2016",
+              32,
+              68
+            ],
+            [
+              "2017",
+              34,
+              66
+            ],
+            [
+              "2018",
+              47,
+              53
+            ],
+            [
+              "2019",
+              45,
+              55
+            ],
+            [
+              "2020",
+              43,
+              57
+            ],
+            [
+              "2021",
+              47,
+              53
+            ],
+            [
+              "2022",
+              48,
+              52
+            ],
+            [
+              "2023",
+              35,
+              65
+            ],
+            [
+              "2024",
+              22,
+              78
+            ]
+          ],
+          "unit": "%",
+          "series": [
+            "Imported",
+            "Domestic"
+          ],
+          "maximum": 100
+        }
+      ],
+      "note": "Intermediate annual points are approximate readings of the original graphic, rounded to whole percentages; 2024 is explicitly stated as 22%. The PDF alternates between \u201cgeneration mix\u201d and \u201cfossil-fuel share\u201d, so the denominator is not independently resolved.",
+      "kind": "line"
+    },
+    {
+      "id": "fuel-cost",
+      "title": "A unit of power carries very different fuel costs",
+      "subtitle": "Median fuel cost in FY2023\u201324, PKR per kWh. This is only the fuel component.",
+      "source_page": 12,
+      "source": "Arif Habib Research, as cited in the source",
+      "panels": [
+        {
+          "title": "PKR per unit",
+          "rows": [
+            [
+              "High-speed diesel",
+              43.9
+            ],
+            [
+              "Furnace oil",
+              34.4
+            ],
+            [
+              "RLNG",
+              24
+            ],
+            [
+              "Imported coal",
+              17
+            ],
+            [
+              "Gas",
+              13.7
+            ],
+            [
+              "Local coal",
+              11.9
+            ],
+            [
+              "Bagasse",
+              6
+            ],
+            [
+              "Nuclear",
+              1.3
+            ]
+          ],
+          "unit": " Rs",
+          "series": [
+            "Share"
+          ],
+          "maximum": 50
+        }
+      ],
+      "note": "Fuel costs exclude construction, financing, fixed operation costs and network charges. Nuclear\u2019s low fuel cost is not its full generation cost.",
+      "kind": "bars"
+    },
+    {
+      "id": "capacity",
+      "title": "The plants are there. The demand is not always there.",
+      "subtitle": "Installed capacity and indicative demand levels in the report, thousand MW.",
+      "source_page": 16,
+      "source": "NEPRA, State of Industry Report; Caravan Media calculations",
+      "panels": [
+        {
+          "title": "Thousand MW",
+          "rows": [
+            [
+              "Installed capacity",
+              46
+            ],
+            [
+              "Summer peak",
+              30
+            ],
+            [
+              "Average demand",
+              23
+            ],
+            [
+              "Winter peak",
+              17
+            ]
+          ],
+          "unit": "k MW",
+          "series": [
+            "Share"
+          ],
+          "maximum": 50
+        }
+      ],
+      "note": "The source uses 30,000 MW in this chart and 34,000 MW for a 2023 peak elsewhere. Installed capacity is nameplate capacity: the gap is not a measure of immediately dispatchable spare power.",
+      "kind": "bars"
+    },
+    {
+      "id": "payments",
+      "title": "Capacity shares and payment shares do not match",
+      "subtitle": "Share of installed capacity compared with share of capacity payments, 2024.",
+      "source_page": 17,
+      "source": "PIDE and PPIB, as cited in the source",
+      "panels": [
+        {
+          "title": "Share of total",
+          "rows": [
+            [
+              "Government plants",
+              46,
+              49
+            ],
+            [
+              "CPEC",
+              17,
+              36
+            ],
+            [
+              "Other IPPs / KE",
+              37,
+              15
+            ]
+          ],
+          "unit": "%",
+          "series": [
+            "Installed capacity",
+            "Capacity payments"
+          ],
+          "maximum": 60
+        }
+      ],
+      "note": "The PDF uses \u201cGENCOs\u201d for the government group and \u201cIPPs\u201d for the remaining group. Labels here follow its surrounding ownership discussion; the source\u2019s grouping is retained.",
+      "kind": "bars"
+    },
+    {
+      "id": "losses",
+      "title": "Rs 509 billion lost between the network and the cash register",
+      "subtitle": "Annual financial shortfalls, PKR billion. Physical losses and unpaid bills are different problems.",
+      "source_page": 20,
+      "source": "Performance Evaluation Report 2022\u201323, as cited by Caravan Media for this FY23\u2013FY24 comparison",
+      "panels": [
+        {
+          "title": "PKR billion",
+          "rows": [
+            [
+              "FY2022\u201323",
+              166,
+              236
+            ],
+            [
+              "FY2023\u201324",
+              230,
+              279
+            ]
+          ],
+          "unit": "B",
+          "series": [
+            "T&D losses",
+            "Under-recovery"
+          ],
+          "maximum": 300
+        }
+      ],
+      "note": "Totals: Rs 402B in FY23 and Rs 509B in FY24. The increase is Rs 107B, or 26.6%. The source\u2019s caption cites the 2022\u201323 report even for FY24 values; that provenance limitation is retained.",
+      "kind": "bars"
+    },
+    {
+      "id": "discos",
+      "title": "The national average hides very different networks",
+      "subtitle": "Distribution-company performance in the source\u2019s FY2022\u201323 comparison.",
+      "source_page": 22,
+      "source": "Performance Evaluation Report 2022\u201323",
+      "panels": [
+        {
+          "title": "T&D losses (%)",
+          "rows": [
+            [
+              "PESCO",
+              37
+            ],
+            [
+              "SEPCO",
+              34
+            ],
+            [
+              "HESCO",
+              28
+            ],
+            [
+              "QESCO",
+              27
+            ],
+            [
+              "K-Electric",
+              15
+            ],
+            [
+              "MEPCO",
+              14
+            ],
+            [
+              "LESCO",
+              11
+            ],
+            [
+              "GEPCO",
+              9
+            ],
+            [
+              "FESCO",
+              9
+            ],
+            [
+              "IESCO",
+              8
+            ]
+          ],
+          "unit": "%",
+          "series": [
+            "Share"
+          ],
+          "maximum": 40
+        },
+        {
+          "title": "Financial impact (PKR billion)",
+          "rows": [
+            [
+              "PESCO",
+              77.5
+            ],
+            [
+              "SEPCO",
+              21.2
+            ],
+            [
+              "HESCO",
+              14
+            ],
+            [
+              "QESCO",
+              22.3
+            ],
+            [
+              "K-Electric",
+              2.2
+            ],
+            [
+              "MEPCO",
+              8.7
+            ],
+            [
+              "LESCO",
+              23.1
+            ],
+            [
+              "GEPCO",
+              -1.7
+            ],
+            [
+              "FESCO",
+              -1.6
+            ],
+            [
+              "IESCO",
+              0.7
+            ]
+          ],
+          "unit": "B",
+          "series": [
+            "Share"
+          ],
+          "maximum": 80
+        }
+      ],
+      "note": "The original\u2019s unrelated capacity-payments headline has been corrected. Negative financial values are preserved as printed; they are not negative physical electricity losses. Rounded entries sum to Rs 166.4B, against a stated Rs 166B total.",
+      "kind": "bars"
+    },
+    {
+      "id": "benchmark",
+      "title": "Losses leave less electricity to pay for the system",
+      "subtitle": "T&D loss rates in the original international comparison.",
+      "source_page": 23,
+      "source": "IPRI, Curbing the Growing Circular Debt in Pakistan\u2019s Power Sector",
+      "panels": [
+        {
+          "title": "Electricity lost (%)",
+          "rows": [
+            [
+              "Pakistan",
+              16.4
+            ],
+            [
+              "India",
+              15
+            ],
+            [
+              "Bangladesh",
+              10.3
+            ],
+            [
+              "United States",
+              6
+            ],
+            [
+              "Singapore",
+              2
+            ],
+            [
+              "Global benchmark",
+              8
+            ]
+          ],
+          "unit": "%",
+          "series": [
+            "Share"
+          ],
+          "maximum": 20
+        }
+      ],
+      "note": "The comparison does not specify a common reporting year. The PDF gives Pakistan as 16.3% elsewhere; this chart retains its printed 16.4%.",
+      "kind": "bars"
+    },
+    {
+      "id": "debt",
+      "title": "Clearing the arrears once did not stop them coming back",
+      "subtitle": "Power-sector circular debt, PKR billion, 2006\u20132024.",
+      "source_page": 25,
+      "source": "IPRI, Curbing the Growing Circular Debt in Pakistan\u2019s Power Sector",
+      "panels": [
+        {
+          "title": "PKR billion",
+          "rows": [
+            [
+              "2006",
+              100
+            ],
+            [
+              "2007",
+              150
+            ],
+            [
+              "2008",
+              250
+            ],
+            [
+              "2009",
+              350
+            ],
+            [
+              "2010",
+              450
+            ],
+            [
+              "2011",
+              750
+            ],
+            [
+              "2012",
+              1100
+            ],
+            [
+              "2013",
+              450
+            ],
+            [
+              "2014",
+              500
+            ],
+            [
+              "2015",
+              650
+            ],
+            [
+              "2016",
+              650
+            ],
+            [
+              "2017",
+              1000
+            ],
+            [
+              "2018",
+              1450
+            ],
+            [
+              "2019",
+              1850
+            ],
+            [
+              "2020",
+              2150
+            ],
+            [
+              "2021",
+              2300
+            ],
+            [
+              "2022",
+              2250
+            ],
+            [
+              "2023",
+              2300
+            ],
+            [
+              "2024",
+              2650
+            ]
+          ],
+          "unit": "B",
+          "series": [
+            "Circular debt"
+          ],
+          "maximum": 3000
+        }
+      ],
+      "note": "Only the 2013 value (Rs 450B) and 2024 value (Rs 2,650B) are explicitly stated in the source\u2019s chart. Other annual points are approximate visual readings rounded to Rs 50B; the 2013 point follows a government payment intervention.",
+      "kind": "line"
+    },
+    {
+      "id": "markets",
+      "title": "The rules of the market can change",
+      "subtitle": "Number of jurisdictions by electricity-market structure in the source comparison.",
+      "source_page": 29,
+      "source": "Global Power Market Structures Database, as cited in the source",
+      "panels": [
+        {
+          "title": "Number of jurisdictions",
+          "rows": [
+            [
+              "Vertically integrated",
+              215,
+              72
+            ],
+            [
+              "Single buyer",
+              14,
+              89
+            ],
+            [
+              "Wholesale / retail competition",
+              1,
+              69
+            ]
+          ],
+          "unit": "",
+          "series": [
+            "1989",
+            "2024"
+          ],
+          "maximum": 250
+        }
+      ],
+      "note": "The PDF calls these \u201ccountries\u201d, but counts 230 in each year without defining coverage. \u201cJurisdictions\u201d is used here; the original counts are reproduced, not independently verified.",
+      "kind": "bars"
+    },
+    {
+      "id": "transport",
+      "title": "New electricity demand could begin on the road",
+      "subtitle": "Illustrative extra demand from transport electrification, MW.",
+      "source_page": 33,
+      "source": "Caravan Media calculations",
+      "panels": [
+        {
+          "title": "Potential additional demand",
+          "rows": [
+            [
+              "Trucks and tractors",
+              1550
+            ],
+            [
+              "Cars",
+              1400
+            ],
+            [
+              "Motorcycles",
+              1300
+            ],
+            [
+              "Buses and SUVs",
+              250
+            ]
+          ],
+          "unit": " MW",
+          "series": [
+            "Share"
+          ],
+          "maximum": 2000
+        }
+      ],
+      "note": "Total: 4,500 MW. This is a full-electrification scenario, not a forecast or a measured load. Charging times, adoption, vehicle efficiency and network readiness would determine actual demand.",
+      "kind": "bars"
+    },
+    {
+      "id": "sales",
+      "title": "Both homes and factories bought less grid electricity in 2023",
+      "subtitle": "Electricity sales, GWh. Exact values transcribed from the source chart.",
+      "source_page": 36,
+      "source": "Performance Evaluation Report 2022\u201323",
+      "panels": [
+        {
+          "title": "GWh",
+          "rows": [
+            [
+              "2021",
+              57855,
+              29886
+            ],
+            [
+              "2022",
+              60409,
+              33958
+            ],
+            [
+              "2023",
+              53523,
+              31088
+            ]
+          ],
+          "unit": " GWh",
+          "series": [
+            "Residential",
+            "Industrial"
+          ],
+          "maximum": 70000
+        }
+      ],
+      "note": "Calculated from the printed values, the 2022\u201323 declines are 11.4% for residential sales and 8.5% for industrial sales. The PDF\u2019s \u221213% and \u22129% annotations, and its separate 11% industrial claim, are not used.",
+      "kind": "line"
+    },
+    {
+      "id": "solar",
+      "title": "The price signal was pointing towards the roof",
+      "subtitle": "Solar-panel import value reported in the December 2024 series, US$ million.",
+      "source_page": 39,
+      "source": "Caravan Media, Energy Series",
+      "panels": [
+        {
+          "title": "US$ million",
+          "rows": [
+            [
+              "2020",
+              310
+            ],
+            [
+              "2023",
+              714
+            ],
+            [
+              "FY2024",
+              2100
+            ]
+          ],
+          "unit": "M",
+          "series": [
+            "Share"
+          ],
+          "maximum": 2500
+        }
+      ],
+      "note": "Additional chart rebuilt from the source\u2019s prose. Its year labels mix calendar years and a fiscal year; import value is not installed solar capacity.",
+      "kind": "bars"
+    }
+  ]
+}

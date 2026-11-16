@@ -16,6 +16,11 @@
         <link rel="stylesheet" href="css/style.css" />
         <link rel="stylesheet" href="css/style-xlarge.css" />
     </noscript>
+    <style>
+        @media (min-width: 981px) {
+            .landing-page .landing-link-strip { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+        }
+    </style>
 </head>
 
 <body id="top">
@@ -66,16 +71,23 @@
 
                 <div class="landing-spotlight reveal" data-article-spotlight>
                     <div class="landing-spotlight-copy">
-                        <p data-article-kicker>Public finance</p>
-                        <h3 data-article-title>The Gilgit-Baltistan budget</h3>
-                        <p class="landing-spotlight-description" data-article-description>A 100-rupee guide to where Gilgit-Baltistan’s budget comes from, what it keeps running, and what remains for development.</p>
-                        <a href="gilgit-baltistan-budget.html" class="landing-read-more link-arrow" data-article-read-more>Read more <span class="ui-arrow" aria-hidden="true"></span></a>
+                        <p data-article-kicker>Energy · Nine-part series</p>
+                        <h3 data-article-title>Pakistan’s power landscape</h3>
+                        <p class="landing-spotlight-description" data-article-description>Nine stories about electricity, prices, debt and solar, and the choices shaping Pakistan’s energy future.</p>
+                        <a href="pakistan-electricity-puzzle.html" class="landing-read-more link-arrow" data-article-read-more>Read more <span class="ui-arrow" aria-hidden="true"></span></a>
                     </div>
-                    <img src="images/shared/article-previews/gb-budget.jpg" alt="Gilgit-Baltistan Assembly building against the mountains">
+                    <img src="images/pages/energy-series/energy-hero.webp" alt="An electricity substation illuminated at dusk">
                 </div>
 
                 <div class="landing-link-strip reveal">
                     <button type="button" class="active" data-article-nav
+                        data-href="pakistan-electricity-puzzle.html"
+                        data-kicker="Energy · Nine-part series"
+                        data-title="Pakistan’s power landscape"
+                        data-description="Nine stories about electricity, prices, debt and solar, and the choices shaping Pakistan’s energy future."
+                        data-image="images/pages/energy-series/energy-hero.webp"
+                        data-alt="An electricity substation illuminated at dusk">Pakistan’s power landscape</button>
+                    <button type="button" data-article-nav
                         data-href="gilgit-baltistan-budget.html"
                         data-kicker="Public finance"
                         data-title="The Gilgit-Baltistan budget"
@@ -107,6 +119,13 @@
 
                 <div class="landing-mobile-carousel" data-mobile-article-carousel>
                     <div class="landing-mobile-track" data-mobile-article-track>
+                        <a href="pakistan-electricity-puzzle.html" class="landing-mobile-article-card">
+                            <img src="images/pages/energy-series/energy-hero.webp" alt="An electricity substation illuminated at dusk">
+                            <div>
+                                <p>Energy · Nine-part series</p>
+                                <h3>Pakistan’s power landscape <span class="ui-arrow" aria-hidden="true"></span></h3>
+                            </div>
+                        </a>
                         <a href="gilgit-baltistan-budget.html" class="landing-mobile-article-card">
                             <img src="images/shared/article-previews/gb-budget.jpg" alt="Gilgit-Baltistan Assembly building against the mountains">
                             <div>
@@ -141,6 +160,7 @@
                         <button type="button" data-mobile-article-dot aria-label="Show article 2"></button>
                         <button type="button" data-mobile-article-dot aria-label="Show article 3"></button>
                         <button type="button" data-mobile-article-dot aria-label="Show article 4"></button>
+                        <button type="button" data-mobile-article-dot aria-label="Show article 5"></button>
                     </div>
                 </div>
             </div>

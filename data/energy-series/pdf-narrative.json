@@ -1,0 +1,2257 @@
+[
+  {
+    "part": 1,
+    "pages": [
+      3,
+      8
+    ],
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Electricity prices in Pakistan are at an all-time high, impacting households and making industries less competitive. For many, energy bills consume a substantial portion of monthly income, adding to the financial burden on everyday Pakistanis. But why is electricity so expensive, and what can be done to reduce costs? To answer these questions, we break down how the power system operates and where the key issues lie.",
+        "pages": [
+          3
+        ],
+        "id": "01.01"
+      },
+      {
+        "type": "heading",
+        "text": "Pakistan’s Power System Structure",
+        "pages": [
+          3
+        ],
+        "id": "01.02"
+      },
+      {
+        "type": "paragraph",
+        "text": "Pakistan's power system has three main components: generation, transmission, and distribution. Each stage plays a crucial role in how electricity reaches consumers, and challenges in each contribute to high electricity prices.",
+        "pages": [
+          3
+        ],
+        "id": "01.03"
+      },
+      {
+        "type": "list",
+        "text": "1. Generation – This is where electricity is produced. The generation sector is overseen by the National Electric Power Regulatory Authority (NEPRA).",
+        "pages": [
+          3
+        ],
+        "id": "01.04"
+      },
+      {
+        "type": "list",
+        "text": "2. Transmission – Once electricity is generated, it’s transmitted over long distances from power plants to distribution companies (DISCOs). This sector is regulated and planned by the National Transmission & Despatch Company (NTDC).",
+        "pages": [
+          3
+        ],
+        "id": "01.05"
+      },
+      {
+        "type": "list",
+        "text": "3. Distribution – Finally, DISCOs bring power from transmission lines to the meters, delivering it to households, businesses, and industries.",
+        "pages": [
+          3
+        ],
+        "id": "01.06"
+      },
+      {
+        "type": "heading",
+        "text": "Generation: The Starting Point of Power",
+        "pages": [
+          4
+        ],
+        "id": "01.07"
+      },
+      {
+        "type": "paragraph",
+        "text": "As of 2024, Pakistan’s total installed power capacity is approximately 46,000 MW, which has grown by 83% since 2015, when capacity was around 25,000 MW. However, despite this growth, challenges persist due to over-reliance on imported fuels, underutilization, and varying costs across regions.",
+        "pages": [
+          4
+        ],
+        "id": "01.08"
+      },
+      {
+        "type": "heading",
+        "text": "Ownership and Regional Breakdown",
+        "pages": [
+          4
+        ],
+        "id": "01.09"
+      },
+      {
+        "type": "list",
+        "text": "● Government Ownership: About 46% of generation is owned by government entities, primarily WAPDA (Water and Power Development Authority).",
+        "pages": [
+          4
+        ],
+        "id": "01.10"
+      },
+      {
+        "type": "list",
+        "text": "● CPEC Projects: 17% of the generation capacity comes from projects initiated under the China-Pakistan Economic Corridor (CPEC).",
+        "pages": [
+          4
+        ],
+        "id": "01.11"
+      },
+      {
+        "type": "list",
+        "text": "● Private Sector: The remaining 37% is held by private entities like K-Electric and various Independent Power Producers (IPPs).",
+        "pages": [
+          4
+        ],
+        "id": "01.12"
+      },
+      {
+        "type": "heading",
+        "text": "Capacity Mix",
+        "pages": [
+          4
+        ],
+        "id": "01.13"
+      },
+      {
+        "type": "paragraph",
+        "text": "Pakistan’s energy capacity relies heavily on thermal sources, making it vulnerable to fluctuations in global fuel prices,",
+        "pages": [
+          4
+        ],
+        "id": "01.14"
+      },
+      {
+        "type": "list",
+        "text": "● Thermal (Oil, Gas, Coal): 63% of capacity, with 16% from coal, 23% from gas, 10% from oil, and 13% from RLNG.",
+        "pages": [
+          4
+        ],
+        "id": "01.15"
+      },
+      {
+        "type": "list",
+        "text": "● Hydel (Dams like Tarbela): 23% of total capacity, providing a lower-cost alternative.",
+        "pages": [
+          4
+        ],
+        "id": "01.16"
+      },
+      {
+        "type": "list",
+        "text": "● Nuclear: 8%, with key facilities in Karachi and Chashma.",
+        "pages": [
+          5
+        ],
+        "id": "01.17"
+      },
+      {
+        "type": "list",
+        "text": "● Renewables (Solar, Wind): 6%.",
+        "pages": [
+          5
+        ],
+        "id": "01.18"
+      },
+      {
+        "type": "paragraph",
+        "text": "There are three key challenges in Generation",
+        "pages": [
+          5
+        ],
+        "id": "01.19"
+      },
+      {
+        "type": "list",
+        "text": "1. Overcapacity and Seasonal Demand Fluctuations: Pakistan’s power demand peaks at 30,000 MW in summer but drops to less than 17,000 MW in winter, leaving up to 29,000 MW unused in cooler months.",
+        "pages": [
+          5
+        ],
+        "id": "01.20"
+      },
+      {
+        "type": "list",
+        "text": "2. Reliance on Imported Fuels: In 2024, 22% of fuel for electricity was imported, with past years averaging around 48% imported fuel.",
+        "pages": [
+          5
+        ],
+        "id": "01.21"
+      },
+      {
+        "type": "list",
+        "text": "3. Low Efficiency of Power Plants: Many plants, like the Guddu power plant, operate below capacity due to inefficiencies, driving up costs for consumers.",
+        "pages": [
+          5
+        ],
+        "id": "01.22"
+      },
+      {
+        "type": "heading",
+        "text": "Transmission: Bridging Generation and Distribution",
+        "pages": [
+          5
+        ],
+        "id": "01.23"
+      },
+      {
+        "type": "paragraph",
+        "text": "Transmission is a significant bottleneck in Pakistan’s power system. While generation capacity stands at 46,000 MW, transmission infrastructure only supports about 26,000 MW. The two main transmission systems – the National Grid (NTDC) and KE’s network – struggle to efficiently move power where it’s needed most.",
+        "pages": [
+          5
+        ],
+        "id": "01.24"
+      },
+      {
+        "type": "paragraph",
+        "text": "There are three key transmission challenges",
+        "pages": [
+          6
+        ],
+        "id": "01.25"
+      },
+      {
+        "type": "list",
+        "text": "1. Infrastructure Strain: Many critical grids (e.g., Gatti, New Multan, Muzaffargarh, and Lahore) are overloaded, leading to forced load shedding.",
+        "pages": [
+          6
+        ],
+        "id": "01.26"
+      },
+      {
+        "type": "list",
+        "text": "2. Transmission Losses: In FY23, 2.4% of electricity generated was lost in transmission, translating to a loss of PKR 30.7 billion.",
+        "pages": [
+          6
+        ],
+        "id": "01.27"
+      },
+      {
+        "type": "list",
+        "text": "3. Missing Transmission Network: Only 84% of villages in the NTDC-managed system have electricity, compared to KE’s 99.2% coverage. Transmission gaps prevent efficient use of low-cost power from the South, which produces cheaper coal-based electricity, while the North relies more on expensive oil and gas. Furthermore, only 70-80% of the population in the country are on-grid.",
+        "pages": [
+          6
+        ],
+        "id": "01.28"
+      },
+      {
+        "type": "heading",
+        "text": "Distribution: Delivering Power to Consumers",
+        "pages": [
+          6
+        ],
+        "id": "01.29"
+      },
+      {
+        "type": "paragraph",
+        "text": "The distribution sector comprises ten DISCOs, with 9 publicly owned and one privately owned (K-Electric). The sector serves over 38 million consumers, with 77% of demand in Punjab and KPK (North) and 23% in Sindh and Balochistan (South).",
+        "pages": [
+          6
+        ],
+        "id": "01.30"
+      },
+      {
+        "type": "paragraph",
+        "text": "There are three challenges in Distribution",
+        "pages": [
+          7
+        ],
+        "id": "01.31"
+      },
+      {
+        "type": "list",
+        "text": "1. Losses in Transmission and Distribution (T&D): Total T&D losses are about 16.3%, costing the system PKR 230 billion annually.",
+        "pages": [
+          7
+        ],
+        "id": "01.32"
+      },
+      {
+        "type": "list",
+        "text": "2. Under-Recovery and Collection Issues: Under-recovery accounts for an additional PKR 279 billion, making up 86% of revenue shortfalls, bringing the total losses to 509 billion in 2024.",
+        "pages": [
+          7
+        ],
+        "id": "01.33"
+      },
+      {
+        "type": "list",
+        "text": "3. Performance Gaps Among DISCOs: IESCO has the best performance in loss reduction and recovery, while PESCO has the highest T&D losses at 37%.",
+        "pages": [
+          7
+        ],
+        "id": "01.34"
+      },
+      {
+        "type": "heading",
+        "text": "How Can Costs Be Reduced?",
+        "pages": [
+          7
+        ],
+        "id": "01.35"
+      },
+      {
+        "type": "paragraph",
+        "text": "Addressing Pakistan’s electricity cost challenges requires an overhaul of the existing system to prioritize efficiency, reduce losses, and leverage lower-cost power sources. Key steps include:",
+        "pages": [
+          7
+        ],
+        "id": "01.36"
+      },
+      {
+        "type": "list",
+        "text": "1. Reducing Overcapacity and Optimizing Generation Mix: A rationalized approach to seasonal generation could minimize idle capacity costs. Additionally, using more local coal, nuclear, and renewable energy could reduce dependence on expensive imported fuels.",
+        "pages": [
+          7
+        ],
+        "id": "01.37"
+      },
+      {
+        "type": "list",
+        "text": "2. Investing in Transmission Infrastructure: Upgrading the transmission network, especially to connect power plants in the South with demand centers in the North, can lower overall costs.",
+        "pages": [
+          8
+        ],
+        "id": "01.38"
+      },
+      {
+        "type": "list",
+        "text": "3. Improving DISCO Efficiency: Addressing collection and T&D losses through better management practices and targeted investments can reduce financial losses.",
+        "pages": [
+          8
+        ],
+        "id": "01.39"
+      },
+      {
+        "type": "paragraph",
+        "text": "By addressing these challenges, Pakistan can move toward a more affordable and reliable power supply, reducing the economic strain on citizens and enhancing the competitiveness of local industries. Stay tuned as we explore each component in more detail in upcoming posts and videos.",
+        "pages": [
+          8
+        ],
+        "id": "01.40"
+      }
+    ]
+  },
+  {
+    "part": 2,
+    "pages": [
+      9,
+      14
+    ],
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "It is no secret that electricity in Pakistan has become expensive in the last three years. From 2020, per unit price saw an increase of more than 20% YoY. That pales in comparison to the historical increase of less than 8% YoY. Base electricity tariffs have doubled in less than five years and, if you include taxes and additional fixed charges, then the price per unit has almost tripled. Therefore, it begs the question; why is electricity so expensive in Pakistan?",
+        "pages": [
+          9
+        ],
+        "id": "02.01"
+      },
+      {
+        "type": "paragraph",
+        "text": "First let’s consider how we compare to other regional economies. Electricity costs in Pakistan are among the highest in South Asia, a situation that has significant implications for the economy, businesses, and household budgets. With a tariff of $0.21 per kWh, Pakistan’s electricity is nearly three times more expensive than in India ($0.08) and Bangladesh ($0.075). While neighboring countries have seen a decline in electricity prices between 2021 and 2024, Pakistan’s prices surged from $0.13 to $0.21 per kWh, a 61% increase.",
+        "pages": [
+          9
+        ],
+        "id": "02.02"
+      },
+      {
+        "type": "paragraph",
+        "text": "To understand why electricity got expensive so quickly, we need to break down the cost components that make up an electricity bill.",
+        "pages": [
+          10
+        ],
+        "id": "02.03"
+      },
+      {
+        "type": "heading",
+        "text": "The Anatomy of an Electricity Bill",
+        "pages": [
+          10
+        ],
+        "id": "02.04"
+      },
+      {
+        "type": "paragraph",
+        "text": "A typical electricity bill in Pakistan can be dissected into five main components: generation, transmission, distribution, taxes, and additional charges. Here’s how each part contributes to the final cost:",
+        "pages": [
+          10
+        ],
+        "id": "02.05"
+      },
+      {
+        "type": "heading",
+        "text": "1. Generation Costs",
+        "pages": [
+          10
+        ],
+        "id": "02.06"
+      },
+      {
+        "type": "paragraph",
+        "text": "The largest portion of the bill, electricity generation costs, accounts for nearly half (48%) of the final cost and is driven by the following four factors:",
+        "pages": [
+          10
+        ],
+        "id": "02.07"
+      },
+      {
+        "type": "heading",
+        "text": "1. Imported Fuel Dependency",
+        "pages": [
+          10
+        ],
+        "id": "02.08"
+      },
+      {
+        "type": "paragraph",
+        "text": "Although Pakistan has made progress in reducing its reliance on imported fuel, the sector remains highly exposed to global fuel price volatility. In 2021, imported fuels constituted 47% of Pakistan’s electricity generation mix. By 2024, this had dropped to 22%, thanks to an increased reliance on local coal and hydropower. However, the impact of global disruptions, like the Russia-Ukraine conflict, led to dramatic price increases in oil (up 85%), coal (up 200%), and natural gas (up nearly 300%). While prices have stabilized, they haven’t fully returned to pre-2020 levels, which keeps electricity generation costs high.",
+        "pages": [
+          10
+        ],
+        "id": "02.09"
+      },
+      {
+        "type": "paragraph",
+        "text": "Furthermore, RLNG (Regasified Liquefied Natural Gas) continues to be a substantial component of Pakistan’s energy mix, contributing 18% of the generation fuel in 2024. Between 2020 and 2023, RLNG prices reached record highs, peaking at $54/MMBTU in August 2022. Although the price has since stabilized around $13/MMBTU, even minor increases in RLNG prices have a significant effect; for instance, a 10% rise in RLNG prices leads to a 2% increase in the per-unit cost of electricity.",
+        "pages": [
+          11
+        ],
+        "id": "02.10"
+      },
+      {
+        "type": "heading",
+        "text": "2. Dollar-Denominated Power Purchase Agreements (PPAs)",
+        "pages": [
+          12
+        ],
+        "id": "02.11"
+      },
+      {
+        "type": "paragraph",
+        "text": "A large portion of the PPAs Pakistan has with independent power producers (IPPs) is denominated in USD. This means that the devaluation of the Pakistani Rupee (PKR) has a direct impact on electricity costs. Between 2018 and September 2023, the PKR saw a 200% depreciation from PKR 109 per USD to a peak of 306, stabilizing at around 280. This depreciation alone increased per-unit electricity costs by roughly 14 rupees between 2021 and 2024.",
+        "pages": [
+          12
+        ],
+        "id": "02.12"
+      },
+      {
+        "type": "heading",
+        "text": "3. Rising Interest Costs",
+        "pages": [
+          12
+        ],
+        "id": "02.13"
+      },
+      {
+        "type": "paragraph",
+        "text": "High-interest rates in the US and Pakistan have added to generation costs since we pay interest payments on the financing of the power plants. The US Federal Reserve’s rate rose from 0.5% in March 2022 to a peak of 5.5% in July 2023, making debt servicing more expensive. During this period, Pakistan’s own interest rate jumped from 9.75% to 22%, the highest among Asian economies, contributing an additional 4.3 rupees per unit to electricity costs.",
+        "pages": [
+          12
+        ],
+        "id": "02.14"
+      },
+      {
+        "type": "heading",
+        "text": "4. Excess Capacity Payments",
+        "pages": [
+          12
+        ],
+        "id": "02.15"
+      },
+      {
+        "type": "paragraph",
+        "text": "Pakistan’s installed capacity currently stands at approximately 46,000 MW, but peak summer demand reached only 34,000 MW in 2023, leaving a surplus of 12,000 MW. This capacity incurs annual payments of 2.1 trillion rupees, which costs consumers about 5.5 rupees per unit. Given our peak demand, Pakistan paid ~0.7 trillion rupees for power that was not utilized due to low demand. Since 2014, the country has added 84% more capacity, while peak demand only increased by 30%, further exacerbating the financial strain.",
+        "pages": [
+          12,
+          13
+        ],
+        "id": "02.16"
+      },
+      {
+        "type": "heading",
+        "text": "2. Transmission Costs",
+        "pages": [
+          13
+        ],
+        "id": "02.17"
+      },
+      {
+        "type": "paragraph",
+        "text": "While transmission accounts for a smaller part of the bill, approximately 3%, it adds up due to inefficiencies and outdated infrastructure. For example, in FY23, the National Transmission and Despatch Company (NTDC) reported line losses of around 2.4%, translating into financial losses of approximately PKR 30.7 billion. Additionally, limitations in the transmission network mean that only a portion of cheaper energy generated in the south (from sources like the Thar coal plants) can be delivered to the energy-deficient north. According to the most generous estimates, Pakistan's transmission network has a capacity of transmitting 26 thousand MW or only 56% of total installed capacity.",
+        "pages": [
+          13
+        ],
+        "id": "02.18"
+      },
+      {
+        "type": "heading",
+        "text": "3. Distribution Costs",
+        "pages": [
+          13
+        ],
+        "id": "02.19"
+      },
+      {
+        "type": "paragraph",
+        "text": "Distribution also weighs heavily on electricity costs, accounting for up to 8% of the bill, with losses and poor recovery rates leading to higher expenses for paying customers. Transmission and distribution (T&D) losses are significant, with an average loss rate of 16.3% in 2023. The worst-performing distribution company, PESCO, reported a loss rate of 37%, while IESCO was the most efficient at 8%. These losses add approximately 1.15 rupees per unit to consumer costs. Furthermore, poor bill recovery, with only 86% of dues collected, led to a shortfall of PKR 236 billion in 2023. Achieving a 100% recovery rate could reduce electricity prices by 2.3 rupees per unit.",
+        "pages": [
+          13
+        ],
+        "id": "02.20"
+      },
+      {
+        "type": "heading",
+        "text": "4. Taxes",
+        "pages": [
+          13
+        ],
+        "id": "02.21"
+      },
+      {
+        "type": "paragraph",
+        "text": "Electricity consumers bear a heavy tax burden, accounting for around PKR 860 billion in tax revenue, or nearly 9% of the total tax base. Taxes account for up to 15% of the bill.",
+        "pages": [
+          13
+        ],
+        "id": "02.22"
+      },
+      {
+        "type": "paragraph",
+        "text": "Consumers face seven different types of taxes, including a general sales tax (17.6%), income tax (10-12% on bills ranging from 500 to 20,000 PKR), and various surcharges. In total, taxes contribute roughly 8 rupees per unit to the final electricity price. In contrast, the agriculture sector, which uses a significant amount of subsidized energy, contributed only PKR 4 billion in taxes for FY23.",
+        "pages": [
+          13
+        ],
+        "id": "02.23"
+      },
+      {
+        "type": "heading",
+        "text": "5. Additional Charges",
+        "pages": [
+          13
+        ],
+        "id": "02.24"
+      },
+      {
+        "type": "paragraph",
+        "text": "Additional charges account for ~26% of the cost and cover several surcharges, from debt servicing to compensating for T&D losses. These include the costs associated with managing the sector’s circular debt, which has reached PKR 2.6 trillion. Servicing this debt alone costs about 1.5 rupees per unit. Fuel price adjustments, based on fluctuations in fuel costs, add further unpredictability and cost.",
+        "pages": [
+          13
+        ],
+        "id": "02.25"
+      },
+      {
+        "type": "heading",
+        "text": "The Economic Toll of High Electricity Prices",
+        "pages": [
+          14
+        ],
+        "id": "02.26"
+      },
+      {
+        "type": "paragraph",
+        "text": "The high cost of electricity has a profound impact on Pakistan’s economy and its competitive edge in global markets. From 2021 to 2024, industrial demand for grid power declined by approximately 11%, with industries like textiles seeing export drops of 9.3% in mid-2024 due to electricity costs. A recent study by the Pakistan Institute of Development Economics (PIDE) attributed a 0.75% drop in global competitiveness to high tariffs, estimating a 10% increase in production costs across all sectors.",
+        "pages": [
+          14
+        ],
+        "id": "02.27"
+      },
+      {
+        "type": "paragraph",
+        "text": "High tariffs are driving industries away from grid power towards self-generation. Roughly 1,200 captive power units are operational in Pakistan, with a combined capacity of around 5,000 MW. The trend towards solar energy is also gaining traction among high-paying residential consumers, further eroding the revenue base of grid power suppliers.",
+        "pages": [
+          14
+        ],
+        "id": "02.28"
+      },
+      {
+        "type": "heading",
+        "text": "The Path Forward",
+        "pages": [
+          14
+        ],
+        "id": "02.29"
+      },
+      {
+        "type": "paragraph",
+        "text": "With the grid struggling to retain high-paying industrial and residential customers, the energy sector is at a critical juncture. If high costs continue driving consumers to alternatives, Pakistan will be left with underutilized, costly capacity that adds no value to the economy.",
+        "pages": [
+          14
+        ],
+        "id": "02.30"
+      },
+      {
+        "type": "paragraph",
+        "text": "In the coming months, we'll explore potential reforms and policies to make electricity affordable and restore stability to Pakistan's energy landscape. Addressing each of these complex challenges is crucial for the sustainable development of the sector and the nation.",
+        "pages": [
+          14
+        ],
+        "id": "02.31"
+      }
+    ]
+  },
+  {
+    "part": 3,
+    "pages": [
+      15,
+      19
+    ],
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Imagine hiring a driver who must stay with you all day, even if you barely use the car. You pay them just for being available, plus covering their fuel, rental, and a guaranteed return on their time. This arrangement sounds costly—and its exactly how Pakistan’s capacity payments for Independent Power Producers (IPPs) work.",
+        "pages": [
+          15
+        ],
+        "id": "03.01"
+      },
+      {
+        "type": "paragraph",
+        "text": "Capacity payments are payments made to power plants simply for being available, even when their electricity isn’t needed. While intended to ensure stable power access, these contracts have saddled Pakistan with over Rs. 2.1 trillion in annual payments, weighing down the power sector and making electricity more expensive for everyone. Let’s break down how this system emerged, why it’s so costly, and what steps can help ease the burden.",
+        "pages": [
+          15
+        ],
+        "id": "03.02"
+      },
+      {
+        "type": "heading",
+        "text": "How Capacity Payments Became Pakistan’s Financial Burden",
+        "pages": [
+          15
+        ],
+        "id": "03.03"
+      },
+      {
+        "type": "heading",
+        "text": "Understanding Capacity Payments",
+        "pages": [
+          15
+        ],
+        "id": "03.04"
+      },
+      {
+        "type": "paragraph",
+        "text": "Capacity payments cover costs for power plants to remain operational, regardless of whether they generate electricity. They include:",
+        "pages": [
+          15
+        ],
+        "id": "03.05"
+      },
+      {
+        "type": "list",
+        "text": "● Fixed Availability Payments: A guaranteed sum for plants’ readiness to produce power.",
+        "pages": [
+          15
+        ],
+        "id": "03.06"
+      },
+      {
+        "type": "list",
+        "text": "● Fuel Reimbursements: Compensation for fuel, even if plants aren’t operating at full capacity.",
+        "pages": [
+          15
+        ],
+        "id": "03.07"
+      },
+      {
+        "type": "list",
+        "text": "● Return on Equity: Fixed returns to investors, ensuring profitability.",
+        "pages": [
+          15
+        ],
+        "id": "03.08"
+      },
+      {
+        "type": "list",
+        "text": "● Debt Servicing: Coverage for loans, which are often dollar-denominated and worsen as the rupee depreciates.",
+        "pages": [
+          15
+        ],
+        "id": "03.09"
+      },
+      {
+        "type": "paragraph",
+        "text": "These payments were meant to encourage private investment in energy, ensuring Pakistan had enough electricity capacity. However, with demand falling short of projections, Pakistan now pays billions annually for unused capacity.",
+        "pages": [
+          15
+        ],
+        "id": "03.10"
+      },
+      {
+        "type": "heading",
+        "text": "The Role of Growth Projections and Overcapacity",
+        "pages": [
+          15
+        ],
+        "id": "03.11"
+      },
+      {
+        "type": "paragraph",
+        "text": "In 2015, Pakistan projected rapid economic and population growth, spurring the launch of new energy projects, especially under the China-Pakistan Economic Corridor (CPEC). However, these growth expectations didn’t materialize as anticipated. Economic slowdowns, coupled with the switch to renewable and captive power by industries, led to lower demand from the national grid.",
+        "pages": [
+          15,
+          16
+        ],
+        "id": "03.12"
+      },
+      {
+        "type": "paragraph",
+        "text": "Since 2015, Pakistan’s installed capacity has grown by 84%, while peak demand rose by only 30%, leaving a significant surplus. As a result, Pakistan now pays Rs. 1.05 trillion annually for idle power plants, with capacity payments accounting for a major part of this burden.",
+        "pages": [
+          16
+        ],
+        "id": "03.13"
+      },
+      {
+        "type": "heading",
+        "text": "How the Exchange Rate Adds to the Burden",
+        "pages": [
+          16
+        ],
+        "id": "03.14"
+      },
+      {
+        "type": "paragraph",
+        "text": "Capacity payments are mostly dollar-denominated, meaning Pakistan’s energy costs rise with the rupee’s devaluation. The PKR/USD rate has significantly depreciated over recent years:",
+        "pages": [
+          16
+        ],
+        "id": "03.15"
+      },
+      {
+        "type": "list",
+        "text": "● At PKR 100/USD, capacity payments would be around Rs. 750 billion annually.",
+        "pages": [
+          16
+        ],
+        "id": "03.16"
+      },
+      {
+        "type": "list",
+        "text": "● At PKR 300/USD, these payments balloon to over Rs. 2 trillion.",
+        "pages": [
+          16
+        ],
+        "id": "03.17"
+      },
+      {
+        "type": "paragraph",
+        "text": "This currency-linked payment structure exacerbates Pakistan’s financial strain, as each rupee lost against the dollar amplifies costs for both the government and consumers.",
+        "pages": [
+          16
+        ],
+        "id": "03.18"
+      },
+      {
+        "type": "heading",
+        "text": "Breaking Down the Rs. 2.1 Trillion",
+        "pages": [
+          17
+        ],
+        "id": "03.19"
+      },
+      {
+        "type": "paragraph",
+        "text": "In 2024, capacity payments reached Rs. 2.1 trillion, with this amount distributed across different power entities:",
+        "pages": [
+          17
+        ],
+        "id": "03.20"
+      },
+      {
+        "type": "list",
+        "text": "● 36% goes toward CPEC projects, many of which are coal-fired and carry dollar-based costs.",
+        "pages": [
+          17
+        ],
+        "id": "03.21"
+      },
+      {
+        "type": "list",
+        "text": "● 15% funds Independent Power Producers (IPPs), particularly those operating under older contracts.",
+        "pages": [
+          17
+        ],
+        "id": "03.22"
+      },
+      {
+        "type": "list",
+        "text": "● 49% is allocated to government-owned power plants, including hydel and nuclear.",
+        "pages": [
+          17
+        ],
+        "id": "03.23"
+      },
+      {
+        "type": "paragraph",
+        "text": "This structure shows that nearly half of the payments go toward foreign-operated or foreign-financed projects, a stark reminder of how exchange rates impact Pakistan’s energy costs.",
+        "pages": [
+          17
+        ],
+        "id": "03.24"
+      },
+      {
+        "type": "heading",
+        "text": "Why Pakistan Can’t Simply Cut or Renegotiate Capacity Payments",
+        "pages": [
+          17
+        ],
+        "id": "03.25"
+      },
+      {
+        "type": "paragraph",
+        "text": "Given the massive financial burden, why doesn’t Pakistan just renegotiate these contracts? The answer lies in legally binding agreements:",
+        "pages": [
+          17
+        ],
+        "id": "03.26"
+      },
+      {
+        "type": "list",
+        "text": "● Sovereign Guarantees: IPP contracts are backed by government guarantees, meaning Pakistan is legally obligated to make these payments regardless of electricity production.",
+        "pages": [
+          18
+        ],
+        "id": "03.27"
+      },
+      {
+        "type": "list",
+        "text": "● Investor Confidence: Renegotiating or canceling contracts could deter future investment, as private investors may lose trust in the government’s commitments.",
+        "pages": [
+          18
+        ],
+        "id": "03.28"
+      },
+      {
+        "type": "list",
+        "text": "● Legal Ramifications: Canceling these contracts could lead to costly arbitration, similar to past cases where Pakistan faced penalties in international courts.",
+        "pages": [
+          18
+        ],
+        "id": "03.29"
+      },
+      {
+        "type": "paragraph",
+        "text": "While renegotiation could offer temporary relief, it risks damaging Pakistan’s investment reputation, creating long-term repercussions for the power sector.",
+        "pages": [
+          18
+        ],
+        "id": "03.30"
+      },
+      {
+        "type": "heading",
+        "text": "Potential Solutions to Ease the Capacity Payment Burden",
+        "pages": [
+          18
+        ],
+        "id": "03.31"
+      },
+      {
+        "type": "paragraph",
+        "text": "While renegotiating IPP contracts may be challenging, there are several ways Pakistan can address the capacity payment burden:",
+        "pages": [
+          18
+        ],
+        "id": "03.32"
+      },
+      {
+        "type": "list",
+        "text": "1. Debt Restructuring for CPEC Projects: China has invested heavily in Pakistan’s energy projects, with approximately $15 billion in debt remaining. Extending repayment terms from 10 to 15 years could save $550-750 million annually, reducing electricity costs by Rs. 2.5-3 per unit. Converting dollar-based loans to Chinese currency or local currency could also help stabilize payments.",
+        "pages": [
+          18
+        ],
+        "id": "03.33"
+      },
+      {
+        "type": "list",
+        "text": "2. Reforming IPP Contracts: The government could seek to restructure debt with non-CPEC IPPs by extending repayment periods and reducing operating costs. In some cases, renegotiating terms on return on equity could yield minor cost savings without alarming investors. Recent moves to terminate contracts with select IPPs have already saved PKR 150 billion, reducing per-unit costs by around Rs. 0.6.",
+        "pages": [
+          18
+        ],
+        "id": "03.34"
+      },
+      {
+        "type": "list",
+        "text": "3. Encouraging Domestic Demand Growth: Increasing demand can help utilize the existing capacity and reduce per-unit costs. Possible actions include:",
+        "pages": [
+          18
+        ],
+        "id": "03.35"
+      },
+      {
+        "type": "list",
+        "text": "○ Residential Demand: Encouraging the use of electric appliances and EVs by rationalizing tariffs.",
+        "pages": [
+          18
+        ],
+        "id": "03.36"
+      },
+      {
+        "type": "list",
+        "text": "○ Industrial Demand: Offering incentives for industries to shift from gas-fueled captive power to the national grid.",
+        "pages": [
+          18
+        ],
+        "id": "03.37"
+      },
+      {
+        "type": "list",
+        "text": "4. Expanding Renewable and Localized Power Switching to renewable sources, such as solar and wind, could reduce reliance on dollar-denominated energy and shift focus to more cost-effective, locally-sourced energy.",
+        "pages": [
+          18
+        ],
+        "id": "03.38"
+      },
+      {
+        "type": "heading",
+        "text": "Restructuring for a Sustainable Future",
+        "pages": [
+          18
+        ],
+        "id": "03.39"
+      },
+      {
+        "type": "paragraph",
+        "text": "Capacity payments are an unavoidable challenge that requires careful, strategic solutions. By exploring debt restructuring options, growing domestic demand, and expanding renewables, Pakistan can begin to manage this Rs. 500 billion burden. While there’s no quick fix, a measured approach can help make Pakistan’s energy sector more sustainable and less vulnerable to currency and demand fluctuations.",
+        "pages": [
+          18,
+          19
+        ],
+        "id": "03.40"
+      },
+      {
+        "type": "paragraph",
+        "text": "Through prudent policy adjustments and a focus on sustainable energy, Pakistan can begin to reduce its dependence on costly capacity payments, creating a more affordable and resilient power future for all.",
+        "pages": [
+          19
+        ],
+        "id": "03.41"
+      }
+    ]
+  },
+  {
+    "part": 4,
+    "pages": [
+      20,
+      24
+    ],
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Transmission and Distribution (T&D) losses have become a severe financial and operational burden on Pakistan’s power sector, costing the country Rs. 509 billion in 2024 alone. These losses drive up electricity costs for consumers, impact industry competitiveness, and strain an already challenged power sector. But what exactly are T&D losses, and why are they so costly for Pakistan? This section breaks down the problem, explores its root causes, and discusses potential solutions.",
+        "pages": [
+          20
+        ],
+        "id": "04.01"
+      },
+      {
+        "type": "heading",
+        "text": "What are T&D Losses?",
+        "pages": [
+          21
+        ],
+        "id": "04.02"
+      },
+      {
+        "type": "paragraph",
+        "text": "T&D losses occur in two main categories:",
+        "pages": [
+          21
+        ],
+        "id": "04.03"
+      },
+      {
+        "type": "list",
+        "text": "● Transmission Losses: Energy that dissipates as it travels from power plants over long distances to distribution networks. These losses are often technical and stem from infrastructure limitations.",
+        "pages": [
+          21
+        ],
+        "id": "04.04"
+      },
+      {
+        "type": "list",
+        "text": "● Distribution Losses: Often due to electricity theft and equipment tampering, distribution losses occur within neighborhoods and near end-users.",
+        "pages": [
+          21
+        ],
+        "id": "04.05"
+      },
+      {
+        "type": "paragraph",
+        "text": "In Pakistan, T&D losses have grown to encompass over 16% of all power generated, significantly higher than the global average of 8%. Recoveries also lag, with only 86% of billed electricity payments collected in 2024.",
+        "pages": [
+          21
+        ],
+        "id": "04.06"
+      },
+      {
+        "type": "heading",
+        "text": "The Financial Impact on Pakistan",
+        "pages": [
+          21
+        ],
+        "id": "04.07"
+      },
+      {
+        "type": "paragraph",
+        "text": "For consumers, T&D losses mean higher bills. On average, T&D inefficiencies add approximately Rs. 5 to the cost of each unit of electricity, a burden passed directly to the public. This increase exacerbates economic inequality, with high electricity costs disproportionately impacting low-income households. Additionally, T&D losses stifle industry competitiveness, as manufacturing and service sectors struggle with inflated power expenses.",
+        "pages": [
+          21
+        ],
+        "id": "04.08"
+      },
+      {
+        "type": "heading",
+        "text": "Global Comparisons",
+        "pages": [
+          21
+        ],
+        "id": "04.09"
+      },
+      {
+        "type": "paragraph",
+        "text": "Pakistan’s T&D losses at 16.4% place it among countries with the highest rates globally. Neighboring India, once facing losses over 25%, has successfully reduced its T&D losses to around 15% by implementing strategic reforms. Bangladesh has also made strides, with T&D losses at approximately 10.3%, closer to the global average. Developed countries such as the U.S. and Singapore keep T&D losses well under 8% due to advanced infrastructure and robust management practices.",
+        "pages": [
+          21
+        ],
+        "id": "04.10"
+      },
+      {
+        "type": "heading",
+        "text": "DISCO Performance: A Tale of Two Extremes",
+        "pages": [
+          21
+        ],
+        "id": "04.11"
+      },
+      {
+        "type": "paragraph",
+        "text": "Pakistan’s distribution companies (DISCOs) vary significantly in performance:",
+        "pages": [
+          21
+        ],
+        "id": "04.12"
+      },
+      {
+        "type": "list",
+        "text": "● Best Performer: IESCO has maintained T&D losses at just 8%, one of the lowest in the country.",
+        "pages": [
+          21
+        ],
+        "id": "04.13"
+      },
+      {
+        "type": "list",
+        "text": "● Worst Performer: PESCO, at 37% T&D losses, faces severe challenges in governance, infrastructure, and theft prevention.",
+        "pages": [
+          21
+        ],
+        "id": "04.14"
+      },
+      {
+        "type": "paragraph",
+        "text": "The uneven performance reflects disparities in local governance and infrastructure, highlighting the need for targeted solutions tailored to each region.",
+        "pages": [
+          22
+        ],
+        "id": "04.15"
+      },
+      {
+        "type": "heading",
+        "text": "Key Causes of High T&D Losses",
+        "pages": [
+          22
+        ],
+        "id": "04.16"
+      },
+      {
+        "type": "list",
+        "text": "1. Aging Infrastructure: Much of Pakistan’s transmission and distribution network is outdated, leading to inefficiencies and frequent breakdowns.",
+        "pages": [
+          22
+        ],
+        "id": "04.17"
+      },
+      {
+        "type": "list",
+        "text": "2. Widespread Theft: Unauthorized connections and meter tampering are rampant, particularly in residential areas, contributing significantly to distribution losses.",
+        "pages": [
+          22
+        ],
+        "id": "04.18"
+      },
+      {
+        "type": "list",
+        "text": "3. Governance Challenges: Many DISCOs lack the autonomy and skilled management necessary to improve efficiency, resulting in accountability gaps and operational inefficiencies.",
+        "pages": [
+          22
+        ],
+        "id": "04.19"
+      },
+      {
+        "type": "heading",
+        "text": "Learnings from Global Successes",
+        "pages": [
+          23
+        ],
+        "id": "04.20"
+      },
+      {
+        "type": "paragraph",
+        "text": "Countries like India and Bangladesh have shown that strategic interventions can bring down T&D losses. For instance:",
+        "pages": [
+          23
+        ],
+        "id": "04.21"
+      },
+      {
+        "type": "list",
+        "text": "● Smart Metering: Smart meters allow real-time monitoring and help prevent theft. In India, a significant rollout of smart meters has led to a 10–20% reduction in T&D losses.",
+        "pages": [
+          23
+        ],
+        "id": "04.22"
+      },
+      {
+        "type": "list",
+        "text": "● Governance Reforms: Clear accountability structures, corporatization, and transparency in DISCO management have made a difference in countries facing similar challenges.",
+        "pages": [
+          23
+        ],
+        "id": "04.23"
+      },
+      {
+        "type": "heading",
+        "text": "How Can Pakistan Address T&D Losses?",
+        "pages": [
+          23
+        ],
+        "id": "04.24"
+      },
+      {
+        "type": "list",
+        "text": "1. Strengthen DISCO Governance: Enhancing management autonomy and setting strict accountability measures can create a more efficient operating environment for DISCOs. Moving toward corporatization and empowering management to operate independently can also support better results.",
+        "pages": [
+          23
+        ],
+        "id": "04.25"
+      },
+      {
+        "type": "list",
+        "text": "2. Invest in Smart Technology: Adopting smart meters and advanced monitoring technology can drastically reduce theft and improve billing accuracy. Pilot projects in Pakistan have shown success, reducing losses by 10% in some areas, and wider implementation could yield substantial improvements.",
+        "pages": [
+          23,
+          24
+        ],
+        "id": "04.26"
+      },
+      {
+        "type": "list",
+        "text": "3. Shift T&D Management to Provincial Authorities: Devolving control of DISCOs to provincial governments can improve accountability and enable solutions that reflect the unique needs of each region. Provincial oversight can allow for locally-driven reforms and resource allocation that are better aligned with on-the-ground realities.",
+        "pages": [
+          24
+        ],
+        "id": "04.27"
+      },
+      {
+        "type": "paragraph",
+        "text": "Reducing T&D losses is critical for Pakistan’s energy future. Addressing these losses will not only reduce electricity costs for consumers but also strengthen the power sector, making it more sustainable and competitive. With targeted governance reforms, investments in smart technology, and local accountability, Pakistan can create a more efficient and resilient power network.",
+        "pages": [
+          24
+        ],
+        "id": "04.28"
+      }
+    ]
+  },
+  {
+    "part": 5,
+    "pages": [
+      25,
+      28
+    ],
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "In Pakistan, circular debt is a persistent problem that continuously drains the energy sector and the economy. This debt arises when one party in the energy supply chain can’t pay its dues, causing a domino effect of unpaid bills that cycles through the entire system. Circular debt has grown into a massive burden, reaching Rs. 2.65 trillion (2.4% of GDP) in 2024 and projected to rise to Rs. 2.8 trillion by 2025. Here’s how this cycle works, why it’s so costly, and what steps could help break it.",
+        "pages": [
+          25
+        ],
+        "id": "05.01"
+      },
+      {
+        "type": "heading",
+        "text": "How Circular Debt Accumulates",
+        "pages": [
+          26
+        ],
+        "id": "05.02"
+      },
+      {
+        "type": "paragraph",
+        "text": "Circular debt is a financial loop where unpaid bills keep passing from one energy sector entity to another. Here’s how the cycle works:",
+        "pages": [
+          26
+        ],
+        "id": "05.03"
+      },
+      {
+        "type": "list",
+        "text": "1. DISCO Losses: Distribution companies (DISCOs) incur financial losses from high Transmission & Distribution (T&D) losses and under-recoveries, as they can’t collect enough revenue from consumers.",
+        "pages": [
+          26
+        ],
+        "id": "05.04"
+      },
+      {
+        "type": "list",
+        "text": "2. Unpaid Bills to CPPA: Due to revenue shortfalls, DISCOs can’t fully pay the Central Power Purchasing Agency (CPPA) for the electricity they buy.",
+        "pages": [
+          26
+        ],
+        "id": "05.05"
+      },
+      {
+        "type": "list",
+        "text": "3. Delayed Payments to GENCOs: With DISCOs paying less, CPPA delays its payments to Generation Companies (GENCOs).",
+        "pages": [
+          26
+        ],
+        "id": "05.06"
+      },
+      {
+        "type": "list",
+        "text": "4. GENCO Payment Shortfall: GENCOs can’t pay fuel suppliers on time, adding another layer to the debt cycle.",
+        "pages": [
+          26
+        ],
+        "id": "05.07"
+      },
+      {
+        "type": "list",
+        "text": "5. Fuel Suppliers Affected: Fuel suppliers then struggle to meet their obligations to refineries and international fuel providers, spreading the financial strain across the energy sector.",
+        "pages": [
+          26
+        ],
+        "id": "05.08"
+      },
+      {
+        "type": "heading",
+        "text": "The Roots of Circular Debt",
+        "pages": [
+          26
+        ],
+        "id": "05.09"
+      },
+      {
+        "type": "paragraph",
+        "text": "Circular debt in Pakistan started in 2006 when global fuel prices surged. To shield consumers from skyrocketing energy costs, the government kept electricity tariffs low, leading to a gap between the cost of power generation and consumer prices. Here’s a timeline of how this gap widened:",
+        "pages": [
+          26
+        ],
+        "id": "05.10"
+      },
+      {
+        "type": "list",
+        "text": "● 2005: Consumers were charged Rs. 4 per unit while the cost of power was Rs. 4.6.",
+        "pages": [
+          26
+        ],
+        "id": "05.11"
+      },
+      {
+        "type": "list",
+        "text": "● 2009: By now, consumers paid Rs. 5.6 per unit, yet the cost had climbed to Rs. 8.5.",
+        "pages": [
+          26
+        ],
+        "id": "05.12"
+      },
+      {
+        "type": "list",
+        "text": "● Oil Price Surge: The global oil price reached record highs in 2008, driving Pakistan’s import bill up by 36%. With power generation heavily reliant on imported furnace oil, costs skyrocketed.",
+        "pages": [
+          26
+        ],
+        "id": "05.13"
+      },
+      {
+        "type": "paragraph",
+        "text": "Despite some tariff adjustments, the gap between the actual cost of electricity and the consumer price persisted. By 2024, circular debt had grown to unsustainable levels, compounded by several factors.",
+        "pages": [
+          26
+        ],
+        "id": "05.14"
+      },
+      {
+        "type": "heading",
+        "text": "Major Causes of Circular Debt",
+        "pages": [
+          26
+        ],
+        "id": "05.15"
+      },
+      {
+        "type": "paragraph",
+        "text": "Several key issues drive the accumulation of circular debt in Pakistan:",
+        "pages": [
+          26
+        ],
+        "id": "05.16"
+      },
+      {
+        "type": "list",
+        "text": "1. High T&D Losses: Inefficiencies within DISCOs—such as line losses and electricity theft—cost around Rs. 230 billion annually.",
+        "pages": [
+          26
+        ],
+        "id": "05.17"
+      },
+      {
+        "type": "list",
+        "text": "2. Under-Recoveries: DISCOs often fail to collect enough revenue, due to low tariffs and billing issues, resulting in Rs. 279 billion in under-recoveries in 2024.",
+        "pages": [
+          26
+        ],
+        "id": "05.18"
+      },
+      {
+        "type": "list",
+        "text": "3. Interest on Debt: The debt’s size means interest charges pile up, adding Rs. 143 billion to the circular debt in 2023 alone. In total, Rs. 789 billion was added to the debt in 2023.",
+        "pages": [
+          27
+        ],
+        "id": "05.19"
+      },
+      {
+        "type": "list",
+        "text": "4. Capacity Payments: Payments to power plants for staying operational—even when their power isn’t needed—add heavily to circular debt. For example, the HUBCO Coal and Port Qasim power plants remained idle for two years but still claimed capacity charges of up to 60% in 2024.",
+        "pages": [
+          27
+        ],
+        "id": "05.20"
+      },
+      {
+        "type": "list",
+        "text": "5. Unfunded Subsidies: The government provides subsidies to cover the difference between actual electricity costs and the rates consumers pay. However, when subsidies aren’t fully funded, the gap is absorbed as debt. For instance, unfunded tariff differential subsidies added Rs. 135 billion to circular debt between 2019 and 2020.",
+        "pages": [
+          27
+        ],
+        "id": "05.21"
+      },
+      {
+        "type": "list",
+        "text": "6. Delayed Tariff Revisions: The process of revising tariffs and notifying consumers takes about 90 days, causing more debt to accumulate, especially during periods of high fuel price volatility.",
+        "pages": [
+          27
+        ],
+        "id": "05.22"
+      },
+      {
+        "type": "heading",
+        "text": "The Impact of Circular Debt on Pakistan’s Economy",
+        "pages": [
+          27
+        ],
+        "id": "05.23"
+      },
+      {
+        "type": "paragraph",
+        "text": "The weight of circular debt affects nearly every sector in Pakistan. As the debt grows, electricity tariffs increase to help cover costs, leading to higher production expenses and impacting profitability:",
+        "pages": [
+          27
+        ],
+        "id": "05.24"
+      },
+      {
+        "type": "list",
+        "text": "● Rising Production Costs: Circular debt-induced tariff hikes raise manufacturing costs by an average of 2.8%.",
+        "pages": [
+          27
+        ],
+        "id": "05.25"
+      },
+      {
+        "type": "list",
+        "text": "● Profit Losses: Firms lose about 1.6% of net profits with every 10% increase in debt-related tariffs.",
+        "pages": [
+          27
+        ],
+        "id": "05.26"
+      },
+      {
+        "type": "list",
+        "text": "● Reduced Industrial Output: At a national level, industrial output drops by 0.09% to 0.12%, which may seem small but has a significant economic impact.",
+        "pages": [
+          27
+        ],
+        "id": "05.27"
+      },
+      {
+        "type": "list",
+        "text": "● Export Competitiveness: Rising electricity costs increase export prices by approximately 3.3%, making Pakistani goods less competitive in foreign markets.",
+        "pages": [
+          27
+        ],
+        "id": "05.28"
+      },
+      {
+        "type": "heading",
+        "text": "How Pakistan Has Tried to Manage Circular Debt",
+        "pages": [
+          27
+        ],
+        "id": "05.29"
+      },
+      {
+        "type": "paragraph",
+        "text": "Over the years, the government has used several measures to try to contain circular debt, but most have been temporary fixes:",
+        "pages": [
+          27
+        ],
+        "id": "05.30"
+      },
+      {
+        "type": "list",
+        "text": "1. Surcharges on Consumers: The government has imposed surcharges to recover some debt, making up as much as 13% of the per-unit cost of electricity (around Rs. 8 per unit). However, higher tariffs lead to more theft and lower recovery rates, proving counterproductive.",
+        "pages": [
+          27
+        ],
+        "id": "05.31"
+      },
+      {
+        "type": "list",
+        "text": "2. Budgetary Support and Liquidity Injections: The government allocates subsidies in its budget to cover the difference between generation costs and collections. For example, in 2013, Rs. 342 billion was injected to cut the debt, with an additional Rs. 138 billion in 2014. However, these injections provide only short-term relief.",
+        "pages": [
+          27
+        ],
+        "id": "05.32"
+      },
+      {
+        "type": "list",
+        "text": "3. Borrowing from Commercial Banks: To finance shortfalls, the government borrows from banks, creating a debt burden that further compounds interest payments and perpetuates the circular debt cycle.",
+        "pages": [
+          28
+        ],
+        "id": "05.33"
+      },
+      {
+        "type": "paragraph",
+        "text": "In 2024, the government allocated Rs. 1.19 trillion in subsidies to the power sector, including Rs. 276 billion to cover inter-DISCO tariff differences and Rs. 176 billion for K-Electric. Yet, without structural reforms, these measures only offer temporary relief.",
+        "pages": [
+          28
+        ],
+        "id": "05.34"
+      },
+      {
+        "type": "heading",
+        "text": "Breaking the Cycle of Circular Debt",
+        "pages": [
+          28
+        ],
+        "id": "05.35"
+      },
+      {
+        "type": "paragraph",
+        "text": "To address circular debt long-term, Pakistan needs structural reforms that target the root causes:",
+        "pages": [
+          28
+        ],
+        "id": "05.36"
+      },
+      {
+        "type": "list",
+        "text": "1. Reduce T&D Losses and Improve Revenue Collection: Investing in infrastructure to reduce line losses, implementing smart meters to detect theft, and improving billing systems can help DISCOs close the revenue gap.",
+        "pages": [
+          28
+        ],
+        "id": "05.37"
+      },
+      {
+        "type": "list",
+        "text": "2. Refinance Debt as Sovereign Debt: As interest rates decrease, the government can refinance circular debt at lower rates by issuing sovereign bonds, thus reducing interest costs.",
+        "pages": [
+          28
+        ],
+        "id": "05.38"
+      },
+      {
+        "type": "list",
+        "text": "3. Align Consumer Tariffs with Generation Costs: Ensuring that consumer tariffs reflect actual generation costs can help reduce the need for subsidies. Targeted subsidies through social programs like the Benazir Income Support Programme (BISP) can help protect low-income households from higher rates.",
+        "pages": [
+          28
+        ],
+        "id": "05.39"
+      },
+      {
+        "type": "list",
+        "text": "4. Shift to Local and Renewable Energy Sources: Retiring inefficient, high-cost power plants and prioritizing local and renewable energy sources can reduce the cost of generation, lessening the burden on subsidies and debt.",
+        "pages": [
+          28
+        ],
+        "id": "05.40"
+      },
+      {
+        "type": "list",
+        "text": "5. Restructure Capacity Payments: Reviewing and renegotiating capacity payments, particularly for idle or inefficient plants, can prevent further additions to circular debt.",
+        "pages": [
+          28
+        ],
+        "id": "05.41"
+      },
+      {
+        "type": "paragraph",
+        "text": "Circular debt has become a heavy and self-perpetuating burden on Pakistan’s economy. Addressing this issue requires a shift from temporary financial fixes to structural reforms that reduce inefficiencies, improve cost recovery, and promote renewable energy. By taking these steps, Pakistan can create a more stable, sustainable energy sector that supports economic growth without cycling deeper into debt.",
+        "pages": [
+          28
+        ],
+        "id": "05.42"
+      }
+    ]
+  },
+  {
+    "part": 6,
+    "pages": [
+      29,
+      31
+    ],
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Energy and politics have been deeply intertwined in Pakistan, with political agendas often shaping energy policy in ways that strain the economy and complicate energy access. Policies on fuel, gas, coal, and electricity have long been influenced by political interests, leading to inefficiencies, regional disparities, and market distortions.",
+        "pages": [
+          29
+        ],
+        "id": "06.01"
+      },
+      {
+        "type": "paragraph",
+        "text": "The single buyer model, where the Central Power Purchasing Agency (CPPA) is the sole purchaser of electricity from all generators, has further entrenched these issues—limiting market competition, delaying reforms, and reducing pricing transparency. This section examines how political decisions impact Pakistan’s energy landscape, creating unique challenges for sustainable development and financial stability.",
+        "pages": [
+          29
+        ],
+        "id": "06.02"
+      },
+      {
+        "type": "heading",
+        "text": "Fuel Prices: Politics of Equalization and Subsidies",
+        "pages": [
+          30
+        ],
+        "id": "06.03"
+      },
+      {
+        "type": "paragraph",
+        "text": "In Pakistan, petrol and diesel prices are kept uniform across the country despite varying transportation costs, thanks to the Inland Freight Equalization Margin (IFEM). This system averages the transportation cost of fuel nationwide, making it possible for consumers in remote areas to pay the same as those in urban centers. IFEM, which accounts for roughly 3.6% (around Rs. 10 per liter) of the final fuel price, is managed by the Oil and Gas Regulatory Authority (OGRA) and financed by all consumers, indirectly subsidizing transport costs.",
+        "pages": [
+          30
+        ],
+        "id": "06.04"
+      },
+      {
+        "type": "paragraph",
+        "text": "The government has also used cross-subsidies to control fuel prices, as seen in 2023, when motorcyclists and small car owners received a Rs. 50 per liter fuel subsidy while the affluent paid more. Though intended to aid lower-income groups, these subsidies increase fuel demand, putting pressure on foreign exchange reserves and costing an estimated Rs. 450 billion annually—a sum that could fund major infrastructure projects. Furthermore, differentiated pricing has led to a black market for subsidized fuel, diluting the intended benefits.",
+        "pages": [
+          30
+        ],
+        "id": "06.05"
+      },
+      {
+        "type": "heading",
+        "text": "Gas Pricing and Supply: Legacy of Mismanagement",
+        "pages": [
+          30
+        ],
+        "id": "06.06"
+      },
+      {
+        "type": "paragraph",
+        "text": "Pakistan’s approach to natural gas is rooted in outdated policies that encouraged heavy domestic use at low rates. Discovered in 1952, the Sui gas fields led to a boom in gas connections, particularly for residential use, which grew by an average of 11% annually. Despite dwindling reserves, a 2006 policy encouraged Compressed Natural Gas (CNG) for transport, creating an artificial price gap with petrol and promoting the CNG industry at the expense of long-term sustainability.",
+        "pages": [
+          30
+        ],
+        "id": "06.07"
+      },
+      {
+        "type": "paragraph",
+        "text": "Gas distribution also stirs political disputes. According to Article 158 of Pakistan’s constitution, provinces with gas reserves (mainly Sindh and Balochistan) have priority in meeting local demands. This provision has led to tensions, especially as Sindh protests the federal government’s diversion of its gas to other provinces. For instance, in 2020 and again recently, Sindh raised concerns over gas shortages, arguing that its rights are being compromised.",
+        "pages": [
+          30
+        ],
+        "id": "06.08"
+      },
+      {
+        "type": "heading",
+        "text": "Subsidies Fueling Inefficiencies",
+        "pages": [
+          30
+        ],
+        "id": "06.09"
+      },
+      {
+        "type": "paragraph",
+        "text": "Certain sectors have long benefited from subsidized gas, notably the fertilizer industry, which receives discounted feedstock gas to keep urea prices low. However, the Rs. 30 billion subsidy in 2024 did not translate into lower prices for farmers, who face inflated black-market rates due to hoarding and smuggling—often with the alleged involvement of officials. Similarly, export-oriented industries with captive power plants received Rs. 28 billion in gas subsidies in FY23 to boost competitiveness, yet export gains remain limited. In response to IMF pressure, the government has now committed to phasing out these subsidies and aligning captive power tariffs with market rates.",
+        "pages": [
+          30
+        ],
+        "id": "06.10"
+      },
+      {
+        "type": "heading",
+        "text": "Coal Supply: Untapped Potential Amid Political Roadblocks",
+        "pages": [
+          31
+        ],
+        "id": "06.11"
+      },
+      {
+        "type": "paragraph",
+        "text": "Discovered in 1991, the Thar coalfield in Sindh holds over 175 billion tons of coal—the largest deposit in Asia, with the capacity to meet Pakistan’s energy needs for centuries. Yet, for decades, development was stalled by revenue-sharing disputes between federal and provincial authorities. It wasn’t until 2015, through Chinese investment under the China-Pakistan Economic Corridor (CPEC), that Thar’s coal was finally tapped.",
+        "pages": [
+          31
+        ],
+        "id": "06.12"
+      },
+      {
+        "type": "paragraph",
+        "text": "Ironically, while Thar coal lay dormant, Pakistan invested in coal plants that relied on imported coal, just as the world was moving away from coal-fired power. Political hesitations and federal-provincial conflicts delayed Thar’s development, leading to a lost opportunity for energy independence.",
+        "pages": [
+          31
+        ],
+        "id": "06.13"
+      },
+      {
+        "type": "heading",
+        "text": "Electricity Pricing and the Burden of Cross-Subsidies",
+        "pages": [
+          31
+        ],
+        "id": "06.14"
+      },
+      {
+        "type": "paragraph",
+        "text": "To win public favor, the government has historically kept electricity prices low through tariff differential subsidies. This cross-subsidy approach charges industrial consumers higher rates to offset losses from low-income and loss-making residential sectors. However, this policy has incentivized inefficient energy use, with the residential sector suffering from 16.4% T&D losses and 7% under-recoveries.",
+        "pages": [
+          31
+        ],
+        "id": "06.15"
+      },
+      {
+        "type": "paragraph",
+        "text": "Since 2020, the government has struggled to maintain these subsidies as rising costs put pressure on public finances. Although Pakistan has abundant hydro potential (an estimated 60,000 MW), only 10,600 MW has been developed, mainly due to political neglect. Major projects like the Tarbela Dam (built in 1976) and Ghazi-Barotha Dam (completed in 2002) represent the last large-scale hydro developments, with no comparable projects completed since.",
+        "pages": [
+          31
+        ],
+        "id": "06.16"
+      },
+      {
+        "type": "paragraph",
+        "text": "Agriculture also bears heavily on electricity costs, with the sector showing a mere 63% recovery rate. Instead of charging higher rates, the government has initiated a program to solarize agricultural tube wells, a move aimed at reducing electricity demand and improving financial viability.",
+        "pages": [
+          31
+        ],
+        "id": "06.17"
+      },
+      {
+        "type": "heading",
+        "text": "The Cost of Political Decisions",
+        "pages": [
+          31
+        ],
+        "id": "06.18"
+      },
+      {
+        "type": "paragraph",
+        "text": "In Pakistan, the energy sector’s challenges are deeply rooted in political decisions that prioritize short-term gain over sustainable solutions. Fuel and gas subsidies, cross-subsidies in electricity, and mismanagement of resources like Thar coal illustrate how political agendas often sideline economic rationality. For Pakistan to achieve energy security, policymakers must adopt a more sustainable, economically sound approach that aligns with long-term national interests, not just political imperatives.",
+        "pages": [
+          31
+        ],
+        "id": "06.19"
+      }
+    ]
+  },
+  {
+    "part": 7,
+    "pages": [
+      32,
+      35
+    ],
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Pakistan finds itself in a puzzling spot: we have more electricity capacity than we use, yet consumers are fleeing the national grid. On average, only 23,000 MW of our 46,000 MW installed capacity is utilized, with peak demand hitting 30,000 MW in summer and dropping to 17,000 MW in winter.",
+        "pages": [
+          32
+        ],
+        "id": "07.01"
+      },
+      {
+        "type": "heading",
+        "text": "So why are people opting out?",
+        "pages": [
+          32
+        ],
+        "id": "07.02"
+      },
+      {
+        "type": "heading",
+        "text": "The Solar Surge",
+        "pages": [
+          32
+        ],
+        "id": "07.03"
+      },
+      {
+        "type": "paragraph",
+        "text": "High tariffs—averaging Rs. 54 per unit—are driving people to rooftop solar. In just the first half of 2024, Pakistan imported 13,000 MW worth of solar panels from China—over half of our current average grid usage. With net metering offering Rs. 22 per unit and a 2–3 year payback, solar isn’t just greener—it’s smarter economics.",
+        "pages": [
+          32
+        ],
+        "id": "07.04"
+      },
+      {
+        "type": "paragraph",
+        "text": "But what happens when we finally rationalize tariffs? The demand will return. And two big sectors are ready to grow: transportation and household electrification.",
+        "pages": [
+          32
+        ],
+        "id": "07.05"
+      },
+      {
+        "type": "heading",
+        "text": "Charging Up Pakistan’s Transport Sector",
+        "pages": [
+          32
+        ],
+        "id": "07.06"
+      },
+      {
+        "type": "paragraph",
+        "text": "Pakistan has over 30 million motorcycles and nearly 6 million cars. By 2030, we’re projected to have 40 million motorcycles and 6.7 million cars. The transport sector consumes $13 billion in imported fuel annually, accounting for 30% of Pakistan’s emissions.",
+        "pages": [
+          32
+        ],
+        "id": "07.07"
+      },
+      {
+        "type": "paragraph",
+        "text": "If we fully electrify transport, we’d add 4,500 MW of new demand and potentially cut emissions by 30%, saving the entire $13B fuel bill.",
+        "pages": [
+          32
+        ],
+        "id": "07.08"
+      },
+      {
+        "type": "heading",
+        "text": "How can we get there?",
+        "pages": [
+          33
+        ],
+        "id": "07.09"
+      },
+      {
+        "type": "heading",
+        "text": "1. Retrofitting Motorcycles",
+        "pages": [
+          33
+        ],
+        "id": "07.10"
+      },
+      {
+        "type": "paragraph",
+        "text": "Retrofitting motorcycles into electric vehicles is a relatively affordable option, costing between Rs. 65,000 to Rs. 130,000 depending on whether a battery is included. This switch can reduce fuel costs by up to 75%. Companies like ezBike have already introduced this service in Pakistan. However, this approach has its limitations—converted bikes often come with fewer features and production capacity is currently low, making it hard to scale quickly.",
+        "pages": [
+          33
+        ],
+        "id": "07.11"
+      },
+      {
+        "type": "heading",
+        "text": "2. Retrofitting Cars",
+        "pages": [
+          33
+        ],
+        "id": "07.12"
+      },
+      {
+        "type": "paragraph",
+        "text": "Retrofitting cars is technically possible but not yet practical in Pakistan. The cost is prohibitively high, starting at around Rs. 2.7 million and going much higher depending on the battery and conversion kit. In addition, the lack of local availability, skilled labor, and supporting infrastructure makes this option more challenging at the moment.",
+        "pages": [
+          33
+        ],
+        "id": "07.13"
+      },
+      {
+        "type": "heading",
+        "text": "3. New Electric Vehicles (EVs)",
+        "pages": [
+          33
+        ],
+        "id": "07.14"
+      },
+      {
+        "type": "paragraph",
+        "text": "New EVs are entering the Pakistani market, with electric bikes priced between Rs. 200,000 to Rs. 600,000, and EV cars ranging from Rs. 5 million to over Rs. 9 million. Companies like BYD and Dewan Motors are paving the way with new electric models. While high upfront costs remain a hurdle, government incentives and a push for local manufacturing could make EVs more accessible soon.",
+        "pages": [
+          33,
+          34
+        ],
+        "id": "07.15"
+      },
+      {
+        "type": "paragraph",
+        "text": "The shift to electric mobility also brings new business opportunities. These include assembling battery packs locally, manufacturing electric motors, and establishing battery swapping stations—an approach ezBike has already implemented. With the right policy support, these sectors could grow rapidly and create jobs while reducing reliance on fuel imports.",
+        "pages": [
+          34
+        ],
+        "id": "07.16"
+      },
+      {
+        "type": "heading",
+        "text": "Powering Homes, Efficiently",
+        "pages": [
+          34
+        ],
+        "id": "07.17"
+      },
+      {
+        "type": "paragraph",
+        "text": "Residential demand already accounts for 47% of national electricity use, well above the global average of 28%. Still, millions of households use gas for cooking, heating, and water—costing $1.3 billion and wasting energy.",
+        "pages": [
+          34
+        ],
+        "id": "07.18"
+      },
+      {
+        "type": "heading",
+        "text": "What if we go Electric?",
+        "pages": [
+          34
+        ],
+        "id": "07.19"
+      },
+      {
+        "type": "heading",
+        "text": "1. Cooking",
+        "pages": [
+          34
+        ],
+        "id": "07.20"
+      },
+      {
+        "type": "paragraph",
+        "text": "Pakistan has around 17 million households connected to gas, many of which rely on it for cooking. Transitioning these households to electric stoves—which are up to 75% efficient compared to 45% for gas—offers a more energy-efficient solution. If this shift takes place, it could generate approximately 2,100 MW of additional electricity demand.",
+        "pages": [
+          34
+        ],
+        "id": "07.21"
+      },
+      {
+        "type": "heading",
+        "text": "2. Heating",
+        "pages": [
+          34
+        ],
+        "id": "07.22"
+      },
+      {
+        "type": "paragraph",
+        "text": "Home heating needs are especially high in Pakistan’s colder northern regions, where usage peaks during the winter months. Shifting from gas-based heating to electric alternatives could also add about 2,100 MW of demand. This transition would reduce reliance on natural gas and provide opportunities for cleaner energy use during the colder season.",
+        "pages": [
+          34
+        ],
+        "id": "07.23"
+      },
+      {
+        "type": "heading",
+        "text": "3. Water Heating",
+        "pages": [
+          34
+        ],
+        "id": "07.24"
+      },
+      {
+        "type": "paragraph",
+        "text": "Water heating is another major use of household gas. Replacing gas geysers with electric geysers—known for being safer, more space-efficient, and energy-efficient—could contribute another 700 MW to electricity demand. Though electric geysers cost more to run, they come with advantages like longer lifespan and reduced risk of accidents.",
+        "pages": [
+          34
+        ],
+        "id": "07.25"
+      },
+      {
+        "type": "paragraph",
+        "text": "By electrifying cooking, heating, and water heating, Pakistan could add a total of 4,900 MW of new electricity demand. This shift not only opens doors for increased grid utilization but also supports the transition to cleaner and more efficient household energy use.",
+        "pages": [
+          34
+        ],
+        "id": "07.26"
+      },
+      {
+        "type": "heading",
+        "text": "The Bigger Picture",
+        "pages": [
+          34
+        ],
+        "id": "07.27"
+      },
+      {
+        "type": "paragraph",
+        "text": "Electrifying just two sectors—transport and households—could add 9,400 MW of demand and cut billions in fuel and gas imports. It would also open up massive markets for:",
+        "pages": [
+          34
+        ],
+        "id": "07.28"
+      },
+      {
+        "type": "list",
+        "text": "• Electric stoves and cookware",
+        "pages": [
+          35
+        ],
+        "id": "07.29"
+      },
+      {
+        "type": "list",
+        "text": "• EV parts and assembly",
+        "pages": [
+          35
+        ],
+        "id": "07.30"
+      },
+      {
+        "type": "list",
+        "text": "• Battery manufacturing and swapping",
+        "pages": [
+          35
+        ],
+        "id": "07.31"
+      },
+      {
+        "type": "list",
+        "text": "• Motor and power electronics production",
+        "pages": [
+          35
+        ],
+        "id": "07.32"
+      },
+      {
+        "type": "paragraph",
+        "text": "But to unlock this potential, tariff rationalization and investment in infrastructure are key. The grid must be ready not just to power homes, but to power change.",
+        "pages": [
+          35
+        ],
+        "id": "07.33"
+      }
+    ]
+  },
+  {
+    "part": 8,
+    "pages": [
+      36,
+      38
+    ],
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Pakistan’s industrial power consumption tells a troubling story. While industry accounts for 28% of our electricity use, the global average is 42%, and even higher in regional peers—India (42%), Bangladesh (45%), and China (58%). Up until 2022, things looked promising, with steady growth. But by 2023, industrial demand dropped 11%, and there’s one big reason: high energy prices.",
+        "pages": [
+          36
+        ],
+        "id": "08.01"
+      },
+      {
+        "type": "heading",
+        "text": "The Price of Power",
+        "pages": [
+          36
+        ],
+        "id": "08.02"
+      },
+      {
+        "type": "paragraph",
+        "text": "Between 2021 and 2024, industrial electricity tariffs surged by 90%, reaching an average of 16 cents/kWh—double the rates in India and Vietnam and nearly three times higher than in China. This steep cost has crushed competitiveness, especially in energy-intensive sectors like textiles. For example, energy costs in spinning jumped from 34% to 54% of total production costs.",
+        "pages": [
+          36
+        ],
+        "id": "08.03"
+      },
+      {
+        "type": "paragraph",
+        "text": "What’s worse? Industries pay more to subsidize residential consumers, making them less competitive globally and at home.",
+        "pages": [
+          37
+        ],
+        "id": "08.04"
+      },
+      {
+        "type": "heading",
+        "text": "The Shift to Captive and Solar",
+        "pages": [
+          37
+        ],
+        "id": "08.05"
+      },
+      {
+        "type": "paragraph",
+        "text": "Faced with these prices, many industries have gone off-grid. Over 50% of Pakistani industries now rely on captive power, mostly using gas. The textile sector alone controls 60% of this capacity. But change is coming—under an IMF commitment, non-export-oriented captive gas plants will lose supply by Jan 2025.",
+        "pages": [
+          37
+        ],
+        "id": "08.06"
+      },
+      {
+        "type": "paragraph",
+        "text": "That’s pushed many toward solar. Major players like Gul Ahmed (17.1 MW), Lucky Cement (25 MW), and DG Khan Cement (7 MW) have installed solar plants. Others like Citi Pharma are turning to solar to cut costs by Rs. 100 million annually.",
+        "pages": [
+          37
+        ],
+        "id": "08.07"
+      },
+      {
+        "type": "paragraph",
+        "text": "Still, this shift has its limits. High wheeling charges (Rs. 27/kWh) make transferring solar power between sites expensive, and solar alone can't support 24/7 operations—at best, it powers daytime shifts.",
+        "pages": [
+          37
+        ],
+        "id": "08.08"
+      },
+      {
+        "type": "heading",
+        "text": "How Do We Boost Industrial Demand?",
+        "pages": [
+          37
+        ],
+        "id": "08.09"
+      },
+      {
+        "type": "paragraph",
+        "text": "To revive industrial consumption and competitiveness, Pakistan needs a bold power pricing reset:",
+        "pages": [
+          37
+        ],
+        "id": "08.10"
+      },
+      {
+        "type": "list",
+        "text": "1. Allow Access to Marginal Cost Power Let industries use unutilized capacity at marginal cost—what it actually costs to generate extra electricity. This model works in India and Germany, where industrial tariffs are lower and better aligned with production costs.",
+        "pages": [
+          37
+        ],
+        "id": "08.11"
+      },
+      {
+        "type": "list",
+        "text": "2. Introduce Long-Term Power Contracts Give industries the option to lock in affordable rates for 10–20 years, similar to Chile’s mining sector, which secures power at 4–6 cents/kWh through long-term deals. This provides price certainty and shields against market shocks.",
+        "pages": [
+          37
+        ],
+        "id": "08.12"
+      },
+      {
+        "type": "list",
+        "text": "3. Enable Direct Contracts with Power Producers Allow bulk power consumers to negotiate directly with power generators, bypassing distribution companies. In Chile, industrial wheeling charges are just 1–2 cents/kWh, compared to 9 cents/kWh in Pakistan. This approach has fueled Chile’s mining-led export economy.",
+        "pages": [
+          37
+        ],
+        "id": "08.13"
+      },
+      {
+        "type": "list",
+        "text": "4. Ensure Reliable, 24/7 Power Supply No reform will matter unless electricity is stable and load-shedding free. Frequent outages and merit-order violations disrupt operations and deter investment.",
+        "pages": [
+          37
+        ],
+        "id": "08.14"
+      },
+      {
+        "type": "list",
+        "text": "5. Create Seasonal Incentives Launch winter power packages and “Use More, Pay Less” schemes to flatten seasonal demand curves. Pakistan’s previous industrial support package led to a jump in consumption from 4.3% to 18% in just seven months (2020–2021).",
+        "pages": [
+          38
+        ],
+        "id": "08.15"
+      },
+      {
+        "type": "heading",
+        "text": "The Bottom Line",
+        "pages": [
+          38
+        ],
+        "id": "08.16"
+      },
+      {
+        "type": "paragraph",
+        "text": "High electricity prices and unreliable supply are choking Pakistan’s industrial growth. By adopting a competitive, transparent, and demand-driven energy policy—modeled on global best practices—we can unlock our unused capacity, fuel exports, and reignite industrial recovery.",
+        "pages": [
+          38
+        ],
+        "id": "08.17"
+      }
+    ]
+  },
+  {
+    "part": 9,
+    "pages": [
+      39,
+      40
+    ],
+    "blocks": [
+      {
+        "type": "paragraph",
+        "text": "Pakistan is in the midst of a rooftop solar revolution. With electricity prices soaring and solar technology becoming cheaper than ever, millions of households are turning to the sun to power their lives. But as solar adoption accelerates, it poses a big question: Can the national grid survive this transformation—or should it evolve alongside it?",
+        "pages": [
+          39
+        ],
+        "id": "09.01"
+      },
+      {
+        "type": "heading",
+        "text": "What’s Fueling the Shift?",
+        "pages": [
+          39
+        ],
+        "id": "09.02"
+      },
+      {
+        "type": "paragraph",
+        "text": "Between 2021 and 2024, electricity prices in Pakistan more than doubled, jumping from Rs. 25 to Rs. 54 per unit. This sharp increase has made grid power unaffordable for many families. At the same time, the cost of solar panels has fallen significantly—dropping by 61% in just three years, from 28 cents to 11 cents per watt.",
+        "pages": [
+          39
+        ],
+        "id": "09.03"
+      },
+      {
+        "type": "paragraph",
+        "text": "Globally, solar panel and battery prices have declined by over 90% since 2010, with further price drops expected by 2030. This trend, combined with an oversupply of solar panels—especially from China—has made imports cheaper and accelerated Pakistan’s shift to rooftop solar.",
+        "pages": [
+          39
+        ],
+        "id": "09.04"
+      },
+      {
+        "type": "paragraph",
+        "text": "In FY24 alone, Pakistan imported $2.1 billion worth of solar panels—triple the $714 million imported in 2023, and nearly seven times more than the $310 million imported in 2020. The country is clearly investing heavily in solar as an alternative to expensive grid electricity.",
+        "pages": [
+          39
+        ],
+        "id": "09.05"
+      },
+      {
+        "type": "paragraph",
+        "text": "Households that adopt rooftop solar are saving big. With net metering rates at Rs. 21 per unit and grid tariffs at Rs. 54 per unit, solar users save Rs. 33 for every unit they generate. The payback period for a typical solar setup is now less than two years—well below the global average of five years—making it an attractive investment.",
+        "pages": [
+          39
+        ],
+        "id": "09.06"
+      },
+      {
+        "type": "heading",
+        "text": "Who’s Winning?",
+        "pages": [
+          39
+        ],
+        "id": "09.07"
+      },
+      {
+        "type": "paragraph",
+        "text": "Affluent households that can afford rooftop solar are enjoying enormous benefits. They’ve gained energy independence, protected themselves from future price hikes, and nearly eliminated their electricity bills. For these consumers, solar isn’t just a power source—it’s freedom from the broken grid.",
+        "pages": [
+          39
+        ],
+        "id": "09.08"
+      },
+      {
+        "type": "heading",
+        "text": "Who’s Being Left Behind?",
+        "pages": [
+          39
+        ],
+        "id": "09.09"
+      },
+      {
+        "type": "paragraph",
+        "text": "For lower-income households, the upfront cost of solar remains out of reach—even as prices fall. Additionally, rooftop solar isn’t a viable option for those living in apartments or densely populated urban areas with limited roof space. As more well-off consumers leave the grid, the fixed costs of maintaining infrastructure are passed on to fewer users, raising prices for everyone else. This dynamic is widening Pakistan’s energy inequality.",
+        "pages": [
+          39,
+          40
+        ],
+        "id": "09.10"
+      },
+      {
+        "type": "heading",
+        "text": "Should the Government Fight the Solar Boom?",
+        "pages": [
+          40
+        ],
+        "id": "09.11"
+      },
+      {
+        "type": "paragraph",
+        "text": "Cracking down on rooftop solar would send the wrong message. It could discourage private investment in renewables, slow progress toward clean energy goals, and increase reliance on expensive imported fuels like RLNG. On the other hand, doing nothing could push the national grid into a financial crisis, as fewer users are left to shoulder its rising costs.",
+        "pages": [
+          40
+        ],
+        "id": "09.12"
+      },
+      {
+        "type": "heading",
+        "text": "A Smarter Way Forward",
+        "pages": [
+          40
+        ],
+        "id": "09.13"
+      },
+      {
+        "type": "paragraph",
+        "text": "Pakistan needs balanced reforms to ensure both solar growth and grid stability. Tariff structures should reflect actual costs while protecting vulnerable users. Subsidies or low-interest solar loans can make solar more accessible to lower-income families. Net metering policies must be adjusted carefully to ensure long-term viability without discouraging adoption.",
+        "pages": [
+          40
+        ],
+        "id": "09.14"
+      },
+      {
+        "type": "paragraph",
+        "text": "The grid must also evolve. With the right upgrades, it can become a flexible and efficient partner in Pakistan’s clean energy future. Battery storage and smart distribution networks can help stabilize supply during peak demand and integrate decentralized solar generation more effectively.",
+        "pages": [
+          40
+        ],
+        "id": "09.15"
+      },
+      {
+        "type": "paragraph",
+        "text": "Rural electrification presents another major opportunity. Roughly 20–30% of the population remains off-grid. Solar mini-grids and community systems can bring affordable power to these areas faster than traditional grid expansion. Fintech platforms, such as Qist Bazaar, can offer financing solutions for underserved markets.",
+        "pages": [
+          40
+        ],
+        "id": "09.16"
+      },
+      {
+        "type": "paragraph",
+        "text": "As solar grows, Pakistan can begin retiring inefficient oil- and diesel-based power plants. The Asian Development Bank’s Energy Transition Mechanism offers a pathway to finance this shift. Local solar manufacturing, installation, and maintenance industries can also create jobs and boost economic growth.",
+        "pages": [
+          40
+        ],
+        "id": "09.17"
+      },
+      {
+        "type": "heading",
+        "text": "What’s the Endgame?",
+        "pages": [
+          40
+        ],
+        "id": "09.18"
+      },
+      {
+        "type": "paragraph",
+        "text": "Pakistan’s energy future doesn’t have to be a choice between solar and the grid. Instead, the grid must adapt to support this decentralized transition. A smarter, cleaner, and more inclusive energy system is within reach—if the right policies are in place.",
+        "pages": [
+          40
+        ],
+        "id": "09.19"
+      },
+      {
+        "type": "paragraph",
+        "text": "This is more than an energy revolution. It’s a chance to reshape Pakistan’s economy, reduce inequality, and take a big step toward climate resilience.",
+        "pages": [
+          40
+        ],
+        "id": "09.20"
+      }
+    ]
+  }
+]

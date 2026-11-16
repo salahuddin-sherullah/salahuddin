@@ -1,0 +1,254 @@
+[
+  {
+    "id": "distributed-solar",
+    "part": 1,
+    "title": "Rooftops are changing the electricity mix",
+    "caption": "Estimated distributed-solar share of total electricity generation, FY23 and FY25.",
+    "type": "bars",
+    "unit": "Share of generation (%)",
+    "maximum": 100,
+    "ticks": [
+      0,
+      25,
+      50,
+      75,
+      100
+    ],
+    "suffix": "%",
+    "decimals": 0,
+    "rows": [
+      [
+        "FY23",
+        10
+      ],
+      [
+        "FY25",
+        28
+      ]
+    ],
+    "columns": [
+      "Fiscal year",
+      "Distributed-solar share (%)"
+    ],
+    "colours": [
+      "#948d8d",
+      "#cf0000"
+    ],
+    "track": true,
+    "note": "Updated estimate, published June 2026. Includes modelled behind-the-meter generation. This is a generation share, not utility-scale installed capacity; the two charts use different denominators.",
+    "refs": [
+      111
+    ],
+    "source": "Ember and Renewables First, June 2026"
+  },
+  {
+    "id": "lng-exposure",
+    "part": 2,
+    "title": "Pakistan’s LNG supply is concentrated in one route",
+    "caption": "Share of LNG imports supplied by Qatar and the UAE; March 2026 assessment.",
+    "type": "bars",
+    "unit": "Share of imported LNG (%)",
+    "maximum": 100,
+    "ticks": [
+      0,
+      25,
+      50,
+      75,
+      100
+    ],
+    "suffix": "%",
+    "decimals": 0,
+    "rows": [
+      [
+        "Pakistan",
+        99
+      ],
+      [
+        "Bangladesh",
+        72
+      ],
+      [
+        "India",
+        53
+      ]
+    ],
+    "columns": [
+      "Country",
+      "Qatar and UAE share (%)"
+    ],
+    "colours": [
+      "#cf0000",
+      "#948d8d",
+      "#948d8d"
+    ],
+    "track": true,
+    "note": "Updated to the March 2026 IEEFA assessment, citing Kpler. These supplier shares measure imported LNG, not total gas use. Supplies from Qatar and the UAE depend on passage through the Strait of Hormuz.",
+    "refs": [
+      112
+    ],
+    "source": "IEEFA, March 2026, citing Kpler"
+  },
+  {
+    "id": "fixed-cost-pressure",
+    "part": 3,
+    "title": "Fewer units can carry the same fixed bill",
+    "caption": "Illustrative fixed-cost recovery, with the annual fixed bill held constant.",
+    "type": "bars",
+    "unit": "Fixed cost per unit (starting level = 100)",
+    "maximum": 150,
+    "ticks": [
+      0,
+      50,
+      100,
+      150
+    ],
+    "suffix": "",
+    "decimals": 1,
+    "rows": [
+      [
+        "100 units sold",
+        100
+      ],
+      [
+        "90 units sold",
+        111.11111111111111
+      ],
+      [
+        "80 units sold",
+        125
+      ]
+    ],
+    "columns": [
+      "Illustrative sales",
+      "Fixed cost per unit index"
+    ],
+    "colours": [
+      "#948d8d",
+      "#948d8d",
+      "#cf0000"
+    ],
+    "note": "Illustration, not observed data or a forecast. Index = 100 × 100 ÷ units sold. A 20% fall in sales raises fixed cost per unit by 25% only if fixed costs are unchanged. Fuel savings, taxes, tariff design and changes to contracts are excluded.",
+    "refs": [
+      110
+    ],
+    "source": "Dark Matter illustration of fixed-cost recovery"
+  },
+  {
+    "id": "climate-target",
+    "part": 6,
+    "title": "Most of the promised emissions cut needs outside support",
+    "caption": "Pakistan’s NDC 3.0 ambition for 2035, relative to projected business-as-usual emissions.",
+    "type": "stacked",
+    "unit": "2035 business-as-usual emissions = 100%",
+    "maximum": 100,
+    "rows": [
+      [
+        "Domestic effort",
+        17
+      ],
+      [
+        "Conditional on international support",
+        33
+      ],
+      [
+        "Emissions remaining at full target",
+        50
+      ]
+    ],
+    "columns": [
+      "Component",
+      "Share of projected emissions (%)"
+    ],
+    "colours": [
+      "#cf0000",
+      "#03071e",
+      "#e5e2df"
+    ],
+    "note": "Policy target, not achieved reductions. The 17- and 33-percentage-point components together form a 50% reduction against projected 2035 emissions. The conditional component depends on international finance, technology transfer and capacity support; this does not show funding already raised.",
+    "refs": [
+      116
+    ],
+    "source": "Government of Pakistan, NDC 3.0, September 2025"
+  },
+  {
+    "id": "battery-imports",
+    "part": 7,
+    "title": "Batteries are following panels onto rooftops",
+    "caption": "Annual lithium-ion battery energy storage imports, including telecom systems.",
+    "type": "bars",
+    "unit": "Imported storage energy (GWh)",
+    "maximum": 5,
+    "ticks": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "suffix": " GWh",
+    "decimals": 2,
+    "rows": [
+      [
+        "2024",
+        1.43
+      ],
+      [
+        "2025",
+        4.59
+      ]
+    ],
+    "columns": [
+      "Calendar year",
+      "Imported storage energy (GWh)"
+    ],
+    "colours": [
+      "#948d8d",
+      "#cf0000"
+    ],
+    "note": "Updated estimate, published July 2026. Uses the sector breakdown’s 1.43 and 4.59 GWh totals; the report rounds 2025 to 4.6 GWh and reports growth of about 220%. Cumulative imports over 2018–2025 were 7.6 GWh. Imports do not measure operating storage, and GWh is not interchangeable with GW.",
+    "refs": [
+      114
+    ],
+    "source": "Renewables First, Pakistan’s Battery Boom Begins, July 2026"
+  },
+  {
+    "id": "solar-import-savings",
+    "part": 9,
+    "title": "Solar’s protection against fuel shocks has an economic value",
+    "caption": "Avoided oil and gas imports: a cumulative estimate and a separate conditional projection.",
+    "type": "estimates",
+    "unit": "US dollars",
+    "rows": [
+      [
+        "Cumulative through February 2026",
+        12
+      ],
+      [
+        "Further potential saving by end-2026",
+        6.3
+      ]
+    ],
+    "columns": [
+      "Period and status",
+      "Avoided imports (USD billion)"
+    ],
+    "display": [
+      "More than $12bn",
+      "$6.3bn"
+    ],
+    "labels": [
+      "Estimated avoided imports",
+      "Conditional projection"
+    ],
+    "colours": [
+      "#cf0000",
+      "#03071e"
+    ],
+    "note": "Updated analysis published March 2026 and revised in April. The second figure assumes elevated fuel prices persist; it is not a realised 2026 result. The two periods differ, so these figures are shown separately rather than as an annual trend or a combined total.",
+    "refs": [
+      113
+    ],
+    "source": "CREA, with contributions from Renewables First, March/April 2026"
+  }
+]

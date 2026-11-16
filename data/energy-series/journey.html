@@ -1,0 +1,51 @@
+<figure class="energy-figure energy-journey" id="power-journey" aria-labelledby="power-journey-title">
+    <figcaption><h3 id="power-journey-title">From the power station to your home</h3><p>Select a stage to follow the electricity to your home.</p></figcaption>
+    <div class="energy-journey-direction"><span class="ui-arrow" aria-hidden="true"></span> <span data-journey-direction>Follow the electricity</span></div>
+    <div class="energy-journey-stops" role="group" aria-label="Stops on the electricity journey">
+        <button class="energy-journey-stop" type="button" data-journey-stop="0" aria-pressed="true" aria-controls="journey-story-0" disabled>
+            <svg viewBox="0 0 220 170" aria-hidden="true" focusable="false">
+                <path class="journey-land" d="M0 142 35 132 70 142 110 132 160 142 220 136V170H0Z"/>
+                <g class="journey-building"><path d="M30 142V90L68 72V90L105 72V142Z"/><path d="M119 142Q137 111 130 67H155Q149 111 170 142Z"/><path d="M47 82V43H59V77M78 85V27H90V79"/><path d="M23 142H184"/><path d="M42 110H55V124H42ZM70 110H83V124H70Z"/><path d="M50 33Q40 23 51 12M84 18Q97 8 88 0" class="journey-steam"/></g>
+                <circle class="journey-glow" cx="133" cy="113" r="17"/><path class="journey-bolt" d="M137 98 125 115H133L129 128 144 109H135Z"/>
+                <path class="journey-wire" data-arrival-path="M110 113" d="M110 113H199V58H220"/>
+            </svg>
+            <span class="energy-journey-stop-label"><span>01</span><strong>The power plant</strong><small>Electricity is generated</small></span>
+        </button>
+        <button class="energy-journey-stop" type="button" data-journey-stop="1" aria-pressed="false" aria-controls="journey-story-1" disabled>
+            <svg viewBox="0 0 220 170" aria-hidden="true" focusable="false">
+                <path class="journey-land" d="M0 142 31 127 59 135 93 119 132 143 180 121 220 141V170H0Z"/>
+                <g class="journey-building"><path d="M73 146 101 22H118L148 146M84 100H137M93 60H127M101 22 127 60 84 100 148 146M118 22 93 60 137 100 73 146M77 146H144M88 47H132M69 68H151M60 92H159"/><path d="M88 47V55M132 47V55M69 68V77M151 68V77M60 92V101M159 92V101"/></g>
+                <path class="journey-wire" data-arrival-path="M0 58Q45 78 88 55L110 55" d="M0 58Q45 78 88 55L132 55Q176 78 220 58"/>
+                
+            </svg>
+            <span class="energy-journey-stop-label"><span>02</span><strong>Across the country</strong><small>High-voltage transmission</small></span>
+        </button>
+        <button class="energy-journey-stop" type="button" data-journey-stop="2" aria-pressed="false" aria-controls="journey-story-2" disabled>
+            <svg viewBox="0 0 220 170" aria-hidden="true" focusable="false">
+                <path class="journey-land" d="M0 142H220V170H0Z"/>
+                <g class="journey-building"><path d="M27 142V54H84V142M22 54H90M27 78H84M41 54V78M69 54V78"/><rect x="90" y="96" width="62" height="44" rx="3"/><path d="M100 103V132M111 103V132M122 103V132M133 103V132M144 103V132M102 96V80M138 96V80M97 84H107M97 89H107M133 84H143M133 89H143M179 142V52M163 62H196M165 58V69M192 58V69"/><path d="M18 145H204M20 133H204M23 127V153M49 127V153M75 127V153M101 127V153M127 127V153M153 127V153M179 127V153M202 127V153"/></g>
+                <path class="journey-wire" data-arrival-path="M0 58H15V41H56V87H102L110 115" d="M0 58H15V41H56V87H102L110 115H138V72H179V58H220"/><circle class="journey-glow" cx="121" cy="115" r="13"/><path class="journey-bolt" d="M124 106 115 117H121L118 125 128 114H123Z"/>
+                
+            </svg>
+            <span class="energy-journey-stop-label"><span>03</span><strong><span class="journey-stop-full">Into your neighbourhood</span><span class="journey-stop-compact">Your street</span></strong><small>Local distribution</small></span>
+        </button>
+        <button class="energy-journey-stop" type="button" data-journey-stop="3" aria-pressed="false" aria-controls="journey-story-3" disabled>
+            <svg viewBox="6 0 220 170" aria-hidden="true" focusable="false">
+                <path class="journey-land" d="M0 142H220V170H0Z"/>
+                <g class="journey-building"><path d="M42 85 116 32 190 85M54 79V143H178V79M141 49V31H158V62"/><path d="M103 143V108H125V143M70 96H92V118H70ZM139 96H161V118H139Z"/><path d="M81 96V118M70 107H92M150 96V118M139 107H161"/><rect x="29" y="92" width="16" height="24" rx="2"/><path d="M33 98H41M33 103H41M21 143H197"/></g>
+                <path class="journey-wire" data-arrival-path="M0 58H18V104H29L45 104H54V82H116V74" d="M0 58H18V104H29L45 104H54V82H116V74"/>
+                <circle class="journey-room-glow" cx="116" cy="81" r="24"/><path class="journey-lamp" d="M110 83A9 9 0 1 1 122 83L121 89H111ZM112 93H120M113 97H119"/>
+                <path class="journey-rays" d="M116 53V47M96 63 91 59M136 63 141 59M95 83 89 85M137 83 143 85"/>
+                
+            </svg>
+            <span class="energy-journey-stop-label"><span>04</span><strong><span class="journey-stop-full">Your light comes on</span><span class="journey-stop-compact">Your home</span></strong><small>The meter records your use</small></span>
+        </button>
+    </div>
+    <div class="energy-journey-stories" aria-live="polite" aria-atomic="true">
+        <div id="journey-story-0" class="energy-journey-story"><span class="energy-section-number">01 / It starts here</span><h4>Before you touch the switch</h4><p>At a power station, a generator uses moving water, burning fuel or nuclear heat to produce electricity. Solar panels convert sunlight directly. The power is now ready to enter the grid.</p><p class="energy-journey-stake"><strong>What you pay for:</strong> producing electricity and keeping the plant ready.</p></div>
+        <div id="journey-story-1" class="energy-journey-story"><span class="energy-section-number">02 / The long-distance leg</span><h4>Over fields, rivers and cities</h4><p>Transformers raise the voltage so power can travel long distances with lower losses. These lines are the system’s main roads. Congestion can keep a working plant’s output from reaching the places that need it.</p><p class="energy-journey-stake"><strong>What you pay for:</strong> the high-voltage network that carries power across the country.</p></div>
+        <div id="journey-story-2" class="energy-journey-story"><span class="energy-section-number">03 / The last few kilometres</span><h4>From the main grid to your street</h4><p>Substations and local transformers lower the voltage. Your distribution company carries power through feeders, poles and cables to your building. A local fault can cut supply even when the national grid is running.</p><p class="energy-journey-stake"><strong>What you pay for:</strong> the local network, its upkeep, metering and customer service.</p></div>
+        <div id="journey-story-3" class="energy-journey-story"><span class="energy-section-number">04 / At last, the switch</span><h4>The switch completes the journey</h4><p>Your meter records electricity in kilowatt-hours, the “units” on your bill. Switching on a light depends on every earlier stage working. Now the people and equipment behind that journey must be paid.</p><p class="energy-journey-stake"><strong>What you pay for:</strong> electricity used at home and the network that brings it here.</p></div>
+    </div>
+    <div class="energy-chart-footer"><span>Source: Energy Series (2024).<br>Illustrative routes, not updated.</span></div>
+</figure>

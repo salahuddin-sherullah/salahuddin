@@ -1,0 +1,2528 @@
+[
+  {
+    "part": 1,
+    "original_blocks": 40,
+    "retained_blocks": 18,
+    "updated_blocks": 22,
+    "omitted_blocks": 0,
+    "blocks": [
+      {
+        "id": "01.01",
+        "pdf_pages": [
+          3
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "01.02",
+        "pdf_pages": [
+          3
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "01.03",
+        "pdf_pages": [
+          3
+        ],
+        "type": "paragraph",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "01.04",
+        "pdf_pages": [
+          3
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "01.05",
+        "pdf_pages": [
+          3
+        ],
+        "type": "list",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "01.06",
+        "pdf_pages": [
+          3
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "01.07",
+        "pdf_pages": [
+          4
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "01.08",
+        "pdf_pages": [
+          4
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "01.09",
+        "pdf_pages": [
+          4
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "01.10",
+        "pdf_pages": [
+          4
+        ],
+        "type": "list",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "01.11",
+        "pdf_pages": [
+          4
+        ],
+        "type": "list",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "01.12",
+        "pdf_pages": [
+          4
+        ],
+        "type": "list",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "01.13",
+        "pdf_pages": [
+          4
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "01.14",
+        "pdf_pages": [
+          4
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "01.15",
+        "pdf_pages": [
+          4
+        ],
+        "type": "list",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "01.16",
+        "pdf_pages": [
+          4
+        ],
+        "type": "list",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "01.17",
+        "pdf_pages": [
+          5
+        ],
+        "type": "list",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "01.18",
+        "pdf_pages": [
+          5
+        ],
+        "type": "list",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "01.19",
+        "pdf_pages": [
+          5
+        ],
+        "type": "paragraph",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "01.20",
+        "pdf_pages": [
+          5
+        ],
+        "type": "list",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "01.21",
+        "pdf_pages": [
+          5
+        ],
+        "type": "list",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "01.22",
+        "pdf_pages": [
+          5
+        ],
+        "type": "list",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "01.23",
+        "pdf_pages": [
+          5
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "01.24",
+        "pdf_pages": [
+          5
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "01.25",
+        "pdf_pages": [
+          6
+        ],
+        "type": "paragraph",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "01.26",
+        "pdf_pages": [
+          6
+        ],
+        "type": "list",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "01.27",
+        "pdf_pages": [
+          6
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "01.28",
+        "pdf_pages": [
+          6
+        ],
+        "type": "list",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "01.29",
+        "pdf_pages": [
+          6
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "01.30",
+        "pdf_pages": [
+          6
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "01.31",
+        "pdf_pages": [
+          7
+        ],
+        "type": "paragraph",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "01.32",
+        "pdf_pages": [
+          7
+        ],
+        "type": "list",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "01.33",
+        "pdf_pages": [
+          7
+        ],
+        "type": "list",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "01.34",
+        "pdf_pages": [
+          7
+        ],
+        "type": "list",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "01.35",
+        "pdf_pages": [
+          7
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "01.36",
+        "pdf_pages": [
+          7
+        ],
+        "type": "paragraph",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "01.37",
+        "pdf_pages": [
+          7
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "01.38",
+        "pdf_pages": [
+          8
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "01.39",
+        "pdf_pages": [
+          8
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "01.40",
+        "pdf_pages": [
+          8
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      }
+    ]
+  },
+  {
+    "part": 2,
+    "original_blocks": 31,
+    "retained_blocks": 15,
+    "updated_blocks": 16,
+    "omitted_blocks": 0,
+    "blocks": [
+      {
+        "id": "02.01",
+        "pdf_pages": [
+          9
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "02.02",
+        "pdf_pages": [
+          9
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "02.03",
+        "pdf_pages": [
+          10
+        ],
+        "type": "paragraph",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "02.04",
+        "pdf_pages": [
+          10
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "02.05",
+        "pdf_pages": [
+          10
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "02.06",
+        "pdf_pages": [
+          10
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "02.07",
+        "pdf_pages": [
+          10
+        ],
+        "type": "paragraph",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "02.08",
+        "pdf_pages": [
+          10
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "02.09",
+        "pdf_pages": [
+          10
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "02.10",
+        "pdf_pages": [
+          11
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "02.11",
+        "pdf_pages": [
+          12
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "02.12",
+        "pdf_pages": [
+          12
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "02.13",
+        "pdf_pages": [
+          12
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "02.14",
+        "pdf_pages": [
+          12
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "02.15",
+        "pdf_pages": [
+          12
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "02.16",
+        "pdf_pages": [
+          12,
+          13
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "02.17",
+        "pdf_pages": [
+          13
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "02.18",
+        "pdf_pages": [
+          13
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "02.19",
+        "pdf_pages": [
+          13
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "02.20",
+        "pdf_pages": [
+          13
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "02.21",
+        "pdf_pages": [
+          13
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "02.22",
+        "pdf_pages": [
+          13
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "02.23",
+        "pdf_pages": [
+          13
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "02.24",
+        "pdf_pages": [
+          13
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "02.25",
+        "pdf_pages": [
+          13
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "02.26",
+        "pdf_pages": [
+          14
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "02.27",
+        "pdf_pages": [
+          14
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "02.28",
+        "pdf_pages": [
+          14
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "02.29",
+        "pdf_pages": [
+          14
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "02.30",
+        "pdf_pages": [
+          14
+        ],
+        "type": "paragraph",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "02.31",
+        "pdf_pages": [
+          14
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      }
+    ]
+  },
+  {
+    "part": 3,
+    "original_blocks": 41,
+    "retained_blocks": 26,
+    "updated_blocks": 15,
+    "omitted_blocks": 0,
+    "blocks": [
+      {
+        "id": "03.01",
+        "pdf_pages": [
+          15
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "03.02",
+        "pdf_pages": [
+          15
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "03.03",
+        "pdf_pages": [
+          15
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "03.04",
+        "pdf_pages": [
+          15
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "03.05",
+        "pdf_pages": [
+          15
+        ],
+        "type": "paragraph",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "03.06",
+        "pdf_pages": [
+          15
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "03.07",
+        "pdf_pages": [
+          15
+        ],
+        "type": "list",
+        "status": "updated",
+        "reason": "Correct the PDF’s classification of fuel reimbursements while preserving its payment-cost explanation."
+      },
+      {
+        "id": "03.08",
+        "pdf_pages": [
+          15
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "03.09",
+        "pdf_pages": [
+          15
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "03.10",
+        "pdf_pages": [
+          15
+        ],
+        "type": "paragraph",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "03.11",
+        "pdf_pages": [
+          15
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "03.12",
+        "pdf_pages": [
+          15,
+          16
+        ],
+        "type": "paragraph",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "03.13",
+        "pdf_pages": [
+          16
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "03.14",
+        "pdf_pages": [
+          16
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "03.15",
+        "pdf_pages": [
+          16
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "03.16",
+        "pdf_pages": [
+          16
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "03.17",
+        "pdf_pages": [
+          16
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "03.18",
+        "pdf_pages": [
+          16
+        ],
+        "type": "paragraph",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "03.19",
+        "pdf_pages": [
+          17
+        ],
+        "type": "heading",
+        "status": "updated",
+        "reason": "Retain the original breakdown section while updating its dated headline."
+      },
+      {
+        "id": "03.20",
+        "pdf_pages": [
+          17
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "03.21",
+        "pdf_pages": [
+          17
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "03.22",
+        "pdf_pages": [
+          17
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "03.23",
+        "pdf_pages": [
+          17
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "03.24",
+        "pdf_pages": [
+          17
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Preserve the ownership/financing argument without equating all non-government plants with foreign ownership."
+      },
+      {
+        "id": "03.25",
+        "pdf_pages": [
+          17
+        ],
+        "type": "heading",
+        "status": "updated",
+        "reason": "Renegotiations have occurred since the PDF; preserve its legal-obstacles section without saying they are impossible."
+      },
+      {
+        "id": "03.26",
+        "pdf_pages": [
+          17
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "03.27",
+        "pdf_pages": [
+          18
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "03.28",
+        "pdf_pages": [
+          18
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "03.29",
+        "pdf_pages": [
+          18
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "03.30",
+        "pdf_pages": [
+          18
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "03.31",
+        "pdf_pages": [
+          18
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "03.32",
+        "pdf_pages": [
+          18
+        ],
+        "type": "paragraph",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "03.33",
+        "pdf_pages": [
+          18
+        ],
+        "type": "list",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "03.34",
+        "pdf_pages": [
+          18
+        ],
+        "type": "list",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "03.35",
+        "pdf_pages": [
+          18
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "03.36",
+        "pdf_pages": [
+          18
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "03.37",
+        "pdf_pages": [
+          18
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "03.38",
+        "pdf_pages": [
+          18
+        ],
+        "type": "list",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "03.39",
+        "pdf_pages": [
+          18
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "03.40",
+        "pdf_pages": [
+          18,
+          19
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "03.41",
+        "pdf_pages": [
+          19
+        ],
+        "type": "paragraph",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      }
+    ]
+  },
+  {
+    "part": 4,
+    "original_blocks": 28,
+    "retained_blocks": 19,
+    "updated_blocks": 9,
+    "omitted_blocks": 0,
+    "blocks": [
+      {
+        "id": "04.01",
+        "pdf_pages": [
+          20
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "04.02",
+        "pdf_pages": [
+          21
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "04.03",
+        "pdf_pages": [
+          21
+        ],
+        "type": "paragraph",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "04.04",
+        "pdf_pages": [
+          21
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "04.05",
+        "pdf_pages": [
+          21
+        ],
+        "type": "list",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "04.06",
+        "pdf_pages": [
+          21
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "04.07",
+        "pdf_pages": [
+          21
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "04.08",
+        "pdf_pages": [
+          21
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "04.09",
+        "pdf_pages": [
+          21
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "04.10",
+        "pdf_pages": [
+          21
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "04.11",
+        "pdf_pages": [
+          21
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "04.12",
+        "pdf_pages": [
+          21
+        ],
+        "type": "paragraph",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "04.13",
+        "pdf_pages": [
+          21
+        ],
+        "type": "list",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "04.14",
+        "pdf_pages": [
+          21
+        ],
+        "type": "list",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "04.15",
+        "pdf_pages": [
+          22
+        ],
+        "type": "paragraph",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "04.16",
+        "pdf_pages": [
+          22
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "04.17",
+        "pdf_pages": [
+          22
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "04.18",
+        "pdf_pages": [
+          22
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "04.19",
+        "pdf_pages": [
+          22
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "04.20",
+        "pdf_pages": [
+          23
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "04.21",
+        "pdf_pages": [
+          23
+        ],
+        "type": "paragraph",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "04.22",
+        "pdf_pages": [
+          23
+        ],
+        "type": "list",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "04.23",
+        "pdf_pages": [
+          23
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "04.24",
+        "pdf_pages": [
+          23
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "04.25",
+        "pdf_pages": [
+          23
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "04.26",
+        "pdf_pages": [
+          23,
+          24
+        ],
+        "type": "list",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "04.27",
+        "pdf_pages": [
+          24
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "04.28",
+        "pdf_pages": [
+          24
+        ],
+        "type": "paragraph",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      }
+    ]
+  },
+  {
+    "part": 5,
+    "original_blocks": 42,
+    "retained_blocks": 30,
+    "updated_blocks": 12,
+    "omitted_blocks": 0,
+    "blocks": [
+      {
+        "id": "05.01",
+        "pdf_pages": [
+          25
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "05.02",
+        "pdf_pages": [
+          26
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "05.03",
+        "pdf_pages": [
+          26
+        ],
+        "type": "paragraph",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "05.04",
+        "pdf_pages": [
+          26
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "05.05",
+        "pdf_pages": [
+          26
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "05.06",
+        "pdf_pages": [
+          26
+        ],
+        "type": "list",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "05.07",
+        "pdf_pages": [
+          26
+        ],
+        "type": "list",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "05.08",
+        "pdf_pages": [
+          26
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "05.09",
+        "pdf_pages": [
+          26
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "05.10",
+        "pdf_pages": [
+          26
+        ],
+        "type": "paragraph",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "05.11",
+        "pdf_pages": [
+          26
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "05.12",
+        "pdf_pages": [
+          26
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "05.13",
+        "pdf_pages": [
+          26
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "05.14",
+        "pdf_pages": [
+          26
+        ],
+        "type": "paragraph",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "05.15",
+        "pdf_pages": [
+          26
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "05.16",
+        "pdf_pages": [
+          26
+        ],
+        "type": "paragraph",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "05.17",
+        "pdf_pages": [
+          26
+        ],
+        "type": "list",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "05.18",
+        "pdf_pages": [
+          26
+        ],
+        "type": "list",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "05.19",
+        "pdf_pages": [
+          27
+        ],
+        "type": "list",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "05.20",
+        "pdf_pages": [
+          27
+        ],
+        "type": "list",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "05.21",
+        "pdf_pages": [
+          27
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "05.22",
+        "pdf_pages": [
+          27
+        ],
+        "type": "list",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "05.23",
+        "pdf_pages": [
+          27
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "05.24",
+        "pdf_pages": [
+          27
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "05.25",
+        "pdf_pages": [
+          27
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "05.26",
+        "pdf_pages": [
+          27
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "05.27",
+        "pdf_pages": [
+          27
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "05.28",
+        "pdf_pages": [
+          27
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "05.29",
+        "pdf_pages": [
+          27
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "05.30",
+        "pdf_pages": [
+          27
+        ],
+        "type": "paragraph",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "05.31",
+        "pdf_pages": [
+          27
+        ],
+        "type": "list",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "05.32",
+        "pdf_pages": [
+          27
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "05.33",
+        "pdf_pages": [
+          28
+        ],
+        "type": "list",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "05.34",
+        "pdf_pages": [
+          28
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "05.35",
+        "pdf_pages": [
+          28
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "05.36",
+        "pdf_pages": [
+          28
+        ],
+        "type": "paragraph",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "05.37",
+        "pdf_pages": [
+          28
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "05.38",
+        "pdf_pages": [
+          28
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "05.39",
+        "pdf_pages": [
+          28
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "05.40",
+        "pdf_pages": [
+          28
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "05.41",
+        "pdf_pages": [
+          28
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "05.42",
+        "pdf_pages": [
+          28
+        ],
+        "type": "paragraph",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      }
+    ]
+  },
+  {
+    "part": 6,
+    "original_blocks": 19,
+    "retained_blocks": 9,
+    "updated_blocks": 10,
+    "omitted_blocks": 0,
+    "blocks": [
+      {
+        "id": "06.01",
+        "pdf_pages": [
+          29
+        ],
+        "type": "paragraph",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "06.02",
+        "pdf_pages": [
+          29
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "06.03",
+        "pdf_pages": [
+          30
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "06.04",
+        "pdf_pages": [
+          30
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "06.05",
+        "pdf_pages": [
+          30
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Keep the original cross-subsidy argument, distinguish an announced scheme from verified delivery, and update the levy context."
+      },
+      {
+        "id": "06.06",
+        "pdf_pages": [
+          30
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "06.07",
+        "pdf_pages": [
+          30
+        ],
+        "type": "paragraph",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "06.08",
+        "pdf_pages": [
+          30
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "06.09",
+        "pdf_pages": [
+          30
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "06.10",
+        "pdf_pages": [
+          30
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "06.11",
+        "pdf_pages": [
+          31
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "06.12",
+        "pdf_pages": [
+          31
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "06.13",
+        "pdf_pages": [
+          31
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "06.14",
+        "pdf_pages": [
+          31
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "06.15",
+        "pdf_pages": [
+          31
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "06.16",
+        "pdf_pages": [
+          31
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "06.17",
+        "pdf_pages": [
+          31
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "06.18",
+        "pdf_pages": [
+          31
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "06.19",
+        "pdf_pages": [
+          31
+        ],
+        "type": "paragraph",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      }
+    ]
+  },
+  {
+    "part": 7,
+    "original_blocks": 33,
+    "retained_blocks": 18,
+    "updated_blocks": 15,
+    "omitted_blocks": 0,
+    "blocks": [
+      {
+        "id": "07.01",
+        "pdf_pages": [
+          32
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "07.02",
+        "pdf_pages": [
+          32
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "07.03",
+        "pdf_pages": [
+          32
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "07.04",
+        "pdf_pages": [
+          32
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "07.05",
+        "pdf_pages": [
+          32
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "07.06",
+        "pdf_pages": [
+          32
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "07.07",
+        "pdf_pages": [
+          32
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "07.08",
+        "pdf_pages": [
+          32
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Retain the PDF’s electrification scenario while avoiding guaranteed whole-economy emissions and import savings."
+      },
+      {
+        "id": "07.09",
+        "pdf_pages": [
+          33
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "07.10",
+        "pdf_pages": [
+          33
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "07.11",
+        "pdf_pages": [
+          33
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "07.12",
+        "pdf_pages": [
+          33
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "07.13",
+        "pdf_pages": [
+          33
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "07.14",
+        "pdf_pages": [
+          33
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "07.15",
+        "pdf_pages": [
+          33,
+          34
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "07.16",
+        "pdf_pages": [
+          34
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "07.17",
+        "pdf_pages": [
+          34
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "07.18",
+        "pdf_pages": [
+          34
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "07.19",
+        "pdf_pages": [
+          34
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "07.20",
+        "pdf_pages": [
+          34
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "07.21",
+        "pdf_pages": [
+          34
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "07.22",
+        "pdf_pages": [
+          34
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "07.23",
+        "pdf_pages": [
+          34
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "07.24",
+        "pdf_pages": [
+          34
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "07.25",
+        "pdf_pages": [
+          34
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "07.26",
+        "pdf_pages": [
+          34
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "07.27",
+        "pdf_pages": [
+          34
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "07.28",
+        "pdf_pages": [
+          34
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "07.29",
+        "pdf_pages": [
+          35
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "07.30",
+        "pdf_pages": [
+          35
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "07.31",
+        "pdf_pages": [
+          35
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "07.32",
+        "pdf_pages": [
+          35
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "07.33",
+        "pdf_pages": [
+          35
+        ],
+        "type": "paragraph",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      }
+    ]
+  },
+  {
+    "part": 8,
+    "original_blocks": 17,
+    "retained_blocks": 11,
+    "updated_blocks": 6,
+    "omitted_blocks": 0,
+    "blocks": [
+      {
+        "id": "08.01",
+        "pdf_pages": [
+          36
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "08.02",
+        "pdf_pages": [
+          36
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "08.03",
+        "pdf_pages": [
+          36
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "08.04",
+        "pdf_pages": [
+          37
+        ],
+        "type": "paragraph",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "08.05",
+        "pdf_pages": [
+          37
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "08.06",
+        "pdf_pages": [
+          37
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "08.07",
+        "pdf_pages": [
+          37
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "08.08",
+        "pdf_pages": [
+          37
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "08.09",
+        "pdf_pages": [
+          37
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "08.10",
+        "pdf_pages": [
+          37
+        ],
+        "type": "paragraph",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "08.11",
+        "pdf_pages": [
+          37
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "08.12",
+        "pdf_pages": [
+          37
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "08.13",
+        "pdf_pages": [
+          37
+        ],
+        "type": "list",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "08.14",
+        "pdf_pages": [
+          37
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "08.15",
+        "pdf_pages": [
+          38
+        ],
+        "type": "list",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "08.16",
+        "pdf_pages": [
+          38
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "08.17",
+        "pdf_pages": [
+          38
+        ],
+        "type": "paragraph",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      }
+    ]
+  },
+  {
+    "part": 9,
+    "original_blocks": 20,
+    "retained_blocks": 10,
+    "updated_blocks": 10,
+    "omitted_blocks": 0,
+    "blocks": [
+      {
+        "id": "09.01",
+        "pdf_pages": [
+          39
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "09.02",
+        "pdf_pages": [
+          39
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "09.03",
+        "pdf_pages": [
+          39
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "09.04",
+        "pdf_pages": [
+          39
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "09.05",
+        "pdf_pages": [
+          39
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "09.06",
+        "pdf_pages": [
+          39
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "09.07",
+        "pdf_pages": [
+          39
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "09.08",
+        "pdf_pages": [
+          39
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "09.09",
+        "pdf_pages": [
+          39
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "09.10",
+        "pdf_pages": [
+          39,
+          40
+        ],
+        "type": "paragraph",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "09.11",
+        "pdf_pages": [
+          40
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "09.12",
+        "pdf_pages": [
+          40
+        ],
+        "type": "paragraph",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "09.13",
+        "pdf_pages": [
+          40
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "09.14",
+        "pdf_pages": [
+          40
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "09.15",
+        "pdf_pages": [
+          40
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "09.16",
+        "pdf_pages": [
+          40
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update figures or dated wording without replacing the original narrative."
+      },
+      {
+        "id": "09.17",
+        "pdf_pages": [
+          40
+        ],
+        "type": "paragraph",
+        "status": "updated",
+        "reason": "Update the original passage with the supplied figures, retaining its role and position."
+      },
+      {
+        "id": "09.18",
+        "pdf_pages": [
+          40
+        ],
+        "type": "heading",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "09.19",
+        "pdf_pages": [
+          40
+        ],
+        "type": "paragraph",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      },
+      {
+        "id": "09.20",
+        "pdf_pages": [
+          40
+        ],
+        "type": "paragraph",
+        "status": "retained",
+        "reason": "Original wording retained. Quantitative historical claims link to the data notes."
+      }
+    ]
+  }
+]
